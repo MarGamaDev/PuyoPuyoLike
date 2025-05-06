@@ -14,6 +14,10 @@ config/name="Puyo-Puyo-Like"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[display]
+
+window/size/viewport_height=800
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

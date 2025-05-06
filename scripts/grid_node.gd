@@ -1,5 +1,7 @@
 extends Node2D
 
+class_name GridNode
+
 ##notes:
 ##the puyo sprites should be uncentered (pivot at top left)? i think that makes
 ##things a lot easier.
@@ -11,9 +13,9 @@ extends Node2D
 var is_holding_puyo : bool = false
 #how wide the grid is meant to be (in pixels, currently 50)
 #TODO maybe this could be a global variable, idk
-var grid_size : int = 50
+var node_size : int = 50
 #array of neighbouring nodes. set by gridmanager when created
-var neighbours : Array = []
+var neighbours : Array[GridNode] = []
 #tracker for when we're checking the board to remove blocks
 var is_checked : bool = false
 #if the node is part of the off-field grid, true if it is out of the play field
@@ -21,8 +23,8 @@ var is_out_of_play : bool = false
 
 func _ready():
 	#for testing
-	puyo.create_puyo(2, true)
-	print(puyo.is_junk)
+	#puyo.create_puyo(2, true)
+	#print(puyo.is_junk)
 	pass
 
 
@@ -36,7 +38,7 @@ func set_puyo(new_puyo : Puyo):
 func set_color(new_color : int):
 	if puyo != null:
 		puyo.set_color(new_color)
-func get_color(new_color : int):
+func get_color():
 	if puyo != null:
 		return puyo.get_color()
 
@@ -67,3 +69,6 @@ func set_puyo_size(new_size : int):
 func get_puyo_size():
 	if puyo != null:
 		return puyo.get_puyo_size()
+
+func set_test_sprite(test : bool):
+	$OOBTest.visible = test
