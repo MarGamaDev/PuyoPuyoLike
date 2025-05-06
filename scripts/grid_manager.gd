@@ -111,3 +111,19 @@ func neighbour_check(node_array: Array, color_check: int, current_node: GridNode
 			return node_array
 	#if theres no more neighbours to check, return an empty array 
 	pass
+
+#called when a tick for gravity needs to be checked, callls itself if it changed anything
+func down_tick():
+	#sets a check to see if anything changed
+	var check = true
+	#loops through all puyos, but from bottom up
+	for i in range(0, grid_row):
+		#starts with one above bottom
+		for j in range(0, grid_column + 1):
+			#if the space below is empty
+			if !(grid[i][j + 1].is_holding_puyo) and grid[i][j].is_holding_puyo:
+				#set check to false and move down
+				move_puyo(grid[i][j], grid[i][j+1])
+				down_tick()
+
+		

@@ -1,10 +1,6 @@
 extends Node2D
 
 func _ready():
-	pass
-
-
-func _on_timer_timeout() -> void:
 	$GridManager.grid[2][2].set_puyo($GridManager/TestPuyo)
 	$GridManager.grid[2][2].set_color(4)
 	$GridManager.grid[1][2].set_puyo($GridManager/TestPuyo1)
@@ -46,10 +42,17 @@ func _on_timer_timeout() -> void:
 	$GridManager.grid[2][6].set_color(2)
 	$GridManager.grid[1][7].set_puyo($GridManager/TestPuyo17)
 	$GridManager.grid[1][7].set_color(2)
+	pass
+
+
+func _on_timer_timeout() -> void:
+
 	
-	for i in $GridManager.board_check():
-		for j in i:
-			print(j.position)
-			print(j.get_color())
+	#for i in $GridManager.board_check():
+		#for j in i:
+			#print(j.position)
+			#print(j.get_color())
+	
+	$GridManager.down_tick()
 	
 	pass
