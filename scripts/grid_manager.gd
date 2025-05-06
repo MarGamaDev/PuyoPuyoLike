@@ -37,4 +37,7 @@ func _ready():
 			#this is just for testing for visual aid
 			grid[i][j].set_test_sprite(true)
 	
-	pass
+	#setting all the neighbours for each GridNode
+	for i : Array[GridNode] in grid:
+		for j : GridNode in i:
+			print("hello")
