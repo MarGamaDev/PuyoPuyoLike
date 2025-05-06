@@ -13,14 +13,81 @@ script = ExtResource("1_puh6r")
 z_index = 6
 z_as_relative = false
 
+[node name="TestPuyo1" parent="GridManager" instance=ExtResource("2_puh6r")]
+z_index = 6
+z_as_relative = false
+
+[node name="TestPuyo2" parent="GridManager" instance=ExtResource("2_puh6r")]
+z_index = 6
+z_as_relative = false
+
+[node name="TestPuyo3" parent="GridManager" instance=ExtResource("2_puh6r")]
+z_index = 6
+z_as_relative = false
+
+[node name="TestPuyo4" parent="GridManager" instance=ExtResource("2_puh6r")]
+z_index = 6
+z_as_relative = false
+
+[node name="TestPuyo5" parent="GridManager" instance=ExtResource("2_puh6r")]
+z_index = 6
+z_as_relative = false
+
+[node name="TestPuyo6" parent="GridManager" instance=ExtResource("2_puh6r")]
+z_index = 6
+z_as_relative = false
+
+[node name="TestPuyo7" parent="GridManager" instance=ExtResource("2_puh6r")]
+z_index = 6
+z_as_relative = false
+
+[node name="TestPuyo8" parent="GridManager" instance=ExtResource("2_puh6r")]
+z_index = 6
+z_as_relative = false
+
+[node name="TestPuyo9" parent="GridManager" instance=ExtResource("2_puh6r")]
+z_index = 6
+z_as_relative = false
+
+[node name="TestPuyo10" parent="GridManager" instance=ExtResource("2_puh6r")]
+z_index = 6
+z_as_relative = false
+
+[node name="TestPuyo11" parent="GridManager" instance=ExtResource("2_puh6r")]
+z_index = 6
+z_as_relative = false
+
+[node name="TestPuyo12" parent="GridManager" instance=ExtResource("2_puh6r")]
+z_index = 6
+z_as_relative = false
+
+[node name="TestPuyo13" parent="GridManager" instance=ExtResource("2_puh6r")]
+z_index = 6
+z_as_relative = false
+
+[node name="TestPuyo14" parent="GridManager" instance=ExtResource("2_puh6r")]
+z_index = 6
+z_as_relative = false
+
+[node name="TestPuyo15" parent="GridManager" instance=ExtResource("2_puh6r")]
+z_index = 6
+z_as_relative = false
+
+[node name="TestPuyo16" parent="GridManager" instance=ExtResource("2_puh6r")]
+z_index = 6
+z_as_relative = false
+
+[node name="TestPuyo17" parent="GridManager" instance=ExtResource("2_puh6r")]
+z_index = 6
+z_as_relative = false
+
+[node name="TestPuyo18" parent="GridManager" instance=ExtResource("2_puh6r")]
+z_index = 6
+z_as_relative = false
+
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
 autostart = true
 
-[node name="Timer2" type="Timer" parent="."]
-one_shot = true
-autostart = true
-
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
-[connection signal="timeout" from="Timer2" to="." method="_on_timer_2_timeout"]

@@ -66,3 +66,48 @@ func move_puyo(node_from : GridNode, node_to : GridNode):
 	node_to.set_puyo(node_from.puyo)
 	node_from.reset()
 	pass
+
+#called whenever we need to check the board. will return an array of groups of nodes (for now)
+func board_check():
+	#any groups of 4+ blocks that are found will be stored in this
+	var groups : Array[Array] = []
+	#go through every node in the grid
+	for i in range(0, grid_row):
+		##LATER we want to ignore the nodes on top ( for now ) so we start at 2
+		for j in range(0, grid_column + 2):
+			#get the current node
+			var temp_node : GridNode = grid[i][j]
+			#see if it's already in a group to be removed, and if it has a puyo and it has 1 or more neighbours
+			if !(temp_node.is_checked) and (temp_node.is_holding_puyo) and (temp_node.neighbours.size() > 0):
+				#create an array with out node, and call our recursive check on it
+				var temp_array = [temp_node]
+				#after setting the current node to being checked
+				temp_node.is_checked = true
+				neighbour_check(temp_array, temp_node.get_color(), temp_node)
+				#if the array is less than 4 neighbours, meaning it isn't a block
+				if temp_array.size() < 4:
+					#set all the contents back to not being checked
+					for x in temp_array:
+						x.is_checked = false
+				else: #if the array is greater than 3 in size
+					for temp in temp_array:
+						temp.set_color(0)
+					#let the check status remain, and store this group in our groups array
+					groups.append(temp_array)
+	return groups
+
+#recursive function for checking all neighbours
+func neighbour_check(node_array: Array, color_check: int, current_node: GridNode):
+	#for each neighbour the node has
+	for i in range(0, current_node.neighbours.size()):
+		var check = current_node.neighbours[i]
+		#check its color, if its the same as the desired color AND it hasn't been checked
+		if check.get_color() == color_check and !(check.is_checked):
+			#set the next node to has been checked
+			check.is_checked = true
+			node_array.append(check)
+			#do a recursive call
+			neighbour_check(node_array, color_check, check)
+			return node_array
+	#if theres no more neighbours to check, return an empty array 
+	pass
