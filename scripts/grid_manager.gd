@@ -14,8 +14,11 @@ extends Node2D
 #just remember that we go through 0->rows then each time 0->columns + 2 (this is for stupid box)
 var grid : Array[Array]
 
-
 func _ready():
+	grid_setup()
+
+#initialises the grid and gives all of the nodes their neighbours
+func grid_setup():
 	#fill the array with empty gridnodes
 	for i in range(0, grid_row):
 		var temp_array : Array[GridNode] = []
@@ -38,6 +41,28 @@ func _ready():
 			grid[i][j].set_test_sprite(true)
 	
 	#setting all the neighbours for each GridNode
-	for i : Array[GridNode] in grid:
-		for j : GridNode in i:
-			print("hello")
+	for i in range(0, grid_row):
+		for j in range(0, grid_column + 2):
+			find_neighbours(i, j, grid[i][j])
+
+#neighbour assignment helper, takes a position in the grid, finds it's node, then fills its neighbour array
+func find_neighbours(grid_x: int, grid_y: int, grid_node : GridNode):
+	#look at above
+	if grid_y > 0:
+		grid_node.neighbours.append(grid[grid_x][grid_y - 1])
+	#look at right
+	if grid_x < grid_row - 1:
+		grid_node.neighbours.append(grid[grid_x + 1][grid_y])
+	#look below
+	if grid_y < grid_column + 1:
+		grid_node.neighbours.append(grid[grid_x][grid_y + 1])
+	#look at left
+	if grid_x > 0:
+		grid_node.neighbours.append(grid[grid_x - 1][grid_y])
+	pass
+
+#move a puyo from one node to another. overwrites node_to's puyo
+func move_puyo(node_from : GridNode, node_to : GridNode):
+	node_to.set_puyo(node_from.puyo)
+	node_from.reset()
+	pass

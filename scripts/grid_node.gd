@@ -31,6 +31,7 @@ func _ready():
 #adding a puyo to the node, takes a puyo
 func set_puyo(new_puyo : Puyo):
 	puyo = new_puyo
+	puyo.position = position
 	is_holding_puyo = false
 
 #i was stupid and realised you can access class variables with .variable 
@@ -72,3 +73,9 @@ func get_puyo_size():
 
 func set_test_sprite(test : bool):
 	$OOBTest.visible = test
+
+#resets node (not neighbours or out of bounds)
+func reset():
+	puyo = null
+	is_holding_puyo  = false
+	is_checked = false

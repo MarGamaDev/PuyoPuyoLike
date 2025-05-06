@@ -8,6 +8,8 @@ func _ready():
 func _on_timer_timeout() -> void:
 	$GridManager.grid[2][2].set_puyo($GridManager/TestPuyo)
 	$GridManager.grid[2][2].set_color(4)
-	print($GridManager.grid[2][2].position)
-	$GridManager/TestPuyo.set_position($GridManager.grid[2][2].position)
 	pass
+
+
+func _on_timer_2_timeout() -> void:
+	$GridManager.move_puyo($GridManager.grid[2][2], $GridManager.grid[2][3])
