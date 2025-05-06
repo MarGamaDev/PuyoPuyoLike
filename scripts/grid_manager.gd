@@ -5,8 +5,8 @@ extends Node2D
 @onready var puyo_scene = load("res://Scenes/puyo.tscn")
 
 #number of items in each column and row. 
-@export var grid_height : int = 7
-@export var grid_width : int = 5
+@export var grid_height : int = 12
+@export var grid_width : int = 6
 #size of the squares
 @export var square_size : int = 30
 #array of GridNodes (nested type declarations aren't supported unfortunately)
@@ -85,25 +85,32 @@ func move_puyo(node_from : GridNode, node_to : GridNode):
 
 #called whenever we need to check the board. will return an array of groups of nodes (for now)
 func get_grouped_puyos() -> Array:
-	#any groups of 4+ blocks that are found will be stored in this
+	#any groups of 4+ blocks get 
 	var groups : Array = Array()
 	#go through every node in the grid
 	for i in range(0, grid_width):
 		##LATER we want to ignore the nodes on top ( for now ) so we start at 2
 		for j in range(2, grid_height):
-			#get the current node
 			var node_to_check : GridNode = grid[i][j]
-			if (!node_to_check.is_checked):
-				var node_group := Array()
-				node_group = check_node(node_to_check, node_group)
-				#see if it's already in a group to be removed, and if it has a puyo and it has 1 or more neighbours
-				if (node_group.size() >= 4):
-					print(node_group.size())
-					groups.append(node_group)
-					for n in range(node_group.size()):
-						node_group[n].is_checked = true
-						
-	print("found ", groups.size(), " groups")
+			
+			#skip iteration if node has already been checked
+			if (node_to_check.is_checked):
+				continue
+			
+			#check node recursively
+			var node_group : Array = Array()
+			node_group = check_node(node_to_check, node_group)
+			
+			#if the group is large enough, save it to the groups
+			if (node_group.size() >= 4):
+				print(node_group.size())
+				groups.append(node_group)
+			
+			#set all nodes in the group as checked
+			for n in range(node_group.size()):
+				node_group[n].is_checked = true
+			
+	print(str("found ", groups.size(), " groups"))
 	return groups
 
 #called when a tick for gravity needs to be checked, callls itself if it changed anything
@@ -122,8 +129,8 @@ func down_tick():
 
 		
 func check_node(node_to_check: GridNode, node_group: Array, puyo_type:= Puyo.PUYO_TYPE.UNDEFINED) -> Array:
-	print("checking node ", node_to_check.grid_index)
-	#if node is already checked, or doesn't have a puyo, exit out of this iteration
+	#print("checking node ", node_to_check.grid_index)
+	#if node is already checked, or doesn't have a puyo, exit iteration
 	if (node_group.has(node_to_check)) or (!node_to_check.is_holding_puyo):
 		return node_group
 	
@@ -131,17 +138,16 @@ func check_node(node_to_check: GridNode, node_group: Array, puyo_type:= Puyo.PUY
 	if (puyo_type == Puyo.PUYO_TYPE.UNDEFINED):
 		puyo_type = node_to_check.get_type()
 	
-	#if the node's puyo type matches the group's type, add it to the group
-	if (node_to_check.get_type() == puyo_type):
+	#if the node's puyo type doesn't match, exit iteration
+	if (node_to_check.get_type() != puyo_type):
 		return node_group
 	
+	#add the node to the group, then recursively check neighbours
 	node_group.append(node_to_check)
-	#recursively check neighbours
 	for i in range(0, node_to_check.neighbours.size()):
 		var neighbour_to_check = node_to_check.neighbours[i]
 		var updated_group: Array = check_node(neighbour_to_check, node_group, puyo_type)
-		
-		#update the array every time
 		node_group = updated_group
 	
+	#send the accumulated list back up the recursion
 	return node_group
