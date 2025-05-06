@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://c6x4fp03itplm"]
+
+[ext_resource type="PackedScene" uid="uid://cd7coiq05y0xu" path="res://Scenes/grid_node.tscn" id="1_iex5k"]
+[ext_resource type="PackedScene" uid="uid://cqw1jv0baovrt" path="res://Scenes/puyo.tscn" id="2_puh6r"]
+
+[node name="BoxTestingScene" type="Node2D"]
+
+[node name="GridNode" parent="." instance=ExtResource("1_iex5k")]
+position = Vector2(470, 235)
+
+[node name="TestPuyo" parent="GridNode" instance=ExtResource("2_puh6r")]
+
+[node name="TestPuyo2" parent="GridNode" instance=ExtResource("2_puh6r")]
+visible = false

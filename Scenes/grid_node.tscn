@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cd7coiq05y0xu"]
+
+[ext_resource type="Script" uid="uid://nuxppdlkdqbf" path="res://scripts/grid_node.gd" id="1_cvftl"]
+
+[node name="GridNode" type="Node2D"]
+script = ExtResource("1_cvftl")
