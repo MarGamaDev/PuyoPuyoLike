@@ -2,63 +2,79 @@ extends Node2D
 
 #loading the grid nodes to instantiate them
 @onready var grid_node_scene = load("res://Scenes/grid_node.tscn")
+@onready var puyo_scene = load("res://Scenes/puyo.tscn")
 
 #number of items in each column and row. 
-@export var grid_column : int = 12
-@export var grid_row : int = 6
+@export var grid_height : int = 7
+@export var grid_width : int = 5
 #size of the squares
-@export var square_size : int = 50
+@export var square_size : int = 30
 #array of GridNodes (nested type declarations aren't supported unfortunately)
 #grid will be column major, so [x][y] like on a grid. [column] [row]
 #0,0 will be top left, and rows x,0 & x,1 will not be on screen, and are used for gameover
 #just remember that we go through 0->rows then each time 0->columns + 2 (this is for stupid box)
-var grid : Array[Array]
+var grid : Array = Array()
 
 func _ready():
-	grid_setup()
+	initialize_grid()
+	fill_grid()
+	get_grouped_puyos()
+
+func fill_grid():
+	for i in range(0, grid_width):
+		for j in range(2, grid_height):
+			var puyo : Puyo = puyo_scene.instantiate()
+			var node_to_fill : GridNode = grid[i][j]
+			node_to_fill.set_puyo(puyo)
+			node_to_fill.set_type(randi_range(2,5))
+			node_to_fill.add_child(puyo)
+		
+	
 
 #initialises the grid and gives all of the nodes their neighbours
-func grid_setup():
+func initialize_grid():
 	#fill the array with empty gridnodes
-	for i in range(0, grid_row):
-		var temp_array : Array[GridNode] = []
+	grid.resize(grid_width)
+	for i in range(0, grid_width):
+		grid[i]=Array()
+		grid[i].resize(grid_height + 2)
 		##we want this to be + 2 for the two rows of nodes off-screen at the top
-		for j in range(0, grid_column + 2):
+		for j in range(0, grid_height + 2):
 			#create a row of new nodes and add them to a temporary array
 			var new_node : GridNode = grid_node_scene.instantiate()
-			add_child(new_node)
+			grid[i][j] = new_node
+			new_node.grid_index = Vector2i(i, j)
 			#setting it's position
 			new_node.position = Vector2(i * square_size, j * square_size)
-			temp_array.append(new_node)
+			add_child(new_node)
 		#add a full column 
-		grid.append(temp_array)
 	
 	#set the top two rows to out of bounds
-	for i in range(0, grid_row):
+	for i in range(0, grid_width):
 		for j in range(0, 2):
 			grid[i][j].is_out_of_play = true
 			#this is just for testing for visual aid
 			grid[i][j].set_test_sprite(true)
 	
 	#setting all the neighbours for each GridNode
-	for i in range(0, grid_row):
-		for j in range(0, grid_column + 2):
-			find_neighbours(i, j, grid[i][j])
+	for i in range(0, grid_width):
+		for j in range(0, grid_height):
+			set_node_neighbours(grid[i][j])
 
 #neighbour assignment helper, takes a position in the grid, finds it's node, then fills its neighbour array
-func find_neighbours(grid_x: int, grid_y: int, grid_node : GridNode):
+func set_node_neighbours(grid_node : GridNode):
 	#look at above
-	if grid_y > 0:
-		grid_node.neighbours.append(grid[grid_x][grid_y - 1])
+	if grid_node.y > 2:
+		grid_node.neighbours.append(grid[grid_node.x][grid_node.y - 1])
 	#look at right
-	if grid_x < grid_row - 1:
-		grid_node.neighbours.append(grid[grid_x + 1][grid_y])
-	#look below
-	if grid_y < grid_column + 1:
-		grid_node.neighbours.append(grid[grid_x][grid_y + 1])
+	if grid_node.x < grid_width - 1:
+		grid_node.neighbours.append(grid[grid_node.x + 1][grid_node.y])
+	#look at below
+	if grid_node.y < grid_height - 1:
+		grid_node.neighbours.append(grid[grid_node.x][grid_node.y + 1])
 	#look at left
-	if grid_x > 0:
-		grid_node.neighbours.append(grid[grid_x - 1][grid_y])
+	if grid_node.x > 0:
+		grid_node.neighbours.append(grid[grid_node.x - 1][grid_node.y])
 	pass
 
 #move a puyo from one node to another. overwrites node_to's puyo
@@ -68,58 +84,36 @@ func move_puyo(node_from : GridNode, node_to : GridNode):
 	pass
 
 #called whenever we need to check the board. will return an array of groups of nodes (for now)
-func board_check():
+func get_grouped_puyos() -> Array:
 	#any groups of 4+ blocks that are found will be stored in this
-	var groups : Array[Array] = []
+	var groups : Array = Array()
 	#go through every node in the grid
-	for i in range(0, grid_row):
+	for i in range(0, grid_width):
 		##LATER we want to ignore the nodes on top ( for now ) so we start at 2
-		for j in range(0, grid_column + 2):
+		for j in range(2, grid_height):
 			#get the current node
-			var temp_node : GridNode = grid[i][j]
-			#see if it's already in a group to be removed, and if it has a puyo and it has 1 or more neighbours
-			if !(temp_node.is_checked) and (temp_node.is_holding_puyo) and (temp_node.neighbours.size() > 0):
-				#create an array with out node, and call our recursive check on it
-				var temp_array = [temp_node]
-				#after setting the current node to being checked
-				temp_node.is_checked = true
-				neighbour_check(temp_array, temp_node.get_color(), temp_node)
-				#if the array is less than 4 neighbours, meaning it isn't a block
-				if temp_array.size() < 4:
-					#set all the contents back to not being checked
-					for x in temp_array:
-						x.is_checked = false
-				else: #if the array is greater than 3 in size
-					for temp in temp_array:
-						temp.set_color(0)
-					#let the check status remain, and store this group in our groups array
-					groups.append(temp_array)
+			var node_to_check : GridNode = grid[i][j]
+			if (!node_to_check.is_checked):
+				var node_group := Array()
+				node_group = check_node(node_to_check, node_group)
+				#see if it's already in a group to be removed, and if it has a puyo and it has 1 or more neighbours
+				if (node_group.size() >= 4):
+					print(node_group.size())
+					groups.append(node_group)
+					for n in range(node_group.size()):
+						node_group[n].is_checked = true
+						
+	print("found ", groups.size(), " groups")
 	return groups
-
-#recursive function for checking all neighbours
-func neighbour_check(node_array: Array, color_check: int, current_node: GridNode):
-	#for each neighbour the node has
-	for i in range(0, current_node.neighbours.size()):
-		var check = current_node.neighbours[i]
-		#check its color, if its the same as the desired color AND it hasn't been checked
-		if check.get_color() == color_check and !(check.is_checked):
-			#set the next node to has been checked
-			check.is_checked = true
-			node_array.append(check)
-			#do a recursive call
-			neighbour_check(node_array, color_check, check)
-			return node_array
-	#if theres no more neighbours to check, return an empty array 
-	pass
 
 #called when a tick for gravity needs to be checked, callls itself if it changed anything
 func down_tick():
 	#sets a check to see if anything changed
 	var check = true
 	#loops through all puyos, but from bottom up
-	for i in range(0, grid_row):
+	for i in range(0, grid_width):
 		#starts with one above bottom
-		for j in range(0, grid_column + 1):
+		for j in range(0, grid_height + 1):
 			#if the space below is empty
 			if !(grid[i][j + 1].is_holding_puyo) and grid[i][j].is_holding_puyo:
 				#set check to false and move down
@@ -127,3 +121,27 @@ func down_tick():
 				down_tick()
 
 		
+func check_node(node_to_check: GridNode, node_group: Array, puyo_type:= Puyo.PUYO_TYPE.UNDEFINED) -> Array:
+	print("checking node ", node_to_check.grid_index)
+	#if node is already checked, or doesn't have a puyo, exit out of this iteration
+	if (node_group.has(node_to_check)) or (!node_to_check.is_holding_puyo):
+		return node_group
+	
+	#if puyo_type is undefined, this is the first iteration and we should set puyo_type
+	if (puyo_type == Puyo.PUYO_TYPE.UNDEFINED):
+		puyo_type = node_to_check.get_type()
+	
+	#if the node's puyo type matches the group's type, add it to the group
+	if (node_to_check.get_type() == puyo_type):
+		return node_group
+	
+	node_group.append(node_to_check)
+	#recursively check neighbours
+	for i in range(0, node_to_check.neighbours.size()):
+		var neighbour_to_check = node_to_check.neighbours[i]
+		var updated_group: Array = check_node(neighbour_to_check, node_group, puyo_type)
+		
+		#update the array every time
+		node_group = updated_group
+	
+	return node_group

@@ -2,8 +2,9 @@ extends Node2D
 
 class_name Puyo
 
-##colors are junk: 0, blue : 1, green : 2, red : 3, yellow : 4
-var color : int = 1
+##types are junk: 0, blue : 1, green : 2, red : 3, yellow : 4
+enum PUYO_TYPE {UNDEFINED, JUNK, BLUE, GREEN, RED, YELLOW}
+var puyo_type : PUYO_TYPE = PUYO_TYPE.UNDEFINED
 #junk status (i.e. is a junk or not)
 var is_junk : bool = false
 #if a puyo is part of an 'active' pair (being moved by player)
@@ -21,27 +22,25 @@ func _ready():
 	pass
 
 #simple initializer for a new puyo 
-func create_puyo(new_color: int, new_junk: bool):
-	#setting values
-	color = new_color
+func create_puyo(type: PUYO_TYPE, new_junk: bool):
 	is_junk = new_junk
-	#setting correctly color
-	set_color(color)
-
-#sets the puyo's color
-func set_color(new_color: int):
-	$AnimatedSprite2D.frame = new_color
-	color = new_color
 	
-#getter for color. returns an int
-func  get_color():
-	return color
+	set_type(type)
+
+#sets the puyo's type
+func set_type(type: PUYO_TYPE):
+	$AnimatedSprite2D.frame = type
+	puyo_type = type
+	
+#getter for puyo_type
+func  get_type():
+	return puyo_type
 
 #changes puyo to be junk (for later usage):
-#we can create a fucntion specifically for setting junk to a specific color if needed later
+#we can create a fucntion specifically for setting junk to a specific TYPE if needed later
 func set_junk():
 	is_junk = true
-	set_color(0)
+	set_type(PUYO_TYPE.JUNK)
 #junk status checker. returns a bool
 func get_junk():
 	return is_junk

@@ -21,6 +21,16 @@ var is_checked : bool = false
 #if the node is part of the off-field grid, true if it is out of the play field
 var is_out_of_play : bool = false
 
+var grid_index : Vector2i
+
+var x: int:
+	get:
+		return grid_index.x
+		
+var y: int:
+	get:
+		return grid_index.y
+
 func _ready():
 	#for testing
 	#puyo.create_puyo(2, true)
@@ -36,12 +46,13 @@ func set_puyo(new_puyo : Puyo):
 
 #i was stupid and realised you can access class variables with .variable 
 #color, junk, active, resting, size
-func set_color(new_color : int):
+func set_type(new_type : Puyo.PUYO_TYPE):
 	if puyo != null:
-		puyo.set_color(new_color)
-func get_color():
+		puyo.set_type(new_type)
+func get_type():
 	if puyo != null:
-		return puyo.get_color()
+		return puyo.get_type()
+	return null;
 
 func set_junk():
 	if puyo != null:

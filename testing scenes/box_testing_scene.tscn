@@ -1,89 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://c6x4fp03itplm"]
+[gd_scene load_steps=3 format=3 uid="uid://c6x4fp03itplm"]
 
 [ext_resource type="PackedScene" uid="uid://cbaajsmksk4lh" path="res://Scenes/grid_manager.tscn" id="1_iex5k"]
 [ext_resource type="Script" uid="uid://w3huw57xx61k" path="res://testing scenes/box_testing_scene.gd" id="1_puh6r"]
-[ext_resource type="PackedScene" uid="uid://cqw1jv0baovrt" path="res://Scenes/puyo.tscn" id="2_puh6r"]
 
 [node name="BoxTestingScene" type="Node2D"]
 script = ExtResource("1_puh6r")
 
 [node name="GridManager" parent="." instance=ExtResource("1_iex5k")]
-
-[node name="TestPuyo" parent="GridManager" instance=ExtResource("2_puh6r")]
-z_index = 6
-z_as_relative = false
-
-[node name="TestPuyo1" parent="GridManager" instance=ExtResource("2_puh6r")]
-z_index = 6
-z_as_relative = false
-
-[node name="TestPuyo2" parent="GridManager" instance=ExtResource("2_puh6r")]
-z_index = 6
-z_as_relative = false
-
-[node name="TestPuyo3" parent="GridManager" instance=ExtResource("2_puh6r")]
-z_index = 6
-z_as_relative = false
-
-[node name="TestPuyo4" parent="GridManager" instance=ExtResource("2_puh6r")]
-z_index = 6
-z_as_relative = false
-
-[node name="TestPuyo5" parent="GridManager" instance=ExtResource("2_puh6r")]
-z_index = 6
-z_as_relative = false
-
-[node name="TestPuyo6" parent="GridManager" instance=ExtResource("2_puh6r")]
-z_index = 6
-z_as_relative = false
-
-[node name="TestPuyo7" parent="GridManager" instance=ExtResource("2_puh6r")]
-z_index = 6
-z_as_relative = false
-
-[node name="TestPuyo8" parent="GridManager" instance=ExtResource("2_puh6r")]
-z_index = 6
-z_as_relative = false
-
-[node name="TestPuyo9" parent="GridManager" instance=ExtResource("2_puh6r")]
-z_index = 6
-z_as_relative = false
-
-[node name="TestPuyo10" parent="GridManager" instance=ExtResource("2_puh6r")]
-z_index = 6
-z_as_relative = false
-
-[node name="TestPuyo11" parent="GridManager" instance=ExtResource("2_puh6r")]
-z_index = 6
-z_as_relative = false
-
-[node name="TestPuyo12" parent="GridManager" instance=ExtResource("2_puh6r")]
-z_index = 6
-z_as_relative = false
-
-[node name="TestPuyo13" parent="GridManager" instance=ExtResource("2_puh6r")]
-z_index = 6
-z_as_relative = false
-
-[node name="TestPuyo14" parent="GridManager" instance=ExtResource("2_puh6r")]
-z_index = 6
-z_as_relative = false
-
-[node name="TestPuyo15" parent="GridManager" instance=ExtResource("2_puh6r")]
-z_index = 6
-z_as_relative = false
-
-[node name="TestPuyo16" parent="GridManager" instance=ExtResource("2_puh6r")]
-z_index = 6
-z_as_relative = false
-
-[node name="TestPuyo17" parent="GridManager" instance=ExtResource("2_puh6r")]
-z_index = 6
-z_as_relative = false
-
-[node name="TestPuyo18" parent="GridManager" instance=ExtResource("2_puh6r")]
-z_index = 6
-z_as_relative = false
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.2
