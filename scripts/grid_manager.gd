@@ -14,20 +14,26 @@ extends Node2D
 #0,0 will be top left, and rows x,0 & x,1 will not be on screen, and are used for gameover
 #just remember that we go through 0->rows then each time 0->columns + 2 (this is for stupid box)
 var grid : Array = Array()
+var puyos_to_pop : Array = Array()
+var chain_length : int = 0
 
 func _ready():
 	initialize_grid()
 	fill_grid()
-	get_grouped_puyos()
+	await get_tree().create_timer(1).timeout
+	#calling this initiates a board check and allows chaining
+	check_board(get_grouped_puyos())
+	
 
 func fill_grid():
 	for i in range(0, grid_width):
 		for j in range(2, grid_height):
 			var puyo : Puyo = puyo_scene.instantiate()
 			var node_to_fill : GridNode = grid[i][j]
+			node_to_fill.add_child(puyo)
 			node_to_fill.set_puyo(puyo)
 			node_to_fill.set_type(randi_range(2,5))
-			node_to_fill.add_child(puyo)
+			
 		
 	
 
@@ -37,9 +43,9 @@ func initialize_grid():
 	grid.resize(grid_width)
 	for i in range(0, grid_width):
 		grid[i]=Array()
-		grid[i].resize(grid_height + 2)
+		grid[i].resize(grid_height)
 		##we want this to be + 2 for the two rows of nodes off-screen at the top
-		for j in range(0, grid_height + 2):
+		for j in range(0, grid_height):
 			#create a row of new nodes and add them to a temporary array
 			var new_node : GridNode = grid_node_scene.instantiate()
 			grid[i][j] = new_node
@@ -50,11 +56,11 @@ func initialize_grid():
 		#add a full column 
 	
 	#set the top two rows to out of bounds
-	for i in range(0, grid_width):
-		for j in range(0, 2):
-			grid[i][j].is_out_of_play = true
-			#this is just for testing for visual aid
-			grid[i][j].set_test_sprite(true)
+	#for i in range(0, grid_width):
+		#for j in range(0, 2):
+			#grid[i][j].is_out_of_play = true
+			##this is just for testing for visual aid
+			#grid[i][j].set_test_sprite(true)
 	
 	#setting all the neighbours for each GridNode
 	for i in range(0, grid_width):
@@ -64,7 +70,7 @@ func initialize_grid():
 #neighbour assignment helper, takes a position in the grid, finds it's node, then fills its neighbour array
 func set_node_neighbours(grid_node : GridNode):
 	#look at above
-	if grid_node.y > 2:
+	if grid_node.y > 0:
 		grid_node.neighbours.append(grid[grid_node.x][grid_node.y - 1])
 	#look at right
 	if grid_node.x < grid_width - 1:
@@ -79,18 +85,22 @@ func set_node_neighbours(grid_node : GridNode):
 
 #move a puyo from one node to another. overwrites node_to's puyo
 func move_puyo(node_from : GridNode, node_to : GridNode):
-	node_to.set_puyo(node_from.puyo)
+	var puyo_from = node_from.puyo
+	node_from.remove_child(puyo_from)
 	node_from.reset()
+	node_to.add_child(puyo_from)
+	node_to.set_puyo(puyo_from)
 	pass
 
 #called whenever we need to check the board. will return an array of groups of nodes (for now)
 func get_grouped_puyos() -> Array:
+	#down tick should always be called first to make sure board is in a valid state
+	down_tick()
 	#any groups of 4+ blocks get 
 	var groups : Array = Array()
 	#go through every node in the grid
 	for i in range(0, grid_width):
-		##LATER we want to ignore the nodes on top ( for now ) so we start at 2
-		for j in range(2, grid_height):
+		for j in range(0, grid_height):
 			var node_to_check : GridNode = grid[i][j]
 			
 			#skip iteration if node has already been checked
@@ -111,25 +121,33 @@ func get_grouped_puyos() -> Array:
 				node_group[n].is_checked = true
 			
 	print(str("found ", groups.size(), " groups"))
+	
+	#set all nodes in the group as unchecked
+	for i in range(0, grid_width):
+		for j in range(0, grid_height):
+			grid[i][j].is_checked = false
+	
 	return groups
 
 #called when a tick for gravity needs to be checked, callls itself if it changed anything
-func down_tick():
-	#sets a check to see if anything changed
-	var check = true
+func down_tick() -> bool:
+	#sets a check to see if anything changed, if it hasn't changed it should stay false
+	var check = false
 	#loops through all puyos, but from bottom up
 	for i in range(0, grid_width):
 		#starts with one above bottom
-		for j in range(0, grid_height + 1):
+		for j in range(0, grid_height - 1):
 			#if the space below is empty
 			if !(grid[i][j + 1].is_holding_puyo) and grid[i][j].is_holding_puyo:
 				#set check to false and move down
 				move_puyo(grid[i][j], grid[i][j+1])
-				down_tick()
+				check = true
+	if check:
+		await get_tree().create_timer(0.2).timeout
+		down_tick()
+	return check
 
-		
 func check_node(node_to_check: GridNode, node_group: Array, puyo_type:= Puyo.PUYO_TYPE.UNDEFINED) -> Array:
-	#print("checking node ", node_to_check.grid_index)
 	#if node is already checked, or doesn't have a puyo, exit iteration
 	if (node_group.has(node_to_check)) or (!node_to_check.is_holding_puyo):
 		return node_group
@@ -151,3 +169,30 @@ func check_node(node_to_check: GridNode, node_group: Array, puyo_type:= Puyo.PUY
 	
 	#send the accumulated list back up the recursion
 	return node_group
+
+func pop_puyos(puyo_groups:= puyos_to_pop):
+	if puyo_groups.is_empty():
+		pass
+	for group in puyo_groups:
+		if group.is_empty():
+			continue
+		for pop_node in group:
+			pop_node.puyo.pop()
+			pop_node.puyo.queue_free()
+			pop_node.reset()
+	puyos_to_pop = Array()
+
+#starts a board check loop
+func check_board(puyos_to_pop : Array):
+	if puyos_to_pop.is_empty():
+		print("chain: ", chain_length)
+		chain_length = 0
+		pass
+	else:
+		chain_length += 1
+		pop_puyos(puyos_to_pop)
+		var down_check = true
+		while down_check:
+			down_check = await down_tick()
+		await get_tree().create_timer(1).timeout
+		check_board(get_grouped_puyos())

@@ -5,7 +5,6 @@ class_name GridNode
 ##notes:
 ##the puyo sprites should be uncentered (pivot at top left)? i think that makes
 ##things a lot easier.
-##Puyos are importantly NOT children of the nodes
 
 #the puyo that this node should be holding. export is for testing
 @export var puyo : Puyo = null
@@ -41,7 +40,7 @@ func _ready():
 #adding a puyo to the node, takes a puyo
 func set_puyo(new_puyo : Puyo):
 	puyo = new_puyo
-	puyo.position = position
+	puyo.set_pos(position)
 	is_holding_puyo = true
 
 #i was stupid and realised you can access class variables with .variable 

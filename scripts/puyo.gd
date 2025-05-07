@@ -36,6 +36,10 @@ func set_type(type: PUYO_TYPE):
 func  get_type():
 	return puyo_type
 
+func set_pos(pos):
+	position = pos
+	$AnimatedSprite2D.position = Vector2.ZERO
+
 #changes puyo to be junk (for later usage):
 #we can create a fucntion specifically for setting junk to a specific TYPE if needed later
 func set_junk():
@@ -69,3 +73,8 @@ func set_puyo_size(new_size : int):
 #returns vector2
 func get_puyo_size():
 	return scale
+
+func pop():
+	#print("pop!")
+	##TODO add signal to game manager when puyo game is in base state
+	pass
