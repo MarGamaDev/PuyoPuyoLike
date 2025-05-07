@@ -15,21 +15,30 @@ extends Node2D
 #just remember that we go through 0->rows then each time 0->columns + 2 (this is for stupid box)
 var grid : Array = Array()
 var puyos_to_pop : Array = Array()
+#the first puyo in the player array is the 'pivot'
+var player_puyos: Array = Array()
+var player_grid_positions: Array = Array()
+#player rotation is -> 0 V 90 <-180 ^ 270
+var player_rotation : int = 0
 
 @export var down_tick_speed : float = 0.2
 var chain_length : int = 0
 
 func _ready():
 	initialize_grid()
-	fill_grid()
+	fill_grid(11)
+	create_player_puyo()
+	print("can move: ", check_next_move([Vector2i(int ((grid_width - 1) / 2),1), Vector2i(int ((grid_width - 1) / 2) + 1,1)]))
 	await get_tree().create_timer(1).timeout
 	#calling this initiates a board check and allows chaining
-	check_board(get_grouped_puyos())
+	await check_board(get_grouped_puyos())
+	print("can move: ", check_next_move([Vector2i(int ((grid_width - 1) / 2),1), Vector2i(int ((grid_width - 1) / 2) + 1,1)]))
+	
 	
 
-func fill_grid():
+func fill_grid(how_full : int):
 	for i in range(0, grid_width):
-		for j in range(2, grid_height):
+		for j in range(grid_height - how_full, grid_height):
 			var puyo : Puyo = puyo_scene.instantiate()
 			var node_to_fill : GridNode = grid[i][j]
 			node_to_fill.add_child(puyo)
@@ -85,7 +94,7 @@ func set_node_neighbours(grid_node : GridNode):
 		grid_node.neighbours.append(grid[grid_node.x - 1][grid_node.y])
 	pass
 
-#move a puyo from one node to another. overwrites node_to's puyo
+#move a puyo from one node to another. overwrites node_to's puyo. used only for resting puyos
 func move_puyo(node_from : GridNode, node_to : GridNode):
 	var puyo_from = node_from.puyo
 	node_from.remove_child(puyo_from)
@@ -189,7 +198,6 @@ func check_board(puyos_to_pop : Array):
 	if puyos_to_pop.is_empty():
 		print("chain: ", chain_length)
 		chain_length = 0
-		pass
 	else:
 		chain_length += 1
 		pop_puyos(puyos_to_pop)
@@ -198,3 +206,23 @@ func check_board(puyos_to_pop : Array):
 			down_check = await down_tick()
 		await get_tree().create_timer(1).timeout
 		check_board(get_grouped_puyos())
+
+#creates player puyo
+func create_player_puyo():
+	player_puyos = [puyo_scene.instantiate(), puyo_scene.instantiate()]
+	add_child(player_puyos[0])
+	add_child(player_puyos[1])
+	player_rotation = 0
+	player_puyos[0].set_type(randi_range(2,5))
+	player_puyos[1].set_type(randi_range(2,5))
+	player_grid_positions = [Vector2i(int ((grid_width -1)/ 2),0), Vector2i(int ((grid_width -1)/ 2) + 1,0)]
+	player_puyos[0].global_position.x = grid[int (grid_width / 2)][0].position.x + square_size
+	player_puyos[1].global_position.x  = grid[(int (grid_width / 2)) + 1][0].position.x + square_size * 2
+
+#returns true if next move is valid
+func check_next_move(next_move_positions: Array[Vector2i]) -> bool:
+	for pos in next_move_positions:
+		print(grid[pos.x][pos.y].is_holding_puyo)
+		if grid[pos.x][pos.y].is_holding_puyo:
+			return false
+	return true
