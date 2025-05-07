@@ -28,11 +28,10 @@ func _ready():
 	initialize_grid()
 	fill_grid(11)
 	create_player_puyo()
-	print("can move: ", check_next_move([Vector2i(int ((grid_width - 1) / 2),1), Vector2i(int ((grid_width - 1) / 2) + 1,1)]))
 	await get_tree().create_timer(1).timeout
 	#calling this initiates a board check and allows chaining
 	await check_board(get_grouped_puyos())
-	print("can move: ", check_next_move([Vector2i(int ((grid_width - 1) / 2),1), Vector2i(int ((grid_width - 1) / 2) + 1,1)]))
+	
 	
 	
 
