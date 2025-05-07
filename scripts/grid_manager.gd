@@ -15,6 +15,8 @@ extends Node2D
 #just remember that we go through 0->rows then each time 0->columns + 2 (this is for stupid box)
 var grid : Array = Array()
 var puyos_to_pop : Array = Array()
+
+@export var down_tick_speed : float = 0.2
 var chain_length : int = 0
 
 func _ready():
@@ -143,7 +145,7 @@ func down_tick() -> bool:
 				move_puyo(grid[i][j], grid[i][j+1])
 				check = true
 	if check:
-		await get_tree().create_timer(0.2).timeout
+		await get_tree().create_timer(down_tick_speed).timeout
 		down_tick()
 	return check
 
