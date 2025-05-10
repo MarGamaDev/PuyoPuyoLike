@@ -26,6 +26,8 @@ var player_rotation : int = 0
 var puyo_queue : Array[Array] = []
 #helps with delaying creating a player
 var player_create_flag = false
+#if the player shoudl be able to input
+var player_input_flag = false
 
 @export var down_tick_speed : float = 0.1
 @export var player_down_speed : float = 0.4
@@ -49,22 +51,23 @@ func _ready():
 	create_player_puyo()
 
 func _physics_process(delta: float) -> void:
-	if Input.is_action_just_pressed("puyo_left"):
-		next_input_move = Vector2i.LEFT
-		next_grid_positions = [(player_grid_positions[0] + next_input_move), (player_grid_positions[1] + next_input_move)]
-		if check_next_move(next_grid_positions):
-			player_move(next_grid_positions)
-	elif Input.is_action_just_pressed("puyo_right"):
-		next_input_move = Vector2i.RIGHT
-		next_grid_positions = [(player_grid_positions[0] + next_input_move), (player_grid_positions[1] + next_input_move)]
-		if check_next_move(next_grid_positions):
-			player_move(next_grid_positions)
-	elif Input.is_action_just_pressed("puyo_rotate"):
-		player_rotate()
-	elif Input.is_action_just_pressed("puyo_down"):
-		$PlayerDownTimer.set_wait_time(player_hold_down_speed)
-	elif Input.is_action_just_released("puyo_down"):
-		$PlayerDownTimer.set_wait_time(player_down_speed)
+	if player_input_flag:
+		if Input.is_action_just_pressed("puyo_left"):
+			next_input_move = Vector2i.LEFT
+			next_grid_positions = [(player_grid_positions[0] + next_input_move), (player_grid_positions[1] + next_input_move)]
+			if check_next_move(next_grid_positions):
+				player_move(next_grid_positions)
+		elif Input.is_action_just_pressed("puyo_right"):
+			next_input_move = Vector2i.RIGHT
+			next_grid_positions = [(player_grid_positions[0] + next_input_move), (player_grid_positions[1] + next_input_move)]
+			if check_next_move(next_grid_positions):
+				player_move(next_grid_positions)
+		elif Input.is_action_just_pressed("puyo_rotate"):
+			player_rotate()
+		elif Input.is_action_just_pressed("puyo_down"):
+			$PlayerDownTimer.start(player_hold_down_speed)
+		elif Input.is_action_just_released("puyo_down"):
+			$PlayerDownTimer.set_wait_time(player_down_speed)
 
 func fill_grid(how_full : int):
 	for i in range(0, grid_width):
@@ -261,11 +264,13 @@ func create_player_puyo():
 	
 	player_grid_positions = [Vector2i(int ((grid_width -1)/ 2),0), Vector2i(int ((grid_width -1)/ 2) + 1,0)]
 	
-	player_puyos[0].global_position.x = grid[int (grid_width / 2)][0].position.x + square_size
-	player_puyos[1].global_position.x  = grid[(int (grid_width / 2)) + 1][0].position.x + square_size * 2
+	player_puyos[0].position.x = grid[int (grid_width / 2)][0].position.x + square_size
+	player_puyos[1].position.x  = grid[(int (grid_width / 2)) + 1][0].position.x + square_size * 2
 	
 	$PlayerDownTimer.set_wait_time(player_down_speed)
 	$PlayerDownTimer.start()
+	
+	player_input_flag = true
 
 #returns true if next move is valid
 func check_next_move(next_grid_positions: Array[Vector2i]) -> bool:
@@ -278,11 +283,12 @@ func check_next_move(next_grid_positions: Array[Vector2i]) -> bool:
 
 #assumes move being given to it is valid
 func player_move(new_grid_positions: Array[Vector2i]):
-	var translation_difference = new_grid_positions[0] - player_grid_positions[0]
-	translation_difference *= square_size
-	for moving_puyo in player_puyos:
-		moving_puyo.global_position.x += translation_difference.x * 2
-		moving_puyo.global_position.y += translation_difference.y * 2
+	for i in range (0, 2):
+		var moving_puyo : Puyo = player_puyos[i]
+		var translation_difference = new_grid_positions[i] - player_grid_positions[i]
+		translation_difference *= square_size
+		moving_puyo.position.x += translation_difference.x * 2
+		moving_puyo.position.y += translation_difference.y * 2
 	player_grid_positions = new_grid_positions
 
 #connected to the timer via signal
@@ -293,6 +299,7 @@ func player_down_tick():
 	if check_next_move(next_moves):
 		player_move(next_moves)
 	else:# if player shouldn't be able to move, turn it into part of the grid
+		player_input_flag = false
 		$PlayerDownTimer.stop()
 		for i in range(0,2):
 			var new_puyo_base = player_puyos[i]
@@ -310,25 +317,72 @@ func player_down_tick():
 
 func player_rotate():
 	var rotation_check : int = (player_rotation + 1) % 4
-	var new_rotation_vector : Vector2i
+	#find wehre the rotated puyo would be
+	var position_check : Vector2i
 	if rotation_check == 0: #now pointing right
-		new_rotation_vector = Vector2(1,0)
+		position_check = player_grid_positions[0] + Vector2i(1,0)
 	elif rotation_check == 1: #now pointing down
-		new_rotation_vector = Vector2(0,1)
+		position_check = player_grid_positions[0] +Vector2i(0,1)
 	elif rotation_check == 2: #now pointing left
-		new_rotation_vector = Vector2(-1,0)
+		position_check = player_grid_positions[0] +Vector2i(-1,0)
 	else: # now pointing up
-		new_rotation_vector = Vector2(0,-1)
+		position_check = player_grid_positions[0] +Vector2i(0,-1)
+	
+	var move_check : Array[Vector2i] = [player_grid_positions[0], position_check]
+	var rotate_flag = true
 	#now we check if we need to move the puyo pivot based on other things
 	if rotation_check == 0: #now pointing right
-		#if the new vector would be inside 
-		new_rotation_vector = Vector2(1,0)
+		if !(check_next_move(move_check)): #if the new rotated vector would be invalid
+			for shifted_move in move_check:
+				shifted_move.x -= 1
+			if (check_next_move(move_check)): #if moving both puyos one to the left would be valid
+				player_rotation = rotation_check
+				$PlayerDownTimer.start()
+			else:
+				rotate_flag = false
+		else:
+			player_rotation = rotation_check
+			$PlayerDownTimer.start()
 	elif rotation_check == 1: #now pointing down
-		new_rotation_vector = Vector2(0,1)
+		if !(check_next_move(move_check)):
+			for shifted_move in move_check:
+				shifted_move.y -= 1
+			if (check_next_move(move_check)):
+				player_rotation = rotation_check
+				$PlayerDownTimer.start()
+			else:
+				rotate_flag = false
+		else:
+			player_rotation = rotation_check
+			$PlayerDownTimer.start()
 	elif rotation_check == 2: #now pointing left
-		new_rotation_vector = Vector2(-1,0)
+		if !(check_next_move(move_check)):
+			for shifted_move in move_check:
+				shifted_move.x += 1
+			if (check_next_move(move_check)):
+				player_rotation = rotation_check
+				$PlayerDownTimer.start()
+			else:
+				rotate_flag = false
+		else:
+			player_rotation = rotation_check
+			$PlayerDownTimer.start()
 	else: # now pointing up
-		new_rotation_vector = Vector2(0,-1)
+		if !(check_next_move(move_check)):
+			for shifted_move in move_check:
+				shifted_move.y += 1
+			if (check_next_move(move_check)):
+				player_rotation = rotation_check
+				$PlayerDownTimer.start()
+			else:
+				rotate_flag = false
+		else:
+			player_rotation = rotation_check
+			$PlayerDownTimer.start()
+	if rotate_flag:
+		player_move(move_check)
+	else:
+		print("cant rotate")
 
 func fill_puyo_queue():
 	while puyo_queue.size() <= 2:
