@@ -1,11 +1,26 @@
-[gd_scene load_steps=2 format=3 uid="uid://cbaajsmksk4lh"]
+[gd_scene load_steps=3 format=3 uid="uid://cbaajsmksk4lh"]
 
 [ext_resource type="Script" uid="uid://deiih0eoqrj08" path="res://scripts/grid_manager.gd" id="1_uowjv"]
+[ext_resource type="PackedScene" uid="uid://cqw1jv0baovrt" path="res://Scenes/puyo.tscn" id="2_4xyke"]
 
 [node name="GridManager" type="Node2D"]
 script = ExtResource("1_uowjv")
 down_tick_speed = 0.4
 
 [node name="PlayerDownTimer" type="Timer" parent="."]
+
+[node name="QueuedPuyos" type="Node2D" parent="."]
+
+[node name="FirstPair1" parent="QueuedPuyos" instance=ExtResource("2_4xyke")]
+position = Vector2(844, 0)
+
+[node name="FirstPair2" parent="QueuedPuyos" instance=ExtResource("2_4xyke")]
+position = Vector2(844, 71)
+
+[node name="SecondPair1" parent="QueuedPuyos" instance=ExtResource("2_4xyke")]
+position = Vector2(944, 41)
+
+[node name="SecondPair2" parent="QueuedPuyos" instance=ExtResource("2_4xyke")]
+position = Vector2(944, 119)
 
 [connection signal="timeout" from="PlayerDownTimer" to="." method="player_down_tick"]

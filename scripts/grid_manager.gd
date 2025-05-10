@@ -320,3 +320,8 @@ func fill_puyo_queue():
 		new_puyos[1].set_type(randi_range(2,5))
 		puyo_queue.append(new_puyos)
 		print("2 pairs away:",new_puyos[0].get_type(), " ", new_puyos[1].get_type())
+	#update visual puyos
+	$QueuedPuyos/FirstPair1.set_type(puyo_queue[0][0].puyo_type)
+	$QueuedPuyos/FirstPair2.set_type(puyo_queue[0][1].puyo_type)
+	$QueuedPuyos/SecondPair1.set_type(puyo_queue[1][0].puyo_type)
+	$QueuedPuyos/SecondPair2.set_type(puyo_queue[1][1].puyo_type)
