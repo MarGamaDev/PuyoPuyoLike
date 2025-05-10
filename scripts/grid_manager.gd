@@ -310,10 +310,25 @@ func player_down_tick():
 
 func player_rotate():
 	var rotation_check : int = (player_rotation + 1) % 4
-	var new_rotation_check : Vector2i
-	#the puyo pair rotates around a pivot so we only need to check the validity of rotating
-	##DO THIS WITH MAR BC I DONT WANNA WASTE A BUNCH OF TIME TRYING TO REMEMBER VECTOR MATHS
-	pass
+	var new_rotation_vector : Vector2i
+	if rotation_check == 0: #now pointing right
+		new_rotation_vector = Vector2(1,0)
+	elif rotation_check == 1: #now pointing down
+		new_rotation_vector = Vector2(0,1)
+	elif rotation_check == 2: #now pointing left
+		new_rotation_vector = Vector2(-1,0)
+	else: # now pointing up
+		new_rotation_vector = Vector2(0,-1)
+	#now we check if we need to move the puyo pivot based on other things
+	if rotation_check == 0: #now pointing right
+		#if the new vector would be inside 
+		new_rotation_vector = Vector2(1,0)
+	elif rotation_check == 1: #now pointing down
+		new_rotation_vector = Vector2(0,1)
+	elif rotation_check == 2: #now pointing left
+		new_rotation_vector = Vector2(-1,0)
+	else: # now pointing up
+		new_rotation_vector = Vector2(0,-1)
 
 func fill_puyo_queue():
 	while puyo_queue.size() <= 2:
