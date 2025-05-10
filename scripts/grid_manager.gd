@@ -2,6 +2,7 @@ extends Node2D
 
 signal board_check_delay
 signal life_loss
+signal chain_pop(type : Puyo.PUYO_TYPE, number_popped, chain_length)
 
 #loading the grid nodes to instantiate them
 @onready var grid_node_scene = load("res://Scenes/grid_node.tscn")
@@ -273,6 +274,7 @@ func check_board(puyos_to_pop : Array) -> bool:
 		return false
 	else:
 		chain_length += 1
+		chain_pop.emit(puyos_to_pop[0][0].get_type(), puyos_to_pop.size(), chain_length)
 		pop_puyos(puyos_to_pop)
 		var down_check = true
 		while down_check:
@@ -424,9 +426,7 @@ func fill_puyo_queue():
 func loss_check() -> bool:
 	if grid[int (grid_width / 2) - 1][0].is_holding_puyo:
 		down_tick()
-		print("game_over")
 		if grid[int (grid_width / 2) - 1][0].is_holding_puyo:
 			life_loss.emit()
-			print("game_over")
 			return true
 	return false

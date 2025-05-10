@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://buetvmo3m42v5"]
+
+[ext_resource type="Script" uid="uid://bhx6thphvfolw" path="res://scripts/game_manager.gd" id="1_oj352"]
+[ext_resource type="PackedScene" uid="uid://cbaajsmksk4lh" path="res://Scenes/grid_manager.tscn" id="2_e5fcp"]
+
+[node name="GameManager" type="Node2D"]
+script = ExtResource("1_oj352")
+
+[node name="GridManager" parent="." instance=ExtResource("2_e5fcp")]
+
+[connection signal="chain_pop" from="GridManager" to="." method="chain_popped"]
+[connection signal="life_loss" from="GridManager" to="." method="lose_life"]
