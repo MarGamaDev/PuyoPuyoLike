@@ -29,6 +29,8 @@ var player_create_flag = false
 
 @export var down_tick_speed : float = 0.1
 @export var player_down_speed : float = 0.4
+#how short the player tick timer should be changed to while down is being held
+@export var player_hold_down_speed : float = 0.05
 var chain_length : int = 0
 
 #this is a translation vector, not the position
@@ -38,7 +40,7 @@ var next_grid_positions : Array[Vector2i]
 func _ready():
 	$PlayerDownTimer.set_wait_time(player_down_speed)
 	initialize_grid()
-	fill_grid(12)
+	fill_grid(8)
 	fill_puyo_queue()
 	await get_tree().create_timer(0.7).timeout
 	#calling this initiates a board check and allows chaining
@@ -60,9 +62,9 @@ func _physics_process(delta: float) -> void:
 	elif Input.is_action_just_pressed("puyo_rotate"):
 		player_rotate()
 	elif Input.is_action_just_pressed("puyo_down"):
-		print("down press")
+		$PlayerDownTimer.set_wait_time(player_hold_down_speed)
 	elif Input.is_action_just_released("puyo_down"):
-		print("down release")
+		$PlayerDownTimer.set_wait_time(player_down_speed)
 
 func fill_grid(how_full : int):
 	for i in range(0, grid_width):
