@@ -14,7 +14,7 @@ func chain_popped(puyos_to_pop : Array, chain_length: int):
 	var chain_string = ""
 	for puyo_group : Array in puyos_to_pop:
 		print("chain type: ", puyo_group[0].get_type(), " with ", puyo_group.size(), " puyos, chain length ", chain_length)
-		chain_string += "%s " % puyo_group[0].get_type()
+		chain_string = chain_string + ("%s " % puyo_group[0].get_type()) + ("with %s" % puyo_group.size()) + " puyos "
 	if chain_length > 1:
 		last_chain_contents = last_chain_contents + "\n" + chain_string			
 	else:
