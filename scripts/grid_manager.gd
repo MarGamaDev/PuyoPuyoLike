@@ -2,7 +2,7 @@ extends Node2D
 
 signal board_check_delay
 signal life_loss
-signal chain_pop(type : Puyo.PUYO_TYPE, number_popped, chain_length)
+signal chain_pop(type : Array, chain_length)
 
 #loading the grid nodes to instantiate them
 @onready var grid_node_scene = load("res://Scenes/grid_node.tscn")
@@ -28,7 +28,6 @@ var player_rotation : int = 0
 var puyo_queue : Array[Array] = []
 #helps with delaying creating a player
 var player_create_flag = false
-var player_test_create_flag = false
 #if the player shoudl be able to input
 var player_input_flag = false
 
@@ -45,17 +44,42 @@ var next_grid_positions : Array[Vector2i]
 #queue for if a player should be spawned or some other effect
 var spawn_queue : Array = []
 
+##used for testing and debugging
+var player_test_create_flag = false
+@export var test_fill_height = 8
+
 func _ready():
-	$PlayerDownTimer.set_wait_time(player_down_speed)
 	initialize_grid()
-	fill_grid(8)
+	#start_game()
+
+func start_game():
+	fill_grid(test_fill_height) ##remove when finishing with testing
 	fill_puyo_queue()
 	await get_tree().create_timer(0.7).timeout
 	#calling this initiates a board check and allows chaining
 	check_board(get_grouped_puyos())
 	await board_check_delay
 	player_test_create_flag = true
-	#create_player_puyo()
+
+func end_game():
+	#resetting grid
+	for i in range(0, grid_width):
+		for j in range(0, grid_height):
+			if grid[i][j].puyo != null:
+				grid[i][j].puyo.queue_free()
+			grid[i][j].reset()
+	#resetting game stuff
+	$PlayerDownTimer.stop()
+	puyos_to_pop = Array()
+	player_puyos = Array()
+	player_grid_positions = Array()
+	player_rotation = 0
+	puyo_queue = []
+	player_create_flag = false
+	player_input_flag = false
+	chain_length = 0
+	next_input_move = Vector2i.ZERO
+	spawn_queue = []
 
 func _physics_process(delta: float) -> void:
 	if player_input_flag:
@@ -187,14 +211,14 @@ func get_grouped_puyos() -> Array:
 			
 			#if the group is large enough, save it to the groups
 			if (node_group.size() >= 4):
-				print(node_group.size())
+				#print(node_group.size())
 				groups.append(node_group)
 			
 			#set all nodes in the group as checked
 			for n in range(node_group.size()):
 				node_group[n].is_checked = true
 			
-	print(str("found ", groups.size(), " groups"))
+	#print(str("found ", groups.size(), " groups"))
 	#set all nodes in the group as unchecked
 	for i in range(0, grid_width):
 		for j in range(0, grid_height):
@@ -268,13 +292,13 @@ func pop_puyos(puyo_groups:= puyos_to_pop):
 #starts a board check loop
 func check_board(puyos_to_pop : Array) -> bool:
 	if puyos_to_pop.is_empty():
-		print("chain: ", chain_length)
+		#print("chain: ", chain_length)
 		chain_length = 0
 		board_check_delay.emit()
 		return false
 	else:
 		chain_length += 1
-		chain_pop.emit(puyos_to_pop[0][0].get_type(), puyos_to_pop.size(), chain_length)
+		chain_pop.emit(puyos_to_pop, chain_length)
 		pop_puyos(puyos_to_pop)
 		var down_check = true
 		while down_check:
