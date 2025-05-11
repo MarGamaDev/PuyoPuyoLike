@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="EnemyAttack" load_steps=2 format=3 uid="uid://ctf2g8pw88fk2"]
+
+[ext_resource type="Script" uid="uid://6v5kccermtmr" path="res://Scripts/Combat/Enemy/enemy_attack.gd" id="1_fqmwc"]
+
+[resource]
+script = ExtResource("1_fqmwc")
+damage = 3
+number_of_swings = 2
+number_of_turns_till_swing = 4
+metadata/_custom_type_script = "uid://6v5kccermtmr"
