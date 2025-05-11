@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cbaajsmksk4lh"]
 
-[ext_resource type="Script" uid="uid://deiih0eoqrj08" path="res://scripts/grid_manager.gd" id="1_uowjv"]
+[ext_resource type="Script" uid="uid://deiih0eoqrj08" path="res://Scripts/grid_manager.gd" id="1_uowjv"]
 [ext_resource type="PackedScene" uid="uid://cqw1jv0baovrt" path="res://Scenes/puyo.tscn" id="2_4xyke"]
 
 [node name="GridManager" type="Node2D"]
