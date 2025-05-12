@@ -73,6 +73,8 @@ func set_puyo_size(new_size : int):
 #returns vector2
 func get_puyo_size():
 	return scale
+	
+
 
 func pop():
 	#print("pop!")
