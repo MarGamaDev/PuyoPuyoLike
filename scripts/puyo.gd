@@ -12,14 +12,25 @@ var is_active : bool = false
 #if a puyo is meant to be resting:
 var is_resting : bool = false
 
+@onready var position_goal : Vector2 = position
+
 #sprite sizing vars
 @export var sprite_size : int = 50
 @export var size_scale : float = 1.0
+
+@export var move_speed : float = 10
+var move_flag : bool = false
 
 func _ready():
 	##FOR TESTING
 	#create_puyo(4, false)
 	pass
+	
+func _physics_process(delta: float) -> void:
+	if position_goal != position and move_flag:
+		position = position.lerp(position_goal, delta * move_speed)
+	elif position_goal == position:
+		move_flag = false
 
 #simple initializer for a new puyo 
 func create_puyo(type: PUYO_TYPE, new_junk: bool):
@@ -62,6 +73,10 @@ func rest():
 #gets the status of if it is resting
 func get_resting():
 	return is_resting
+
+func set_new_goal(new_position : Vector2):
+	position_goal = new_position
+	move_flag = true
 
 #gets given how large each square in the grid will be and resizes the object
 #accordingly. gets given size of grid in pixels, and changes scale

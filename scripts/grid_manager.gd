@@ -37,6 +37,9 @@ var player_input_flag = false
 #how short the player tick timer should be changed to while down is being held
 @export var player_hold_down_speed : float = 0.05
 var chain_length : int = 0
+@export var player_slide_speed : float = 50.0
+var player_next_positions : Array[Vector2] = [Vector2.ZERO, Vector2.ZERO]
+var player_move_flag : bool = false
 
 #this is a translation vector, not the position
 var next_input_move : Vector2i = Vector2i.ZERO
@@ -87,12 +90,12 @@ func _physics_process(delta: float) -> void:
 			next_input_move = Vector2i.LEFT
 			next_grid_positions = [(player_grid_positions[0] + next_input_move), (player_grid_positions[1] + next_input_move)]
 			if check_next_move(next_grid_positions):
-				player_move(next_grid_positions)
+				player_snap_move(next_grid_positions)
 		elif Input.is_action_just_pressed("puyo_right"):
 			next_input_move = Vector2i.RIGHT
 			next_grid_positions = [(player_grid_positions[0] + next_input_move), (player_grid_positions[1] + next_input_move)]
 			if check_next_move(next_grid_positions):
-				player_move(next_grid_positions)
+				player_snap_move(next_grid_positions)
 		elif Input.is_action_just_pressed("puyo_rotate"):
 			player_rotate()
 		elif Input.is_action_just_pressed("puyo_down"):
@@ -104,6 +107,13 @@ func _physics_process(delta: float) -> void:
 		if Input.is_action_just_pressed("TESTING_player_spawn"):
 			create_player_puyo()
 			player_test_create_flag = false
+	
+	#this doesn't look super awesome so its not used atm
+	if player_move_flag and player_puyos != null and player_puyos.size() > 0:
+		for i in range(0, 2):
+			player_puyos[i].position = player_puyos[i].position.lerp(player_next_positions[i], delta * player_slide_speed)
+			if player_puyos[i].position == player_next_positions[i]:
+				player_move_flag  = false
 
 func fill_grid(how_full : int):
 	for i in range(0, grid_width):
@@ -186,7 +196,7 @@ func move_puyo(node_from : GridNode, node_to : GridNode):
 	node_from.remove_child(puyo_from)
 	node_from.reset()
 	node_to.add_child(puyo_from)
-	node_to.set_puyo(puyo_from)
+	node_to.move_puyo(puyo_from)
 	#node_to.puyo.set_pos(position_from)
 	#node_to.puyo.puyo_lerp(node_to.position)
 	pass
@@ -334,6 +344,9 @@ func create_player_puyo():
 		player_puyos[0].position.x = grid[int (grid_width / 2)][0].position.x + square_size
 		player_puyos[1].position.x  = grid[(int (grid_width / 2)) + 1][0].position.x + square_size * 2
 		
+		player_next_positions[0] = player_puyos[0].position
+		player_next_positions[1] = player_puyos[1].position
+		
 		$PlayerDownTimer.set_wait_time(player_down_speed)
 		$PlayerDownTimer.start()
 		
@@ -354,9 +367,23 @@ func player_move(new_grid_positions: Array[Vector2i]):
 		var moving_puyo : Puyo = player_puyos[i]
 		var translation_difference = new_grid_positions[i] - player_grid_positions[i]
 		translation_difference *= square_size
-		moving_puyo.position.x += translation_difference.x * 2
-		moving_puyo.position.y += translation_difference.y * 2
+		player_next_positions[i].x = moving_puyo.position.x + (translation_difference.x * 2)
+		player_next_positions[i].y = moving_puyo.position.y + (translation_difference.y * 2)
+		#moving_puyo.position.x += translation_difference.x * 2
+		#moving_puyo.position.y += translation_difference.y * 2
 	player_grid_positions = new_grid_positions
+	player_move_flag = true
+
+func player_snap_move(new_grid_positions: Array[Vector2i]):
+	for i in range (0, 2):
+		var moving_puyo : Puyo = player_puyos[i]
+		var translation_difference = new_grid_positions[i] - player_grid_positions[i]
+		translation_difference *= square_size
+		player_next_positions[i].x = moving_puyo.position.x + (translation_difference.x * 2)
+		player_next_positions[i].y = moving_puyo.position.y + (translation_difference.y * 2)
+		moving_puyo.position = player_next_positions[i]
+	player_grid_positions = new_grid_positions
+	player_move_flag = false
 
 #connected to the timer via signal
 func player_down_tick():
@@ -364,7 +391,7 @@ func player_down_tick():
 	for player_position in player_grid_positions:
 		next_moves.append(Vector2i(player_position.x, player_position.y + 1))
 	if check_next_move(next_moves):
-		player_move(next_moves)
+		player_snap_move(next_moves)
 	else:# if player shouldn't be able to move, turn it into part of the grid
 		player_input_flag = false
 		$PlayerDownTimer.stop()
@@ -438,7 +465,7 @@ func player_rotate():
 		else:
 			player_rotation = rotation_check
 	if rotate_flag:
-		player_move(move_check)
+		player_snap_move(move_check)
 	else:
 		print("cant rotate")
 
