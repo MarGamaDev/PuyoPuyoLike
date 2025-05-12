@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://cqw1jv0baovrt"]
 
-[ext_resource type="Script" uid="uid://dub4mt75gbejk" path="res://Scripts/puyo.gd" id="1_jkgo8"]
+[ext_resource type="Script" uid="uid://dub4mt75gbejk" path="res://scripts/puyo.gd" id="1_jkgo8"]
 [ext_resource type="Texture2D" uid="uid://hvooavpam6hd" path="res://Placeholder Art/puyo_out_of_bounds.png" id="2_2smv1"]
 [ext_resource type="Texture2D" uid="uid://b480cnlhxsl2q" path="res://Placeholder Art/puyo_blue.png" id="2_fnkyh"]
 [ext_resource type="Texture2D" uid="uid://cout30nmga87f" path="res://Placeholder Art/puyo_junk.png" id="2_ua2oy"]

@@ -3,6 +3,7 @@ extends Node2D
 signal board_check_delay
 signal life_loss
 signal chain_pop(type : Array, chain_length)
+signal down_check_finished
 
 #loading the grid nodes to instantiate them
 @onready var grid_node_scene = load("res://Scenes/grid_node.tscn")
@@ -56,10 +57,9 @@ func start_game():
 	fill_grid(test_fill_height) ##remove when finishing with testing
 	fill_puyo_queue()
 	await get_tree().create_timer(0.7).timeout
-	#calling this initiates a board check and allows chaining
-	check_board(get_grouped_puyos())
-	await board_check_delay
-	player_test_create_flag = true
+	grid_state_check()
+	#await board_check_delay
+	#player_test_create_flag = true
 
 func end_game():
 	#resetting grid
@@ -121,8 +121,6 @@ func fill_grid(how_full : int):
 		node_to_fill.add_child(puyo)
 		node_to_fill.set_puyo(puyo)
 		node_to_fill.set_type(Puyo.PUYO_TYPE.JUNK)
-	
-	down_tick()
 
 #initialises the grid and gives all of the nodes their neighbours
 func initialize_grid():
@@ -172,11 +170,11 @@ func set_node_neighbours(grid_node : GridNode):
 
 #state machine for grid updating.  called whenever a puyo is placed
 func grid_state_check():
-	await down_tick()
-	var puyo_groups = get_grouped_puyos()
+	down_tick()
+	await down_check_finished
+	var puyo_groups = await get_grouped_puyos()
 	if puyo_groups.size() > 0:
 		await check_board(puyo_groups)
-		await down_tick()
 		await grid_state_check()
 	else:
 		create_player_puyo()
@@ -194,6 +192,7 @@ func move_puyo(node_from : GridNode, node_to : GridNode):
 func get_grouped_puyos() -> Array:
 	#down tick should always be called first to make sure board is in a valid state
 	down_tick()
+	await down_check_finished
 	#any groups of 4+ blocks get 
 	var groups : Array = Array()
 	#go through every node in the grid
@@ -228,21 +227,29 @@ func get_grouped_puyos() -> Array:
 
 #called when a tick for gravity needs to be checked, callls itself if it changed anything
 func down_tick() -> bool:
+	var to_move : Array = []
 	#sets a check to see if anything changed, if it hasn't changed it should stay false
 	var check = false
 	await get_tree().create_timer(down_tick_speed).timeout
 	#loops through all puyos, but from bottom up
-	for i in range(0, grid_width):
+	for i in range(grid_height - 2, -1, -1):
 		#starts with one above bottom
-		for j in range(0, grid_height - 1):
+		for j in range(grid_width - 1, -1, -1):
 			#if the space below is empty
-			if !(grid[i][j + 1].is_holding_puyo) and grid[i][j].is_holding_puyo:
-				#set check to false and move down
-				move_puyo(grid[i][j], grid[i][j+1])
+			if !(grid[j][i + 1].is_holding_puyo) and grid[j][i].is_holding_puyo:
 				check = true
+				player_create_flag = false
+				to_move.append([grid[j][i], grid[j][i+1]])
+	
+	for i : Array in to_move:
+		move_puyo(i[0], i[1])
+	
 	if check:
 		#await get_tree().create_timer(down_tick_speed).timeout
 		down_tick()
+	else:
+		player_create_flag = true
+		down_check_finished.emit()
 	return check
 
 func check_node(node_to_check: GridNode, node_group: Array, puyo_type:= Puyo.PUYO_TYPE.UNDEFINED) -> Array:
@@ -300,11 +307,13 @@ func check_board(puyos_to_pop : Array) -> bool:
 		chain_length += 1
 		chain_pop.emit(puyos_to_pop, chain_length)
 		pop_puyos(puyos_to_pop)
-		var down_check = true
-		while down_check:
-			down_check = await down_tick()
+		#var down_check = true
+		#while down_check:
+			#down_check = await down_tick()
+		down_tick()
+		await down_check_finished
 		await get_tree().create_timer(0.3).timeout
-		check_board(get_grouped_puyos())
+		check_board(await get_grouped_puyos())
 		return true
 
 #creates player puyo
@@ -366,8 +375,7 @@ func player_down_tick():
 			node_to_fill.set_puyo(new_puyo)
 			player_puyos[i].queue_free()
 		player_puyos.clear()
-		down_tick()
-		await get_tree().create_timer(0.2).timeout
+		await down_tick()
 		grid_state_check()
 
 func player_rotate():
