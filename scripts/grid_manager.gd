@@ -492,3 +492,15 @@ func loss_check() -> bool:
 			life_loss.emit()
 			return true
 	return false
+
+#used for specific junk patterns that fall from the top
+func create_top_junk_specific(junk_positions : Array[Vector2]):
+	#junk positions will be from left to right top to bottom
+	for i in junk_positions:
+		var junk_puyo : Puyo = puyo_scene.instantiate()
+		var node_to_fill : GridNode = grid[i.x][i.y]
+		if !(node_to_fill.is_holding_puyo):
+			node_to_fill.add_child(junk_puyo)
+			node_to_fill.set_puyo(junk_puyo)
+			node_to_fill.set_type(Puyo.PUYO_TYPE.JUNK)
+	pass
