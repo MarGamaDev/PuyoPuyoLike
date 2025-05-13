@@ -27,22 +27,6 @@ grow_vertical = 0
 theme_override_font_sizes/font_size = 50
 text = "start"
 
-[node name="EndButton" type="Button" parent="UI"]
-visible = false
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -279.0
-offset_top = -142.0
-offset_right = -20.0
-offset_bottom = -21.0
-grow_horizontal = 0
-grow_vertical = 0
-theme_override_font_sizes/font_size = 50
-text = "End game"
-
 [node name="ChainLengthLabel" type="Label" parent="UI"]
 anchors_preset = 6
 anchor_left = 1.0
@@ -95,6 +79,4 @@ position = Vector2(212, -45)
 [connection signal="life_loss" from="GridManager" to="." method="lose_life"]
 [connection signal="pressed" from="UI/Button" to="." method="_on_test_button_pressed"]
 [connection signal="pressed" from="UI/Button" to="GridManager" method="start_game"]
-[connection signal="pressed" from="UI/EndButton" to="." method="_test_on_end_button_pressed"]
-[connection signal="pressed" from="UI/EndButton" to="GridManager" method="end_game"]
 [connection signal="pressed" from="UI/JunkTest" to="." method="_on_junk_test_pressed"]

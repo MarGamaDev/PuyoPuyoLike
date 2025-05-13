@@ -15,6 +15,7 @@ static func create(chainSize: int, blueCount: int, redCount: int, greenCount: in
 	instance.yellow = yellowCount
 	return instance
 
+#gets an array of gridnodes
 static func create_from_array(puyos : Array, chainSize : int):
 	var instance = PlayerAttack.new()
 	instance.chain = chainSize

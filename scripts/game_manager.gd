@@ -2,7 +2,8 @@ extends Node2D
 
 var last_chain_length : int = 0
 var last_chain_contents : String = "Last chain contents: "
-signal player_attack(attack : PlayerAttack)
+signal player_attack(PlayerAttack)
+signal enemy_tick()
 
 func lose_life():
 	print("life lost")
@@ -10,7 +11,6 @@ func lose_life():
 	$GridManager.hide()
 	test_reset_chain()
 	
-#chain_pop.emit(puyos_to_pop[0][0].get_type(), puyos_to_pop.size(), chain_length)
 func chain_popped(puyos_to_pop : Array, chain_length: int):
 	var chain_string = ""
 	#
@@ -37,15 +37,6 @@ func test_reset_chain():
 func _on_test_button_pressed() -> void:
 	$GridManager.show()
 	$UI/Button.hide()
-	$UI/EndButton.show()
-
-
-func _test_on_end_button_pressed() -> void:
-	$GridManager.hide()
-	$UI/EndButton.hide()
-	$UI/Button.show()
-	test_reset_chain()
-
 
 func _on_junk_test_pressed() -> void:
 	$GridManager.add_to_spawn_queue(PuyoQueueEvent.create(PuyoQueueEvent.EVENT_TYPE.JUNKROW,1))

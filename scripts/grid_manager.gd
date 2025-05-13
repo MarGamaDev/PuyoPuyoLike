@@ -4,6 +4,7 @@ signal board_check_delay
 signal life_loss
 signal chain_pop(type : Array, chain_length)
 signal down_check_finished
+signal turn_tick
 
 #loading the grid nodes to instantiate them
 @onready var grid_node_scene = load("res://Scenes/grid_node.tscn")
@@ -309,7 +310,7 @@ func check_node(node_to_check: GridNode, node_group: Array, puyo_type:= Puyo.PUY
 	#send the accumulated list back up the recursion
 	return node_group
 
-func pop_puyos(puyo_groups:= puyos_to_pop):
+func pop_puyos(puyo_groups:Array = puyos_to_pop):
 	if puyo_groups.is_empty():
 		pass
 	for group in puyo_groups:
@@ -420,6 +421,8 @@ func player_down_tick():
 			player_puyos[i].queue_free()
 		player_puyos.clear()
 		grid_state_check()
+		print("enemy tick")
+		turn_tick.emit()
 
 func player_rotate():
 	var rotation_check : int = (player_rotation + 1) % 4
