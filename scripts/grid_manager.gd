@@ -50,12 +50,12 @@ var event_queue : Array = []
 
 ##used for testing and debugging
 var player_test_create_flag = false
-@export var test_fill_height = 5
+@export var test_fill_height = 0
 
 func _ready():
 	initialize_grid()
 	 
-	event_queue.append(PuyoQueueEvent.create(PuyoQueueEvent.EVENT_TYPE.JUNKROW, 1))
+	#event_queue.append(PuyoQueueEvent.create(PuyoQueueEvent.EVENT_TYPE.JUNKRANDOM, 3))
 	#start_game()
 
 func start_game():
@@ -197,6 +197,10 @@ func grid_state_check():
 		else:
 			if next_event.event_type == PuyoQueueEvent.EVENT_TYPE.JUNKROW:
 				create_junk_row(next_event.junk_number)
+			elif next_event.event_type == PuyoQueueEvent.EVENT_TYPE.JUNKSPECIFIC:
+				create_top_junk_specific(next_event.junk_positions)
+			elif next_event.event_type == PuyoQueueEvent.EVENT_TYPE.JUNKRANDOM:
+				create_junk_random(next_event.junk_number)
 			grid_state_check()
 
 #move a puyo from one node to another. overwrites node_to's puyo. used only for resting puyos
@@ -504,7 +508,7 @@ func loss_check() -> bool:
 	return false
 
 #used for specific junk patterns that fall from the top
-func create_top_junk_specific(junk_positions : Array[Vector2]):
+func create_top_junk_specific(junk_positions : Array[Vector2i]):
 	#junk positions will be from left to right top to bottom
 	for i in junk_positions:
 		var junk_puyo : Puyo = puyo_scene.instantiate()
@@ -524,4 +528,32 @@ func create_junk_row(number_of_rows: int):
 					node_to_fill.add_child(junk_puyo)
 					node_to_fill.set_puyo(junk_puyo)
 					node_to_fill.set_type(Puyo.PUYO_TYPE.JUNK)
-	pass
+
+func create_junk_random(junk_num: int):
+	var junk_positions : Array[Vector2i] = []
+	var junk_amount = 0
+	#need to make sure there's enough spaces to spawn the junk
+	for grid_i in range(0, grid_width):
+		for grid_j in range(0, grid_height):
+			if !(grid[grid_i][grid_j].is_holding_puyo):
+				junk_amount += 1
+	#if theres more spaces left than the number, spawn that many, otherwise fill the spaces
+	if junk_amount > junk_num:
+		junk_amount = junk_num
+	for i in range (0, junk_amount):
+		var new_position = Vector2i(randi_range(0, grid_width - 1), 0)
+		var spawn_check = true
+		while spawn_check:
+			#if !(grid[new_position.x][new_position.y].is_holding_puyo):
+				##if the randomly selected space holds a puyo already
+				##reset height, since it can't go lower in that column, and try a different column
+				#new_position = Vector2i(randi_range(0, grid_width), 0)
+			if junk_positions.has(new_position):
+				#if the position is already in the array of junks to create
+				new_position.y += 1 #try to go below it
+			else: #if this position is free in both the array and the grid
+				junk_positions.append(new_position)
+				spawn_check = false
+	#call the specific method to spawn these junks
+	create_top_junk_specific(junk_positions)
+		
