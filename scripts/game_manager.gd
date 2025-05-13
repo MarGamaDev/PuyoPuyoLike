@@ -41,3 +41,7 @@ func _test_on_end_button_pressed() -> void:
 	$UI/EndButton.hide()
 	$UI/Button.show()
 	test_reset_chain()
+
+
+func _on_junk_test_pressed() -> void:
+	$GridManager.add_to_spawn_queue(PuyoQueueEvent.create(PuyoQueueEvent.EVENT_TYPE.JUNKROW,1))

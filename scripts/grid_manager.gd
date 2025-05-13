@@ -507,6 +507,9 @@ func loss_check() -> bool:
 			return true
 	return false
 
+func add_to_spawn_queue(new_event: PuyoQueueEvent):
+	event_queue.append(new_event)
+
 #used for specific junk patterns that fall from the top
 func create_top_junk_specific(junk_positions : Array[Vector2i]):
 	#junk positions will be from left to right top to bottom
