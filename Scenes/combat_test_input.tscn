@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://iwmh6o3tuio"]
 
-[ext_resource type="Script" uid="uid://dwlh4k5225ywb" path="res://Scripts/Combat/combat_test_input.gd" id="1_d1op4"]
+[ext_resource type="Script" uid="uid://dwlh4k5225ywb" path="res://scripts/Combat/combat_test_input.gd" id="1_d1op4"]
 
 [node name="combat_test_input" type="Control"]
 layout_mode = 3

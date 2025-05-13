@@ -14,3 +14,16 @@ static func create(chainSize: int, blueCount: int, redCount: int, greenCount: in
 	instance.green = greenCount
 	instance.yellow = yellowCount
 	return instance
+
+static func create_from_array(puyos : Array, chainSize : int):
+	var instance = PlayerAttack.new()
+	instance.chain = chainSize
+	if puyos[0].puyo.puyo_type == Puyo.PUYO_TYPE.BLUE:
+		instance.blue = puyos.size()
+	elif puyos[0].puyo.puyo_type == Puyo.PUYO_TYPE.RED:
+		instance.red = puyos.size()
+	elif puyos[0].puyo.puyo_type == Puyo.PUYO_TYPE.GREEN:
+		instance.green = puyos.size()
+	elif puyos[0].puyo.puyo_type == Puyo.PUYO_TYPE.YELLOW:
+		instance.yellow = puyos.size()
+	return instance

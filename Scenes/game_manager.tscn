@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://buetvmo3m42v5"]
+[gd_scene load_steps=4 format=3 uid="uid://buetvmo3m42v5"]
 
 [ext_resource type="Script" uid="uid://bhx6thphvfolw" path="res://scripts/game_manager.gd" id="1_oj352"]
 [ext_resource type="PackedScene" uid="uid://cbaajsmksk4lh" path="res://Scenes/grid_manager.tscn" id="2_e5fcp"]
+[ext_resource type="PackedScene" uid="uid://d3naap4gnytxh" path="res://Scenes/combat.tscn" id="3_sq00h"]
 
 [node name="GameManager" type="Node2D"]
 script = ExtResource("1_oj352")
@@ -86,6 +87,10 @@ grow_vertical = 0
 theme_override_font_sizes/font_size = 50
 text = "drop junk"
 
+[node name="Combat" parent="." instance=ExtResource("3_sq00h")]
+position = Vector2(212, -45)
+
+[connection signal="player_attack" from="." to="Combat" method="process_player_attack"]
 [connection signal="chain_pop" from="GridManager" to="." method="chain_popped"]
 [connection signal="life_loss" from="GridManager" to="." method="lose_life"]
 [connection signal="pressed" from="UI/Button" to="." method="_on_test_button_pressed"]

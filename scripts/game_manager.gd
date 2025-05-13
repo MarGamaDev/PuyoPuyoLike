@@ -2,6 +2,7 @@ extends Node2D
 
 var last_chain_length : int = 0
 var last_chain_contents : String = "Last chain contents: "
+signal player_attack(attack : PlayerAttack)
 
 func lose_life():
 	print("life lost")
@@ -12,9 +13,12 @@ func lose_life():
 #chain_pop.emit(puyos_to_pop[0][0].get_type(), puyos_to_pop.size(), chain_length)
 func chain_popped(puyos_to_pop : Array, chain_length: int):
 	var chain_string = ""
+	#
 	for puyo_group : Array in puyos_to_pop:
 		print("chain type: ", puyo_group[0].get_type(), " with ", puyo_group.size(), " puyos, chain length ", chain_length)
 		chain_string = chain_string + ("%s " % puyo_group[0].get_type()) + ("with %s" % puyo_group.size()) + " puyos "
+		#send attack to the combat manager
+		player_attack.emit(PlayerAttack.create_from_array(puyo_group, chain_length))
 	if chain_length > 1:
 		last_chain_contents = last_chain_contents + "\n" + chain_string			
 	else:

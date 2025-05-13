@@ -11,5 +11,6 @@ script = ExtResource("1_4ln8h")
 position = Vector2(829, 168)
 
 [node name="combat_test_input" parent="." instance=ExtResource("2_fe60u")]
+visible = false
 
 [connection signal="on_data_submitted" from="combat_test_input" to="." method="process_player_attack"]
