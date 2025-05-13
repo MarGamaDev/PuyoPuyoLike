@@ -13,7 +13,6 @@ func lose_life():
 	
 func chain_popped(puyos_to_pop : Array, chain_length: int):
 	var chain_string = ""
-	#
 	for puyo_group : Array in puyos_to_pop:
 		print("chain type: ", puyo_group[0].get_type(), " with ", puyo_group.size(), " puyos, chain length ", chain_length)
 		chain_string = chain_string + ("%s " % puyo_group[0].get_type()) + ("with %s" % puyo_group.size()) + " puyos "
@@ -39,4 +38,4 @@ func _on_test_button_pressed() -> void:
 	$UI/Button.hide()
 
 func _on_junk_test_pressed() -> void:
-	$GridManager.add_to_spawn_queue(PuyoQueueEvent.create(PuyoQueueEvent.EVENT_TYPE.JUNKROW,1))
+	$GridManager.add_to_spawn_queue(PuyoQueueEvent.create(PuyoQueueEvent.EVENT_TYPE.JUNKREPLACE,0, [Vector2i(0,11), Vector2i(2,10)]))

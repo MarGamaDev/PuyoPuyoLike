@@ -51,7 +51,7 @@ var event_queue : Array = []
 
 ##used for testing and debugging
 var player_test_create_flag = false
-@export var test_fill_height = 0
+@export var test_fill_height = 9
 
 func _ready():
 	initialize_grid()
@@ -199,9 +199,11 @@ func grid_state_check():
 			if next_event.event_type == PuyoQueueEvent.EVENT_TYPE.JUNKROW:
 				create_junk_row(next_event.junk_number)
 			elif next_event.event_type == PuyoQueueEvent.EVENT_TYPE.JUNKSPECIFIC:
-				create_top_junk_specific(next_event.junk_positions)
+				create_junk_specific(next_event.junk_positions)
 			elif next_event.event_type == PuyoQueueEvent.EVENT_TYPE.JUNKRANDOM:
 				create_junk_random(next_event.junk_number)
+			elif next_event.event_type == PuyoQueueEvent.EVENT_TYPE.JUNKREPLACE:
+				replace_junk_specific(next_event.junk_positions)
 			grid_state_check()
 
 #move a puyo from one node to another. overwrites node_to's puyo. used only for resting puyos
@@ -514,7 +516,7 @@ func add_to_spawn_queue(new_event: PuyoQueueEvent):
 	event_queue.append(new_event)
 
 #used for specific junk patterns that fall from the top
-func create_top_junk_specific(junk_positions : Array[Vector2i]):
+func create_junk_specific(junk_positions : Array[Vector2i]):
 	#junk positions will be from left to right top to bottom
 	for i in junk_positions:
 		var junk_puyo : Puyo = puyo_scene.instantiate()
@@ -561,5 +563,14 @@ func create_junk_random(junk_num: int):
 				junk_positions.append(new_position)
 				spawn_check = false
 	#call the specific method to spawn these junks
-	create_top_junk_specific(junk_positions)
-		
+	create_junk_specific(junk_positions)
+
+func replace_junk_specific(junk_positions : Array[Vector2i]):
+	#junk positions will be from left to right top to bottom
+	for i in junk_positions:
+		var junk_puyo : Puyo = puyo_scene.instantiate()
+		var node_to_fill : GridNode = grid[i.x][i.y]
+		if !(node_to_fill.is_holding_puyo):
+			node_to_fill.add_child(junk_puyo)
+			node_to_fill.set_puyo(junk_puyo)
+		node_to_fill.set_type(Puyo.PUYO_TYPE.JUNK)
