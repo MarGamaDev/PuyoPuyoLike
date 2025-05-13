@@ -50,7 +50,7 @@ var spawn_queue : Array = []
 
 ##used for testing and debugging
 var player_test_create_flag = false
-@export var test_fill_height = 8
+@export var test_fill_height = 11
 
 func _ready():
 	initialize_grid()
@@ -60,6 +60,7 @@ func start_game():
 	fill_grid(test_fill_height) ##remove when finishing with testing
 	fill_puyo_queue()
 	await get_tree().create_timer(0.7).timeout
+	create_junk_row(3)
 	grid_state_check()
 	#await board_check_delay
 	#player_test_create_flag = true
@@ -125,12 +126,12 @@ func fill_grid(how_full : int):
 			node_to_fill.set_type(randi_range(2,5))
 			
 	#comment this out when not testing junk
-	for i in range(0, grid_width):
-		var puyo : Puyo = puyo_scene.instantiate()
-		var node_to_fill : GridNode = grid[i][1]
-		node_to_fill.add_child(puyo)
-		node_to_fill.set_puyo(puyo)
-		node_to_fill.set_type(Puyo.PUYO_TYPE.JUNK)
+	#for i in range(0, grid_width):
+		#var puyo : Puyo = puyo_scene.instantiate()
+		#var node_to_fill : GridNode = grid[i][1]
+		#node_to_fill.add_child(puyo)
+		#node_to_fill.set_puyo(puyo)
+		#node_to_fill.set_type(Puyo.PUYO_TYPE.JUNK)
 
 #initialises the grid and gives all of the nodes their neighbours
 func initialize_grid():
@@ -503,4 +504,15 @@ func create_top_junk_specific(junk_positions : Array[Vector2]):
 			node_to_fill.add_child(junk_puyo)
 			node_to_fill.set_puyo(junk_puyo)
 			node_to_fill.set_type(Puyo.PUYO_TYPE.JUNK)
+
+#this just creates x rows of junk
+func create_junk_row(number_of_rows: int):
+	for i in range(0, number_of_rows):
+		for j in range(0, grid_width):
+			var junk_puyo : Puyo = puyo_scene.instantiate()
+			var node_to_fill : GridNode = grid[j][i]
+			if !(node_to_fill.is_holding_puyo):
+					node_to_fill.add_child(junk_puyo)
+					node_to_fill.set_puyo(junk_puyo)
+					node_to_fill.set_type(Puyo.PUYO_TYPE.JUNK)
 	pass
