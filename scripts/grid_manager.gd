@@ -2,6 +2,7 @@ extends Node2D
 
 signal board_check_delay
 signal life_loss
+#use chain_pop for any group popping stuff as well
 signal chain_pop(type : Array, chain_length)
 signal down_check_finished
 signal turn_tick
@@ -51,7 +52,7 @@ var event_queue : Array = []
 
 ##used for testing and debugging
 var player_test_create_flag = false
-@export var test_fill_height = 0
+@export var test_fill_height = 9
 
 func _ready():
 	initialize_grid()
@@ -68,14 +69,13 @@ func start_game():
 	#player_test_create_flag = true
 
 func end_game():
+	$PlayerDownTimer.stop()
 	#resetting grid
 	for i in range(0, grid_width):
 		for j in range(0, grid_height):
 			if grid[i][j].puyo != null:
 				grid[i][j].puyo.queue_free()
 			grid[i][j].reset()
-	#resetting game stuff
-	$PlayerDownTimer.stop()
 	puyos_to_pop = Array()
 	player_puyos = Array()
 	player_grid_positions = Array()
@@ -361,12 +361,24 @@ func create_player_puyo():
 		player_rotation = 0
 		
 		player_grid_positions = [Vector2i(int ((grid_width -1)/ 2),0), Vector2i(int ((grid_width -1)/ 2) + 1,0)]
-		
 		player_puyos[0].position.x = grid[int (grid_width / 2)][0].position.x + square_size
 		player_puyos[1].position.x  = grid[(int (grid_width / 2)) + 1][0].position.x + square_size * 2
-		
 		player_next_positions[0] = player_puyos[0].position
 		player_next_positions[1] = player_puyos[1].position
+		
+		var position_check = player_grid_positions
+		var end_flag = false
+		if !(check_next_move(player_grid_positions)):
+			for i in range(0, grid_width - 1):
+				position_check = [Vector2i(i, 0), Vector2i(i + 1, 0)]
+				if (check_next_move(position_check)):
+					end_flag = true
+					break
+			if end_flag == false:
+				life_loss.emit()
+				end_game()
+				#return
+		player_snap_move(position_check)
 		
 		$PlayerDownTimer.set_wait_time(player_down_speed)
 		$PlayerDownTimer.start()
@@ -374,7 +386,7 @@ func create_player_puyo():
 		player_input_flag = true
 
 #returns true if next move is valid
-func check_next_move(next_grid_positions: Array[Vector2i]) -> bool:
+func check_next_move(next_grid_positions: Array) -> bool:
 	for pos in next_grid_positions:
 		if (pos.x > grid_width - 1) or (pos.x < 0) or (pos.y > grid_height - 1) or (pos.y < 0):
 			return false
@@ -383,7 +395,7 @@ func check_next_move(next_grid_positions: Array[Vector2i]) -> bool:
 	return true
 
 #assumes move being given to it is valid
-func player_move(new_grid_positions: Array[Vector2i]):
+func player_move(new_grid_positions: Array):
 	for i in range (0, 2):
 		var moving_puyo : Puyo = player_puyos[i]
 		var translation_difference = new_grid_positions[i] - player_grid_positions[i]
@@ -395,16 +407,19 @@ func player_move(new_grid_positions: Array[Vector2i]):
 	player_grid_positions = new_grid_positions
 	player_move_flag = true
 
-func player_snap_move(new_grid_positions: Array[Vector2i]):
-	for i in range (0, 2):
-		var moving_puyo : Puyo = player_puyos[i]
-		var translation_difference = new_grid_positions[i] - player_grid_positions[i]
-		translation_difference *= square_size
-		player_next_positions[i].x = moving_puyo.position.x + (translation_difference.x * 2)
-		player_next_positions[i].y = moving_puyo.position.y + (translation_difference.y * 2)
-		moving_puyo.position = player_next_positions[i]
-	player_grid_positions = new_grid_positions
-	player_move_flag = false
+func player_snap_move(new_grid_positions: Array):
+	if new_grid_positions.size() < 1 or player_puyos.size() < 1:
+		return
+	else:
+		for i in range (0, 2):
+			var moving_puyo : Puyo = player_puyos[i]
+			var translation_difference = new_grid_positions[i] - player_grid_positions[i]
+			translation_difference *= square_size
+			player_next_positions[i].x = moving_puyo.position.x + (translation_difference.x * 2)
+			player_next_positions[i].y = moving_puyo.position.y + (translation_difference.y * 2)
+			moving_puyo.position = player_next_positions[i]
+		player_grid_positions = new_grid_positions
+		player_move_flag = false
 
 #connected to the timer via signal
 func player_down_tick():
