@@ -55,8 +55,7 @@ var player_test_create_flag = false
 func _ready():
 	initialize_grid()
 	 
-	#for i in range(0,3):
-		#event_queue.append(PuyoQueueEvent.create(PuyoQueueEvent.EVENT_TYPE.PLAYER))
+	event_queue.append(PuyoQueueEvent.create(PuyoQueueEvent.EVENT_TYPE.JUNKROW, 1))
 	#start_game()
 
 func start_game():
@@ -195,6 +194,10 @@ func grid_state_check():
 		var next_event : PuyoQueueEvent = event_queue.pop_front()
 		if next_event.event_type == PuyoQueueEvent.EVENT_TYPE.PLAYER:
 			create_player_puyo()
+		else:
+			if next_event.event_type == PuyoQueueEvent.EVENT_TYPE.JUNKROW:
+				create_junk_row(next_event.junk_number)
+			grid_state_check()
 
 #move a puyo from one node to another. overwrites node_to's puyo. used only for resting puyos
 func move_puyo(node_from : GridNode, node_to : GridNode):
