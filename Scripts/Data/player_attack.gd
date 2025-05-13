@@ -1,4 +1,4 @@
-class_name PlayerAttack extends RefCounted
+class_name PlayerAttack extends Node
 
 var chain: int
 var blue: int

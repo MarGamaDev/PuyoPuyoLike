@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://bx5kscp85ypry"]
 
-[ext_resource type="Script" uid="uid://346xwma4f44y" path="res://Scripts/Combat/Enemy/enemy.gd" id="1_1f0kj"]
+[ext_resource type="Script" uid="uid://346xwma4f44y" path="res://scripts/Combat/Enemy/enemy.gd" id="1_1f0kj"]
 [ext_resource type="Resource" uid="uid://g1vp61rtgpme" path="res://Resources/Enemies/test_enemy.tres" id="2_287tu"]
 [ext_resource type="Texture2D" uid="uid://b13c5dnd5eyu6" path="res://icon.svg" id="2_afpow"]
-[ext_resource type="Script" uid="uid://6v5kccermtmr" path="res://Scripts/Combat/Enemy/enemy_attack.gd" id="3_ghaa6"]
+[ext_resource type="Script" uid="uid://6v5kccermtmr" path="res://scripts/Combat/Enemy/enemy_attack.gd" id="3_ghaa6"]
 [ext_resource type="Resource" uid="uid://ctf2g8pw88fk2" path="res://Resources/EnemyAttacks/test_enemy_attack_1.tres" id="4_1dp5w"]
 [ext_resource type="Resource" uid="uid://cn0op1aiuirgi" path="res://Resources/EnemyAttacks/test_enemy_attack_2.tres" id="5_auwsv"]
 

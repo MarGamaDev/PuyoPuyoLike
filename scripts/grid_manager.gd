@@ -46,21 +46,23 @@ var next_input_move : Vector2i = Vector2i.ZERO
 var next_grid_positions : Array[Vector2i]
 
 #queue for if a player should be spawned or some other effect
-var spawn_queue : Array = []
+var event_queue : Array = []
 
 ##used for testing and debugging
 var player_test_create_flag = false
-@export var test_fill_height = 11
+@export var test_fill_height = 5
 
 func _ready():
 	initialize_grid()
+	 
+	#for i in range(0,3):
+		#event_queue.append(PuyoQueueEvent.create(PuyoQueueEvent.EVENT_TYPE.PLAYER))
 	#start_game()
 
 func start_game():
 	fill_grid(test_fill_height) ##remove when finishing with testing
 	fill_puyo_queue()
 	await get_tree().create_timer(0.7).timeout
-	create_junk_row(3)
 	grid_state_check()
 	#await board_check_delay
 	#player_test_create_flag = true
@@ -83,7 +85,7 @@ func end_game():
 	player_input_flag = false
 	chain_length = 0
 	next_input_move = Vector2i.ZERO
-	spawn_queue = []
+	event_queue = []
 
 func _physics_process(delta: float) -> void:
 	if player_input_flag:
@@ -188,7 +190,11 @@ func grid_state_check():
 		await check_board(puyo_groups)
 		await grid_state_check()
 	else:
-		create_player_puyo()
+		if event_queue.size() == 0:
+			event_queue.append(PuyoQueueEvent.create(PuyoQueueEvent.EVENT_TYPE.PLAYER))
+		var next_event : PuyoQueueEvent = event_queue.pop_front()
+		if next_event.event_type == PuyoQueueEvent.EVENT_TYPE.PLAYER:
+			create_player_puyo()
 
 #move a puyo from one node to another. overwrites node_to's puyo. used only for resting puyos
 func move_puyo(node_from : GridNode, node_to : GridNode):
