@@ -51,7 +51,7 @@ var event_queue : Array = []
 
 ##used for testing and debugging
 var player_test_create_flag = false
-@export var test_fill_height = 9
+@export var test_fill_height = 0
 
 func _ready():
 	initialize_grid()
@@ -204,6 +204,8 @@ func grid_state_check():
 				create_junk_random(next_event.junk_number)
 			elif next_event.event_type == PuyoQueueEvent.EVENT_TYPE.JUNKREPLACE:
 				replace_junk_specific(next_event.junk_positions)
+			elif next_event.event_type == PuyoQueueEvent.EVENT_TYPE.JUNKSLAM:
+				junk_slam(next_event.junk_number)
 			grid_state_check()
 
 #move a puyo from one node to another. overwrites node_to's puyo. used only for resting puyos
@@ -574,3 +576,25 @@ func replace_junk_specific(junk_positions : Array[Vector2i]):
 			node_to_fill.add_child(junk_puyo)
 			node_to_fill.set_puyo(junk_puyo)
 		node_to_fill.set_type(Puyo.PUYO_TYPE.JUNK)
+
+func junk_slam(junk_rows : int):
+	#finding where teh rows should be, which is lowest row of puyos with non-junk puyos in it
+	var no_rows_check = true
+	var lowest_row = 0
+	for i in range(junk_rows - 1, grid_height):
+		var row_check = false
+		for j in range(0, grid_width):
+			if (grid[j][i].is_holding_puyo and grid[j][i].puyo.puyo_type != Puyo.PUYO_TYPE.JUNK) or !(grid[j][i].is_holding_puyo):
+				row_check = true
+		if row_check and i > lowest_row:
+			lowest_row = i
+			no_rows_check = false
+	if no_rows_check:
+		lowest_row = grid_height - 1
+	#replace these rows with junk
+	print(lowest_row)
+	var junk_array : Array[Vector2i]= []
+	for i in range(lowest_row, lowest_row - junk_rows, -1):
+		for j in range(0, grid_width):
+			junk_array.append(Vector2i(j, i))
+	replace_junk_specific(junk_array)
