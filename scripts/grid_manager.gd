@@ -196,16 +196,18 @@ func grid_state_check():
 		if next_event.event_type == PuyoQueueEvent.EVENT_TYPE.PLAYER:
 			create_player_puyo()
 		else:
-			if next_event.event_type == PuyoQueueEvent.EVENT_TYPE.JUNKROW:
+			if next_event.event_type == PuyoQueueEvent.EVENT_TYPE.JUNK_ROW:
 				create_junk_row(next_event.junk_number)
-			elif next_event.event_type == PuyoQueueEvent.EVENT_TYPE.JUNKSPECIFIC:
+			elif next_event.event_type == PuyoQueueEvent.EVENT_TYPE.JUNK_SPECIFIC:
 				create_junk_specific(next_event.junk_positions)
-			elif next_event.event_type == PuyoQueueEvent.EVENT_TYPE.JUNKRANDOM:
+			elif next_event.event_type == PuyoQueueEvent.EVENT_TYPE.JUNK_RANDOM:
 				create_junk_random(next_event.junk_number)
-			elif next_event.event_type == PuyoQueueEvent.EVENT_TYPE.JUNKREPLACE:
+			elif next_event.event_type == PuyoQueueEvent.EVENT_TYPE.JUNK_REPLACE:
 				replace_junk_specific(next_event.junk_positions)
-			elif next_event.event_type == PuyoQueueEvent.EVENT_TYPE.JUNKSLAM:
+			elif next_event.event_type == PuyoQueueEvent.EVENT_TYPE.JUNK_SLAM:
 				junk_slam(next_event.junk_number)
+			elif next_event.event_type == PuyoQueueEvent.EVENT_TYPE.COLOR_REPLACE:
+				replace_color(next_event.color_to_change, next_event.color_target)
 			grid_state_check()
 
 #move a puyo from one node to another. overwrites node_to's puyo. used only for resting puyos
@@ -598,3 +600,10 @@ func junk_slam(junk_rows : int):
 		for j in range(0, grid_width):
 			junk_array.append(Vector2i(j, i))
 	replace_junk_specific(junk_array)
+
+func replace_color(color_to_replace, to_replace_with):
+	for i in range(0, grid_height):
+		for j in range(0, grid_width):
+			var node_to_check : GridNode = grid[j][i]
+			if node_to_check.is_holding_puyo and node_to_check.puyo.puyo_type == color_to_replace:
+				node_to_check.puyo.set_type(to_replace_with)
