@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://d3naap4gnytxh"]
+[gd_scene load_steps=6 format=3 uid="uid://d3naap4gnytxh"]
 
 [ext_resource type="Script" uid="uid://b0h0tx4msve02" path="res://scripts/Combat/combat_manager.gd" id="1_4ln8h"]
 [ext_resource type="PackedScene" uid="uid://bx5kscp85ypry" path="res://Scenes/enemy.tscn" id="1_7jmb3"]
 [ext_resource type="PackedScene" uid="uid://iwmh6o3tuio" path="res://Scenes/combat_test_input.tscn" id="2_fe60u"]
 [ext_resource type="PackedScene" uid="uid://buetvmo3m42v5" path="res://Scenes/puyo_manager.tscn" id="4_ubpar"]
+[ext_resource type="PackedScene" uid="uid://dh8e8u4ch381l" path="res://Scenes/combat_player.tscn" id="5_ut0kg"]
 
 [node name="Combat" type="Node2D"]
 script = ExtResource("1_4ln8h")
@@ -16,5 +17,9 @@ visible = false
 
 [node name="PuyoManager" parent="." instance=ExtResource("4_ubpar")]
 
+[node name="combat_player" parent="." instance=ExtResource("5_ut0kg")]
+
+[connection signal="add_player_counter" from="." to="combat_player" method="_on_combat_add_player_counter"]
+[connection signal="add_player_shield" from="." to="combat_player" method="_on_combat_add_player_shield"]
 [connection signal="on_data_submitted" from="combat_test_input" to="." method="process_player_attack"]
 [connection signal="player_attack" from="PuyoManager" to="." method="process_player_attack"]
