@@ -52,7 +52,7 @@ var event_queue : Array = []
 
 ##used for testing and debugging
 var player_test_create_flag = false
-@export var test_fill_height = 9
+@export var test_fill_height = 0
 
 func _ready():
 	initialize_grid()
@@ -77,9 +77,14 @@ func end_game():
 				grid[i][j].puyo.queue_free()
 			grid[i][j].reset()
 	puyos_to_pop = Array()
+	for i in player_puyos:
+		i.queue_free()
 	player_puyos = Array()
 	player_grid_positions = Array()
 	player_rotation = 0
+	for i in puyo_queue:
+		for j in i:
+			j.queue_free()
 	puyo_queue = []
 	player_create_flag = false
 	player_input_flag = false

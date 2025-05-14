@@ -26,6 +26,21 @@ grow_vertical = 0
 theme_override_font_sizes/font_size = 50
 text = "start"
 
+[node name="TestResetButton" type="Button" parent="UI"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -412.0
+offset_top = -142.0
+offset_right = -314.0
+offset_bottom = -21.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 30
+text = "Reset"
+
 [node name="ChainLengthLabel" type="Label" parent="UI"]
 anchors_preset = 6
 anchor_left = 1.0
@@ -74,4 +89,6 @@ text = "drop junk"
 [connection signal="life_loss" from="GridManager" to="." method="lose_life"]
 [connection signal="pressed" from="UI/Button" to="." method="_on_test_button_pressed"]
 [connection signal="pressed" from="UI/Button" to="GridManager" method="start_game"]
+[connection signal="pressed" from="UI/TestResetButton" to="." method="_on_test_reset_button_pressed"]
+[connection signal="pressed" from="UI/TestResetButton" to="GridManager" method="end_game"]
 [connection signal="pressed" from="UI/JunkTest" to="." method="_on_junk_test_pressed"]

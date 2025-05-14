@@ -38,4 +38,9 @@ func _on_test_button_pressed() -> void:
 	$UI/Button.hide()
 
 func _on_junk_test_pressed() -> void:
-	$GridManager.add_to_spawn_queue(PuyoQueueEvent.create(PuyoQueueEvent.EVENT_TYPE.COLOR_REPLACE,0,[],Puyo.PUYO_TYPE.BLUE, Puyo.PUYO_TYPE.JUNK))
+	$GridManager.add_to_spawn_queue(PuyoQueueEvent.create(PuyoQueueEvent.EVENT_TYPE.JUNK_SLAM,2))
+
+
+func _on_test_reset_button_pressed() -> void:
+	$GridManager.hide()
+	$UI/Button.show()
