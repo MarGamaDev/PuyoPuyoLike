@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://bu3friywynij8"]
-
-[ext_resource type="Script" uid="uid://cqrjphkavr3sq" path="res://scripts/audio/polyphonic_audio_player.gd" id="1_eqa44"]
-
-[node name="PolyphonicAudioPlayer" type="AudioStreamPlayer2D"]
-script = ExtResource("1_eqa44")

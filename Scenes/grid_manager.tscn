@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://deiih0eoqrj08" path="res://scripts/grid_manager.gd" id="1_uowjv"]
 [ext_resource type="PackedScene" uid="uid://cqw1jv0baovrt" path="res://Scenes/puyo.tscn" id="2_4xyke"]
-[ext_resource type="PackedScene" uid="uid://bu3friywynij8" path="res://Scenes/polyphonic_audio_player.tscn" id="3_6mbex"]
+[ext_resource type="PackedScene" uid="uid://bu3friywynij8" path="res://Scenes/animations and audio stuff/polyphonic_audio_player.tscn" id="3_6mbex"]
 [ext_resource type="Script" uid="uid://80p7cue2s0ca" path="res://scripts/audio/audio_library.gd" id="4_ahia6"]
 [ext_resource type="Script" uid="uid://ccmkst5npwi3n" path="res://scripts/audio/sound_effect.gd" id="5_onoqd"]
 [ext_resource type="AudioStream" uid="uid://dtfg7tw4n02cc" path="res://Placeholder Art/Clink.1.wav" id="6_5hofm"]
