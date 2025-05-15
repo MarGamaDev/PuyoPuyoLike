@@ -52,7 +52,7 @@ var event_queue : Array = []
 
 ##used for testing and debugging
 var player_test_create_flag = false
-@export var test_fill_height = 0
+@export var test_fill_height = 7
 
 func _ready():
 	initialize_grid()
