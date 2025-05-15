@@ -48,6 +48,7 @@ func move_puyo(new_puyo : Puyo):
 	puyo.set_new_goal(global_position)
 	is_holding_puyo = true
 
+
 #i was stupid and realised you can access class variables with .variable 
 #color, junk, active, resting, size
 func set_type(new_type : Puyo.PUYO_TYPE):

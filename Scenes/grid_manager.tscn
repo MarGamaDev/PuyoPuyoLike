@@ -1,7 +1,29 @@
-[gd_scene load_steps=3 format=3 uid="uid://cbaajsmksk4lh"]
+[gd_scene load_steps=11 format=3 uid="uid://cbaajsmksk4lh"]
 
 [ext_resource type="Script" uid="uid://deiih0eoqrj08" path="res://scripts/grid_manager.gd" id="1_uowjv"]
 [ext_resource type="PackedScene" uid="uid://cqw1jv0baovrt" path="res://Scenes/puyo.tscn" id="2_4xyke"]
+[ext_resource type="PackedScene" uid="uid://bu3friywynij8" path="res://Scenes/polyphonic_audio_player.tscn" id="3_6mbex"]
+[ext_resource type="Script" uid="uid://80p7cue2s0ca" path="res://scripts/audio/audio_library.gd" id="4_ahia6"]
+[ext_resource type="Script" uid="uid://ccmkst5npwi3n" path="res://scripts/audio/sound_effect.gd" id="5_onoqd"]
+[ext_resource type="AudioStream" uid="uid://dtfg7tw4n02cc" path="res://Placeholder Art/Clink.1.wav" id="6_5hofm"]
+[ext_resource type="AudioStream" uid="uid://dq2fpel8tfo2o" path="res://Placeholder Art/Thud.1.wav" id="7_tssi5"]
+
+[sub_resource type="Resource" id="Resource_7y48m"]
+script = ExtResource("5_onoqd")
+tag = "test_clink"
+stream = ExtResource("6_5hofm")
+metadata/_custom_type_script = "uid://ccmkst5npwi3n"
+
+[sub_resource type="Resource" id="Resource_eai1b"]
+script = ExtResource("5_onoqd")
+tag = "test_thud"
+stream = ExtResource("7_tssi5")
+metadata/_custom_type_script = "uid://ccmkst5npwi3n"
+
+[sub_resource type="Resource" id="Resource_7rsak"]
+script = ExtResource("4_ahia6")
+sound_effects = Array[ExtResource("5_onoqd")]([SubResource("Resource_7y48m"), SubResource("Resource_eai1b")])
+metadata/_custom_type_script = "uid://80p7cue2s0ca"
 
 [node name="GridManager" type="Node2D"]
 script = ExtResource("1_uowjv")
@@ -22,5 +44,8 @@ position = Vector2(944, 41)
 
 [node name="SecondPair2" parent="QueuedPuyos" instance=ExtResource("2_4xyke")]
 position = Vector2(944, 119)
+
+[node name="SFXPlayer" parent="." instance=ExtResource("3_6mbex")]
+audio_library = SubResource("Resource_7rsak")
 
 [connection signal="timeout" from="PlayerDownTimer" to="." method="player_down_tick"]

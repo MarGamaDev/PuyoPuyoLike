@@ -2,6 +2,8 @@ extends Node2D
 
 class_name Puyo
 
+signal reached_bottom
+
 ##types are junk: 0, blue : 1, green : 2, red : 3, yellow : 4
 enum PUYO_TYPE {UNDEFINED, JUNK, BLUE, GREEN, RED, YELLOW}
 var puyo_type : PUYO_TYPE = PUYO_TYPE.UNDEFINED
@@ -29,7 +31,8 @@ func _ready():
 func _physics_process(delta: float) -> void:
 	if position_goal != position and move_flag:
 		position = position.lerp(position_goal, delta * move_speed)
-	elif position_goal == position:
+	elif position_goal == position and move_flag == true:
+		reached_bottom.emit()
 		move_flag = false
 
 #simple initializer for a new puyo 

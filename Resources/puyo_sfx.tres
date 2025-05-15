@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="AudioLibrary" load_steps=5 format=3 uid="uid://dq6q2or2pmb84"]
+
+[ext_resource type="Script" uid="uid://80p7cue2s0ca" path="res://scripts/audio/audio_library.gd" id="1_c01tm"]
+[ext_resource type="Script" uid="uid://ccmkst5npwi3n" path="res://scripts/audio/sound_effect.gd" id="2_5quyq"]
+[ext_resource type="AudioStream" uid="uid://dtfg7tw4n02cc" path="res://Placeholder Art/Clink.1.wav" id="3_5quyq"]
+
+[sub_resource type="Resource" id="Resource_wfwa5"]
+script = ExtResource("2_5quyq")
+tag = "player_drop"
+stream = ExtResource("3_5quyq")
+metadata/_custom_type_script = "uid://ccmkst5npwi3n"
+
+[resource]
+script = ExtResource("1_c01tm")
+sound_effects = Array[ExtResource("2_5quyq")]([SubResource("Resource_wfwa5")])
+metadata/_custom_type_script = "uid://80p7cue2s0ca"

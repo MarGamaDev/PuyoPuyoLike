@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dq2fpel8tfo2o"
+path="res://.godot/imported/Thud.1.wav-8c309052354a964c032bfe5570676b28.sample"
+
+[deps]
+
+source_file="res://Placeholder Art/Thud.1.wav"
+dest_files=["res://.godot/imported/Thud.1.wav-8c309052354a964c032bfe5570676b28.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

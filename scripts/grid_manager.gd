@@ -11,6 +11,8 @@ signal turn_tick
 @onready var grid_node_scene = load("res://Scenes/grid_node.tscn")
 @onready var puyo_scene = load("res://Scenes/puyo.tscn")
 
+@onready var sfx_player = $SFXPlayer
+
 #number of items in each column and row. 
 @export var grid_height : int = 12
 @export var grid_width : int = 6
@@ -42,6 +44,8 @@ var chain_length : int = 0
 @export var player_slide_speed : float = 50.0
 var player_next_positions : Array[Vector2] = [Vector2.ZERO, Vector2.ZERO]
 var player_move_flag : bool = false
+
+var player_fall_flag : bool = false
 
 #this is a translation vector, not the position
 var next_input_move : Vector2i = Vector2i.ZERO
@@ -190,6 +194,7 @@ func set_node_neighbours(grid_node : GridNode):
 func grid_state_check():
 	down_tick()
 	await down_check_finished
+	player_fall_flag = false
 	var puyo_groups = await get_grouped_puyos()
 	if puyo_groups.size() > 0:
 		await check_board(puyo_groups)
@@ -269,7 +274,8 @@ func down_tick() -> bool:
 	var to_move : Array = []
 	#sets a check to see if anything changed, if it hasn't changed it should stay false
 	var check = false
-	await get_tree().create_timer(down_tick_speed).timeout
+	if player_fall_flag == false:
+		await get_tree().create_timer(down_tick_speed).timeout
 	#loops through all puyos, but from bottom up
 	for i in range(grid_height - 2, -1, -1):
 		#starts with one above bottom
@@ -362,6 +368,7 @@ func create_player_puyo():
 		fill_puyo_queue()
 		add_child(player_puyos[0])
 		add_child(player_puyos[1])
+		player_puyos[0].connect("reached_bottom", play_puyo_thud)
 		
 		player_rotation = 0
 		
@@ -436,6 +443,7 @@ func player_down_tick():
 	else:# if player shouldn't be able to move, turn it into part of the grid
 		player_input_flag = false
 		$PlayerDownTimer.stop()
+		sfx_player.play_sound_effect_from_library("test_thud")
 		for i in range(0,2):
 			var new_puyo_base = player_puyos[i]
 			var new_puyo_position = Vector2(player_grid_positions[i])
@@ -446,6 +454,7 @@ func player_down_tick():
 			node_to_fill.set_puyo(new_puyo)
 			player_puyos[i].queue_free()
 		player_puyos.clear()
+		player_fall_flag = false
 		grid_state_check()
 		print("enemy tick")
 		turn_tick.emit()
@@ -627,3 +636,6 @@ func replace_color(color_to_replace, to_replace_with):
 			var node_to_check : GridNode = grid[j][i]
 			if node_to_check.is_holding_puyo and node_to_check.puyo.puyo_type == color_to_replace:
 				node_to_check.puyo.set_type(to_replace_with)
+
+func play_puyo_thud():
+	sfx_player.play_sound_effect_from_library("test_thud")
