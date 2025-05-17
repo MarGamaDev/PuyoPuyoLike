@@ -436,6 +436,7 @@ func player_snap_move(new_grid_positions: Array):
 #connected to the timer via signal
 func player_down_tick():
 	var next_moves : Array[Vector2i] = []
+	var to_play_drop_anims : Array[Puyo] = []
 	for player_position in player_grid_positions:
 		next_moves.append(Vector2i(player_position.x, player_position.y + 1))
 	if check_next_move(next_moves):
@@ -452,12 +453,16 @@ func player_down_tick():
 			new_puyo.set_type(new_puyo_base.get_type())
 			node_to_fill.add_child(new_puyo)
 			node_to_fill.set_puyo(new_puyo)
+			if !(check_next_move([next_moves[i]])):
+				to_play_drop_anims.append(node_to_fill.puyo)
 			player_puyos[i].queue_free()
 		player_puyos.clear()
 		player_fall_flag = false
 		grid_state_check()
 		print("enemy tick")
 		turn_tick.emit()
+		for i in to_play_drop_anims:
+			i.play_drop_animation()
 
 func player_rotate():
 	var rotation_check : int = (player_rotation + 1) % 4

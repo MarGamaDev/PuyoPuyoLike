@@ -24,16 +24,22 @@ var is_resting : bool = false
 var move_flag : bool = false
 
 func _ready():
+	var anim_point = (0.2 * sprite_size)
+	var anim = $DropAnimation.get_animation("Drop")
+	var anim_track = anim.find_track("Pivot:position",Animation.TYPE_VALUE)
+	anim.track_set_key_value(anim_track, 1, Vector2(0,anim_point))
 	##FOR TESTING
 	#create_puyo(4, false)
 	pass
 	
 func _physics_process(delta: float) -> void:
-	if position_goal != position and move_flag:
-		position = position.lerp(position_goal, delta * move_speed)
-	elif position_goal == position and move_flag == true:
+	if position_goal.y <= position.y + 5 and move_flag == true:
+		play_drop_animation()
+		position = position_goal
 		reached_bottom.emit()
 		move_flag = false
+	elif position_goal != position and move_flag:
+		position = position.lerp(position_goal, delta * move_speed)
 
 #simple initializer for a new puyo 
 func create_puyo(type: PUYO_TYPE, new_junk: bool):
@@ -43,7 +49,7 @@ func create_puyo(type: PUYO_TYPE, new_junk: bool):
 
 #sets the puyo's type
 func set_type(type: PUYO_TYPE):
-	$AnimatedSprite2D.frame = type
+	$Pivot/AnimatedSprite2D.frame = type
 	puyo_type = type
 	
 #getter for puyo_type
@@ -52,7 +58,7 @@ func  get_type():
 
 func set_pos(pos):
 	position = pos
-	$AnimatedSprite2D.position = Vector2.ZERO
+	$Pivot/AnimatedSprite2D.position = Vector2.ZERO
 
 #changes puyo to be junk (for later usage):
 #we can create a fucntion specifically for setting junk to a specific TYPE if needed later
@@ -93,6 +99,10 @@ func get_puyo_size():
 	return scale
 	
 
+func play_drop_animation():
+	print("test")
+	$DropAnimation.play("Drop")
+	pass
 
 func pop():
 	#print("pop!")

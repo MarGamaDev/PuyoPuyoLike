@@ -20,6 +20,8 @@ var is_checked : bool = false
 #if the node is part of the off-field grid, true if it is out of the play field
 var is_out_of_play : bool = false
 
+
+
 var grid_index : Vector2i
 
 var x: int:
