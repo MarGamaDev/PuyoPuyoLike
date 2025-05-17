@@ -1,0 +1,36 @@
+[gd_scene load_steps=8 format=3 uid="uid://8yo7gx0ooj4c"]
+
+[ext_resource type="Texture2D" uid="uid://dqohymee1bv55" path="res://Placeholder Art/puyo_pop.png" id="1_1li7p"]
+[ext_resource type="Script" uid="uid://d30hnw5751f41" path="res://scripts/effects/puyo_pop_particles.gd" id="2_j1dro"]
+
+[sub_resource type="Gradient" id="Gradient_j1dro"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_02py5"]
+gradient = SubResource("Gradient_j1dro")
+
+[sub_resource type="Curve" id="Curve_xucfk"]
+_data = [Vector2(0.0833333, 0.101925), 0.0, 0.0, 0, 0, Vector2(0.522988, 0.985277), 6.14813, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_p0ig3"]
+curve = SubResource("Curve_xucfk")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_j3viu"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+scale_max = 1.5
+scale_curve = SubResource("CurveTexture_p0ig3")
+color_ramp = SubResource("GradientTexture1D_02py5")
+
+[node name="PuyoPop" type="GPUParticles2D"]
+emitting = false
+amount = 1
+texture = ExtResource("1_1li7p")
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_j3viu")
+script = ExtResource("2_j1dro")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -10,6 +10,7 @@ signal turn_tick
 #loading the grid nodes to instantiate them
 @onready var grid_node_scene = load("res://Scenes/grid_node.tscn")
 @onready var puyo_scene = load("res://Scenes/puyo.tscn")
+@onready var puyo_pop_effect = load("res://Scenes/effects/puyo_pop.tscn")
 
 @onready var sfx_player = $SFXPlayer
 
@@ -335,6 +336,11 @@ func pop_puyos(puyo_groups:Array = puyos_to_pop):
 			continue
 		for pop_node : GridNode in group:
 			pop_node.puyo.pop()
+			var new_pop_effect = puyo_pop_effect.instantiate()
+			add_child(new_pop_effect)
+			new_pop_effect.global_position.x = pop_node.puyo.global_position.x + (square_size / 2)
+			new_pop_effect.global_position.y = pop_node.puyo.global_position.y + (square_size / 2)
+			new_pop_effect.restart()
 			for junk_neighbours : GridNode in pop_node.neighbours:
 				if junk_neighbours.get_type() == Puyo.PUYO_TYPE.JUNK:
 					junk_neighbours.puyo.pop()
