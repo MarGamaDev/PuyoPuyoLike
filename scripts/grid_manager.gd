@@ -274,7 +274,7 @@ func down_tick() -> bool:
 	#sets a check to see if anything changed, if it hasn't changed it should stay false
 	var check = false
 	if player_fall_flag == false:
-		await get_tree().create_timer(down_tick_speed).timeout
+		await get_tree().create_timer(0.2).timeout
 	#loops through all puyos, but from bottom up
 	for i in range(grid_height - 2, -1, -1):
 		#starts with one above bottom
@@ -359,7 +359,7 @@ func check_board(puyos_to_pop : Array) -> bool:
 		pop_puyos(puyos_to_pop)
 		#down_tick()
 		#await down_check_finished
-		await get_tree().create_timer(0.3).timeout
+		await get_tree().create_timer(0.2).timeout
 		check_board(await get_grouped_puyos())
 		return true
 
