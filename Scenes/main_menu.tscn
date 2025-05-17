@@ -460,9 +460,305 @@ grow_horizontal = 2
 grow_vertical = 0
 text = "return to menu"
 
-[connection signal="pressed" from="MenuPage/Buttons/StartButton" to="." method="_on_start_button_pressed"]
+[node name="Tutorial" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TutorialOptions" type="Control" parent="Tutorial"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Tutorial/TutorialOptions"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -323.0
+offset_top = -142.0
+offset_right = 295.0
+offset_bottom = 122.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PuyoTutorialButton" type="Button" parent="Tutorial/TutorialOptions"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -237.0
+offset_top = -135.0
+offset_right = 237.0
+offset_bottom = -59.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "[make sure i can say the name of game] I've never played puyo puyo before"
+autowrap_mode = 2
+
+[node name="GameTutorialButton" type="Button" parent="Tutorial/TutorialOptions"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -237.0
+offset_top = -49.0
+offset_right = 237.0
+offset_bottom = 27.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "I've played puyo puyo, but not [game name] before"
+autowrap_mode = 2
+
+[node name="StartGameButton" type="Button" parent="Tutorial/TutorialOptions"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -237.0
+offset_top = 36.0
+offset_right = 237.0
+offset_bottom = 112.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "I know how to play! let me play already jeez you baka"
+autowrap_mode = 2
+
+[node name="PuyoTutorial" type="Control" parent="Tutorial"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Tutorial/PuyoTutorial"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -323.0
+offset_top = -142.0
+offset_right = 295.0
+offset_bottom = 122.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Tutorial/PuyoTutorial"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "This will be where a tutorial for puyo puyo is"
+
+[node name="NextPageButton" type="Button" parent="Tutorial/PuyoTutorial"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 120.0
+offset_top = 64.0
+offset_right = 282.0
+offset_bottom = 112.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "next tutorial page"
+
+[node name="ReturnButton" type="Button" parent="Tutorial/PuyoTutorial"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 311.0
+offset_top = -89.0
+offset_right = 513.0
+offset_bottom = -14.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "return to menu"
+
+[node name="GameTutorial" type="Control" parent="Tutorial"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Tutorial/GameTutorial"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -323.0
+offset_top = -142.0
+offset_right = 295.0
+offset_bottom = 122.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Tutorial/GameTutorial"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "This will be where a tutorial for the game specific stuff is"
+
+[node name="NextPageButton" type="Button" parent="Tutorial/GameTutorial"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 120.0
+offset_top = 64.0
+offset_right = 282.0
+offset_bottom = 112.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "next tutorial page"
+
+[node name="LastPageButton" type="Button" parent="Tutorial/GameTutorial"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -298.0
+offset_top = 64.0
+offset_right = -136.0
+offset_bottom = 112.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "previous tutorial page"
+
+[node name="GameTutorial2" type="Control" parent="Tutorial"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Tutorial/GameTutorial2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -323.0
+offset_top = -142.0
+offset_right = 295.0
+offset_bottom = 122.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Tutorial/GameTutorial2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "This will be where more info about the game specific stuff is"
+
+[node name="StartGameButton" type="Button" parent="Tutorial/GameTutorial2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 120.0
+offset_top = 64.0
+offset_right = 282.0
+offset_bottom = 112.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Ready 2 play!"
+
+[node name="LastPageButton" type="Button" parent="Tutorial/GameTutorial2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -298.0
+offset_top = 64.0
+offset_right = -136.0
+offset_bottom = 112.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "previous tutorial page"
+
+[connection signal="pressed" from="MenuPage/Buttons/StartButton" to="." method="open_tutorial"]
 [connection signal="pressed" from="MenuPage/Buttons/OptionsButton" to="." method="_on_options_button_pressed"]
 [connection signal="pressed" from="MenuPage/Buttons/CreditsButton" to="." method="_on_credits_button_pressed"]
 [connection signal="timeout" from="MenuAnimationTimer" to="." method="play_animations"]
 [connection signal="pressed" from="OptionsPage/ReturnButton" to="." method="return_to_menu"]
 [connection signal="pressed" from="CreditsPage/ReturnButton" to="." method="return_to_menu"]
+[connection signal="pressed" from="Tutorial/TutorialOptions/PuyoTutorialButton" to="." method="next_page" binds= [1]]
+[connection signal="pressed" from="Tutorial/TutorialOptions/GameTutorialButton" to="." method="next_page" binds= [2]]
+[connection signal="pressed" from="Tutorial/TutorialOptions/StartGameButton" to="." method="start_game"]
+[connection signal="pressed" from="Tutorial/PuyoTutorial/NextPageButton" to="." method="next_page"]
+[connection signal="pressed" from="Tutorial/PuyoTutorial/ReturnButton" to="." method="return_to_menu"]
+[connection signal="pressed" from="Tutorial/GameTutorial/NextPageButton" to="." method="next_page"]
+[connection signal="pressed" from="Tutorial/GameTutorial/LastPageButton" to="." method="last_page"]
+[connection signal="pressed" from="Tutorial/GameTutorial2/StartGameButton" to="." method="start_game"]
+[connection signal="pressed" from="Tutorial/GameTutorial2/LastPageButton" to="." method="last_page"]
