@@ -100,7 +100,6 @@ func get_puyo_size():
 	
 
 func play_drop_animation():
-	print("test")
 	$DropAnimation.play("Drop")
 	pass
 

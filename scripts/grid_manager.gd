@@ -56,8 +56,7 @@ var event_queue : Array = []
 
 ##used for testing and debugging
 var player_test_create_flag = false
-@export var test_fill_height = 7
-
+@export var test_fill_height = 1
 func _ready():
 	initialize_grid()
 	 
@@ -298,6 +297,7 @@ func down_tick() -> bool:
 	else:
 		player_create_flag = true
 		down_check_finished.emit()
+		print("test down tick")
 	return check
 
 func check_node(node_to_check: GridNode, node_group: Array, puyo_type:= Puyo.PUYO_TYPE.UNDEFINED) -> Array:
@@ -354,9 +354,11 @@ func check_board(puyos_to_pop : Array) -> bool:
 	else:
 		chain_length += 1
 		chain_pop.emit(puyos_to_pop, chain_length)
-		pop_puyos(puyos_to_pop)
 		down_tick()
 		await down_check_finished
+		pop_puyos(puyos_to_pop)
+		#down_tick()
+		#await down_check_finished
 		await get_tree().create_timer(0.3).timeout
 		check_board(await get_grouped_puyos())
 		return true
@@ -368,7 +370,7 @@ func create_player_puyo():
 		fill_puyo_queue()
 		add_child(player_puyos[0])
 		add_child(player_puyos[1])
-		player_puyos[0].connect("reached_bottom", play_puyo_thud)
+		player_puyos[0].connect("reached_bzzottom", play_puyo_thud)
 		
 		player_rotation = 0
 		
@@ -628,7 +630,6 @@ func junk_slam(junk_rows : int):
 	if no_rows_check:
 		lowest_row = grid_height - 1
 	#replace these rows with junk
-	print(lowest_row)
 	var junk_array : Array[Vector2i]= []
 	for i in range(lowest_row, lowest_row - junk_rows, -1):
 		for j in range(0, grid_width):

@@ -30,10 +30,7 @@ color = Color(1, 1, 0.584314, 1)
 position = Vector2(379, 445)
 
 [node name="NextLocationMarker1" type="Marker2D" parent="."]
-position = Vector2(382, 313)
+position = Vector2(202, 219)
 
 [node name="NextLocationMarker2" type="Marker2D" parent="."]
-position = Vector2(382, 196)
-
-[node name="NextLocationMarker3" type="Marker2D" parent="."]
-position = Vector2(382, 77)
+position = Vector2(520, 219)
