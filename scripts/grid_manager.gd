@@ -17,7 +17,7 @@ signal turn_tick
 @export var grid_height : int = 12
 @export var grid_width : int = 6
 #size of the squares
-@export var square_size : int = 30
+@onready var square_size = ($GridBackground.texture.get_width() * $GridBackground.scale.y) / 6
 #array of GridNodes (nested type declarations aren't supported unfortunately)
 #grid will be column major, so [x][y] like on a grid. [column] [row]
 #0,0 will be top left, and rows x,0 & x,1 will not be on screen, and are used for gameover
@@ -158,7 +158,7 @@ func initialize_grid():
 			grid[i][j] = new_node
 			new_node.grid_index = Vector2i(i, j)
 			#setting it's position
-			new_node.position = Vector2(i * square_size, j * square_size)
+			new_node.position = Vector2(i * (square_size / 2), j * (square_size / 2))
 			add_child(new_node)
 		#add a full column 
 	
@@ -373,8 +373,8 @@ func create_player_puyo():
 		player_rotation = 0
 		
 		player_grid_positions = [Vector2i(int ((grid_width -1)/ 2),0), Vector2i(int ((grid_width -1)/ 2) + 1,0)]
-		player_puyos[0].position.x = grid[int (grid_width / 2)][0].position.x + square_size
-		player_puyos[1].position.x  = grid[(int (grid_width / 2)) + 1][0].position.x + square_size * 2
+		player_puyos[0].position.x = grid[int (grid_width / 2)][0].position.x + (square_size / 2)
+		player_puyos[1].position.x  = grid[(int (grid_width / 2)) + 1][0].position.x + square_size
 		player_next_positions[0] = player_puyos[0].position
 		player_next_positions[1] = player_puyos[1].position
 		
@@ -426,7 +426,7 @@ func player_snap_move(new_grid_positions: Array):
 		for i in range (0, 2):
 			var moving_puyo : Puyo = player_puyos[i]
 			var translation_difference = new_grid_positions[i] - player_grid_positions[i]
-			translation_difference *= square_size
+			translation_difference *= (square_size / 2)
 			player_next_positions[i].x = moving_puyo.position.x + (translation_difference.x * 2)
 			player_next_positions[i].y = moving_puyo.position.y + (translation_difference.y * 2)
 			moving_puyo.position = player_next_positions[i]
