@@ -195,7 +195,7 @@ func grid_state_check():
 	down_tick()
 	await down_check_finished
 	player_fall_flag = false
-	var puyo_groups = await get_grouped_puyos()
+	var puyo_groups = get_grouped_puyos()
 	if puyo_groups.size() > 0:
 		await check_board(puyo_groups)
 		await grid_state_check()
@@ -223,7 +223,6 @@ func grid_state_check():
 #move a puyo from one node to another. overwrites node_to's puyo. used only for resting puyos
 func move_puyo(node_from : GridNode, node_to : GridNode):
 	var puyo_from = node_from.puyo
-	var position_from = puyo_from.position
 	node_from.remove_child(puyo_from)
 	node_from.reset()
 	node_to.add_child(puyo_from)
@@ -351,22 +350,22 @@ func pop_puyos(puyo_groups:Array = puyos_to_pop):
 	puyos_to_pop = Array()
 
 #starts a board check loop
-func check_board(puyos_to_pop : Array) -> bool:
-	if puyos_to_pop.is_empty():
+func check_board(puyo_groups : Array) -> bool:
+	if puyo_groups.is_empty():
 		#print("chain: ", chain_length)
 		chain_length = 0
 		board_check_delay.emit()
 		return false
 	else:
 		chain_length += 1
-		chain_pop.emit(puyos_to_pop, chain_length)
+		chain_pop.emit(puyo_groups, chain_length)
 		down_tick()
 		await down_check_finished
-		pop_puyos(puyos_to_pop)
+		pop_puyos(puyo_groups)
 		#down_tick()
 		#await down_check_finished
 		await get_tree().create_timer(0.2).timeout
-		check_board(await get_grouped_puyos())
+		check_board(get_grouped_puyos())
 		return true
 
 #creates player puyo
@@ -376,13 +375,13 @@ func create_player_puyo():
 		fill_puyo_queue()
 		add_child(player_puyos[0])
 		add_child(player_puyos[1])
-		player_puyos[0].connect("reached_bzzottom", play_puyo_thud)
+		player_puyos[0].connect("reached_bottom", play_puyo_thud)
 		
 		player_rotation = 0
 		
-		player_grid_positions = [Vector2i(int ((grid_width -1)/ 2),0), Vector2i(int ((grid_width -1)/ 2) + 1,0)]
-		player_puyos[0].position.x = grid[int (grid_width / 2)][0].position.x + (square_size / 2)
-		player_puyos[1].position.x  = grid[(int (grid_width / 2)) + 1][0].position.x + square_size
+		player_grid_positions = [Vector2i((round(grid_width -1)/ 2),0), Vector2i((round(grid_width -1)/ 2) + 1,0)]
+		player_puyos[0].position.x = grid[round(grid_width / 2)][0].position.x + round(square_size / 2)
+		player_puyos[1].position.x  = grid[(round(grid_width / 2)) + 1][0].position.x + square_size
 		player_next_positions[0] = player_puyos[0].position
 		player_next_positions[1] = player_puyos[1].position
 		
@@ -406,8 +405,8 @@ func create_player_puyo():
 		player_input_flag = true
 
 #returns true if next move is valid
-func check_next_move(next_grid_positions: Array) -> bool:
-	for pos in next_grid_positions:
+func check_next_move(potential_next_grid_positions: Array) -> bool:
+	for pos in potential_next_grid_positions:
 		if (pos.x > grid_width - 1) or (pos.x < 0) or (pos.y > grid_height - 1) or (pos.y < 0):
 			return false
 		if grid[pos.x][pos.y].is_holding_puyo:

@@ -3,7 +3,10 @@ extends Node2D
 var last_chain_length : int = 0
 var last_chain_contents : String = "Last chain contents: "
 signal player_attack(PlayerAttack)
-signal enemy_tick()
+signal on_end_player_turn()
+
+func end_player_turn() -> void:
+	on_end_player_turn.emit()
 
 func lose_life():
 	print("life lost")

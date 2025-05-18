@@ -3,6 +3,8 @@ extends Node2D
 signal deal_player_damage(int)
 signal add_player_shield(int)
 signal add_player_counter(int)
+signal on_turn_taken()
+signal on_enemy_attack(enemy_attack: EnemyAttack)
 
 func process_player_attack(attack : PlayerAttack) -> void:
 	print("blue: ", attack.blue)
@@ -14,3 +16,9 @@ func process_player_attack(attack : PlayerAttack) -> void:
 	add_player_shield.emit(attack.blue * attack.chain)
 	add_player_counter.emit(attack.yellow * attack.chain)
 	pass
+
+func end_player_turn() -> void:
+	on_turn_taken.emit()
+
+func process_enemy_attack(enemy_attack: EnemyAttack) -> void:
+	on_enemy_attack.emit(enemy_attack)

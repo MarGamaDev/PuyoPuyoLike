@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://b8mrbhnjhixwm"]
+
+[ext_resource type="Script" uid="uid://c3eujqyaj8s3t" path="res://Scripts/Combat/Enemy/intent_indicator.gd" id="1_ms868"]
+[ext_resource type="Texture2D" uid="uid://hvooavpam6hd" path="res://Placeholder Art/puyo_out_of_bounds.png" id="2_71p68"]
+
+[node name="Intent" type="Node2D"]
+script = ExtResource("1_ms868")
+
+[node name="Container" type="HBoxContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+size_flags_horizontal = 3
+
+[node name="Damage" type="RichTextLabel" parent="Container"]
+layout_mode = 2
+text = "3 x 2"
+fit_content = true
+autowrap_mode = 0
+
+[node name="TextureRect" type="TextureRect" parent="Container"]
+layout_mode = 2
+texture = ExtResource("2_71p68")
+expand_mode = 2
+
+[node name="Turns" type="RichTextLabel" parent="Container"]
+layout_mode = 2
+text = "2"
+fit_content = true
+autowrap_mode = 0
