@@ -6,6 +6,9 @@ var player_attack : int = 0
 
 func _ready() -> void:
 	#adding all combos with blue, then green, e.c.t
+	initialize_puyo_pool()
+
+func initialize_puyo_pool() -> void:
 	for i in range(2, 6):
 		puyo_pool.append([2, i])
 	for i in range(3, 6):

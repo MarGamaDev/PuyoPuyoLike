@@ -4,8 +4,10 @@ extends Node2D
 signal deal_player_damage(int)
 signal add_player_shield(int)
 signal add_player_counter(int)
-signal on_turn_taken()
-signal on_enemy_attack(enemy_attack: EnemyAttack)
+signal on_player_turn_taken()
+signal on_enemy_attack(attack: EnemyAttack)
+signal on_enemy_registered(enemy: Enemy)
+signal on_enemy_deregistered(enemy: Enemy)
 
 var enemies : Array = Array()
 
@@ -21,15 +23,17 @@ func process_player_attack(attack : PlayerAttack) -> void:
 	pass
 
 func end_player_turn() -> void:
-	on_turn_taken.emit()
+	on_player_turn_taken.emit()
 
 func process_enemy_attack(enemy_attack: EnemyAttack) -> void:
 	on_enemy_attack.emit(enemy_attack)
 
 func register_enemy(enemy : Enemy) -> void:
 	print("enemy registered")
+	on_enemy_registered.emit(enemy)
 	enemies.push_back(enemy)
 
 func deregister_enemy(enemy : Enemy) -> void:
 	print("enemy deregistered")
+	on_enemy_deregistered.emit(enemy)
 	enemies.erase(enemy)

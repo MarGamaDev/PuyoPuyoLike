@@ -32,7 +32,7 @@ func _ready() -> void:
 	
 	combat_manager = get_node("/root/Combat")
 	combat_manager.connect("deal_player_damage", take_player_attack)
-	combat_manager.connect("on_turn_taken", handle_turn)
+	combat_manager.connect("on_player_turn_taken", handle_turn)
 	combat_manager.register_enemy(self)
 	
 	current_attack = attacks[0]
