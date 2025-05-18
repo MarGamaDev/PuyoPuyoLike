@@ -21,20 +21,21 @@ signal on_death()
 signal on_take_damage()
 signal on_taking_turn()
 
+@onready var combat_manager: Node
+
 func _ready() -> void:
+	
 	instance_data = enemy_data.duplicate(true);
 	$Sprite.texture = instance_data.sprite
 	$Healthbar.max_value = instance_data.health
 	$Healthbar.value = instance_data.health
 	
-	var combat_manager: Node = get_node("/root/Combat")
+	combat_manager = get_node("/root/Combat")
 	combat_manager.connect("deal_player_damage", take_player_attack)
 	combat_manager.connect("on_turn_taken", handle_turn)
+	combat_manager.register_enemy(self)
 	
 	current_attack = attacks[0]
-
-func receive_turn() -> void:
-	print("enemy is taking turn")
 
 func handle_turn() -> void:
 	on_taking_turn.emit()
@@ -68,9 +69,9 @@ func take_damage(damage: int) -> void:
 	$Healthbar.value = instance_data.health	
 	if instance_data.health <= 0:
 		die()
-	
 
 func die() -> void:
 	on_death.emit()
 	# add in animation
+	combat_manager.deregister_enemy(self)
 	queue_free()

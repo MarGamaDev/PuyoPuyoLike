@@ -1,10 +1,13 @@
 class_name CombatManager
 extends Node2D
+
 signal deal_player_damage(int)
 signal add_player_shield(int)
 signal add_player_counter(int)
 signal on_turn_taken()
 signal on_enemy_attack(enemy_attack: EnemyAttack)
+
+var enemies : Array = Array()
 
 func process_player_attack(attack : PlayerAttack) -> void:
 	print("blue: ", attack.blue)
@@ -22,3 +25,11 @@ func end_player_turn() -> void:
 
 func process_enemy_attack(enemy_attack: EnemyAttack) -> void:
 	on_enemy_attack.emit(enemy_attack)
+
+func register_enemy(enemy : Enemy) -> void:
+	print("enemy registered")
+	enemies.push_back(enemy)
+
+func deregister_enemy(enemy : Enemy) -> void:
+	print("enemy deregistered")
+	enemies.erase(enemy)
