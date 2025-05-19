@@ -1,5 +1,7 @@
 extends Node2D
 
+class_name GridManager
+
 signal board_check_delay
 signal life_loss
 #use chain_pop for any group popping stuff as well
@@ -253,14 +255,12 @@ func get_grouped_puyos() -> Array:
 			
 			#if the group is large enough, save it to the groups
 			if (node_group.size() >= 4):
-				#print(node_group.size())
 				groups.append(node_group)
 			
 			#set all nodes in the group as checked
 			for n in range(node_group.size()):
 				node_group[n].is_checked = true
 			
-	#print(str("found ", groups.size(), " groups"))
 	#set all nodes in the group as unchecked
 	for i in range(0, grid_width):
 		for j in range(0, grid_height):
@@ -297,7 +297,6 @@ func down_tick() -> bool:
 	else:
 		player_create_flag = true
 		down_check_finished.emit()
-		print("test down tick")
 	return check
 
 func check_node(node_to_check: GridNode, node_group: Array, puyo_type:= Puyo.PUYO_TYPE.UNDEFINED) -> Array:
@@ -352,7 +351,6 @@ func pop_puyos(puyo_groups:Array = puyos_to_pop):
 #starts a board check loop
 func check_board(puyo_groups : Array) -> bool:
 	if puyo_groups.is_empty():
-		#print("chain: ", chain_length)
 		chain_length = 0
 		board_check_delay.emit()
 		return false
@@ -466,7 +464,6 @@ func player_down_tick():
 		player_puyos.clear()
 		player_fall_flag = false
 		grid_state_check()
-		print("enemy tick")
 		turn_tick.emit()
 		for i in to_play_drop_anims:
 			i.play_drop_animation()

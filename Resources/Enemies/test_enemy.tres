@@ -1,10 +1,10 @@
 [gd_resource type="Resource" script_class="EnemyData" load_steps=3 format=3 uid="uid://g1vp61rtgpme"]
 
-[ext_resource type="Script" uid="uid://c27m7mkd1up2" path="res://Scripts/Combat/Enemy/enemy_data.gd" id="1_233ih"]
+[ext_resource type="Script" uid="uid://c27m7mkd1up2" path="res://scripts/Combat/Enemy/enemy_data.gd" id="1_233ih"]
 [ext_resource type="Texture2D" uid="uid://hvooavpam6hd" path="res://Placeholder Art/puyo_out_of_bounds.png" id="4_dyfw3"]
 
 [resource]
 script = ExtResource("1_233ih")
-health = 10
+health = 100
 sprite = ExtResource("4_dyfw3")
 metadata/_custom_type_script = "uid://c27m7mkd1up2"

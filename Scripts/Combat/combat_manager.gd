@@ -26,12 +26,16 @@ func end_player_turn() -> void:
 	on_player_turn_taken.emit()
 
 func process_enemy_attack(enemy_attack: EnemyAttack) -> void:
+	##TODO make this happen AFTER being processed by player
+	$PuyoManager.add_to_spawn_queue(EnemyAttackHandler.process_attack(enemy_attack))
 	on_enemy_attack.emit(enemy_attack)
 
 func register_enemy(enemy : Enemy) -> void:
 	print("enemy registered")
 	on_enemy_registered.emit(enemy)
 	enemies.push_back(enemy)
+	##TODO make this not be connected to the enemy but rather the player
+	enemy.connect("on_attacking_player", process_enemy_attack)
 
 func deregister_enemy(enemy : Enemy) -> void:
 	print("enemy deregistered")

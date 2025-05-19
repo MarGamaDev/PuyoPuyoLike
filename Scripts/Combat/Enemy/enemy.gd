@@ -49,7 +49,7 @@ func determine_next_attack() -> void:
 	match attack_behaviour:
 		AttackBehaviour.ORDERED:
 			attack_index += 1
-			attack_index %= attacks.size() - 1
+			attack_index %= attacks.size()
 		AttackBehaviour.RANDOM:
 			attack_index = randi_range(0, attacks.size() - 1)
 	current_attack = attacks[attack_index]

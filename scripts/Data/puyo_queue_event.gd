@@ -12,7 +12,7 @@ var junk_positions : Array[Vector2i] = []
 var color_to_change : Puyo.PUYO_TYPE = Puyo.PUYO_TYPE.UNDEFINED
 var color_target : Puyo.PUYO_TYPE = Puyo.PUYO_TYPE.UNDEFINED
 
-static func create(type: EVENT_TYPE, junk_num: int = 0, specific_positions: Array[Vector2i] = [], new_color_to_change := Puyo.PUYO_TYPE.UNDEFINED, new_color_target := Puyo.PUYO_TYPE.UNDEFINED):
+static func create(type: EVENT_TYPE = EVENT_TYPE.JUNK_RANDOM, junk_num: int = 0, specific_positions: Array[Vector2i] = [], new_color_to_change := Puyo.PUYO_TYPE.UNDEFINED, new_color_target := Puyo.PUYO_TYPE.UNDEFINED):
 	var instance = PuyoQueueEvent.new()
 	instance.event_type = type
 	instance.junk_number = junk_num
