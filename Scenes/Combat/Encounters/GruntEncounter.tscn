@@ -2,13 +2,19 @@
 
 [ext_resource type="PackedScene" uid="uid://bx5kscp85ypry" path="res://Scenes/Combat/Enemy/enemy.tscn" id="1_0lrh3"]
 [ext_resource type="Resource" uid="uid://byevgmmfmpqi8" path="res://Resources/Enemies/grunt_data.tres" id="2_bireu"]
-[ext_resource type="Script" uid="uid://6v5kccermtmr" path="res://Scripts/Combat/Enemy/enemy_attack.gd" id="3_ymtw0"]
-[ext_resource type="Resource" uid="uid://c6eapo4rjdqc6" path="res://Resources/EnemyAttacks/grunt_attack_multi.tres" id="4_yu4hf"]
-[ext_resource type="Resource" uid="uid://4dia54oitqp3" path="res://Resources/EnemyAttacks/grunt_attack_row.tres" id="5_6wx12"]
+[ext_resource type="Script" uid="uid://6v5kccermtmr" path="res://scripts/Combat/Enemy/enemy_attack.gd" id="3_ymtw0"]
+[ext_resource type="Resource" uid="uid://cn0op1aiuirgi" path="res://Resources/EnemyAttacks/test_enemy_attack_2.tres" id="4_e7fs4"]
+
+[sub_resource type="Resource" id="Resource_0lrh3"]
+script = ExtResource("3_ymtw0")
+damage = 4
+number_of_swings = 2
+number_of_turns_till_swing = 6
+attack_type = 0
+metadata/_custom_type_script = "uid://6v5kccermtmr"
 
 [node name="GruntEncounter" type="Node2D"]
 
 [node name="grunt 1" parent="." instance=ExtResource("1_0lrh3")]
-position = Vector2(1429.97, 399.898)
 enemy_data = ExtResource("2_bireu")
-attacks = Array[ExtResource("3_ymtw0")]([ExtResource("4_yu4hf"), ExtResource("5_6wx12")])
+attacks = Array[ExtResource("3_ymtw0")]([SubResource("Resource_0lrh3"), ExtResource("4_e7fs4")])

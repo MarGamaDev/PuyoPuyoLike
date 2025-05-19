@@ -1,8 +1,10 @@
-[gd_resource type="Resource" script_class="EnemyData" load_steps=2 format=3 uid="uid://byevgmmfmpqi8"]
+[gd_resource type="Resource" script_class="EnemyData" load_steps=3 format=3 uid="uid://byevgmmfmpqi8"]
 
-[ext_resource type="Script" uid="uid://c27m7mkd1up2" path="res://Scripts/Combat/Enemy/enemy_data.gd" id="1_ah0an"]
+[ext_resource type="Script" uid="uid://c27m7mkd1up2" path="res://scripts/Combat/Enemy/enemy_data.gd" id="1_ah0an"]
+[ext_resource type="Texture2D" uid="uid://b15lpii8egcu0" path="res://Placeholder Art/map_node_images/shop_location.png" id="2_uuxdl"]
 
 [resource]
 script = ExtResource("1_ah0an")
 health = 20
+sprite = ExtResource("2_uuxdl")
 metadata/_custom_type_script = "uid://c27m7mkd1up2"

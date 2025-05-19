@@ -1,0 +1,50 @@
+[gd_scene load_steps=10 format=3 uid="uid://cawgcce4rjrb0"]
+
+[ext_resource type="PackedScene" uid="uid://bx5kscp85ypry" path="res://Scenes/Combat/Enemy/enemy.tscn" id="1_ryqsk"]
+[ext_resource type="Script" uid="uid://c27m7mkd1up2" path="res://scripts/Combat/Enemy/enemy_data.gd" id="2_7dmcn"]
+[ext_resource type="Texture2D" uid="uid://3orwgby4xlkg" path="res://Placeholder Art/map_node_images/boss_location.png" id="3_1r5mb"]
+[ext_resource type="Script" uid="uid://6v5kccermtmr" path="res://scripts/Combat/Enemy/enemy_attack.gd" id="4_gtaa3"]
+
+[sub_resource type="Resource" id="Resource_h5wv6"]
+script = ExtResource("2_7dmcn")
+health = 100
+sprite = ExtResource("3_1r5mb")
+metadata/_custom_type_script = "uid://c27m7mkd1up2"
+
+[sub_resource type="Resource" id="Resource_q7x3g"]
+script = ExtResource("4_gtaa3")
+damage = 999
+number_of_swings = 1
+number_of_turns_till_swing = 4
+attack_type = 6
+metadata/_custom_type_script = "uid://6v5kccermtmr"
+
+[sub_resource type="Resource" id="Resource_cyj24"]
+script = ExtResource("4_gtaa3")
+damage = 999
+number_of_swings = 1
+number_of_turns_till_swing = 4
+attack_type = 8
+metadata/_custom_type_script = "uid://6v5kccermtmr"
+
+[sub_resource type="Resource" id="Resource_cxyjf"]
+script = ExtResource("4_gtaa3")
+damage = 999
+number_of_swings = 1
+number_of_turns_till_swing = 4
+attack_type = 7
+metadata/_custom_type_script = "uid://6v5kccermtmr"
+
+[sub_resource type="Resource" id="Resource_xsygj"]
+script = ExtResource("4_gtaa3")
+damage = 999
+number_of_swings = 1
+number_of_turns_till_swing = 4
+attack_type = 9
+metadata/_custom_type_script = "uid://6v5kccermtmr"
+
+[node name="MagicianEncounter" type="Node2D"]
+
+[node name="MagicianBoss" parent="." instance=ExtResource("1_ryqsk")]
+enemy_data = SubResource("Resource_h5wv6")
+attacks = Array[ExtResource("4_gtaa3")]([SubResource("Resource_q7x3g"), SubResource("Resource_cyj24"), SubResource("Resource_cxyjf"), SubResource("Resource_xsygj")])
