@@ -19,7 +19,8 @@ func receive_attack(attack: EnemyAttack) -> void:
 	var damage_taken = 0
 	for i in range(attack.number_of_swings):
 		damage_taken += handle_damage(attack.damage)
-	
+		print(damage_taken)
+	#add shield = 0 if we want to have the shield resent between attacks
 	on_player_damage_taken.emit(damage_taken, attack.attack_type)
 
 func add_counter(counter_gained: int) -> void:
@@ -32,18 +33,32 @@ func add_shield(shield_gained: int) -> void:
 
 func handle_damage(damage: int) -> int:
 	if damage <= counter:
+		print("countered")
 		on_counter_triggered.emit(counter)
 		counter = 0
 		return 0
 	
-	if shield > 0:
+	if shield == damage:
+		on_shield_lost.emit(shield)
+		shield = 0
+		return 0
+	elif damage < shield:
 		shield -= damage
-		if shield <= 0:
-			on_shield_lost.emit(damage - shield)
-			shield = 0
-			return -shield
-		else:
-			return 0
+		return 0
+	else:
+		damage -= shield
+		on_shield_lost.emit(damage - shield)
+		shield = 0
+		return damage
+	
+	#if shield > 0:
+		#shield -= damage
+		#if shield <= 0:
+			#on_shield_lost.emit(damage - shield)
+			#shield = 0
+			#return -shield
+		#else:
+			#return 0
 	
 	return damage
 
