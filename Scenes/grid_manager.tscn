@@ -35,19 +35,19 @@ down_tick_speed = 0.4
 [node name="QueuedPuyos" type="Node2D" parent="."]
 
 [node name="FirstPair1" parent="QueuedPuyos" instance=ExtResource("2_4xyke")]
-position = Vector2(361, 13)
+position = Vector2(356, 13)
 scale = Vector2(0.65, 0.65)
 
 [node name="FirstPair2" parent="QueuedPuyos" instance=ExtResource("2_4xyke")]
-position = Vector2(361, 53)
+position = Vector2(356, 53)
 scale = Vector2(0.65, 0.65)
 
 [node name="SecondPair1" parent="QueuedPuyos" instance=ExtResource("2_4xyke")]
-position = Vector2(378, 99)
+position = Vector2(373, 99)
 scale = Vector2(0.65, 0.65)
 
 [node name="SecondPair2" parent="QueuedPuyos" instance=ExtResource("2_4xyke")]
-position = Vector2(378, 141)
+position = Vector2(373, 141)
 scale = Vector2(0.65, 0.65)
 
 [node name="SFXPlayer" parent="." instance=ExtResource("3_6mbex")]

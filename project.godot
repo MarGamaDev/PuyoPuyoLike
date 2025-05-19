@@ -21,7 +21,8 @@ PlayerData="*res://Scripts/player_data.gd"
 
 [display]
 
-window/size/viewport_height=800
+window/size/viewport_width=1200
+window/size/viewport_height=900
 
 [input]
 

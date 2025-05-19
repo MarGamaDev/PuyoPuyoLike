@@ -7,7 +7,6 @@
 script = ExtResource("1_sea3v")
 
 [node name="GridManager" parent="." instance=ExtResource("2_ajnr3")]
-visible = false
 
 [connection signal="chain_pop" from="GridManager" to="." method="chain_popped"]
 [connection signal="life_loss" from="GridManager" to="." method="lose_life"]

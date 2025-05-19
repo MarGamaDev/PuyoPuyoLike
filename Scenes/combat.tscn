@@ -3,10 +3,10 @@
 [ext_resource type="Script" uid="uid://b0h0tx4msve02" path="res://scripts/Combat/combat_manager.gd" id="1_4ln8h"]
 [ext_resource type="Texture2D" uid="uid://brsfj1k05k7e7" path="res://Art/combat_background.png" id="2_yt1oa"]
 [ext_resource type="PackedScene" uid="uid://buetvmo3m42v5" path="res://Scenes/puyo_manager.tscn" id="4_ubpar"]
-[ext_resource type="PackedScene" uid="uid://spggxai8tcru" path="res://Scenes/Combat/Encounters/slam_boss_encounter.tscn" id="5_3w34b"]
 [ext_resource type="PackedScene" uid="uid://dh8e8u4ch381l" path="res://Scenes/combat_player.tscn" id="5_ut0kg"]
 [ext_resource type="PackedScene" uid="uid://1hbj1uv66mu2" path="res://Scenes/puyo_test_ui.tscn" id="5_yt1oa"]
 [ext_resource type="Texture2D" uid="uid://14ejxpdanarl" path="res://Art/combat_frame.png" id="7_3w34b"]
+[ext_resource type="PackedScene" uid="uid://dq858shoyju02" path="res://Scenes/Combat/Encounters/GruntEncounter.tscn" id="8_avwh6"]
 
 [node name="Combat" type="Node2D"]
 script = ExtResource("1_4ln8h")
@@ -21,19 +21,16 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_yt1oa")
-expand_mode = 1
 
 [node name="PuyoManager" parent="." instance=ExtResource("4_ubpar")]
-position = Vector2(128, 100)
+position = Vector2(123, 128)
+scale = Vector2(1.09, 1.09)
 
 [node name="Player" parent="." instance=ExtResource("5_ut0kg")]
 
 [node name="PuyoTestUI" parent="." node_paths=PackedStringArray("puyo_manager") instance=ExtResource("5_yt1oa")]
 layer = 2
 puyo_manager = NodePath("../PuyoManager")
-
-[node name="SlamBossEncounter" parent="." instance=ExtResource("5_3w34b")]
-position = Vector2(790, 228)
 
 [node name="GameFrame" type="CanvasLayer" parent="."]
 
@@ -45,6 +42,9 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("7_3w34b")
 expand_mode = 1
+
+[node name="GruntEncounter" parent="." instance=ExtResource("8_avwh6")]
+position = Vector2(823, 248)
 
 [connection signal="add_player_counter" from="." to="Player" method="add_counter"]
 [connection signal="add_player_shield" from="." to="Player" method="add_shield"]
