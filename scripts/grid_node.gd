@@ -42,12 +42,12 @@ func _ready():
 #adding a puyo to the node, takes a puyo
 func set_puyo(new_puyo : Puyo):
 	puyo = new_puyo
-	puyo.set_pos(global_position)
+	puyo.set_pos(position)
 	is_holding_puyo = true
 
 func move_puyo(new_puyo : Puyo):
 	puyo = new_puyo
-	puyo.set_new_goal(global_position)
+	puyo.set_new_goal(position)
 	is_holding_puyo = true
 
 
