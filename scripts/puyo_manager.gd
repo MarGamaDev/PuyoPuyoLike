@@ -10,6 +10,7 @@ func end_player_turn() -> void:
 
 func reset_game():
 	$GridManager.show()
+	$GridManager.end_game()
 	$GridManager.start_game()
 
 func lose_life():

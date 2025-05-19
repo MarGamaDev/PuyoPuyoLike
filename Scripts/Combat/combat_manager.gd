@@ -9,7 +9,9 @@ signal on_enemy_attack(attack: EnemyAttack)
 signal on_enemy_registered(enemy: Enemy)
 signal on_enemy_deregistered(enemy: Enemy)
 signal on_player_life_lost()
+signal get_next_encounter()
 var enemies : Array = Array()
+var current_encounter_count = 0
 
 func process_player_attack(attack : PlayerAttack) -> void:
 	#print("blue: ", attack.blue)
@@ -38,13 +40,22 @@ func deregister_enemy(enemy : Enemy) -> void:
 	print("enemy deregistered")
 	on_enemy_deregistered.emit(enemy)
 	enemies.erase(enemy)
+	current_encounter_count -= 1
+	if current_encounter_count == 0:
+		print("encounter over")
+		get_next_encounter.emit()
 
 func _on_player_damage_processed(damage_taken: int, attack_type: EnemyAttack.EnemyAttackType) -> void:
 	$PuyoManager.add_to_spawn_queue(EnemyAttackHandler.process_attack(damage_taken, attack_type))
-
 
 func _on_player_on_counter_triggered(counter_amount: int) -> void:
 	deal_player_damage.emit(counter_amount)
 
 func _on_player_on_life_lost() -> void:
 	on_player_life_lost.emit()
+
+func _on_encounter_manager_update_encounter_count(count: int) -> void:
+	current_encounter_count = count
+
+func start_combat():
+	get_next_encounter.emit()

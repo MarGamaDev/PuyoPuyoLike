@@ -1,5 +1,7 @@
 extends CanvasLayer
 
+signal start_game
+
 @export var puyo_manager : Node2D
 @onready var grid_manager : Node2D = puyo_manager.find_child("GridManager")
 
@@ -30,6 +32,7 @@ func test_reset_chain():
 
 func _on_button_pressed() -> void:
 	$Button.hide()
+	start_game.emit()
 	grid_manager.show()
 	grid_manager.start_game()
 

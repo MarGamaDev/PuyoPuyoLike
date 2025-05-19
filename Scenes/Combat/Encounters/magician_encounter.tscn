@@ -1,5 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://cawgcce4rjrb0"]
+[gd_scene load_steps=11 format=3 uid="uid://cawgcce4rjrb0"]
 
+[ext_resource type="Script" uid="uid://c086ewc7gw56k" path="res://scripts/Combat/encounter.gd" id="1_7dmcn"]
 [ext_resource type="PackedScene" uid="uid://bx5kscp85ypry" path="res://Scenes/Combat/Enemy/enemy.tscn" id="1_ryqsk"]
 [ext_resource type="Script" uid="uid://c27m7mkd1up2" path="res://scripts/Combat/Enemy/enemy_data.gd" id="2_7dmcn"]
 [ext_resource type="Texture2D" uid="uid://3orwgby4xlkg" path="res://Placeholder Art/map_node_images/boss_location.png" id="3_1r5mb"]
@@ -7,7 +8,7 @@
 
 [sub_resource type="Resource" id="Resource_h5wv6"]
 script = ExtResource("2_7dmcn")
-health = 100
+health = 10
 sprite = ExtResource("3_1r5mb")
 metadata/_custom_type_script = "uid://c27m7mkd1up2"
 
@@ -44,6 +45,7 @@ attack_type = 9
 metadata/_custom_type_script = "uid://6v5kccermtmr"
 
 [node name="MagicianEncounter" type="Node2D"]
+script = ExtResource("1_7dmcn")
 
 [node name="MagicianBoss" parent="." instance=ExtResource("1_ryqsk")]
 enemy_data = SubResource("Resource_h5wv6")
