@@ -19,7 +19,6 @@ func receive_attack(attack: EnemyAttack) -> void:
 	var damage_taken = 0
 	for i in range(attack.number_of_swings):
 		damage_taken += handle_damage(attack.damage)
-		print(damage_taken)
 	#add shield = 0 if we want to have the shield reset between attacks
 	if damage_taken > 0: #resets counter if damage is taken
 		counter = 0
