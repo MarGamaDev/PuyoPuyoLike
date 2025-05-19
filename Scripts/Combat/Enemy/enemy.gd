@@ -22,6 +22,7 @@ signal on_take_damage()
 signal on_taking_turn()
 
 @onready var combat_manager: Node
+@onready var combat_effects_manager: Node
 
 func _ready() -> void:
 	
@@ -35,6 +36,8 @@ func _ready() -> void:
 	combat_manager.connect("on_player_turn_taken", handle_turn)
 	combat_manager.connect("on_player_life_lost", reset_attack_timer)
 	combat_manager.register_enemy(self)
+	
+	combat_effects_manager = get_node("/root/Combat/CombatEffectsManager")
 	
 	current_attack = attacks[0]
 
@@ -68,6 +71,8 @@ func take_damage(damage: int) -> void:
 	on_take_damage.emit()
 	instance_data.health -= damage
 	$Healthbar.value = instance_data.health	
+	if damage > 0:
+		combat_effects_manager.create_damage_number_effect(damage, global_position)
 	if instance_data.health <= 0:
 		die()
 

@@ -1,14 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://c6x4fp03itplm"]
+[gd_scene load_steps=2 format=3 uid="uid://c6x4fp03itplm"]
 
-[ext_resource type="PackedScene" uid="uid://cbaajsmksk4lh" path="res://Scenes/grid_manager.tscn" id="1_iex5k"]
 [ext_resource type="Script" uid="uid://w3huw57xx61k" path="res://testing scenes/box_testing_scene.gd" id="1_puh6r"]
 
 [node name="BoxTestingScene" type="Node2D"]
 script = ExtResource("1_puh6r")
-
-[node name="GridManager" parent="." instance=ExtResource("1_iex5k")]
-
-[node name="Timer" type="Timer" parent="."]
-autostart = true
-
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
