@@ -4,8 +4,8 @@ class_name GridManager
 
 signal board_check_delay
 signal life_loss
-#use chain_pop for any group popping stuff as well
-signal chain_pop(type : Array, chain_length)
+#use chain_stage_pop for any group popping stuff as well
+signal chain_stage_pop(type : Array, chain_length)
 signal down_check_finished
 signal turn_tick
 signal player_created
@@ -13,8 +13,8 @@ signal queue_event_added(event_type : PuyoQueueEvent)
 signal junk_created
 
 #loading the grid nodes to instantiate them
-@onready var grid_node_scene = load("res://Scenes/grid_node.tscn")
-@onready var puyo_scene = load("res://Scenes/puyo.tscn")
+@onready var grid_node_scene = load("res://Scenes/PuyoPuyo/grid_node.tscn")
+@onready var puyo_scene = load("res://Scenes/PuyoPuyo/puyo.tscn")
 @onready var puyo_pop_effect = load("res://Scenes/effects/puyo_pop.tscn")
 
 @onready var sfx_player = $SFXPlayer
@@ -357,7 +357,7 @@ func check_board(puyo_groups : Array) -> bool:
 		return false
 	else:
 		chain_length += 1
-		chain_pop.emit(puyo_groups, chain_length)
+		chain_stage_pop.emit(puyo_groups, chain_length)
 		down_tick()
 		await down_check_finished
 		pop_puyos(puyo_groups)

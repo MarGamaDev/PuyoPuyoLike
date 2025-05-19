@@ -9,7 +9,7 @@ var last_chain_length : int = 0
 var last_chain_contents : String = "Last chain contents: "
 
 func _ready():
-	grid_manager.connect("chain_pop", chain_popped)
+	grid_manager.connect("chain_stage_pop", chain_popped)
 
 func chain_popped(puyos_to_pop : Array, chain_length: int):
 	var chain_string = ""

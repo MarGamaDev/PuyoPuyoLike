@@ -1,13 +1,13 @@
 [gd_scene load_steps=3 format=3 uid="uid://buetvmo3m42v5"]
 
-[ext_resource type="Script" uid="uid://bhx6thphvfolw" path="res://scripts/puyo_manager.gd" id="1_sea3v"]
-[ext_resource type="PackedScene" uid="uid://cbaajsmksk4lh" path="res://Scenes/grid_manager.tscn" id="2_ajnr3"]
+[ext_resource type="Script" uid="uid://bhx6thphvfolw" path="res://Scripts/PuyoPuyo/puyo_manager.gd" id="1_sea3v"]
+[ext_resource type="PackedScene" uid="uid://cbaajsmksk4lh" path="res://Scenes/PuyoPuyo/grid_manager.tscn" id="2_ajnr3"]
 
 [node name="PuyoManager" type="Node2D"]
 script = ExtResource("1_sea3v")
 
 [node name="GridManager" parent="." instance=ExtResource("2_ajnr3")]
 
-[connection signal="chain_pop" from="GridManager" to="." method="chain_popped"]
+[connection signal="chain_stage_pop" from="GridManager" to="." method="chain_stage_popped"]
 [connection signal="life_loss" from="GridManager" to="." method="lose_life"]
 [connection signal="turn_tick" from="GridManager" to="." method="end_player_turn"]

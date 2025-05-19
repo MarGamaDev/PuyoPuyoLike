@@ -1,28 +1,51 @@
 class_name CombatManager
 extends Node2D
 
-signal deal_player_damage(int)
-signal add_player_shield(int)
-signal add_player_counter(int)
+#signals after processing player attack
+signal on_targeted_damage_dealt(int)
+signal on_aoe_damage_dealt(int)
+signal on_shield_gained(int)
+signal on_counter_gained(int)
+signal on_junk_cleared(int)
+
+signal on_combat_started()
 signal on_player_turn_taken()
 signal on_enemy_attack(attack: EnemyAttack)
 signal on_enemy_registered(enemy: Enemy)
 signal on_enemy_deregistered(enemy: Enemy)
 signal on_player_life_lost()
-signal get_next_encounter()
-var enemies : Array = Array()
-var current_encounter_count = 0
+signal on_encounter_finished()
+
+@export var puyo_values: PuyoValueData
+
+var enemies: Array = Array()
+var selected_enemy: Enemy
+
+var current_encounter : Encounter
+
+func _ready() -> void:
+	start_combat()
+
+func _physics_process(_delta: float) -> void:
+	if Input.is_action_just_pressed("switch_target") && selected_enemy:
+		var index = enemies.find(selected_enemy)
+		index %= enemies.size()
+		select_enemy(index);
 
 func process_player_attack(attack : PlayerAttack) -> void:
-	#print("blue: ", attack.blue)
-	#print("red: ", attack.red)
-	#print("green: ", attack.green)
-	#print("yellow: ", attack.yellow)
-	#print("chain: ", attack.chain)
-	deal_player_damage.emit((attack.green + attack.red) * attack.chain)
-	add_player_shield.emit(attack.blue * attack.chain)
-	add_player_counter.emit(attack.yellow * attack.chain)
-	pass
+	var value: int = puyo_values.get_base_value(attack.type) * attack.size
+	var mult: int = puyo_values.get_multiplier(attack.type) * attack.chain
+	match attack.type:
+		Puyo.PUYO_TYPE.GREEN:
+			on_aoe_damage_dealt.emit(value * mult)
+		Puyo.PUYO_TYPE.RED:
+			on_targeted_damage_dealt.emit(value * mult)
+		Puyo.PUYO_TYPE.BLUE:
+			on_shield_gained.emit(value * mult)
+		Puyo.PUYO_TYPE.YELLOW:
+			on_counter_gained.emit(value * mult)
+		Puyo.PUYO_TYPE.JUNK:
+			on_junk_cleared.emit(attack.size)
 
 func end_player_turn() -> void:
 	on_player_turn_taken.emit()
@@ -40,23 +63,25 @@ func deregister_enemy(enemy : Enemy) -> void:
 	print("enemy deregistered")
 	on_enemy_deregistered.emit(enemy)
 	enemies.erase(enemy)
-	current_encounter_count -= 1
-	if current_encounter_count == 0:
+	enemy.set_as_selected(false)
+	if enemies.size() == 0:
 		print("encounter over")
-		get_next_encounter.emit()
+		on_encounter_finished.emit()
 
-func _on_player_damage_processed(damage_taken: int, attack_type: EnemyAttack.EnemyAttackType) -> void:
-	print("sending attack!")
-	$PuyoManager.add_to_spawn_queue(EnemyAttackHandler.process_attack(damage_taken, attack_type))
+func trigger_counter(counter_amount: int) -> void:
+	on_aoe_damage_dealt.emit(counter_amount)
 
-func _on_player_on_counter_triggered(counter_amount: int) -> void:
-	deal_player_damage.emit(counter_amount)
-
-func _on_player_on_life_lost() -> void:
+func lose_player_life() -> void:
 	on_player_life_lost.emit()
 
-func _on_encounter_manager_update_encounter_count(count: int) -> void:
-	current_encounter_count = count
+func process_encounter_updated(_encounter: Encounter) -> void:
+	select_enemy(0)
 
-func start_combat():
-	get_next_encounter.emit()
+func start_combat() -> void:
+	on_combat_started.emit()
+
+func select_enemy(enemy_index: int) -> void:
+	if selected_enemy:
+		selected_enemy.set_as_selected(false)
+	selected_enemy = enemies[enemy_index]
+	selected_enemy.set_as_selected(true)

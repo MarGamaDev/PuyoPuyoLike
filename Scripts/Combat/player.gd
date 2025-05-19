@@ -41,22 +41,16 @@ func handle_damage(damage: int) -> int:
 		counter -= damage
 		return 0
 	
-	if shield == damage:
+	if damage <= shield:
 		print("attack blocked!")
-		on_shield_lost.emit(shield)
-		shield = 0
-		return 0
-	elif damage < shield:
-		print("attack blocked!")
+		on_shield_lost.emit(damage)
 		shield -= damage
 		return 0
 	else:
+		on_shield_lost.emit(shield)
 		damage -= shield
-		on_shield_lost.emit(damage - shield)
 		shield = 0
 		return damage
-	
-	return damage
 
 func lose_life() -> void:
 	lives -= 1

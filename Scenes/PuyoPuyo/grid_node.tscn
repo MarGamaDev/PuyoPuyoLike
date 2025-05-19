@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cd7coiq05y0xu"]
 
-[ext_resource type="Script" uid="uid://nuxppdlkdqbf" path="res://scripts/grid_node.gd" id="1_cvftl"]
+[ext_resource type="Script" uid="uid://nuxppdlkdqbf" path="res://Scripts/PuyoPuyo/grid_node.gd" id="1_cvftl"]
 [ext_resource type="Texture2D" uid="uid://hvooavpam6hd" path="res://Placeholder Art/puyo_out_of_bounds.png" id="2_4akab"]
 
 [node name="GridNode" type="Node2D"]

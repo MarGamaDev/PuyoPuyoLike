@@ -32,7 +32,7 @@ func _ready() -> void:
 	$Healthbar.value = instance_data.health
 	
 	combat_manager = get_node("/root/Combat")
-	combat_manager.connect("deal_player_damage", take_player_attack)
+	combat_manager.connect("on_aoe_damage_dealt", take_player_attack)
 	combat_manager.connect("on_player_turn_taken", handle_turn)
 	combat_manager.connect("on_player_life_lost", reset_attack_timer)
 	combat_manager.register_enemy(self)
@@ -82,6 +82,13 @@ func die() -> void:
 	combat_manager.deregister_enemy(self)
 	queue_free()
 
-func reset_attack_timer() ->void:
+func reset_attack_timer() -> void:
 	attack_countdown = 0
 	$Intent.set_indicator(current_attack, current_attack.number_of_turns_till_swing - attack_countdown)
+
+func set_as_selected(is_selected: bool) -> void:
+	$Selector.visible = is_selected
+	if is_selected:
+		combat_manager.connect("on_targeted_damage_dealt", take_player_attack)
+	elif combat_manager.is_connected("on_targeted_damage_dealt", take_player_attack):
+		combat_manager.disconnect("on_targeted_damage_dealt", take_player_attack)

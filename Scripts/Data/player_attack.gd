@@ -1,30 +1,13 @@
 class_name PlayerAttack extends Node
 
 var chain: int
-var blue: int
-var red: int
-var green: int
-var yellow: int
-
-static func create(chainSize: int, blueCount: int, redCount: int, greenCount: int, yellowCount : int) -> PlayerAttack:
-	var instance = PlayerAttack.new()
-	instance.chain = chainSize
-	instance.blue = blueCount
-	instance.red = redCount
-	instance.green = greenCount
-	instance.yellow = yellowCount
-	return instance
+var size: int
+var type: Puyo.PUYO_TYPE
 
 #gets an array of gridnodes
-static func create_from_array(puyos : Array, chainSize : int):
+static func create(puyo_block : Array, chain_value : int):
 	var instance = PlayerAttack.new()
-	instance.chain = chainSize
-	if puyos[0].puyo.puyo_type == Puyo.PUYO_TYPE.BLUE:
-		instance.blue = puyos.size()
-	elif puyos[0].puyo.puyo_type == Puyo.PUYO_TYPE.RED:
-		instance.red = puyos.size()
-	elif puyos[0].puyo.puyo_type == Puyo.PUYO_TYPE.GREEN:
-		instance.green = puyos.size()
-	elif puyos[0].puyo.puyo_type == Puyo.PUYO_TYPE.YELLOW:
-		instance.yellow = puyos.size()
+	instance.chain = chain_value
+	instance.type = puyo_block[0].puyo.puyo_type
+	instance.size = puyo_block.size()
 	return instance
