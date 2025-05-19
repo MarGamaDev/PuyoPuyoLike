@@ -1,9 +1,9 @@
 extends Node
 
 var puyo_pool : Array[Array] = []
-var player_defense : int = 0
-var player_attack : int = 0
 
+
+#enum PUYO_TYPE {UNDEFINED 0, JUNK 1 , BLUE 2 , GREEN 3, RED 4, YELLOW 5}
 signal puyo_pool_changed
 
 func _ready() -> void:
@@ -21,3 +21,9 @@ func initialize_puyo_pool() -> void:
 
 func get_puyo_pool() -> Array[Array]:
 	return puyo_pool
+
+func remove_pair(pair_to_remove : Array[int]):
+	puyo_pool.erase(pair_to_remove)
+
+func add_pair(pair_to_add : Array[int]):
+	puyo_pool.append(pair_to_add)
