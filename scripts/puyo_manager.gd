@@ -6,6 +6,7 @@ signal life_lost
 signal block_popped(popped_puyos : Array, chain_length : int)
 
 func end_player_turn() -> void:
+	await $GridManager.down_tick()
 	on_end_player_turn.emit()
 
 func reset_game():
