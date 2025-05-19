@@ -1,0 +1,43 @@
+[gd_scene load_steps=9 format=3 uid="uid://mpjnw0k87gso"]
+
+[ext_resource type="Script" uid="uid://c086ewc7gw56k" path="res://scripts/Combat/encounter.gd" id="1_ykc8d"]
+[ext_resource type="PackedScene" uid="uid://bx5kscp85ypry" path="res://Scenes/Combat/Enemy/enemy.tscn" id="2_fehn4"]
+[ext_resource type="Script" uid="uid://c27m7mkd1up2" path="res://scripts/Combat/Enemy/enemy_data.gd" id="3_xivle"]
+[ext_resource type="Texture2D" uid="uid://p8k488huy4of" path="res://Placeholder Art/pop_effect.png" id="4_rc0rb"]
+[ext_resource type="Script" uid="uid://6v5kccermtmr" path="res://scripts/Combat/Enemy/enemy_attack.gd" id="5_ex7li"]
+
+[sub_resource type="Resource" id="Resource_02re6"]
+script = ExtResource("3_xivle")
+health = 10
+sprite = ExtResource("4_rc0rb")
+metadata/_custom_type_script = "uid://c27m7mkd1up2"
+
+[sub_resource type="Resource" id="Resource_mf0dy"]
+script = ExtResource("5_ex7li")
+damage = 2
+number_of_swings = 1
+number_of_turns_till_swing = 3
+attack_type = 0
+metadata/_custom_type_script = "uid://6v5kccermtmr"
+
+[sub_resource type="Resource" id="Resource_cfo23"]
+script = ExtResource("5_ex7li")
+damage = 1
+number_of_swings = 1
+number_of_turns_till_swing = 5
+attack_type = 0
+metadata/_custom_type_script = "uid://6v5kccermtmr"
+
+[node name="MultiEncounter" type="Node2D"]
+script = ExtResource("1_ykc8d")
+enemy_count = 2
+
+[node name="grunt 1" parent="." instance=ExtResource("2_fehn4")]
+position = Vector2(93, 0)
+enemy_data = SubResource("Resource_02re6")
+attacks = Array[ExtResource("5_ex7li")]([SubResource("Resource_mf0dy")])
+
+[node name="grunt 2" parent="." instance=ExtResource("2_fehn4")]
+position = Vector2(-98, 0)
+enemy_data = SubResource("Resource_02re6")
+attacks = Array[ExtResource("5_ex7li")]([SubResource("Resource_cfo23")])

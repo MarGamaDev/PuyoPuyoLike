@@ -46,6 +46,7 @@ func deregister_enemy(enemy : Enemy) -> void:
 		get_next_encounter.emit()
 
 func _on_player_damage_processed(damage_taken: int, attack_type: EnemyAttack.EnemyAttackType) -> void:
+	print("sending attack!")
 	$PuyoManager.add_to_spawn_queue(EnemyAttackHandler.process_attack(damage_taken, attack_type))
 
 func _on_player_on_counter_triggered(counter_amount: int) -> void:

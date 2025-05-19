@@ -469,6 +469,8 @@ func player_down_tick():
 			i.play_drop_animation()
 
 func player_rotate():
+	if player_grid_positions.size() < 1:
+		return
 	var rotation_check : int = (player_rotation + 1) % 4
 	#find wehre the rotated puyo would be
 	var position_check : Vector2i
