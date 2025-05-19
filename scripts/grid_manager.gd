@@ -459,7 +459,7 @@ func player_down_tick():
 			new_puyo.set_type(new_puyo_base.get_type())
 			node_to_fill.add_child(new_puyo)
 			node_to_fill.set_puyo(new_puyo)
-			if !(check_next_move([next_moves[i]])):
+			if (!(check_next_move([next_moves[i]]))) or player_rotation == 1 or player_rotation == 3:
 				to_play_drop_anims.append(node_to_fill.puyo)
 			player_puyos[i].queue_free()
 		player_puyos.clear()
