@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://buetvmo3m42v5"]
 
-[ext_resource type="Script" uid="uid://bhx6thphvfolw" path="res://Scripts/puyo_manager.gd" id="1_sea3v"]
+[ext_resource type="Script" uid="uid://bhx6thphvfolw" path="res://scripts/puyo_manager.gd" id="1_sea3v"]
 [ext_resource type="PackedScene" uid="uid://cbaajsmksk4lh" path="res://Scenes/grid_manager.tscn" id="2_ajnr3"]
 
 [node name="PuyoManager" type="Node2D"]
@@ -9,87 +9,6 @@ script = ExtResource("1_sea3v")
 [node name="GridManager" parent="." instance=ExtResource("2_ajnr3")]
 visible = false
 
-[node name="UI" type="CanvasLayer" parent="."]
-
-[node name="Button" type="Button" parent="UI"]
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -279.0
-offset_top = -142.0
-offset_right = -20.0
-offset_bottom = -21.0
-grow_horizontal = 0
-grow_vertical = 0
-theme_override_font_sizes/font_size = 50
-text = "start"
-
-[node name="TestResetButton" type="Button" parent="UI"]
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -412.0
-offset_top = -142.0
-offset_right = -314.0
-offset_bottom = -21.0
-grow_horizontal = 0
-grow_vertical = 0
-theme_override_font_sizes/font_size = 30
-text = "Reset"
-
-[node name="ChainLengthLabel" type="Label" parent="UI"]
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -320.0
-offset_top = 40.0
-offset_right = -36.0
-offset_bottom = 82.0
-grow_horizontal = 0
-grow_vertical = 2
-theme_override_font_sizes/font_size = 30
-text = "Last Chain length: 0"
-
-[node name="ChainRecipieLabel" type="Label" parent="UI"]
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -416.0
-offset_top = 8.0
-offset_right = -104.0
-offset_bottom = 50.0
-grow_horizontal = 0
-grow_vertical = 2
-theme_override_font_sizes/font_size = 30
-
-[node name="JunkTest" type="Button" parent="UI"]
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -279.0
-offset_top = -286.0
-offset_right = -20.0
-offset_bottom = -165.0
-grow_horizontal = 0
-grow_vertical = 0
-theme_override_font_sizes/font_size = 50
-text = "drop junk"
-
 [connection signal="chain_pop" from="GridManager" to="." method="chain_popped"]
 [connection signal="life_loss" from="GridManager" to="." method="lose_life"]
 [connection signal="turn_tick" from="GridManager" to="." method="end_player_turn"]
-[connection signal="pressed" from="UI/Button" to="." method="_on_test_button_pressed"]
-[connection signal="pressed" from="UI/Button" to="GridManager" method="start_game"]
-[connection signal="pressed" from="UI/TestResetButton" to="." method="_on_test_reset_button_pressed"]
-[connection signal="pressed" from="UI/TestResetButton" to="GridManager" method="end_game"]
-[connection signal="pressed" from="UI/JunkTest" to="." method="_on_junk_test_pressed"]
