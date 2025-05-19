@@ -336,7 +336,6 @@ func pop_puyos(puyo_groups:Array = puyos_to_pop):
 		if group.is_empty():
 			continue
 		for pop_node : GridNode in group:
-			pop_node.puyo.pop()
 			var new_pop_effect = puyo_pop_effect.instantiate()
 			add_child(new_pop_effect)
 			new_pop_effect.global_position.x = pop_node.puyo.global_position.x + (square_size / 2)
@@ -345,9 +344,8 @@ func pop_puyos(puyo_groups:Array = puyos_to_pop):
 			for junk_neighbours : GridNode in pop_node.neighbours:
 				if junk_neighbours.get_type() == Puyo.PUYO_TYPE.JUNK:
 					junk_neighbours.puyo.pop()
-					junk_neighbours.puyo.queue_free()
 					junk_neighbours.reset()
-			pop_node.puyo.queue_free()
+			pop_node.puyo.pop()
 			pop_node.reset()
 	puyos_to_pop = Array()
 

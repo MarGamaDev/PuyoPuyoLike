@@ -104,5 +104,9 @@ func play_drop_animation():
 	$DropAnimation.play("Drop")
 	pass
 
+func trigger_pop_effect():
+	pop_trigger.emit(puyo_type)
+
 func pop():
 	pop_trigger.emit(puyo_type)
+	queue_free()
