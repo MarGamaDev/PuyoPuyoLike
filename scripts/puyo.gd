@@ -3,6 +3,7 @@ extends Node2D
 class_name Puyo
 
 signal reached_bottom
+signal pop_trigger(popped_type : PUYO_TYPE)
 
 ##types are junk: 0, blue : 1, green : 2, red : 3, yellow : 4
 enum PUYO_TYPE {UNDEFINED, JUNK, BLUE, GREEN, RED, YELLOW}
@@ -104,6 +105,4 @@ func play_drop_animation():
 	pass
 
 func pop():
-	#print("pop!")
-	##TODO add signal to game manager when puyo game is in base state
-	pass
+	pop_trigger.emit(puyo_type)

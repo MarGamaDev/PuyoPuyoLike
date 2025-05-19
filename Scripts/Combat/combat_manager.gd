@@ -8,7 +8,6 @@ signal on_player_turn_taken()
 signal on_enemy_attack(attack: EnemyAttack)
 signal on_enemy_registered(enemy: Enemy)
 signal on_enemy_deregistered(enemy: Enemy)
-
 var enemies : Array = Array()
 
 func process_player_attack(attack : PlayerAttack) -> void:

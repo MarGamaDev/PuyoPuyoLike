@@ -8,6 +8,9 @@ signal life_loss
 signal chain_pop(type : Array, chain_length)
 signal down_check_finished
 signal turn_tick
+signal player_created
+signal queue_event_added(event_type : PuyoQueueEvent)
+signal junk_created
 
 #loading the grid nodes to instantiate them
 @onready var grid_node_scene = load("res://Scenes/grid_node.tscn")
@@ -399,7 +402,7 @@ func create_player_puyo():
 		
 		$PlayerDownTimer.set_wait_time(player_down_speed)
 		$PlayerDownTimer.start()
-		
+		player_created.emit()
 		player_input_flag = true
 
 #returns true if next move is valid
@@ -555,10 +558,12 @@ func loss_check() -> bool:
 	return false
 
 func add_to_spawn_queue(new_event: PuyoQueueEvent):
+	queue_event_added.emit(new_event)
 	event_queue.append(new_event)
 
 #used for specific junk patterns that fall from the top
 func create_junk_specific(junk_positions : Array[Vector2i]):
+	junk_created.emit()
 	#junk positions will be from left to right top to bottom
 	for i in junk_positions:
 		var junk_puyo : Puyo = puyo_scene.instantiate()
@@ -570,6 +575,7 @@ func create_junk_specific(junk_positions : Array[Vector2i]):
 
 #this just creates x rows of junk
 func create_junk_row(number_of_rows: int):
+	junk_created.emit()
 	for i in range(0, number_of_rows):
 		for j in range(0, grid_width):
 			var junk_puyo : Puyo = puyo_scene.instantiate()
@@ -580,6 +586,7 @@ func create_junk_row(number_of_rows: int):
 					node_to_fill.set_type(Puyo.PUYO_TYPE.JUNK)
 
 func create_junk_random(junk_num: int):
+	junk_created.emit()
 	var junk_positions : Array[Vector2i] = []
 	var junk_amount = 0
 	#need to make sure there's enough spaces to spawn the junk
@@ -608,6 +615,7 @@ func create_junk_random(junk_num: int):
 	create_junk_specific(junk_positions)
 
 func replace_junk_specific(junk_positions : Array[Vector2i]):
+	junk_created.emit()
 	#junk positions will be from left to right top to bottom
 	for i in junk_positions:
 		var junk_puyo : Puyo = puyo_scene.instantiate()
@@ -618,6 +626,7 @@ func replace_junk_specific(junk_positions : Array[Vector2i]):
 		node_to_fill.set_type(Puyo.PUYO_TYPE.JUNK)
 
 func junk_slam(junk_rows : int):
+	junk_created.emit()
 	#finding where teh rows should be, which is lowest row of puyos with non-junk puyos in it
 	var no_rows_check = true
 	var lowest_row = 0
@@ -639,6 +648,8 @@ func junk_slam(junk_rows : int):
 	replace_junk_specific(junk_array)
 
 func replace_color(color_to_replace, to_replace_with):
+	if to_replace_with == Puyo.PUYO_TYPE.JUNK:
+		junk_created.emit()
 	for i in range(0, grid_height):
 		for j in range(0, grid_width):
 			var node_to_check : GridNode = grid[j][i]

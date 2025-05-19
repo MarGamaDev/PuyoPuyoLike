@@ -4,6 +4,8 @@ var puyo_pool : Array[Array] = []
 var player_defense : int = 0
 var player_attack : int = 0
 
+signal puyo_pool_changed
+
 func _ready() -> void:
 	#adding all combos with blue, then green, e.c.t
 	initialize_puyo_pool()
