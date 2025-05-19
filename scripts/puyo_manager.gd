@@ -8,6 +8,10 @@ signal block_popped(popped_puyos : Array, chain_length : int)
 func end_player_turn() -> void:
 	on_end_player_turn.emit()
 
+func reset_game():
+	$GridManager.show()
+	$GridManager.start_game()
+
 func lose_life():
 	print("life lost")
 	$GridManager.end_game()

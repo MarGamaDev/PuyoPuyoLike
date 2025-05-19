@@ -394,7 +394,6 @@ func create_player_puyo():
 					break
 			if end_flag == false:
 				life_loss.emit()
-				end_game()
 				#return
 		player_snap_move(position_check)
 		

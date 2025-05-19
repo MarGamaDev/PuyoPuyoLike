@@ -33,6 +33,7 @@ func _ready() -> void:
 	combat_manager = get_node("/root/Combat")
 	combat_manager.connect("deal_player_damage", take_player_attack)
 	combat_manager.connect("on_player_turn_taken", handle_turn)
+	combat_manager.connect("on_player_life_lost", reset_attack_timer)
 	combat_manager.register_enemy(self)
 	
 	current_attack = attacks[0]
@@ -75,3 +76,7 @@ func die() -> void:
 	# add in animation
 	combat_manager.deregister_enemy(self)
 	queue_free()
+
+func reset_attack_timer() ->void:
+	attack_countdown = 0
+	$Intent.set_indicator(current_attack, current_attack.number_of_turns_till_swing - attack_countdown)

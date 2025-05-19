@@ -60,7 +60,10 @@ func handle_damage(damage: int) -> int:
 
 func lose_life() -> void:
 	lives -= 1
+	shield = 0
+	counter = 0
 	if lives <= 0:
+		print("game_over")
 		on_player_death.emit()
 	else:
 		on_life_lost.emit()

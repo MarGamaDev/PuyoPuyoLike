@@ -8,6 +8,7 @@ signal on_player_turn_taken()
 signal on_enemy_attack(attack: EnemyAttack)
 signal on_enemy_registered(enemy: Enemy)
 signal on_enemy_deregistered(enemy: Enemy)
+signal on_player_life_lost()
 var enemies : Array = Array()
 
 func process_player_attack(attack : PlayerAttack) -> void:
@@ -44,3 +45,6 @@ func _on_player_damage_processed(damage_taken: int, attack_type: EnemyAttack.Ene
 
 func _on_player_on_counter_triggered(counter_amount: int) -> void:
 	deal_player_damage.emit(counter_amount)
+
+func _on_player_on_life_lost() -> void:
+	on_player_life_lost.emit()
