@@ -7,5 +7,5 @@ script = ExtResource("1_rbqnt")
 damage = 2
 number_of_swings = 1
 number_of_turns_till_swing = 6
-attack_type = 10
+attack_type = 1
 metadata/_custom_type_script = "uid://6v5kccermtmr"

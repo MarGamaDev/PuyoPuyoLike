@@ -4,8 +4,8 @@
 
 [resource]
 script = ExtResource("1_fqmwc")
-damage = 3
-number_of_swings = 2
-number_of_turns_till_swing = 4
-attack_type = 9
+damage = 10
+number_of_swings = 1
+number_of_turns_till_swing = 6
+attack_type = 0
 metadata/_custom_type_script = "uid://6v5kccermtmr"

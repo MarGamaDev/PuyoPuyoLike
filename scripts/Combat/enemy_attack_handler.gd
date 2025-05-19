@@ -19,10 +19,8 @@ class_name EnemyAttackHandler
 #has a var called damage
 
 
-static func process_attack(enemy_attack : EnemyAttack) -> PuyoQueueEvent:
+static func process_attack(attack_damage : int, attack_type : EnemyAttack.EnemyAttackType) -> PuyoQueueEvent:
 	var event_type : PuyoQueueEvent.EVENT_TYPE
-	var attack_type : EnemyAttack.EnemyAttackType = enemy_attack.attack_type
-	var attack_damage : int = enemy_attack.damage
 	match attack_type:
 		EnemyAttack.EnemyAttackType.DROP_RANDOM:
 			return PuyoQueueEvent.create(PuyoQueueEvent.EVENT_TYPE.JUNK_RANDOM, attack_damage)
