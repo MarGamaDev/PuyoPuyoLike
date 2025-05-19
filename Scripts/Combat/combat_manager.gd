@@ -28,7 +28,7 @@ func _ready() -> void:
 
 func _physics_process(_delta: float) -> void:
 	if Input.is_action_just_pressed("switch_target") && selected_enemy:
-		var index = enemies.find(selected_enemy)
+		var index = enemies.find(selected_enemy) + 1
 		index %= enemies.size()
 		select_enemy(index);
 
@@ -64,6 +64,10 @@ func deregister_enemy(enemy : Enemy) -> void:
 	on_enemy_deregistered.emit(enemy)
 	enemies.erase(enemy)
 	enemy.set_as_selected(false)
+	
+	if enemies.size() > 0 && !selected_enemy:
+		select_enemy(0)
+	
 	if enemies.size() == 0:
 		print("encounter over")
 		on_encounter_finished.emit()

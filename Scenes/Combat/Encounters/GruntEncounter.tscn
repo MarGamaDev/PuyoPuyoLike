@@ -16,7 +16,13 @@ metadata/_custom_type_script = "uid://6v5kccermtmr"
 
 [node name="GruntEncounter" type="Node2D"]
 script = ExtResource("1_bireu")
+enemy_count = 2
 
 [node name="grunt 1" parent="." instance=ExtResource("1_0lrh3")]
+position = Vector2(-80, 0)
 enemy_data = ExtResource("2_bireu")
 attacks = Array[ExtResource("3_ymtw0")]([SubResource("Resource_0lrh3"), ExtResource("4_e7fs4")])
+
+[node name="grunt 2" parent="." instance=ExtResource("1_0lrh3")]
+position = Vector2(90, 0)
+enemy_data = ExtResource("2_bireu")
