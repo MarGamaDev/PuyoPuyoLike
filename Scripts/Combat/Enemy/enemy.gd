@@ -73,6 +73,7 @@ func take_damage(damage: int) -> void:
 	$Healthbar.value = instance_data.health	
 	if damage > 0:
 		combat_effects_manager.create_damage_number_effect(damage, global_position)
+		$HurtFlashAnim.play("animation")
 	if instance_data.health <= 0:
 		die()
 

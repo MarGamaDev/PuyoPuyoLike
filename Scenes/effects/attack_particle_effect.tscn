@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://copdt5sgr6w4o"]
+
+[ext_resource type="Script" uid="uid://bysr3fa2ip1ad" path="res://scripts/effects/attack_particle_effect.gd" id="1_47cro"]
+[ext_resource type="Texture2D" uid="uid://gmla32085lxi" path="res://Placeholder Art/placeholder_twinkle.png" id="2_44lgp"]
+
+[sub_resource type="Curve2D" id="Curve2D_y1t4w"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 91, -2, 0, 0, 0, 0, 66, 150, 0, 0, 0, 0, -82, 142, 0, 0, 0, 0, -87, -11)
+}
+point_count = 4
+
+[node name="AttackParticleEffect" type="Node2D"]
+position = Vector2(198, 90)
+script = ExtResource("1_47cro")
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_y1t4w")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(91, -2)
+rotation = 1.73381
+
+[node name="Sprite2D" type="Sprite2D" parent="Path2D/PathFollow2D"]
+texture = ExtResource("2_44lgp")

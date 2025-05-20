@@ -17,6 +17,7 @@ func _ready():
 	pass
 
 func generate_pool(new_pool_size := reward_choice_pool_size):
+	await get_tree().create_timer(0.4).timeout
 	show()
 	reward_choice_pool_size = new_pool_size
 	reward_choices = []

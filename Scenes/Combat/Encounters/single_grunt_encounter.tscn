@@ -8,7 +8,7 @@
 
 [sub_resource type="Resource" id="Resource_168qf"]
 script = ExtResource("3_grgyv")
-health = 10
+health = 40
 sprite = ExtResource("4_qm7eg")
 metadata/_custom_type_script = "uid://c27m7mkd1up2"
 
