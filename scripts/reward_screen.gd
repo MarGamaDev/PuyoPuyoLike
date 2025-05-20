@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-signal on_reward_chosen(name : String)
+signal on_reward_chosen(type: RewardChoice.REWARD_TYPE, name : String)
 signal restart_combat_after_reward()
 
 @onready var rewards_container : HBoxContainer = $Background/RewardsContainer
@@ -33,24 +33,24 @@ func generate_pool(new_pool_size := reward_choice_pool_size):
 		reward_choices.append(new_item_for_pool)
 	
 	for i in reward_choices:
-		var new_reward_choice : Reward = reward_choice_scene.instantiate()
+		var new_reward_choice : RewardChoice = reward_choice_scene.instantiate()
 		new_reward_choice.connect("on_reward_chosen", on_reward_button_pressed)
-		##will need to change this
-		new_reward_choice.create_reward(i)
+		new_reward_choice.connect("on_reward_chosen", reset_pool)
+		##will need to change this to draw on a pool
+		new_reward_choice.create_reward(RewardChoice.REWARD_TYPE.ITEM, i)
 		$RewardsContainer.add_child(new_reward_choice)
 		choice_containers.append(new_reward_choice)
 
-func reset_pool():
+func reset_pool(name : String):
 	for i in choice_containers:
 		i.queue_free()
 	reward_choices = []
 	choice_containers = []
 
 @warning_ignore("shadowed_variable_base_class")
-func on_reward_button_pressed(name: String):
+func on_reward_button_pressed(type: RewardChoice.REWARD_TYPE, name : String):
 	print(name + " chosen!")
-	on_reward_chosen.emit(name)
-	print("combat started")
+	on_reward_chosen.emit(type, name)
 	restart_combat_after_reward.emit()
 	hide()
-	reset_pool()
+	reset_pool(name)

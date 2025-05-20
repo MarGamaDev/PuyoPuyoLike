@@ -694,3 +694,11 @@ func replace_color(color_to_replace, to_replace_with):
 
 func play_puyo_thud():
 	sfx_player.play_sound_effect_from_library("test_thud")
+
+func delete_player():
+	player_input_flag = false
+	$PlayerDownTimer.stop()
+	for i in player_puyos:
+		i.queue_free()
+	player_puyos.clear()
+	player_fall_flag = false

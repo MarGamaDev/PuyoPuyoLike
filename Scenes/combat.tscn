@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://d3naap4gnytxh"]
+[gd_scene load_steps=13 format=3 uid="uid://d3naap4gnytxh"]
 
 [ext_resource type="Script" uid="uid://b0h0tx4msve02" path="res://scripts/Combat/combat_manager.gd" id="1_4ln8h"]
 [ext_resource type="Resource" uid="uid://b01ucdggd8ykf" path="res://Resources/puyo_value_data.tres" id="2_xisnc"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://cuj4wx1wkdopv" path="res://Scenes/Combat/Encounters/single_grunt_encounter.tscn" id="8_w6tjk"]
 [ext_resource type="PackedScene" uid="uid://b3qfdcqaqmgk4" path="res://Scenes/Combat/combat_effects_manager.tscn" id="11_w6tjk"]
 [ext_resource type="PackedScene" uid="uid://b2l1xn5ovaca4" path="res://Scenes/reward_screen.tscn" id="11_xisnc"]
+[ext_resource type="Script" uid="uid://bc5i4sjlttc78" path="res://scripts/Inventory.gd" id="12_xisnc"]
 
 [node name="Combat" type="Node2D"]
 script = ExtResource("1_4ln8h")
@@ -60,6 +61,9 @@ puyo_manager = NodePath("../PuyoManager")
 layer = 2
 visible = false
 
+[node name="Inventory" type="Node2D" parent="."]
+script = ExtResource("12_xisnc")
+
 [connection signal="on_combat_started" from="." to="PuyoManager" method="reset_game"]
 [connection signal="on_combat_started" from="." to="EncounterManager" method="load_next_encounter"]
 [connection signal="on_counter_gained" from="." to="Player" method="add_counter"]
@@ -77,4 +81,5 @@ visible = false
 [connection signal="on_rest_stop" from="EncounterManager" to="RewardScreen" method="generate_pool"]
 [connection signal="on_update_encounter" from="EncounterManager" to="." method="process_encounter_updated"]
 [connection signal="start_game" from="PuyoTestUI" to="." method="start_combat"]
+[connection signal="on_reward_chosen" from="RewardScreen" to="Inventory" method="add_to_inventory"]
 [connection signal="restart_combat_after_reward" from="RewardScreen" to="." method="start_combat"]
