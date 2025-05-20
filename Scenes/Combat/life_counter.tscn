@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://chmradttgb2ep"]
+
+[ext_resource type="Texture2D" uid="uid://b6oxgd10fqwpj" path="res://Placeholder Art/box.png" id="1_4aonq"]
+[ext_resource type="Script" uid="uid://dyqhrj2sem0vh" path="res://scripts/Combat/life_counter.gd" id="1_v5ltv"]
+
+[node name="LifeCounter" type="Node2D"]
+script = ExtResource("1_v5ltv")
+
+[node name="Heart" type="Sprite2D" parent="."]
+position = Vector2(529, 597)
+scale = Vector2(0.0767974, 0.0767974)
+texture = ExtResource("1_4aonq")
+
+[node name="Heart2" type="Sprite2D" parent="."]
+position = Vector2(532, 655)
+scale = Vector2(0.0767974, 0.0767974)
+texture = ExtResource("1_4aonq")
+
+[node name="Heart3" type="Sprite2D" parent="."]
+position = Vector2(534, 709)
+scale = Vector2(0.0767974, 0.0767974)
+texture = ExtResource("1_4aonq")
+
+[node name="ExtraLives" type="Label" parent="."]
+visible = false
+offset_left = 513.0
+offset_top = 742.0
+offset_right = 553.0
+offset_bottom = 765.0
+text = "+0"

@@ -8,11 +8,16 @@ signal on_counter_triggered(counter_amount: int)
 signal on_player_attacked
 signal on_player_damage_taken(damage_taken: int, attack_type: EnemyAttack.EnemyAttackType)
 signal on_life_lost
+signal on_life_gain
+signal on_set_life_to(num : int)
 signal on_player_death
 
 var lives : int = 3
 var shield : int = 0
 var counter : int = 0
+
+func _ready():
+	on_set_life_to.emit(lives)
 
 func receive_attack(attack: EnemyAttack) -> void:
 	on_player_attacked.emit()
