@@ -1,17 +1,14 @@
-[gd_scene load_steps=14 format=3 uid="uid://d3naap4gnytxh"]
+[gd_scene load_steps=11 format=3 uid="uid://d3naap4gnytxh"]
 
-[ext_resource type="Script" uid="uid://b0h0tx4msve02" path="res://Scripts/Combat/combat_manager.gd" id="1_4ln8h"]
+[ext_resource type="Script" uid="uid://b0h0tx4msve02" path="res://scripts/Combat/combat_manager.gd" id="1_4ln8h"]
 [ext_resource type="Resource" uid="uid://b01ucdggd8ykf" path="res://Resources/puyo_value_data.tres" id="2_xisnc"]
 [ext_resource type="Texture2D" uid="uid://brsfj1k05k7e7" path="res://Art/combat_background.png" id="2_yt1oa"]
 [ext_resource type="PackedScene" uid="uid://buetvmo3m42v5" path="res://Scenes/PuyoPuyo/puyo_manager.tscn" id="4_ubpar"]
-[ext_resource type="PackedScene" uid="uid://cawgcce4rjrb0" path="res://Scenes/Combat/Encounters/magician_encounter.tscn" id="5_3w34b"]
 [ext_resource type="PackedScene" uid="uid://dh8e8u4ch381l" path="res://Scenes/Combat/player.tscn" id="5_ut0kg"]
 [ext_resource type="PackedScene" uid="uid://1hbj1uv66mu2" path="res://Scenes/DevTools/puyo_test_ui.tscn" id="5_yt1oa"]
 [ext_resource type="Texture2D" uid="uid://14ejxpdanarl" path="res://Art/combat_frame.png" id="7_3w34b"]
-[ext_resource type="PackedScene" uid="uid://dq858shoyju02" path="res://Scenes/Combat/Encounters/GruntEncounter.tscn" id="8_avwh6"]
-[ext_resource type="Script" uid="uid://b4hbt6qjcu26g" path="res://Scripts/Combat/encounter_manager.gd" id="8_twsak"]
-[ext_resource type="PackedScene" uid="uid://spggxai8tcru" path="res://Scenes/Combat/Encounters/slam_boss_encounter.tscn" id="10_w6tjk"]
-[ext_resource type="PackedScene" uid="uid://mpjnw0k87gso" path="res://Scenes/Combat/Encounters/multi_encounter.tscn" id="10_y8jr2"]
+[ext_resource type="Script" uid="uid://b4hbt6qjcu26g" path="res://scripts/Combat/encounter_manager.gd" id="8_twsak"]
+[ext_resource type="PackedScene" uid="uid://cuj4wx1wkdopv" path="res://Scenes/Combat/Encounters/single_grunt_encounter.tscn" id="8_w6tjk"]
 [ext_resource type="PackedScene" uid="uid://b3qfdcqaqmgk4" path="res://Scenes/Combat/combat_effects_manager.tscn" id="11_w6tjk"]
 
 [node name="Combat" type="Node2D"]
@@ -49,7 +46,7 @@ scale = Vector2(1.09, 1.09)
 [node name="EncounterManager" type="Node2D" parent="."]
 position = Vector2(823, 250)
 script = ExtResource("8_twsak")
-encounter_array = Array[PackedScene]([ExtResource("8_avwh6"), ExtResource("5_3w34b"), ExtResource("10_y8jr2"), ExtResource("10_w6tjk")])
+encounter_array = Array[PackedScene]([ExtResource("8_w6tjk")])
 
 [node name="CombatEffectsManager" parent="." instance=ExtResource("11_w6tjk")]
 

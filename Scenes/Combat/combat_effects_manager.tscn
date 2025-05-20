@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://b3qfdcqaqmgk4"]
 
-[ext_resource type="Script" uid="uid://drfuh0bj7iacw" path="res://combat_effects_manager.gd" id="1_wg6ri"]
+[ext_resource type="Script" uid="uid://drfuh0bj7iacw" path="res://scripts/Combat/combat_effects_manager.gd" id="1_wg6ri"]
 [ext_resource type="PackedScene" uid="uid://ft133x0kc47a" path="res://Scenes/effects/text_particle_effect.tscn" id="2_xkvjn"]
 
 [node name="CombatEffectsManager" type="Node2D"]

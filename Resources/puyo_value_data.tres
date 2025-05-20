@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="PuyoValueData" load_steps=2 format=3 uid="uid://b01ucdggd8ykf"]
 
-[ext_resource type="Script" uid="uid://ei6vtes7vhr2" path="res://Scripts/Data/puyo_value_data.gd" id="1_dke0r"]
+[ext_resource type="Script" uid="uid://ei6vtes7vhr2" path="res://scripts/Data/puyo_value_data.gd" id="1_dke0r"]
 
 [resource]
 script = ExtResource("1_dke0r")
@@ -8,8 +8,8 @@ green_base_value = 2
 green_chain_multiplier = 1
 red_base_value = 3
 red_chain_multiplier = 2
-yellow_base_value = 3
-yellow_chain_multiplier = 2
-blue_base_value = 5
+yellow_base_value = 1
+yellow_chain_multiplier = 1
+blue_base_value = 1
 blue_chain_multiplier = 1
 metadata/_custom_type_script = "uid://ei6vtes7vhr2"

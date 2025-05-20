@@ -32,12 +32,11 @@ func add_counter(counter_gained: int) -> void:
 func add_shield(shield_gained: int) -> void:
 	on_shield_gain.emit(shield_gained)
 	shield += shield_gained
+	print(shield)
 
 func handle_damage(damage: int) -> int:
 	if damage <= counter:
-		##do we want the counterattack to be equal to counter or enemy damage?
-		on_counter_triggered.emit(damage)
-		##counter carries over for multiple attacks in a flurry
+		on_counter_triggered.emit(counter)
 		counter = 0
 		return 0
 	

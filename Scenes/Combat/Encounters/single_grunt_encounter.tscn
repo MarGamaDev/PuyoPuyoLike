@@ -1,0 +1,29 @@
+[gd_scene load_steps=8 format=3 uid="uid://cuj4wx1wkdopv"]
+
+[ext_resource type="Script" uid="uid://c086ewc7gw56k" path="res://scripts/Combat/encounter.gd" id="1_de8q0"]
+[ext_resource type="PackedScene" uid="uid://bx5kscp85ypry" path="res://Scenes/Combat/Enemy/enemy.tscn" id="2_75f4d"]
+[ext_resource type="Script" uid="uid://c27m7mkd1up2" path="res://scripts/Combat/Enemy/enemy_data.gd" id="3_grgyv"]
+[ext_resource type="Texture2D" uid="uid://b15lpii8egcu0" path="res://Placeholder Art/map_node_images/shop_location.png" id="4_qm7eg"]
+[ext_resource type="Script" uid="uid://6v5kccermtmr" path="res://scripts/Combat/Enemy/enemy_attack.gd" id="5_5oxqj"]
+
+[sub_resource type="Resource" id="Resource_168qf"]
+script = ExtResource("3_grgyv")
+health = 25
+sprite = ExtResource("4_qm7eg")
+metadata/_custom_type_script = "uid://c27m7mkd1up2"
+
+[sub_resource type="Resource" id="Resource_xg65i"]
+script = ExtResource("5_5oxqj")
+damage = 4
+number_of_swings = 1
+number_of_turns_till_swing = 6
+attack_type = 0
+metadata/_custom_type_script = "uid://6v5kccermtmr"
+
+[node name="SingleGruntEncounter" type="Node2D"]
+script = ExtResource("1_de8q0")
+metadata/_custom_type_script = "uid://c086ewc7gw56k"
+
+[node name="SingleGrunt" parent="." instance=ExtResource("2_75f4d")]
+enemy_data = SubResource("Resource_168qf")
+attacks = Array[ExtResource("5_5oxqj")]([SubResource("Resource_xg65i")])
