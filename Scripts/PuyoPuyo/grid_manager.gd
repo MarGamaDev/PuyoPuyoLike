@@ -31,6 +31,8 @@ signal junk_created
 var grid : Array = Array()
 var puyos_to_pop : Array = Array()
 
+var start_flag
+
 #the first puyo in the player array is the 'pivot'
 var player_puyos: Array = Array()
 var player_grid_positions: Array = Array()
@@ -64,12 +66,14 @@ var event_queue : Array = []
 var player_test_create_flag = false
 @export var test_fill_height = 1
 func _ready():
+	start_flag = false
 	initialize_grid()
 	 
 	#event_queue.append(PuyoQueueEvent.create(PuyoQueueEvent.EVENT_TYPE.JUNKRANDOM, 3))
 	#start_game()
 
 func start_game():
+	start_flag = true
 	fill_grid(test_fill_height) ##remove when finishing with testing
 	fill_puyo_queue()
 	await get_tree().create_timer(0.7).timeout
@@ -78,6 +82,7 @@ func start_game():
 	#player_test_create_flag = true
 
 func end_game():
+	start_flag = false
 	$PlayerDownTimer.stop()
 	#resetting grid
 	for i in range(0, grid_width):
@@ -205,10 +210,12 @@ func grid_state_check():
 		await check_board(puyo_groups)
 		await grid_state_check()
 	else:
-		if event_queue.size() == 0:
+		if event_queue.size() == 0 and start_flag:
 			event_queue.append(PuyoQueueEvent.create(PuyoQueueEvent.EVENT_TYPE.PLAYER))
 		var next_event : PuyoQueueEvent = event_queue.pop_front()
-		if next_event.event_type == PuyoQueueEvent.EVENT_TYPE.PLAYER:
+		if next_event == null:
+			return
+		elif next_event.event_type == PuyoQueueEvent.EVENT_TYPE.PLAYER:
 			create_player_puyo()
 		else:
 			if next_event.event_type == PuyoQueueEvent.EVENT_TYPE.JUNK_ROW:
@@ -223,6 +230,10 @@ func grid_state_check():
 				junk_slam(next_event.junk_number)
 			elif next_event.event_type == PuyoQueueEvent.EVENT_TYPE.COLOR_REPLACE:
 				replace_color(next_event.color_to_change, next_event.color_target)
+			elif next_event.event_type == PuyoQueueEvent.EVENT_TYPE.END_GAME:
+				down_tick()
+				await down_check_finished
+				end_game()
 			grid_state_check()
 
 #move a puyo from one node to another. overwrites node_to's puyo. used only for resting puyos
@@ -338,9 +349,10 @@ func pop_puyos(puyo_groups:Array = puyos_to_pop):
 		for pop_node : GridNode in group:
 			var new_pop_effect = puyo_pop_effect.instantiate()
 			add_child(new_pop_effect)
-			new_pop_effect.global_position.x = pop_node.puyo.global_position.x + (square_size / 2)
-			new_pop_effect.global_position.y = pop_node.puyo.global_position.y + (square_size / 2)
-			new_pop_effect.restart()
+			if new_pop_effect != null:
+				new_pop_effect.global_position.x = pop_node.puyo.global_position.x + (square_size / 2)
+				new_pop_effect.global_position.y = pop_node.puyo.global_position.y + (square_size / 2)
+				new_pop_effect.restart()
 			for junk_neighbours : GridNode in pop_node.neighbours:
 				if junk_neighbours.get_type() == Puyo.PUYO_TYPE.JUNK:
 					junk_neighbours.puyo.pop()

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bc2ba6w1wow0y" path="res://scripts/reward_screen.gd" id="1_esjl1"]
 
-[node name="RewardScreen" type="Node"]
+[node name="RewardScreen" type="CanvasLayer"]
 script = ExtResource("1_esjl1")
 possible_rewards = Array[String](["item 1", "item 2", "item 3", "spell 1", "spell 2", "spell 3"])
 
@@ -16,7 +16,7 @@ offset_right = -150.0
 offset_bottom = -95.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.490196, 0, 0, 0.376471)
+color = Color(0.490196, 0.639216, 0, 0.376471)
 
 [node name="Label" type="Label" parent="Background"]
 layout_mode = 1

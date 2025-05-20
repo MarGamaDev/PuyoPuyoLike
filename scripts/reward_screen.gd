@@ -1,6 +1,7 @@
-extends Node
+extends CanvasLayer
 
 signal on_reward_chosen(name : String)
+signal restart_combat_after_reward()
 
 @onready var rewards_container : HBoxContainer = $Background/RewardsContainer
 @onready var reward_choice_scene : PackedScene = preload("res://Scenes/reward_choice.tscn")
@@ -9,13 +10,17 @@ signal on_reward_chosen(name : String)
 
 @export var reward_choice_pool_size : int = 3
 var reward_choices : Array
+var choice_containers : Array
 
 func _ready():
-	generate_pool()
+	#generate_pool()
+	pass
 
 func generate_pool(new_pool_size := reward_choice_pool_size):
+	show()
 	reward_choice_pool_size = new_pool_size
 	reward_choices = []
+	choice_containers = []
 	var reward_check = true
 	for i in range(0, reward_choice_pool_size):
 		var new_item_for_pool = possible_rewards.pick_random()
@@ -33,7 +38,19 @@ func generate_pool(new_pool_size := reward_choice_pool_size):
 		##will need to change this
 		new_reward_choice.create_reward(i)
 		$RewardsContainer.add_child(new_reward_choice)
+		choice_containers.append(new_reward_choice)
 
+func reset_pool():
+	for i in choice_containers:
+		i.queue_free()
+	reward_choices = []
+	choice_containers = []
+
+@warning_ignore("shadowed_variable_base_class")
 func on_reward_button_pressed(name: String):
 	print(name + " chosen!")
 	on_reward_chosen.emit(name)
+	print("combat started")
+	restart_combat_after_reward.emit()
+	hide()
+	reset_pool()

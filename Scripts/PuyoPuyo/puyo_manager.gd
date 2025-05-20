@@ -14,6 +14,9 @@ func reset_game():
 	$GridManager.end_game()
 	$GridManager.start_game()
 
+func pause_puyo():
+	add_to_spawn_queue(PuyoQueueEvent.create(PuyoQueueEvent.EVENT_TYPE.END_GAME))
+
 func lose_life():
 	print("life lost")
 	$GridManager.end_game()

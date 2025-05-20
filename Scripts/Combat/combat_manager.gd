@@ -82,6 +82,7 @@ func process_encounter_updated(_encounter: Encounter) -> void:
 	select_enemy(0)
 
 func start_combat() -> void:
+	print("combat started")
 	on_combat_started.emit()
 
 func select_enemy(enemy_index: int) -> void:

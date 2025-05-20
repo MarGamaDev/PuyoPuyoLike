@@ -1,7 +1,7 @@
 class_name PuyoQueueEvent extends RefCounted
 
 #row = row of junk, random = x random junks, specific = get given a range
-enum EVENT_TYPE {PLAYER, JUNK_ROW, JUNK_RANDOM, JUNK_SPECIFIC, JUNK_REPLACE, JUNK_SLAM, COLOR_REPLACE}
+enum EVENT_TYPE {PLAYER, JUNK_ROW, JUNK_RANDOM, JUNK_SPECIFIC, JUNK_REPLACE, JUNK_SLAM, COLOR_REPLACE, END_GAME}
 #slam is the replace bottom rows that contain a non-junk puyo
 var event_type : EVENT_TYPE = EVENT_TYPE.PLAYER
 #junk_number is used differently depenign on what type of junk event happens
