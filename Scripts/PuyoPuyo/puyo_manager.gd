@@ -36,4 +36,4 @@ func add_to_spawn_queue(new_event: PuyoQueueEvent):
 
 func process_damage_taken(damage_taken: int, attack_type: EnemyAttack.EnemyAttackType):
 	add_to_spawn_queue(EnemyAttackHandler.process_attack(damage_taken, attack_type))
-	push_error("Dex todo: create a PuyoQueueEvent based on the data give, and pass it along to add_to_spawn_queue")
+	#push_error("Dex todo: create a PuyoQueueEvent based on the data give, and pass it along to add_to_spawn_queue")

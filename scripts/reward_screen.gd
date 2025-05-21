@@ -3,8 +3,8 @@ extends CanvasLayer
 signal on_reward_chosen(type: RewardChoice.REWARD_TYPE, name : String)
 signal restart_combat_after_reward()
 
-@onready var rewards_container : HBoxContainer = $Background/RewardsContainer
-@onready var reward_choice_scene : PackedScene = preload("res://Scenes/reward_choice.tscn")
+@onready var rewards_container : HBoxContainer = $RewardsContainer
+@onready var reward_choice_scene : PackedScene = preload("res://Scenes/RewardScreen/reward_choice.tscn")
 
 @export var possible_rewards : Array[String]
 
@@ -47,7 +47,7 @@ func generate_pool(new_pool_size := reward_choice_pool_size):
 		
 		rest_flag = false
 
-func reset_pool(name : String):
+func reset_pool(type_unused, name_unused):
 	for i in choice_containers:
 		i.queue_free()
 	reward_choices = []
@@ -60,4 +60,4 @@ func on_reward_button_pressed(type: RewardChoice.REWARD_TYPE, name : String):
 	on_reward_chosen.emit(type, name)
 	restart_combat_after_reward.emit()
 	hide()
-	reset_pool(name)
+	reset_pool(type, name)

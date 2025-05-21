@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://c5du1g626to65"]
+
+[node name="EquippedSpellsContainer" type="CanvasLayer"]
+
+[node name="TestColorRect" type="ColorRect" parent="."]
+visible = false
+offset_left = 804.0
+offset_top = 432.0
+offset_right = 1086.0
+offset_bottom = 740.0
+size_flags_vertical = 3
+color = Color(1, 0.156863, 0.176471, 0.505882)
+
+[node name="EquippedSpellsBox" type="BoxContainer" parent="."]
+anchors_preset = -1
+anchor_left = 0.673
+anchor_top = 0.48
+anchor_right = 0.905
+anchor_bottom = 0.823
+offset_top = 18.0
+vertical = true
