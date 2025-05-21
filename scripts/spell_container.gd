@@ -8,7 +8,7 @@ var recipe_puyo_sprite_dictionary = {
 	Puyo.PUYO_TYPE.GREEN : "res://Placeholder Art/puyo_green.png",
 	Puyo.PUYO_TYPE.BLUE : "res://Placeholder Art/puyo_blue.png",
 	Puyo.PUYO_TYPE.YELLOW : "res://Placeholder Art/puyo_yellow.png",
-	Puyo.PUYO_TYPE.RAINBOW : "res://Placeholder Art/puyo_rainbow.png"
+	#Puyo.PUYO_TYPE.RAINBOW : "res://Placeholder Art/puyo_rainbow.png"
 }
 
 var recipe_type_sprite_dictionary = {
