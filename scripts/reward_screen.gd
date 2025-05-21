@@ -12,41 +12,47 @@ signal restart_combat_after_reward()
 var reward_choices : Array
 var choice_containers : Array
 
+var rest_flag = true
+
 func _ready():
 	#generate_pool()
 	pass
 
 func generate_pool(new_pool_size := reward_choice_pool_size):
-	await get_tree().create_timer(0.4).timeout
-	show()
-	reward_choice_pool_size = new_pool_size
-	reward_choices = []
-	choice_containers = []
-	var reward_check = true
-	for i in range(0, reward_choice_pool_size):
-		var new_item_for_pool = possible_rewards.pick_random()
-		while reward_check:
-			new_item_for_pool = possible_rewards.pick_random()
-			print(reward_choices.has(new_item_for_pool))
-			if !(reward_choices.has(new_item_for_pool)):
-				reward_check = false
-		reward_check = true
-		reward_choices.append(new_item_for_pool)
-	
-	for i in reward_choices:
-		var new_reward_choice : RewardChoice = reward_choice_scene.instantiate()
-		new_reward_choice.connect("on_reward_chosen", on_reward_button_pressed)
-		new_reward_choice.connect("on_reward_chosen", reset_pool)
-		##will need to change this to draw on a pool
-		new_reward_choice.create_reward(RewardChoice.REWARD_TYPE.ITEM, i)
-		$RewardsContainer.add_child(new_reward_choice)
-		choice_containers.append(new_reward_choice)
+	if rest_flag:
+		await get_tree().create_timer(0.4).timeout
+		show()
+		reward_choice_pool_size = new_pool_size
+		reward_choices = []
+		choice_containers = []
+		var reward_check = true
+		for i in range(0, reward_choice_pool_size):
+			var new_item_for_pool = possible_rewards.pick_random()
+			while reward_check:
+				new_item_for_pool = possible_rewards.pick_random()
+				print(reward_choices.has(new_item_for_pool))
+				if !(reward_choices.has(new_item_for_pool)):
+					reward_check = false
+			reward_check = true
+			reward_choices.append(new_item_for_pool)
+		
+		for i in reward_choices:
+			var new_reward_choice : RewardChoice = reward_choice_scene.instantiate()
+			new_reward_choice.connect("on_reward_chosen", on_reward_button_pressed)
+			new_reward_choice.connect("on_reward_chosen", reset_pool)
+			##will need to change this to draw on a pool
+			new_reward_choice.create_reward(RewardChoice.REWARD_TYPE.ITEM, i)
+			$RewardsContainer.add_child(new_reward_choice)
+			choice_containers.append(new_reward_choice)
+		
+		rest_flag = false
 
 func reset_pool(name : String):
 	for i in choice_containers:
 		i.queue_free()
 	reward_choices = []
 	choice_containers = []
+	rest_flag = true
 
 @warning_ignore("shadowed_variable_base_class")
 func on_reward_button_pressed(type: RewardChoice.REWARD_TYPE, name : String):
