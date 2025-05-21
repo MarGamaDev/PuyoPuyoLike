@@ -1,6 +1,9 @@
-[gd_scene format=3 uid="uid://c5du1g626to65"]
+[gd_scene load_steps=2 format=3 uid="uid://c5du1g626to65"]
+
+[ext_resource type="Script" uid="uid://bgpcdsqgynag" path="res://Scenes/RewardScreen/equipped_spells_container.gd" id="1_33u70"]
 
 [node name="EquippedSpellsContainer" type="CanvasLayer"]
+script = ExtResource("1_33u70")
 
 [node name="TestColorRect" type="ColorRect" parent="."]
 visible = false
@@ -16,6 +19,7 @@ anchors_preset = -1
 anchor_left = 0.673
 anchor_top = 0.48
 anchor_right = 0.905
-anchor_bottom = 0.823
-offset_top = 18.0
+anchor_bottom = 0.614
+offset_left = 0.400024
+offset_bottom = 187.4
 vertical = true

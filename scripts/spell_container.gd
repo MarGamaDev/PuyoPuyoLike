@@ -23,11 +23,10 @@ var recipe_length : int = 3
 var recipe_type : SpellData.RECIPE_TYPE = SpellData.RECIPE_TYPE.FLEXIBLE
 var recipe_contents : Array[Puyo.PUYO_TYPE] = []
 
-@export var test_spell : SpellData
-
 func _ready():
-	create_spell_container(test_spell)
-
+	var viewport_height = get_viewport_rect().size.y
+	custom_minimum_size.y = viewport_height / 9
+	
 
 func create_spell_container(new_spell_data : SpellData) -> void:
 	spell_data = new_spell_data
@@ -50,6 +49,7 @@ func fill_recipe_container() -> void:
 		new_component.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT
 		new_component.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
 		new_component.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+		new_component.expand_mode = TextureRect.EXPAND_KEEP_SIZE
 		if puyo_component_flag:
 			new_component.texture = load(recipe_puyo_sprite_dictionary[recipe_contents[(i / 2)]])
 			puyo_component_flag = false

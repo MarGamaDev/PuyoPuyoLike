@@ -11,7 +11,8 @@ anchor_right = 0.234
 anchor_bottom = 0.114
 offset_right = 0.199982
 offset_bottom = -6.10352e-05
-size_flags_vertical = 3
+grow_horizontal = 0
+grow_vertical = 0
 script = ExtResource("1_1ltwl")
 
 [node name="SpellFrame" type="TextureRect" parent="."]
