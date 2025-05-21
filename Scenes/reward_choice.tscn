@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://brvve6vrgtcnh"]
+[gd_scene load_steps=4 format=3 uid="uid://brvve6vrgtcnh"]
 
+[ext_resource type="Theme" uid="uid://qw5wdr2jerv7" path="res://Art/text/default_font.tres" id="1_1lpe5"]
 [ext_resource type="Script" uid="uid://b8lcat8ap5x50" path="res://scripts/reward_choice.gd" id="1_sx6yo"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sx6yo"]
@@ -13,6 +14,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
+theme = ExtResource("1_1lpe5")
 script = ExtResource("1_sx6yo")
 
 [node name="Button" type="Button" parent="."]
