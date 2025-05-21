@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://brvve6vrgtcnh"]
+[gd_scene load_steps=5 format=3 uid="uid://brvve6vrgtcnh"]
 
 [ext_resource type="Theme" uid="uid://qw5wdr2jerv7" path="res://Art/text/default_font.tres" id="1_1lpe5"]
 [ext_resource type="Script" uid="uid://b8lcat8ap5x50" path="res://scripts/reward_choice.gd" id="1_sx6yo"]
+[ext_resource type="Texture2D" uid="uid://b6oxgd10fqwpj" path="res://Placeholder Art/box.png" id="3_684rx"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sx6yo"]
 bg_color = Color(0.588235, 0.203922, 0.32549, 1)
@@ -28,20 +29,58 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_sx6yo")
 
 [node name="RewardNameLabel" type="Label" parent="."]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -71.5
-offset_top = -78.5
-offset_right = 71.5
-offset_bottom = 78.5
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.08
+anchor_right = 0.9
+anchor_bottom = 0.148
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 30
 text = "Item name"
 horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RewardTypeLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.15
+anchor_right = 0.9
+anchor_bottom = 0.2
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "Spell or Item"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RewardImage" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.25
+anchor_right = 0.9
+anchor_bottom = 0.5
+texture = ExtResource("3_684rx")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="RewardDescriptionLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.55
+anchor_right = 0.9
+anchor_bottom = 0.95
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "Reward Description"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

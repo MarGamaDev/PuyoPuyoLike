@@ -8,6 +8,7 @@ enum REWARD_TYPE{SPELL, ITEM}
 var reward_type : REWARD_TYPE
 var reward_name : String
 var reward_screen : Node
+var reward_description : String
 
 func create_reward(type: REWARD_TYPE, name : String):
 	reward_name = name
