@@ -53,6 +53,12 @@ encounter_array = Array[PackedScene]([ExtResource("8_y8jr2")])
 
 [node name="CombatEffectsManager" parent="." instance=ExtResource("11_w6tjk")]
 
+[node name="PlayerLocation" parent="CombatEffectsManager" index="0"]
+position = Vector2(690, 585)
+
+[node name="EnemyLocation" parent="CombatEffectsManager" index="1"]
+position = Vector2(824, 248)
+
 [node name="PuyoTestUI" parent="." node_paths=PackedStringArray("puyo_manager") instance=ExtResource("5_yt1oa")]
 layer = 2
 visible = false
@@ -73,6 +79,7 @@ script = ExtResource("12_xisnc")
 [connection signal="on_encounter_finished" from="." to="EncounterManager" method="check_for_rest_stop"]
 [connection signal="on_enemy_attack" from="." to="Player" method="receive_attack"]
 [connection signal="on_shield_gained" from="." to="Player" method="add_shield"]
+[connection signal="block_popped" from="PuyoManager" to="CombatEffectsManager" method="create_player_attack_effect"]
 [connection signal="life_lost" from="PuyoManager" to="Player" method="lose_life"]
 [connection signal="on_end_player_turn" from="PuyoManager" to="." method="end_player_turn"]
 [connection signal="player_attack" from="PuyoManager" to="." method="process_player_attack"]
@@ -89,3 +96,5 @@ script = ExtResource("12_xisnc")
 [connection signal="start_game" from="PuyoTestUI" to="." method="start_combat"]
 [connection signal="on_reward_chosen" from="RewardScreen" to="Inventory" method="add_to_inventory"]
 [connection signal="restart_combat_after_reward" from="RewardScreen" to="." method="start_combat"]
+
+[editable path="CombatEffectsManager"]

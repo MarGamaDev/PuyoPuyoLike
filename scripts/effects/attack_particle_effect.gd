@@ -1,13 +1,15 @@
 extends Node2D
 
+class_name AttackParticleEffect
+
 signal on_reaching_path_end()
 
 var effect_sprite_dictionary = {
-	AttackEffect.EFFECT_TYPE.PLAYER_RED : "res://Placeholder Art/puyo_red.png",
-	AttackEffect.EFFECT_TYPE.PLAYER_GREEN : "res://Placeholder Art/puyo_green.png",
-	AttackEffect.EFFECT_TYPE.PLAYER_BLUE : "res://Placeholder Art/puyo_blue.png",
-	AttackEffect.EFFECT_TYPE.PLAYER_YELLOW : "res://Placeholder Art/puyo_yellow.png",
-	AttackEffect.EFFECT_TYPE.JUNK : "res://Placeholder Art/puyo_junk.png"
+	AttackEffectData.EFFECT_TYPE.PLAYER_RED : "res://Placeholder Art/puyo_red.png",
+	AttackEffectData.EFFECT_TYPE.PLAYER_GREEN : "res://Placeholder Art/puyo_green.png",
+	AttackEffectData.EFFECT_TYPE.PLAYER_BLUE : "res://Placeholder Art/puyo_blue.png",
+	AttackEffectData.EFFECT_TYPE.PLAYER_YELLOW : "res://Placeholder Art/puyo_yellow.png",
+	AttackEffectData.EFFECT_TYPE.JUNK : "res://Placeholder Art/puyo_junk.png"
 }
 
 @export var particle_accelleration : float = 1.8
@@ -27,7 +29,7 @@ var start_point : Vector2
 var end_point : Vector2
 var curve_point_offset : float = 0
 var curve_length : float
-var effect_type : AttackEffect.EFFECT_TYPE
+var effect_type : AttackEffectData.EFFECT_TYPE
 
 @onready var particle_effect : GPUParticles2D = $Path2D/PathFollow2D/EndEffect
 
@@ -44,9 +46,9 @@ func _physics_process(delta: float) -> void:
 func _ready():
 	min_curve_angle_degrees = deg_to_rad(min_curve_angle_degrees)
 	max_curve_angle_degrees = deg_to_rad(max_curve_angle_degrees)
-	create_effect(Vector2(0,0), Vector2(300,300), AttackEffect.EFFECT_TYPE.PLAYER_RED)
+	#create_effect(Vector2(0,0), Vector2(300,300), AttackEffectData.EFFECT_TYPE.PLAYER_RED)
 
-func create_effect(start_point : Vector2, end_point : Vector2, effect_type: AttackEffect.EFFECT_TYPE):
+func create_effect(start_point : Vector2, end_point : Vector2, effect_type: AttackEffectData.EFFECT_TYPE):
 	set_points(start_point, end_point)
 	$Path2D/PathFollow2D/ProjectileSprite.texture = load(effect_sprite_dictionary[effect_type])
 	started = true

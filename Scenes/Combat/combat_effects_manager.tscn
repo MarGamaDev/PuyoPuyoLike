@@ -1,8 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://b3qfdcqaqmgk4"]
+[gd_scene load_steps=2 format=3 uid="uid://b3qfdcqaqmgk4"]
 
 [ext_resource type="Script" uid="uid://drfuh0bj7iacw" path="res://scripts/Combat/combat_effects_manager.gd" id="1_wg6ri"]
-[ext_resource type="PackedScene" uid="uid://ft133x0kc47a" path="res://Scenes/effects/text_particle_effect.tscn" id="2_xkvjn"]
 
 [node name="CombatEffectsManager" type="Node2D"]
 script = ExtResource("1_wg6ri")
-damage_text = ExtResource("2_xkvjn")
+
+[node name="PlayerLocation" type="Marker2D" parent="."]
+
+[node name="EnemyLocation" type="Marker2D" parent="."]

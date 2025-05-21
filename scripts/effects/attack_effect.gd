@@ -1,5 +1,5 @@
 extends Resource
-class_name AttackEffect
+class_name AttackEffectData
 
 @export var effect_type : EFFECT_TYPE
 
