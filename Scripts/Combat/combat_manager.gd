@@ -65,7 +65,7 @@ func deregister_enemy(enemy : Enemy) -> void:
 	enemies.erase(enemy)
 	enemy.set_as_selected(false)
 	
-	if enemies.size() > 0 && !selected_enemy:
+	if enemies.size() > 0 && selected_enemy:
 		select_enemy(0)
 	
 	if enemies.size() == 0:
