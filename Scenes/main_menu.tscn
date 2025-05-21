@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://dc6oe7dfg2ice"]
+[gd_scene load_steps=10 format=3 uid="uid://dc6oe7dfg2ice"]
 
 [ext_resource type="Script" uid="uid://c67v5u2go0uhq" path="res://scripts/main_menu.gd" id="1_ce3w2"]
+[ext_resource type="Theme" uid="uid://qw5wdr2jerv7" path="res://Art/text/default_font.tres" id="1_n45e2"]
 [ext_resource type="Texture2D" uid="uid://dxjytwlr6d84f" path="res://Placeholder Art/menu_background.png" id="2_n45e2"]
 [ext_resource type="Texture2D" uid="uid://b6oxgd10fqwpj" path="res://Placeholder Art/box.png" id="3_opfnp"]
 [ext_resource type="Texture2D" uid="uid://d4feofqxnrx5x" path="res://Placeholder Art/logo.png" id="4_cp0ys"]
@@ -222,6 +223,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_n45e2")
 script = ExtResource("1_ce3w2")
 
 [node name="Background" type="TextureRect" parent="."]
@@ -250,9 +252,10 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -612.0
-offset_top = 407.0
-offset_bottom = 1037.0
+offset_left = -660.0
+offset_top = 357.0
+offset_right = -48.0
+offset_bottom = 987.0
 grow_horizontal = 0
 grow_vertical = 2
 texture = ExtResource("3_opfnp")

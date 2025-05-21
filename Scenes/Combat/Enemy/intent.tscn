@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://b8mrbhnjhixwm"]
+[gd_scene load_steps=5 format=3 uid="uid://b8mrbhnjhixwm"]
 
 [ext_resource type="Script" uid="uid://c3eujqyaj8s3t" path="res://scripts/Combat/Enemy/intent_indicator.gd" id="1_ms868"]
+[ext_resource type="Theme" uid="uid://qw5wdr2jerv7" path="res://Art/text/default_font.tres" id="2_3p7sj"]
 [ext_resource type="Texture2D" uid="uid://hvooavpam6hd" path="res://Placeholder Art/puyo_out_of_bounds.png" id="2_71p68"]
 [ext_resource type="Texture2D" uid="uid://b6oxgd10fqwpj" path="res://Placeholder Art/box.png" id="3_71p68"]
 
@@ -17,6 +18,7 @@ size_flags_horizontal = 3
 
 [node name="Damage" type="RichTextLabel" parent="Container"]
 layout_mode = 2
+theme = ExtResource("2_3p7sj")
 text = "3 x 2"
 fit_content = true
 autowrap_mode = 0
@@ -28,6 +30,7 @@ expand_mode = 2
 
 [node name="Turns" type="RichTextLabel" parent="Container"]
 layout_mode = 2
+theme = ExtResource("2_3p7sj")
 text = "2"
 fit_content = true
 autowrap_mode = 0

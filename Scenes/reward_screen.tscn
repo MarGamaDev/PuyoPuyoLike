@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://b2l1xn5ovaca4"]
+[gd_scene load_steps=3 format=3 uid="uid://b2l1xn5ovaca4"]
 
 [ext_resource type="Script" uid="uid://bc2ba6w1wow0y" path="res://scripts/reward_screen.gd" id="1_esjl1"]
+[ext_resource type="Theme" uid="uid://qw5wdr2jerv7" path="res://Art/text/default_font.tres" id="2_ibqxd"]
 
 [node name="RewardScreen" type="CanvasLayer"]
 script = ExtResource("1_esjl1")
@@ -28,6 +29,7 @@ offset_top = 31.0
 offset_right = 151.0
 offset_bottom = 86.0
 grow_horizontal = 2
+theme = ExtResource("2_ibqxd")
 theme_override_font_sizes/font_size = 40
 text = "Choose reward:"
 
