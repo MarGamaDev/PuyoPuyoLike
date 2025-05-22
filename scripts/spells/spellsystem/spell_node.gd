@@ -12,6 +12,9 @@ var recipe_contents : Array[Puyo.PUYO_TYPE] = []
 var recipe_length : int = 0
 var spell_stage_tracker : int = 0
 
+func connect_to_effect_signals():
+	pass
+
 func setup_processor(data : SpellData):
 	pass
 
