@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dwyenrpp7j8b4"]
 
-[ext_resource type="Script" uid="uid://qt78oiw24c77" path="res://Scenes/Combat/sequential_spell.gd" id="1_cmegg"]
+[ext_resource type="Script" uid="uid://qt78oiw24c77" path="res://scripts/spells/sequential_spell.gd" id="1_cmegg"]
 
 [node name="SequentialSpell" type="Node2D"]
 script = ExtResource("1_cmegg")

@@ -2,7 +2,7 @@ extends CanvasLayer
 
 @onready var equipped_spells : Array[SpellContainer] = []
 
-@onready var spell_container_scene : PackedScene = preload("res://Scenes/RewardScreen/spell_container.tscn")
+@onready var spell_container_scene : PackedScene = preload("res://Scenes/spells/spell_container.tscn")
 
 @export var test_spell : SpellData
 @export var test_spell_2 : SpellData
