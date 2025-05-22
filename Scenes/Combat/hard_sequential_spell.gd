@@ -22,16 +22,13 @@ func process_block(grid_node_array : Array, new_chain_length : int):
 	var block_type : Puyo.PUYO_TYPE = grid_node_array[0].puyo.puyo_type
 	var component_type : Puyo.PUYO_TYPE = recipe_contents[chain_stage_tracker]
 	if block_type == component_type:
-		spell_progressed.emit(chain_stage_tracker)
+		on_spell_progressed.emit(chain_stage_tracker)
 		chain_stage_tracker += 1
 		current_chain_match_found_flag = true
 	elif current_component_stage_flag == false and current_chain_match_found_flag == false:
 		spell_reset()
 	
-	if chain_stage_tracker == recipe_length - 1:
-		print("spell complete")
+	if chain_stage_tracker == recipe_length:
+		on_spell_complete.emit()
+		print("hard sequential complete")
 		spell_reset()
-
-func spell_reset():
-	spell_progress_reset.emit()
-	chain_stage_tracker = 0

@@ -106,5 +106,3 @@ texture = ExtResource("5_icpr3")
 stretch_mode = 4
 
 [node name="SpellProcessor" parent="." instance=ExtResource("5_5gp5l")]
-
-[connection signal="spell_progress_reset" from="SpellProcessor" to="." method="reset_recipe_visual"]

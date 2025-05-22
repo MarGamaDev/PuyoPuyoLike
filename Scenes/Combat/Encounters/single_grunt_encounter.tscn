@@ -8,7 +8,7 @@
 
 [sub_resource type="Resource" id="Resource_168qf"]
 script = ExtResource("3_grgyv")
-health = 40
+health = 1000
 sprite = ExtResource("4_qm7eg")
 metadata/_custom_type_script = "uid://c27m7mkd1up2"
 
@@ -16,7 +16,7 @@ metadata/_custom_type_script = "uid://c27m7mkd1up2"
 script = ExtResource("5_5oxqj")
 damage = 4
 number_of_swings = 1
-number_of_turns_till_swing = 6
+number_of_turns_till_swing = 100
 attack_type = 0
 metadata/_custom_type_script = "uid://6v5kccermtmr"
 

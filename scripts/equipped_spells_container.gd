@@ -5,9 +5,13 @@ extends CanvasLayer
 @onready var spell_container_scene : PackedScene = preload("res://Scenes/RewardScreen/spell_container.tscn")
 
 @export var test_spell : SpellData
+@export var test_spell_2 : SpellData
 
 func test_spell_get():
 	return test_spell
+
+func test_spell_2_get():
+	return test_spell_2
 
 func add_spell(spell_data: SpellData):
 	if equipped_spells.size() >= 3:
