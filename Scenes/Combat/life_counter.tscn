@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://chmradttgb2ep"]
+[gd_scene load_steps=10 format=3 uid="uid://chmradttgb2ep"]
 
 [ext_resource type="Script" uid="uid://dyqhrj2sem0vh" path="res://scripts/Combat/life_counter.gd" id="1_v5ltv"]
 [ext_resource type="Texture2D" uid="uid://bdccfbkis3gqq" path="res://Art/Heart_1.png" id="2_nhhke"]
@@ -18,6 +18,80 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Animation" id="Animation_nhhke"]
+resource_name = "Beat"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.266667, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.913043, 0.913043), Vector2(0.953, 0.953), Vector2(0.913043, 0.913043)]
+}
+
+[sub_resource type="Animation" id="Animation_nwvjo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.913043, 0.913043)]
+}
+
+[sub_resource type="Animation" id="Animation_01gpm"]
+resource_name = "new_animation"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Heart2:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.266667, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.913043, 0.913043), Vector2(0.953, 0.953), Vector2(0.913043, 0.913043)]
+}
+
+[sub_resource type="Animation" id="Animation_cf6pw"]
+resource_name = "Beat3"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Heart3:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.266667, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.913043, 0.913043), Vector2(0.953, 0.953), Vector2(0.913043, 0.913043)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nwvjo"]
+_data = {
+&"Beat": SubResource("Animation_nhhke"),
+&"Beat3": SubResource("Animation_cf6pw"),
+&"RESET": SubResource("Animation_nwvjo"),
+&"new_animation": SubResource("Animation_01gpm")
+}
+
 [node name="LifeCounter" type="Node2D"]
 script = ExtResource("1_v5ltv")
 
@@ -35,14 +109,34 @@ scale = Vector2(0.913043, 0.913043)
 sprite_frames = SubResource("SpriteFrames_nhhke")
 animation = &"life_update"
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Heart"]
+libraries = {
+&"": SubResource("AnimationLibrary_nwvjo")
+}
+autoplay = "Beat"
+
 [node name="Heart2" type="AnimatedSprite2D" parent="."]
-position = Vector2(530, 655)
+position = Vector2(526, 653)
 scale = Vector2(0.913043, 0.913043)
 sprite_frames = SubResource("SpriteFrames_nhhke")
 animation = &"life_update"
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="Heart2"]
+root_node = NodePath("../../Heart")
+libraries = {
+&"": SubResource("AnimationLibrary_nwvjo")
+}
+autoplay = "new_animation"
 
 [node name="Heart3" type="AnimatedSprite2D" parent="."]
 position = Vector2(533, 713)
 scale = Vector2(0.913043, 0.913043)
 sprite_frames = SubResource("SpriteFrames_nhhke")
 animation = &"life_update"
+
+[node name="AnimationPlayer3" type="AnimationPlayer" parent="Heart3"]
+root_node = NodePath("../../Heart")
+libraries = {
+&"": SubResource("AnimationLibrary_nwvjo")
+}
+autoplay = "Beat3"
