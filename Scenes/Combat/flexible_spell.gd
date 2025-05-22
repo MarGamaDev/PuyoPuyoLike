@@ -16,16 +16,16 @@ func process_block(grid_node_array : Array, new_chain_length : int):
 	for i in range (0, unchecked_components.size()):
 		if unchecked_components[i] == block_type:
 			on_spell_progressed.emit(i)
-			chain_stage_tracker += 1
+			spell_stage_tracker += 1
 			unchecked_components[i] == Puyo.PUYO_TYPE.UNDEFINED
 			break
 	
-	if chain_stage_tracker == recipe_length:
+	if spell_stage_tracker == recipe_length:
 		on_spell_complete.emit()
 		print("flexible complete")
 		spell_reset()
 
 func spell_reset():
 	on_spell_progress_reset.emit()
-	chain_stage_tracker = 0
+	spell_stage_tracker = 0
 	unchecked_components = recipe_contents
