@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cqw1jv0baovrt"]
+[gd_scene load_steps=15 format=3 uid="uid://cqw1jv0baovrt"]
 
 [ext_resource type="Script" uid="uid://dub4mt75gbejk" path="res://scripts/PuyoPuyo/puyo.gd" id="1_jkgo8"]
 [ext_resource type="Texture2D" uid="uid://hvooavpam6hd" path="res://Placeholder Art/puyo_out_of_bounds.png" id="2_2smv1"]
@@ -95,6 +95,44 @@ _data = {
 &"RESET": SubResource("Animation_2smv1")
 }
 
+[sub_resource type="Animation" id="Animation_k3jis"]
+resource_name = "Blink"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_3dqut"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_k14li"]
+_data = {
+&"Blink": SubResource("Animation_k3jis"),
+&"RESET": SubResource("Animation_3dqut")
+}
+
 [node name="Puyo" type="Node2D"]
 script = ExtResource("1_jkgo8")
 
@@ -107,4 +145,9 @@ centered = false
 [node name="DropAnimation" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_2smv1")
+}
+
+[node name="BlinkAnimation" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_k14li")
 }

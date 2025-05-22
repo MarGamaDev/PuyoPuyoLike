@@ -110,3 +110,6 @@ func trigger_pop_effect():
 func pop():
 	pop_trigger.emit(puyo_type)
 	queue_free()
+
+func play_blink():
+	$BlinkAnimation.play("Blink")

@@ -369,6 +369,10 @@ func check_board(puyo_groups : Array) -> bool:
 		return false
 	else:
 		chain_length += 1
+		for i in puyo_groups:
+			for j in i:
+				j.puyo.play_blink()
+		await get_tree().create_timer(0.5).timeout
 		chain_stage_pop.emit(puyo_groups, chain_length)
 		down_tick()
 		await down_check_finished
