@@ -73,7 +73,7 @@ func deregister_enemy(enemy : Enemy) -> void:
 		on_encounter_finished.emit()
 
 func trigger_counter(counter_amount: int) -> void:
-	on_aoe_damage_dealt.emit(counter_amount)
+	on_targeted_damage_dealt.emit(counter_amount)
 
 func lose_player_life() -> void:
 	on_player_life_lost.emit()
