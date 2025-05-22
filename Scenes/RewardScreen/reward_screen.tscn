@@ -1,10 +1,30 @@
-[gd_scene load_steps=3 format=3 uid="uid://b2l1xn5ovaca4"]
+[gd_scene load_steps=8 format=3 uid="uid://b2l1xn5ovaca4"]
 
 [ext_resource type="Script" uid="uid://bc2ba6w1wow0y" path="res://scripts/reward_screen.gd" id="1_esjl1"]
 [ext_resource type="Theme" uid="uid://qw5wdr2jerv7" path="res://Art/text/default_font.tres" id="2_ibqxd"]
+[ext_resource type="Texture2D" uid="uid://b6oxgd10fqwpj" path="res://Placeholder Art/box.png" id="2_wflxg"]
+[ext_resource type="Script" uid="uid://bg0ln3ahjwmnc" path="res://scripts/Reward.gd" id="3_d5kbg"]
+[ext_resource type="Script" uid="uid://dnec0n0x4urar" path="res://scripts/Data/spell_data.gd" id="4_d5kbg"]
+
+[sub_resource type="Resource" id="Resource_2378g"]
+script = ExtResource("4_d5kbg")
+spell_name = "mynameisspell"
+recipe_type = 0
+recipe_contents = Array[int]([2, 2, 4])
+metadata/_custom_type_script = "uid://dnec0n0x4urar"
+
+[sub_resource type="Resource" id="Resource_ujywm"]
+script = ExtResource("3_d5kbg")
+reward_type = 0
+reward_name = "test item"
+reward_description = "this reward is super cool"
+item_texture = ExtResource("2_wflxg")
+spell_data = SubResource("Resource_2378g")
+metadata/_custom_type_script = "uid://bg0ln3ahjwmnc"
 
 [node name="RewardScreen" type="CanvasLayer"]
 script = ExtResource("1_esjl1")
+test_reward = SubResource("Resource_ujywm")
 possible_rewards = Array[String](["item 1", "item 2", "item 3", "spell 1", "spell 2", "spell 3"])
 
 [node name="Background" type="ColorRect" parent="."]

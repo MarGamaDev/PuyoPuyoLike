@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dh8e8u4ch381l" path="res://Scenes/Combat/player.tscn" id="5_ut0kg"]
 [ext_resource type="PackedScene" uid="uid://1hbj1uv66mu2" path="res://Scenes/DevTools/puyo_test_ui.tscn" id="5_yt1oa"]
 [ext_resource type="Texture2D" uid="uid://14ejxpdanarl" path="res://Art/combat_frame.png" id="7_3w34b"]
-[ext_resource type="PackedScene" uid="uid://cuj4wx1wkdopv" path="res://Scenes/Combat/Encounters/single_grunt_encounter.tscn" id="8_8xcd4"]
+[ext_resource type="PackedScene" uid="uid://dq858shoyju02" path="res://Scenes/Combat/Encounters/GruntEncounter.tscn" id="8_f8ge6"]
 [ext_resource type="Script" uid="uid://b4hbt6qjcu26g" path="res://scripts/Combat/encounter_manager.gd" id="8_twsak"]
 [ext_resource type="PackedScene" uid="uid://b3qfdcqaqmgk4" path="res://Scenes/Combat/combat_effects_manager.tscn" id="11_w6tjk"]
 [ext_resource type="PackedScene" uid="uid://b2l1xn5ovaca4" path="res://Scenes/RewardScreen/reward_screen.tscn" id="11_xisnc"]
@@ -59,7 +59,7 @@ scale = Vector2(1.09, 1.09)
 [node name="EncounterManager" type="Node2D" parent="."]
 position = Vector2(823, 250)
 script = ExtResource("8_twsak")
-encounter_array = Array[PackedScene]([ExtResource("8_8xcd4")])
+encounter_array = Array[PackedScene]([ExtResource("8_f8ge6")])
 
 [node name="CombatEffectsManager" parent="." instance=ExtResource("11_w6tjk")]
 

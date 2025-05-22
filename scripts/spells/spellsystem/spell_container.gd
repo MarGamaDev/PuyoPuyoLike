@@ -27,12 +27,14 @@ func _ready():
 	custom_minimum_size.y = viewport_height / 9
 	
 
-func create_spell_container(new_spell_data : SpellData) -> void:
+func create_spell_container(new_spell_data : SpellData, reward_flag := false) -> void:
 	spell_data = new_spell_data
 	recipe_contents = spell_data.recipe_contents
 	recipe_length = recipe_contents.size()
 	fill_recipe_container()
-	$SpellProcessor.setup_spell_processor(spell_data)
+	$SpellGraphic/SpellName.text = spell_data.spell_name
+	if reward_flag == false:
+		$SpellProcessor.setup_spell_processor(spell_data)
 
 func fill_recipe_container() -> void:
 	if recipe_length <= 1:
