@@ -25,7 +25,6 @@ var current_encounter : Encounter
 
 func _ready() -> void:
 	start_combat()
-	$EquippedSpellsContainer.add_spell($EquippedSpellsContainer.test_spell_get()[0])
 	#for i in $EquippedSpellsContainer.test_spell_get():
 			#$EquippedSpellsContainer.add_spell(i)
 
@@ -87,9 +86,14 @@ func process_encounter_updated(_encounter: Encounter) -> void:
 func start_combat() -> void:
 	print("combat started")
 	on_combat_started.emit()
+	$EquippedSpellsContainer.add_spell($EquippedSpellsContainer.test_spell_get()[0])
 
 func select_enemy(enemy_index: int) -> void:
 	if selected_enemy:
 		selected_enemy.set_as_selected(false)
 	selected_enemy = enemies[enemy_index]
 	selected_enemy.set_as_selected(true)
+
+func damage_targeted_enemy(damage: int) ->void:
+	on_targeted_damage_dealt.emit(damage)
+	print("fireball test")
