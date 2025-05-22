@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cr6h28cimse0j"]
 
-[ext_resource type="Script" uid="uid://dl316nhq8dxgl" path="res://scripts/spells/flexible_spell.gd" id="1_mfad7"]
+[ext_resource type="Script" uid="uid://dl316nhq8dxgl" path="res://scripts/spells/spellsystem/flexible_spell.gd" id="1_mfad7"]
 
 [node name="FlexibleSpell" type="Node2D"]
 script = ExtResource("1_mfad7")

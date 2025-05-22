@@ -1,18 +1,18 @@
 [gd_scene load_steps=5 format=3 uid="uid://c5du1g626to65"]
 
-[ext_resource type="Script" uid="uid://bgpcdsqgynag" path="res://scripts/spells/equipped_spells_container.gd" id="1_33u70"]
+[ext_resource type="Script" uid="uid://bgpcdsqgynag" path="res://scripts/spells/spellsystem/equipped_spells_container.gd" id="1_33u70"]
 [ext_resource type="Script" uid="uid://dnec0n0x4urar" path="res://scripts/Data/spell_data.gd" id="2_jd77f"]
 
 [sub_resource type="Resource" id="Resource_o7vc1"]
 script = ExtResource("2_jd77f")
-spell_name = "test"
-recipe_type = 2
+spell_name = "fireball"
+recipe_type = 0
 recipe_contents = Array[int]([2, 3])
 metadata/_custom_type_script = "uid://dnec0n0x4urar"
 
 [sub_resource type="Resource" id="Resource_jd77f"]
 script = ExtResource("2_jd77f")
-spell_name = "test2"
+spell_name = ""
 recipe_type = 1
 recipe_contents = Array[int]([3, 5])
 metadata/_custom_type_script = "uid://dnec0n0x4urar"

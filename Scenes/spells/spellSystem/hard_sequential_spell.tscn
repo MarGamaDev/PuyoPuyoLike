@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dd84lbeosn4js"]
 
-[ext_resource type="Script" uid="uid://cdcoe870nlqgf" path="res://scripts/spells/hard_sequential_spell.gd" id="1_8x1jp"]
+[ext_resource type="Script" uid="uid://cdcoe870nlqgf" path="res://scripts/spells/spellsystem/hard_sequential_spell.gd" id="1_8x1jp"]
 
 [node name="HardSequentialSpell" type="Node2D"]
 script = ExtResource("1_8x1jp")

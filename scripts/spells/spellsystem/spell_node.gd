@@ -21,3 +21,6 @@ func process_block(grid_node_array : Array, new_chain_length : int):
 func spell_reset():
 	on_spell_progress_reset.emit()
 	spell_stage_tracker = 0
+
+func trigger_spell_effect():
+	pass

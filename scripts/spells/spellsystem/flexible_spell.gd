@@ -22,6 +22,7 @@ func process_block(grid_node_array : Array, new_chain_length : int):
 	
 	if spell_stage_tracker == recipe_length:
 		on_spell_complete.emit()
+		trigger_spell_effect()
 		print("flexible complete")
 		spell_reset()
 
@@ -29,3 +30,6 @@ func spell_reset():
 	on_spell_progress_reset.emit()
 	spell_stage_tracker = 0
 	unchecked_components = recipe_contents
+
+func trigger_spell_effect():
+	pass
