@@ -25,8 +25,8 @@ var current_encounter : Encounter
 
 func _ready() -> void:
 	start_combat()
-	$EquippedSpellsContainer.add_spell($EquippedSpellsContainer.test_spell_get())
-	$EquippedSpellsContainer.add_spell($EquippedSpellsContainer.test_spell_2_get())
+	for i in $EquippedSpellsContainer.test_spell_get():
+			$EquippedSpellsContainer.add_spell(i)
 
 func _physics_process(_delta: float) -> void:
 	if Input.is_action_just_pressed("switch_target") && selected_enemy:

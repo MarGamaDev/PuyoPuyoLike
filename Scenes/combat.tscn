@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://d3naap4gnytxh"]
+[gd_scene load_steps=17 format=3 uid="uid://d3naap4gnytxh"]
 
 [ext_resource type="Script" uid="uid://b0h0tx4msve02" path="res://scripts/Combat/combat_manager.gd" id="1_4ln8h"]
 [ext_resource type="Resource" uid="uid://b01ucdggd8ykf" path="res://Resources/puyo_value_data.tres" id="2_xisnc"]
@@ -14,6 +14,14 @@
 [ext_resource type="Script" uid="uid://bc5i4sjlttc78" path="res://scripts/Inventory.gd" id="12_xisnc"]
 [ext_resource type="PackedScene" uid="uid://chmradttgb2ep" path="res://Scenes/Combat/life_counter.tscn" id="13_y8jr2"]
 [ext_resource type="PackedScene" uid="uid://c5du1g626to65" path="res://Scenes/RewardScreen/equipped_spells_container.tscn" id="14_8xcd4"]
+[ext_resource type="Script" uid="uid://dnec0n0x4urar" path="res://scripts/Data/spell_data.gd" id="15_f8ge6"]
+
+[sub_resource type="Resource" id="Resource_50454"]
+script = ExtResource("15_f8ge6")
+spell_name = ""
+recipe_type = 0
+recipe_contents = Array[int]([3, 4])
+metadata/_custom_type_script = "uid://dnec0n0x4urar"
 
 [node name="Combat" type="Node2D"]
 script = ExtResource("1_4ln8h")
@@ -76,6 +84,7 @@ script = ExtResource("12_xisnc")
 [node name="LifeCounter" parent="." instance=ExtResource("13_y8jr2")]
 
 [node name="EquippedSpellsContainer" parent="." instance=ExtResource("14_8xcd4")]
+test_spell_3 = SubResource("Resource_50454")
 
 [connection signal="on_combat_started" from="." to="PuyoManager" method="reset_game"]
 [connection signal="on_combat_started" from="." to="EncounterManager" method="load_next_encounter"]

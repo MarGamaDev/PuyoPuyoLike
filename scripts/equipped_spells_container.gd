@@ -6,12 +6,11 @@ extends CanvasLayer
 
 @export var test_spell : SpellData
 @export var test_spell_2 : SpellData
+@export var test_spell_3 :SpellData
 
+@onready var test_spells = [test_spell, test_spell_2, test_spell_3]
 func test_spell_get():
-	return test_spell
-
-func test_spell_2_get():
-	return test_spell_2
+	return test_spells
 
 func add_spell(spell_data: SpellData):
 	if equipped_spells.size() >= 3:

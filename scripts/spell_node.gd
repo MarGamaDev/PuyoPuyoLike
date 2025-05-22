@@ -21,4 +21,3 @@ func process_block(grid_node_array : Array, new_chain_length : int):
 func spell_reset():
 	on_spell_progress_reset.emit()
 	chain_stage_tracker = 0
-	print("reset")

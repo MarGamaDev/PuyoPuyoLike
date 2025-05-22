@@ -26,6 +26,9 @@ func setup_spell_processor(data : SpellData, type : SpellData.RECIPE_TYPE, conte
 		SpellData.RECIPE_TYPE.SEQUENTIAL:
 			spell_node = load("res://Scenes/Combat/sequential_spell.tscn").instantiate()
 			add_child(spell_node)
+		SpellData.RECIPE_TYPE.FLEXIBLE:
+			spell_node = load("res://Scenes/Combat/flexible_spell.tscn").instantiate()
+			add_child(spell_node)
 	
 	spell_node.setup_processor(spell_data)
 	spell_node.on_spell_progressed.connect(progress_spell)
