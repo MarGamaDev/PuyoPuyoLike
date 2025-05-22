@@ -4,10 +4,10 @@ class_name SpellContainer
 
 var recipe_puyo_sprite_dictionary = {
 	Puyo.PUYO_TYPE.JUNK : "res://Placeholder Art/puyo_junk.png",
-	Puyo.PUYO_TYPE.RED : "res://Placeholder Art/puyo_red.png",
-	Puyo.PUYO_TYPE.GREEN : "res://Placeholder Art/puyo_green.png",
-	Puyo.PUYO_TYPE.BLUE : "res://Placeholder Art/puyo_blue.png",
-	Puyo.PUYO_TYPE.YELLOW : "res://Placeholder Art/puyo_yellow.png",
+	Puyo.PUYO_TYPE.RED : "res://Art/Puyo_Red.png",
+	Puyo.PUYO_TYPE.GREEN : "res://Art/Puyo_Green.png",
+	Puyo.PUYO_TYPE.BLUE : "res://Art/Puyo_Blue.png",
+	Puyo.PUYO_TYPE.YELLOW : "res://Art/Puyo_Yellow.png",
 	#Puyo.PUYO_TYPE.RAINBOW : "res://Placeholder Art/puyo_rainbow.png"
 }
 

@@ -5,10 +5,10 @@ class_name AttackParticleEffect
 signal on_reaching_path_end()
 
 var effect_sprite_dictionary = {
-	AttackEffectData.EFFECT_TYPE.PLAYER_RED : "res://Placeholder Art/puyo_red.png",
-	AttackEffectData.EFFECT_TYPE.PLAYER_GREEN : "res://Placeholder Art/puyo_green.png",
-	AttackEffectData.EFFECT_TYPE.PLAYER_BLUE : "res://Placeholder Art/puyo_blue.png",
-	AttackEffectData.EFFECT_TYPE.PLAYER_YELLOW : "res://Placeholder Art/puyo_yellow.png",
+	AttackEffectData.EFFECT_TYPE.PLAYER_RED : "res://Art/Puyo_Red.png",
+	AttackEffectData.EFFECT_TYPE.PLAYER_GREEN : "res://Art/Puyo_Green.png",
+	AttackEffectData.EFFECT_TYPE.PLAYER_BLUE : "res://Art/Puyo_Blue.png",
+	AttackEffectData.EFFECT_TYPE.PLAYER_YELLOW : "res://Art/Puyo_Yellow.png",
 	AttackEffectData.EFFECT_TYPE.JUNK : "res://Placeholder Art/puyo_junk.png"
 }
 

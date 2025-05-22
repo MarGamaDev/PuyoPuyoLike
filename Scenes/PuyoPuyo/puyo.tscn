@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" uid="uid://dub4mt75gbejk" path="res://scripts/PuyoPuyo/puyo.gd" id="1_jkgo8"]
 [ext_resource type="Texture2D" uid="uid://hvooavpam6hd" path="res://Placeholder Art/puyo_out_of_bounds.png" id="2_2smv1"]
-[ext_resource type="Texture2D" uid="uid://b480cnlhxsl2q" path="res://Placeholder Art/puyo_blue.png" id="2_fnkyh"]
 [ext_resource type="Texture2D" uid="uid://cout30nmga87f" path="res://Placeholder Art/puyo_junk.png" id="2_ua2oy"]
-[ext_resource type="Texture2D" uid="uid://cicm8lqfv40wv" path="res://Placeholder Art/puyo_green.png" id="3_ua2oy"]
-[ext_resource type="Texture2D" uid="uid://bugmlybu50rhd" path="res://Placeholder Art/puyo_red.png" id="4_2smv1"]
-[ext_resource type="Texture2D" uid="uid://ba40mup5egqp2" path="res://Placeholder Art/puyo_yellow.png" id="5_ah1di"]
+[ext_resource type="Texture2D" uid="uid://bh56uxpmn85gw" path="res://Art/Puyo_Blue.png" id="4_k3jis"]
+[ext_resource type="Texture2D" uid="uid://ccfdjr3e4b7wc" path="res://Art/Puyo_Green.png" id="5_3dqut"]
+[ext_resource type="Texture2D" uid="uid://dehy5ghfyon84" path="res://Art/Puyo_Red.png" id="6_k14li"]
+[ext_resource type="Texture2D" uid="uid://dkpsalijf0ray" path="res://Art/Puyo_Yellow.png" id="7_1ygd3"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_x7fry"]
 animations = [{
@@ -18,16 +18,16 @@ animations = [{
 "texture": ExtResource("2_ua2oy")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_fnkyh")
+"texture": ExtResource("4_k3jis")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_ua2oy")
+"texture": ExtResource("5_3dqut")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_2smv1")
+"texture": ExtResource("6_k14li")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_ah1di")
+"texture": ExtResource("7_1ygd3")
 }],
 "loop": true,
 "name": &"default",
