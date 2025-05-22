@@ -1,9 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://c5du1g626to65"]
+[gd_scene load_steps=4 format=3 uid="uid://c5du1g626to65"]
 
 [ext_resource type="Script" uid="uid://bgpcdsqgynag" path="res://scripts/equipped_spells_container.gd" id="1_33u70"]
+[ext_resource type="Script" uid="uid://dnec0n0x4urar" path="res://scripts/Data/spell_data.gd" id="2_jd77f"]
+
+[sub_resource type="Resource" id="Resource_o7vc1"]
+script = ExtResource("2_jd77f")
+spell_name = "test"
+recipe_type = 2
+recipe_contents = Array[int]([2, 3])
+metadata/_custom_type_script = "uid://dnec0n0x4urar"
 
 [node name="EquippedSpellsContainer" type="CanvasLayer"]
 script = ExtResource("1_33u70")
+test_spell = SubResource("Resource_o7vc1")
 
 [node name="TestColorRect" type="ColorRect" parent="."]
 visible = false

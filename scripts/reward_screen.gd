@@ -30,7 +30,7 @@ func generate_pool(new_pool_size := reward_choice_pool_size):
 			var new_item_for_pool = possible_rewards.pick_random()
 			while reward_check:
 				new_item_for_pool = possible_rewards.pick_random()
-				print(reward_choices.has(new_item_for_pool))
+				#print(reward_choices.has(new_item_for_pool))
 				if !(reward_choices.has(new_item_for_pool)):
 					reward_check = false
 			reward_check = true

@@ -25,6 +25,7 @@ var current_encounter : Encounter
 
 func _ready() -> void:
 	start_combat()
+	$EquippedSpellsContainer.add_spell($EquippedSpellsContainer.test_spell_get())
 
 func _physics_process(_delta: float) -> void:
 	if Input.is_action_just_pressed("switch_target") && selected_enemy:
@@ -54,13 +55,13 @@ func process_enemy_attack(enemy_attack: EnemyAttack) -> void:
 	on_enemy_attack.emit(enemy_attack)
 
 func register_enemy(enemy : Enemy) -> void:
-	print("enemy registered")
+	#print("enemy registered")
 	on_enemy_registered.emit(enemy)
 	enemies.push_back(enemy)
 	enemy.connect("on_attacking_player", process_enemy_attack)
 
 func deregister_enemy(enemy : Enemy) -> void:
-	print("enemy deregistered")
+	#print("enemy deregistered")
 	on_enemy_deregistered.emit(enemy)
 	enemies.erase(enemy)
 	enemy.set_as_selected(false)

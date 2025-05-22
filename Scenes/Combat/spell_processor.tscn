@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c6ernh6g77iek"]
+
+[ext_resource type="Script" uid="uid://8ojltrdu16j3" path="res://Scenes/Combat/spell_processor.gd" id="1_pffkh"]
+
+[node name="SpellProcessor" type="Node2D"]
+script = ExtResource("1_pffkh")

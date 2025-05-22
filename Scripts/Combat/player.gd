@@ -37,7 +37,6 @@ func add_counter(counter_gained: int) -> void:
 func add_shield(shield_gained: int) -> void:
 	on_shield_gain.emit(shield_gained)
 	shield += shield_gained
-	print(shield)
 
 func handle_damage(damage: int) -> int:
 	if damage <= counter:
@@ -46,7 +45,6 @@ func handle_damage(damage: int) -> int:
 		return 0
 	
 	if damage <= shield:
-		print("attack blocked!")
 		on_shield_lost.emit(damage)
 		shield -= damage
 		return 0

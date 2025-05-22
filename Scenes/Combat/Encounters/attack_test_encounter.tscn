@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://carcnx12jkm8f"]
+[gd_scene load_steps=8 format=3 uid="uid://carcnx12jkm8f"]
 
 [ext_resource type="Script" uid="uid://c086ewc7gw56k" path="res://scripts/Combat/encounter.gd" id="1_oe6c0"]
 [ext_resource type="PackedScene" uid="uid://bx5kscp85ypry" path="res://Scenes/Combat/Enemy/enemy.tscn" id="2_o2g0m"]
@@ -12,36 +12,12 @@ health = 20
 sprite = ExtResource("4_jdhbd")
 metadata/_custom_type_script = "uid://c27m7mkd1up2"
 
-[sub_resource type="Resource" id="Resource_cnxer"]
-script = ExtResource("5_o2g0m")
-damage = 4
-number_of_swings = 1
-number_of_turns_till_swing = 3
-attack_type = 0
-metadata/_custom_type_script = "uid://6v5kccermtmr"
-
-[sub_resource type="Resource" id="Resource_jdhbd"]
-script = ExtResource("5_o2g0m")
-damage = 7
-number_of_swings = 1
-number_of_turns_till_swing = 3
-attack_type = 1
-metadata/_custom_type_script = "uid://6v5kccermtmr"
-
-[sub_resource type="Resource" id="Resource_2cf76"]
-script = ExtResource("5_o2g0m")
-damage = 7
-number_of_swings = 1
-number_of_turns_till_swing = 3
-attack_type = 3
-metadata/_custom_type_script = "uid://6v5kccermtmr"
-
 [sub_resource type="Resource" id="Resource_l06n0"]
 script = ExtResource("5_o2g0m")
-damage = 1111
+damage = 1
 number_of_swings = 1
-number_of_turns_till_swing = 3
-attack_type = 9
+number_of_turns_till_swing = 20
+attack_type = 0
 metadata/_custom_type_script = "uid://6v5kccermtmr"
 
 [node name="AttackTestEncounter" type="Node2D"]
@@ -51,4 +27,4 @@ metadata/_custom_type_script = "uid://c086ewc7gw56k"
 [node name="SingleGrunt" parent="." instance=ExtResource("2_o2g0m")]
 attack_behaviour = 1
 enemy_data = SubResource("Resource_o2g0m")
-attacks = Array[ExtResource("5_o2g0m")]([SubResource("Resource_cnxer"), SubResource("Resource_jdhbd"), SubResource("Resource_2cf76"), SubResource("Resource_l06n0"), SubResource("Resource_l06n0"), SubResource("Resource_l06n0"), SubResource("Resource_l06n0")])
+attacks = Array[ExtResource("5_o2g0m")]([SubResource("Resource_l06n0")])

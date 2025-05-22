@@ -1,5 +1,4 @@
 extends Control
-
 class_name SpellContainer
 
 var recipe_puyo_sprite_dictionary = {
@@ -22,6 +21,8 @@ var spell_name : String = "spell name"
 var recipe_length : int = 3
 var recipe_type : SpellData.RECIPE_TYPE = SpellData.RECIPE_TYPE.FLEXIBLE
 var recipe_contents : Array[Puyo.PUYO_TYPE] = []
+var recipe_rects : Array[TextureRect] = []
+var default_sprites : Array[Texture2D] = []
 
 func _ready():
 	var viewport_height = get_viewport_rect().size.y
@@ -35,6 +36,7 @@ func create_spell_container(new_spell_data : SpellData) -> void:
 	recipe_contents = spell_data.recipe_contents
 	recipe_length = recipe_contents.size()
 	fill_recipe_container()
+	$SpellProcessor.setup_spell_processor(new_spell_data, recipe_type, recipe_contents)
 
 func fill_recipe_container() -> void:
 	if recipe_length <= 1:
@@ -57,3 +59,16 @@ func fill_recipe_container() -> void:
 			new_component.texture = connection_texture
 			puyo_component_flag = true
 		$RecipeContainer.add_child(new_component)
+		recipe_rects.append(new_component)
+		default_sprites.append(new_component.texture)
+
+func reset_recipe_visual():
+	for i in range(0, recipe_rects.size()):
+		recipe_rects[i].texture = default_sprites[i]
+
+func process_block(puyo_array : Array, chain_length : int):
+	$SpellProcessor.process_block(puyo_array, chain_length)
+
+func progress_spell_visual(component_to_activate: int):
+	#print("progressed by 1")
+	pass

@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://b82f1h5dy54rx"]
+[gd_scene load_steps=6 format=3 uid="uid://b82f1h5dy54rx"]
 
 [ext_resource type="Script" uid="uid://b7nfsk8l6n7aj" path="res://scripts/spell_container.gd" id="1_1ltwl"]
 [ext_resource type="Theme" uid="uid://qw5wdr2jerv7" path="res://Art/text/default_font.tres" id="2_wnkqr"]
 [ext_resource type="Texture2D" uid="uid://b480cnlhxsl2q" path="res://Placeholder Art/puyo_blue.png" id="4_qgvb3"]
+[ext_resource type="PackedScene" uid="uid://c6ernh6g77iek" path="res://Scenes/Combat/spell_processor.tscn" id="5_5gp5l"]
 [ext_resource type="Texture2D" uid="uid://dg717j8i6xptj" path="res://Placeholder Art/flexible_connection.png" id="5_icpr3"]
 
 [node name="SpellContainer" type="Control"]
@@ -103,3 +104,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("5_icpr3")
 stretch_mode = 4
+
+[node name="SpellProcessor" parent="." instance=ExtResource("5_5gp5l")]
+
+[connection signal="spell_progress_reset" from="SpellProcessor" to="." method="reset_recipe_visual"]
