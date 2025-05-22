@@ -91,6 +91,7 @@ test_spell_3 = SubResource("Resource_50454")
 [connection signal="on_counter_gained" from="." to="Player" method="add_counter"]
 [connection signal="on_encounter_finished" from="." to="EncounterManager" method="check_for_rest_stop"]
 [connection signal="on_enemy_attack" from="." to="Player" method="receive_attack"]
+[connection signal="on_player_turn_taken" from="." to="EquippedSpellsContainer" method="on_player_turn_taken_spell_reset"]
 [connection signal="on_shield_gained" from="." to="Player" method="add_shield"]
 [connection signal="block_popped" from="PuyoManager" to="CombatEffectsManager" method="create_player_attack_effect"]
 [connection signal="block_popped" from="PuyoManager" to="EquippedSpellsContainer" method="block_spell_check"]

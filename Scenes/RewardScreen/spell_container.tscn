@@ -1,10 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://b82f1h5dy54rx"]
+[gd_scene load_steps=8 format=3 uid="uid://b82f1h5dy54rx"]
 
 [ext_resource type="Script" uid="uid://b7nfsk8l6n7aj" path="res://scripts/spell_container.gd" id="1_1ltwl"]
 [ext_resource type="Theme" uid="uid://qw5wdr2jerv7" path="res://Art/text/default_font.tres" id="2_wnkqr"]
 [ext_resource type="Texture2D" uid="uid://b480cnlhxsl2q" path="res://Placeholder Art/puyo_blue.png" id="4_qgvb3"]
 [ext_resource type="PackedScene" uid="uid://c6ernh6g77iek" path="res://Scenes/Combat/spell_processor.tscn" id="5_5gp5l"]
 [ext_resource type="Texture2D" uid="uid://dg717j8i6xptj" path="res://Placeholder Art/flexible_connection.png" id="5_icpr3"]
+[ext_resource type="Texture2D" uid="uid://dqohymee1bv55" path="res://Placeholder Art/puyo_pop.png" id="6_5gp5l"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_biiyc"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
 
 [node name="SpellContainer" type="Control"]
 layout_mode = 3
@@ -106,3 +111,15 @@ texture = ExtResource("5_icpr3")
 stretch_mode = 4
 
 [node name="SpellProcessor" parent="." instance=ExtResource("5_5gp5l")]
+
+[node name="TestParticleEffect" type="GPUParticles2D" parent="."]
+position = Vector2(281, 52)
+emitting = false
+amount = 1
+texture = ExtResource("6_5gp5l")
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_biiyc")
+
+[connection signal="on_spell_complete" from="SpellProcessor" to="." method="on_spell_complete"]
+[connection signal="on_spell_progress_reset" from="SpellProcessor" to="." method="reset_recipe_visual"]
+[connection signal="on_spell_progressed" from="SpellProcessor" to="." method="progress_spell_visual"]

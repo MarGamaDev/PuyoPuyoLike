@@ -13,10 +13,10 @@ var spell_node : SpellNode
 
 var chain_stage_tracker : int = 0
 
-func setup_spell_processor(data : SpellData, type : SpellData.RECIPE_TYPE, contents : Array[Puyo.PUYO_TYPE]):
+func setup_spell_processor(data : SpellData):
 	spell_data = data
-	recipe_type = type
-	recipe_contents = contents
+	recipe_type = spell_data.recipe_type
+	recipe_contents = spell_data.recipe_contents
 	recipe_length = recipe_contents.size()
 	
 	match  recipe_type:
@@ -53,7 +53,7 @@ func progress_spell(chain_stage: int):
 func reset_spell():
 	on_spell_progress_reset.emit()
 	chain_stage_tracker = 0
-	#print("spell reset")
+	print("spell reset")
 
 func complete_spell():
 	on_spell_complete.emit()

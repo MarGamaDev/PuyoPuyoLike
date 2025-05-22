@@ -29,3 +29,7 @@ func block_spell_check(puyo_array : Array, chain_length : int):
 	
 	for i in equipped_spells:
 		i.process_block(puyo_array, chain_length)
+
+func on_player_turn_taken_spell_reset():
+	for i in equipped_spells:
+		i.reset_recipe_visual()

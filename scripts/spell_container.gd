@@ -17,9 +17,7 @@ var recipe_type_sprite_dictionary = {
 } 
 
 var spell_data : SpellData
-var spell_name : String = "spell name"
 var recipe_length : int = 3
-var recipe_type : SpellData.RECIPE_TYPE = SpellData.RECIPE_TYPE.FLEXIBLE
 var recipe_contents : Array[Puyo.PUYO_TYPE] = []
 var recipe_rects : Array[TextureRect] = []
 var default_sprites : Array[Texture2D] = []
@@ -31,12 +29,10 @@ func _ready():
 
 func create_spell_container(new_spell_data : SpellData) -> void:
 	spell_data = new_spell_data
-	spell_name = spell_data.spell_name
-	recipe_type = spell_data.recipe_type
 	recipe_contents = spell_data.recipe_contents
 	recipe_length = recipe_contents.size()
 	fill_recipe_container()
-	$SpellProcessor.setup_spell_processor(new_spell_data, recipe_type, recipe_contents)
+	$SpellProcessor.setup_spell_processor(spell_data)
 
 func fill_recipe_container() -> void:
 	if recipe_length <= 1:
@@ -44,7 +40,7 @@ func fill_recipe_container() -> void:
 	
 	var connections_needed : int = recipe_length - 1
 	var puyo_component_flag : bool = true
-	var connection_texture : Texture2D = load(recipe_type_sprite_dictionary[recipe_type])
+	var connection_texture : Texture2D = load(recipe_type_sprite_dictionary[spell_data.recipe_type])
 	
 	for i in range(0, connections_needed + recipe_length):
 		var new_component : TextureRect = TextureRect.new()
@@ -70,5 +66,14 @@ func process_block(puyo_array : Array, chain_length : int):
 	$SpellProcessor.process_block(puyo_array, chain_length)
 
 func progress_spell_visual(component_to_activate: int):
-	#print("progressed by 1")
 	pass
+	#stretch for now
+	#recipe_rects[component_to_activate].texture = load(recipe_puyo_sprite_dictionary[Puyo.PUYO_TYPE.JUNK])
+
+func on_new_player_turn_taken():
+	reset_recipe_visual()
+	$SpellProcessor.reset_spell()
+
+func on_spell_complete() -> void:
+	reset_recipe_visual()
+	$TestParticleEffect.restart()
