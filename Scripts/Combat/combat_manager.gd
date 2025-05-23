@@ -99,3 +99,10 @@ func damage_targeted_enemy(damage: int) ->void:
 
 func damage_all_enemies(damage : int) -> void:
 	on_aoe_damage_dealt.emit(damage)
+
+func gain_shield(shield: int):
+	on_shield_gained.emit(shield)
+
+func gain_counter(counter : int):
+	print("coutner gained : %s" % counter)
+	on_counter_gained.emit(counter)

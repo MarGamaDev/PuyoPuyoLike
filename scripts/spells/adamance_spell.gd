@@ -1,12 +1,18 @@
 extends SequentialSpell
 
 #triggers all puyos along the walls and floor and ceiling
-signal simulate_player_attack(attack : PlayerAttack)
+signal deal_aoe_damage(damage : int)
+signal deal_target_damage(damage : int)
+signal gain_shield(shield : int)
+signal gain_counter(counter : int)
 
 @onready var grid_manager : GridManager = puyo_manager.grid_manager
 var pop_flag = false
 func connect_to_effect_signals():
-	simulate_player_attack.connect(combat_manager.process_player_attack)
+	deal_aoe_damage.connect(combat_manager.damage_all_enemies)
+	deal_target_damage.connect(combat_manager.damage_targeted_enemy)
+	gain_shield.connect(combat_manager.gain_shield)
+	gain_counter.connect(combat_manager.gain_counter)
 	puyo_manager.on_chain_ending.connect(wall_pop)
 	pass
 
@@ -40,5 +46,7 @@ func wall_pop(chain_length : int):
 							red_count += 1
 						Puyo.PUYO_TYPE.GREEN:
 							green_count += 1
-	print(blue_count + yellow_count + red_count + green_count)
-	push_error("FIX THIS TO ATTACK")
+	deal_aoe_damage.emit(green_count * chain_length)
+	deal_target_damage.emit(red_count * chain_length)
+	gain_shield.emit(blue_count * chain_length)
+	gain_counter.emit(yellow_count * chain_length)
