@@ -61,13 +61,8 @@ func reset_recipe_visual():
 	for i in range(0, recipe_rects.size()):
 		recipe_rects[i].texture = default_sprites[i]
 
-#func process_block(puyo_array : Array, chain_length : int):
-	#$SpellProcessor.process_block(puyo_array, chain_length)
-
 func progress_spell_visual(component_to_activate: int):
-	pass
-	#stretch for now
-	#recipe_rects[component_to_activate].texture = load(recipe_puyo_sprite_dictionary[Puyo.PUYO_TYPE.JUNK])
+	recipe_rects[component_to_activate].texture = load(recipe_puyo_sprite_dictionary[Puyo.PUYO_TYPE.JUNK])
 
 func on_new_player_turn_taken():
 	reset_recipe_visual()

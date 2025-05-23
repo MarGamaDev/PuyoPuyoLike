@@ -88,6 +88,7 @@ script = ExtResource("12_xisnc")
 [connection signal="block_popped" from="PuyoManager" to="SpellManager" method="block_spell_check"]
 [connection signal="life_lost" from="PuyoManager" to="Player" method="lose_life"]
 [connection signal="on_end_player_turn" from="PuyoManager" to="." method="end_player_turn"]
+[connection signal="on_player_created" from="PuyoManager" to="SpellManager" method="reset_spell_visuals"]
 [connection signal="player_attack" from="PuyoManager" to="." method="process_player_attack"]
 [connection signal="on_counter_triggered" from="Player" to="." method="trigger_counter"]
 [connection signal="on_life_gain" from="Player" to="LifeCounter" method="gain_a_life"]

@@ -10,4 +10,5 @@ script = ExtResource("1_sea3v")
 
 [connection signal="chain_stage_pop" from="GridManager" to="." method="chain_stage_popped"]
 [connection signal="life_loss" from="GridManager" to="." method="lose_life"]
+[connection signal="player_created" from="GridManager" to="." method="_on_player_created"]
 [connection signal="turn_tick" from="GridManager" to="." method="end_player_turn"]

@@ -5,12 +5,6 @@ var current_component_stage : int = 0
 var current_component_stage_flag : bool = false
 var current_chain_match_found_flag : bool = false
 
-func setup_spell_node(data : SpellData):
-	recipe_type = SpellData.RECIPE_TYPE.HARD_SEQUENTIAL
-	spell_data = data
-	recipe_contents = spell_data.recipe_contents
-	recipe_length = recipe_contents.size()
-
 func check_block_against_recipe(grid_node_array : Array, new_chain_length : int):
 	if current_component_stage == new_chain_length:
 		current_component_stage_flag = true
