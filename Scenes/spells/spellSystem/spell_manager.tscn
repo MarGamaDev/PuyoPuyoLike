@@ -1,20 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://br4sb0wwxwr2o"]
+[gd_scene load_steps=4 format=3 uid="uid://br4sb0wwxwr2o"]
 
 [ext_resource type="Script" uid="uid://62suwvfwb2yg" path="res://scripts/spells/spellsystem/spell_manager.gd" id="1_l1yqq"]
 [ext_resource type="PackedScene" uid="uid://c5du1g626to65" path="res://Scenes/RewardScreen/equipped_spells_container.tscn" id="2_peavi"]
-[ext_resource type="Script" uid="uid://dnec0n0x4urar" path="res://scripts/Data/spell_data.gd" id="2_xoggv"]
-
-[sub_resource type="Resource" id="Resource_xoggv"]
-script = ExtResource("2_xoggv")
-spell_name = "fireball"
-spell_description = "asdfas"
-recipe_type = 0
-recipe_contents = Array[int]([3, 2, 4])
-metadata/_custom_type_script = "uid://dnec0n0x4urar"
+[ext_resource type="Resource" uid="uid://cirwldmyumrkl" path="res://Resources/SpellData/vindication.tres" id="2_xoggv"]
 
 [node name="SpellManager" type="Node2D"]
 script = ExtResource("1_l1yqq")
-test_spell = SubResource("Resource_xoggv")
+test_spell = ExtResource("2_xoggv")
 
 [node name="EquippedSpellsContainer" parent="." instance=ExtResource("2_peavi")]
 

@@ -13,7 +13,9 @@ var recipe_length : int = 0
 var spell_stage_tracker : int = 0
 var chain_stage_tracker : int = 0
 
-@onready var combat_manager = get_node("/root/Combat")
+@onready var combat_manager : CombatManager = get_node("/root/Combat")
+@onready var puyo_manager : PuyoManager = get_node("/root/Combat/PuyoManager")
+@onready var player : Player = get_node("/root/Combat/Player")
 
 ##go through the children to see what i can add super to
 func connect_to_effect_signals():
@@ -51,6 +53,7 @@ func trigger_spell_effect():
 	pass
 
 func progress_spell(chain_stage: int):
+	print(chain_stage)
 	on_spell_progressed.emit(chain_stage)
 	chain_stage_tracker += 1
 

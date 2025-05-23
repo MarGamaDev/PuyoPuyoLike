@@ -1,10 +1,12 @@
 extends Node2D
+class_name PuyoManager
 
 signal player_attack(PlayerAttack)
 signal on_end_player_turn()
 signal life_lost
 signal block_popped(popped_puyos : Array, chain_value : int)
 signal on_player_created
+signal on_chain_ending(max_chain : int)
 
 func end_player_turn() -> void:
 	await $GridManager.down_tick()
@@ -42,3 +44,6 @@ func process_damage_taken(damage_taken: int, attack_type: EnemyAttack.EnemyAttac
 
 func _on_player_created() -> void:
 	on_player_created.emit()
+
+func _on_grid_manager_chain_ended(max_chain: int) -> void:
+	on_chain_ending.emit(max_chain)

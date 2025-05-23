@@ -13,15 +13,19 @@ func setup_spell_node(data : SpellData):
 
 func check_block_against_recipe(grid_node_array : Array, new_chain_length : int):
 	var block_type : Puyo.PUYO_TYPE = grid_node_array[0].puyo.puyo_type
-	var remove_flag
 	for i in range (0, unchecked_components.size()):
 		if unchecked_components[i] == block_type:
 			spell_stage_tracker = i
 			progress_spell(i)
-			unchecked_components.remove_at(i)
+			unchecked_components[i] = Puyo.PUYO_TYPE.UNDEFINED
 			break
 	
-	if spell_stage_tracker == recipe_length:
+	var spell_check = true
+	for i in range(0, unchecked_components.size()):
+		if unchecked_components[i] != Puyo.PUYO_TYPE.UNDEFINED:
+			spell_check = false
+	
+	if spell_stage_tracker == recipe_length or unchecked_components.is_empty() or spell_check:
 		complete_spell()
 
 func spell_reset():

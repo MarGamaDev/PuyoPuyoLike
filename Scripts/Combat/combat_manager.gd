@@ -95,5 +95,7 @@ func select_enemy(enemy_index: int) -> void:
 	selected_enemy.set_as_selected(true)
 
 func damage_targeted_enemy(damage: int) ->void:
-	print("damage test")
 	on_targeted_damage_dealt.emit(damage)
+
+func damage_all_enemies(damage : int) -> void:
+	on_aoe_damage_dealt.emit(damage)

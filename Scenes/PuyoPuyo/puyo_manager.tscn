@@ -8,6 +8,7 @@ script = ExtResource("1_sea3v")
 
 [node name="GridManager" parent="." instance=ExtResource("2_ajnr3")]
 
+[connection signal="chain_ended" from="GridManager" to="." method="_on_grid_manager_chain_ended"]
 [connection signal="chain_stage_pop" from="GridManager" to="." method="chain_stage_popped"]
 [connection signal="life_loss" from="GridManager" to="." method="lose_life"]
 [connection signal="player_created" from="GridManager" to="." method="_on_player_created"]

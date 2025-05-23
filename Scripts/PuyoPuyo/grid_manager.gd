@@ -11,6 +11,7 @@ signal turn_tick
 signal player_created
 signal queue_event_added(event_type : PuyoQueueEvent)
 signal junk_created
+signal chain_ended(max_chain : int)
 
 #loading the grid nodes to instantiate them
 @onready var grid_node_scene = load("res://Scenes/PuyoPuyo/grid_node.tscn")
@@ -32,7 +33,7 @@ var grid : Array = Array()
 var puyos_to_pop : Array = Array()
 
 var start_flag
-
+var max_chain : int = 0
 #the first puyo in the player array is the 'pivot'
 var player_puyos: Array = Array()
 var player_grid_positions: Array = Array()
@@ -209,6 +210,8 @@ func grid_state_check():
 	if puyo_groups.size() > 0:
 		await check_board(puyo_groups)
 		await grid_state_check()
+		chain_ended.emit(max_chain)
+		max_chain = 0
 	else:
 		if event_queue.size() == 0 and start_flag:
 			event_queue.append(PuyoQueueEvent.create(PuyoQueueEvent.EVENT_TYPE.PLAYER))
@@ -369,6 +372,7 @@ func check_board(puyo_groups : Array) -> bool:
 		return false
 	else:
 		chain_length += 1
+		max_chain += 1
 		for i in puyo_groups:
 			for j in i:
 				j.puyo.play_blink()

@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://djvk5a21ttfof"]
+
+[ext_resource type="Script" uid="uid://kb1tvx2hksp" path="res://scripts/spells/vindication_spell.gd" id="1_wla3d"]
+
+[node name="VindicationSpell" type="Node2D"]
+script = ExtResource("1_wla3d")
+metadata/_custom_type_script = "uid://dl316nhq8dxgl"
