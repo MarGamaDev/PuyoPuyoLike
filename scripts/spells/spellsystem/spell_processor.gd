@@ -14,52 +14,26 @@ var spell_node : SpellNode
 var chain_stage_tracker : int = 0
 
 func setup_spell_processor(data : SpellData):
-	spell_data = data
-	recipe_type = spell_data.recipe_type
-	recipe_contents = spell_data.recipe_contents
-	recipe_length = recipe_contents.size()
-	
-	if spell_data.spell_name == "fireball":
-		spell_node = load(SpellFinder.find_spell(spell_data.spell_name)).instantiate()
-		add_child(spell_node)
-	else:
-		print("bad load")
-		match  recipe_type:
-			SpellData.RECIPE_TYPE.HARD_SEQUENTIAL:
-				spell_node = load("res://Scenes/spells/hard_sequential_spell.tscn").instantiate()
-				add_child(spell_node)
-			SpellData.RECIPE_TYPE.SEQUENTIAL:
-				spell_node = load("res://Scenes/spells/sequential_spell.tscn").instantiate()
-				add_child(spell_node)
-			SpellData.RECIPE_TYPE.FLEXIBLE:
-				spell_node = load("res://Scenes/spells/flexible_spell.tscn").instantiate()
-				add_child(spell_node)
-	
-	spell_node.setup_processor(spell_data)
-	spell_node.on_spell_progressed.connect(progress_spell)
-	spell_node.on_spell_progress_reset.connect(reset_spell)
-	spell_node.on_spell_complete.connect(complete_spell)
+	#spell_node.on_spell_progressed.connect(progress_spell)
+	#spell_node.on_spell_progress_reset.connect(reset_spell)
+	#spell_node.on_spell_complete.connect(complete_spell)
+	pass
 
 func process_block(puyo_array : Array, chain_length : int):
-	if chain_length <= chain_stage_tracker:
-		spell_node.spell_reset()
-		reset_spell()
-	
-	if puyo_array.is_empty():
-		print("empty block")
-		return
-	else:
-		spell_node.process_block(puyo_array, chain_length)
+	pass
 
 func progress_spell(chain_stage: int):
-	on_spell_progressed.emit(chain_stage_tracker)
-	chain_stage_tracker += 1
+	#on_spell_progressed.emit(chain_stage_tracker)
+	#chain_stage_tracker += 1
+	pass
 
 func reset_spell():
-	on_spell_progress_reset.emit()
-	chain_stage_tracker = 0
+	#on_spell_progress_reset.emit()
+	#chain_stage_tracker = 0
+	pass
 
 func complete_spell():
-	on_spell_complete.emit()
-	reset_spell()
-	print("spell complete")
+	#on_spell_complete.emit()
+	#reset_spell()
+	#print("spell complete")
+	pass

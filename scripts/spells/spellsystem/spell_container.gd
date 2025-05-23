@@ -25,16 +25,13 @@ var default_sprites : Array[Texture2D] = []
 func _ready():
 	var viewport_height = get_viewport_rect().size.y
 	custom_minimum_size.y = viewport_height / 9
-	
 
-func create_spell_container(new_spell_data : SpellData, reward_flag := false) -> void:
+func create_spell_container(new_spell_data : SpellData) -> void:
 	spell_data = new_spell_data
 	recipe_contents = spell_data.recipe_contents
 	recipe_length = recipe_contents.size()
 	fill_recipe_container()
 	$SpellGraphic/SpellName.text = spell_data.spell_name
-	if reward_flag == false:
-		$SpellProcessor.setup_spell_processor(spell_data)
 
 func fill_recipe_container() -> void:
 	if recipe_length <= 1:
@@ -64,8 +61,8 @@ func reset_recipe_visual():
 	for i in range(0, recipe_rects.size()):
 		recipe_rects[i].texture = default_sprites[i]
 
-func process_block(puyo_array : Array, chain_length : int):
-	$SpellProcessor.process_block(puyo_array, chain_length)
+#func process_block(puyo_array : Array, chain_length : int):
+	#$SpellProcessor.process_block(puyo_array, chain_length)
 
 func progress_spell_visual(component_to_activate: int):
 	pass
@@ -74,7 +71,7 @@ func progress_spell_visual(component_to_activate: int):
 
 func on_new_player_turn_taken():
 	reset_recipe_visual()
-	$SpellProcessor.reset_spell()
+	#$SpellProcessor.reset_spell()
 
 func on_spell_complete() -> void:
 	reset_recipe_visual()

@@ -25,8 +25,6 @@ var current_encounter : Encounter
 
 func _ready() -> void:
 	start_combat()
-	#for i in $EquippedSpellsContainer.test_spell_get():
-			#$EquippedSpellsContainer.add_spell(i)
 
 func _physics_process(_delta: float) -> void:
 	if Input.is_action_just_pressed("switch_target") && selected_enemy:
@@ -86,7 +84,7 @@ func process_encounter_updated(_encounter: Encounter) -> void:
 func start_combat() -> void:
 	print("combat started")
 	on_combat_started.emit()
-	$EquippedSpellsContainer.add_spell($EquippedSpellsContainer.test_spell_get()[0])
+	$SpellManager.add_spell($SpellManager.test_spell)
 
 func select_enemy(enemy_index: int) -> void:
 	if selected_enemy:
