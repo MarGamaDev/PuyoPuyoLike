@@ -19,11 +19,8 @@ func check_block_against_recipe(grid_node_array : Array, new_chain_length : int)
 			progress_spell(i)
 			unchecked_components.remove_at(i)
 			break
-	print(unchecked_components)
-	print(recipe_contents)
 	
 	if spell_stage_tracker == recipe_length:
-		print("spell complete")
 		complete_spell()
 
 func spell_reset():

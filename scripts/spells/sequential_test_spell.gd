@@ -1,4 +1,4 @@
-extends FlexibleSpell
+extends SequentialSpell
 
 signal fireball_damage(number :int)
 @onready var combat_manager = get_node("/root/Combat")
@@ -8,5 +8,5 @@ func connect_to_effect_signals():
 	fireball_damage.connect(combat_manager.damage_targeted_enemy)
 
 func trigger_spell_effect():
-	print("fireball!")
-	fireball_damage.emit(1)
+	print("sequential test")
+	fireball_damage.emit(10)

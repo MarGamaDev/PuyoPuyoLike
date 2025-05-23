@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://br4sb0wwxwr2o"]
+[gd_scene load_steps=7 format=3 uid="uid://br4sb0wwxwr2o"]
 
 [ext_resource type="Script" uid="uid://62suwvfwb2yg" path="res://scripts/spells/spellsystem/spell_manager.gd" id="1_l1yqq"]
 [ext_resource type="PackedScene" uid="uid://c5du1g626to65" path="res://Scenes/RewardScreen/equipped_spells_container.tscn" id="2_peavi"]
@@ -11,9 +11,25 @@ recipe_type = 0
 recipe_contents = Array[int]([2, 3])
 metadata/_custom_type_script = "uid://dnec0n0x4urar"
 
+[sub_resource type="Resource" id="Resource_xoggv"]
+script = ExtResource("2_xoggv")
+spell_name = "sequential_test"
+recipe_type = 1
+recipe_contents = Array[int]([4, 5])
+metadata/_custom_type_script = "uid://dnec0n0x4urar"
+
+[sub_resource type="Resource" id="Resource_mw5as"]
+script = ExtResource("2_xoggv")
+spell_name = "hard_test"
+recipe_type = 2
+recipe_contents = Array[int]([3, 5])
+metadata/_custom_type_script = "uid://dnec0n0x4urar"
+
 [node name="SpellManager" type="Node2D"]
 script = ExtResource("1_l1yqq")
 test_spell = SubResource("Resource_puv1a")
+test_spell_2 = SubResource("Resource_xoggv")
+test_spell_3 = SubResource("Resource_mw5as")
 
 [node name="EquippedSpellsContainer" parent="." instance=ExtResource("2_peavi")]
 

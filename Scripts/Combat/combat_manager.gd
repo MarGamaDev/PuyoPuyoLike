@@ -85,6 +85,8 @@ func start_combat() -> void:
 	print("combat started")
 	on_combat_started.emit()
 	$SpellManager.add_spell($SpellManager.test_spell)
+	$SpellManager.add_spell($SpellManager.test_spell_2)
+	$SpellManager.add_spell($SpellManager.test_spell_3)
 
 func select_enemy(enemy_index: int) -> void:
 	if selected_enemy:

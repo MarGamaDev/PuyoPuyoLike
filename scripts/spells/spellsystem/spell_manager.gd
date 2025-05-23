@@ -15,21 +15,20 @@ func add_spell(spell_data: SpellData):
 		push_error("todo, add selection window for equipping more spells")
 	else:
 		var spell_node : SpellNode
-		if spell_data.spell_name == "fireball":
-			spell_node = load(SpellFinder.find_spell(spell_data.spell_name)).instantiate()
-			add_child(spell_node)
-		else:
-			print("bad load")
-			match  spell_data.recipe_type:
-				SpellData.RECIPE_TYPE.HARD_SEQUENTIAL:
-					spell_node = load("res://Scenes/spells/hard_sequential_spell.tscn").instantiate()
-					add_child(spell_node)
-				SpellData.RECIPE_TYPE.SEQUENTIAL:
-					spell_node = load("res://Scenes/spells/sequential_spell.tscn").instantiate()
-					add_child(spell_node)
-				SpellData.RECIPE_TYPE.FLEXIBLE:
-					spell_node = load("res://Scenes/spells/flexible_spell.tscn").instantiate()
-					add_child(spell_node)
+		spell_node = load(SpellFinder.find_spell(spell_data.spell_name)).instantiate()
+		add_child(spell_node)
+		#else:
+			#print("bad load")
+			#match  spell_data.recipe_type:
+				#SpellData.RECIPE_TYPE.HARD_SEQUENTIAL:
+					#spell_node = load("res://Scenes/spells/hard_sequential_spell.tscn").instantiate()
+					#add_child(spell_node)
+				#SpellData.RECIPE_TYPE.SEQUENTIAL:
+					#spell_node = load("res://Scenes/spells/sequential_spell.tscn").instantiate()
+					#add_child(spell_node)
+				#SpellData.RECIPE_TYPE.FLEXIBLE:
+					#spell_node = load("res://Scenes/spells/flexible_spell.tscn").instantiate()
+					#add_child(spell_node)
 		
 		spell_node.setup_spell_node(spell_data)
 		equipped_spells.append(spell_node)
