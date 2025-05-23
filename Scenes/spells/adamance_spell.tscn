@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bs3t7yad2176g"]
+
+[ext_resource type="Script" uid="uid://ksbu6isj475r" path="res://scripts/spells/adamance_spell.gd" id="1_l2s6a"]
+
+[node name="AdamanceSpell" type="Node2D"]
+script = ExtResource("1_l2s6a")
+metadata/_custom_type_script = "uid://qt78oiw24c77"

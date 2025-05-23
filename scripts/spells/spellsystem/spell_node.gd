@@ -53,7 +53,6 @@ func trigger_spell_effect():
 	pass
 
 func progress_spell(chain_stage: int):
-	print(chain_stage)
 	on_spell_progressed.emit(chain_stage)
 	chain_stage_tracker += 1
 

@@ -8,6 +8,8 @@ signal block_popped(popped_puyos : Array, chain_value : int)
 signal on_player_created
 signal on_chain_ending(max_chain : int)
 
+@onready var grid_manager : GridManager = $GridManager
+
 func end_player_turn() -> void:
 	await $GridManager.down_tick()
 	on_end_player_turn.emit()
