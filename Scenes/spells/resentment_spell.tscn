@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://8sfle7fgfhur"]
+
+[ext_resource type="Script" uid="uid://dnvp7d6hmnjiu" path="res://scripts/spells/resentment_spell.gd" id="1_nh7wt"]
+
+[node name="ResentmentSpell" type="Node2D"]
+script = ExtResource("1_nh7wt")
+metadata/_custom_type_script = "uid://qt78oiw24c77"

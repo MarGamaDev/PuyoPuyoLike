@@ -3,13 +3,13 @@
 [ext_resource type="Script" uid="uid://c086ewc7gw56k" path="res://scripts/Combat/encounter.gd" id="1_oe6c0"]
 [ext_resource type="PackedScene" uid="uid://bx5kscp85ypry" path="res://Scenes/Combat/Enemy/enemy.tscn" id="2_o2g0m"]
 [ext_resource type="Script" uid="uid://c27m7mkd1up2" path="res://scripts/Combat/Enemy/enemy_data.gd" id="3_cnxer"]
-[ext_resource type="Texture2D" uid="uid://b6oxgd10fqwpj" path="res://Placeholder Art/box.png" id="4_jdhbd"]
+[ext_resource type="Texture2D" uid="uid://clvgh0dyi430d" path="res://Placeholder Art/puyo_rainbow.png" id="4_o2g0m"]
 [ext_resource type="Script" uid="uid://6v5kccermtmr" path="res://scripts/Combat/Enemy/enemy_attack.gd" id="5_o2g0m"]
 
 [sub_resource type="Resource" id="Resource_o2g0m"]
 script = ExtResource("3_cnxer")
 health = 1000
-sprite = ExtResource("4_jdhbd")
+sprite = ExtResource("4_o2g0m")
 metadata/_custom_type_script = "uid://c27m7mkd1up2"
 
 [sub_resource type="Resource" id="Resource_l06n0"]

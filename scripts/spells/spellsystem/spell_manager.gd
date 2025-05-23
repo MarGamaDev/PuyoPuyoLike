@@ -10,7 +10,7 @@ class_name SpellManager
 var chain_stage_tracker : int = 0
 
 func add_spell(spell_data: SpellData):
-	if equipped_spells.size() >= 3:
+	if equipped_spells.size() >= 3 or spell_data == null:
 		print("too many spells!")
 		push_error("todo, add selection window for equipping more spells")
 	else:

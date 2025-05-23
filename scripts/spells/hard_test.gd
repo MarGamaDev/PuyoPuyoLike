@@ -1,7 +1,6 @@
 extends HardSequentialSpell
 
 signal fireball_damage(number :int)
-@onready var combat_manager = get_node("/root/Combat")
 
 func connect_to_effect_signals():
 	combat_manager = get_node("/root/Combat")

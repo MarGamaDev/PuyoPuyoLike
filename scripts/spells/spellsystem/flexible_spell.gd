@@ -16,6 +16,7 @@ func check_block_against_recipe(grid_node_array : Array, new_chain_length : int)
 	var remove_flag
 	for i in range (0, unchecked_components.size()):
 		if unchecked_components[i] == block_type:
+			spell_stage_tracker = i
 			progress_spell(i)
 			unchecked_components.remove_at(i)
 			break

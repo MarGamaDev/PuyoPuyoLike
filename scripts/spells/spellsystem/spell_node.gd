@@ -13,6 +13,8 @@ var recipe_length : int = 0
 var spell_stage_tracker : int = 0
 var chain_stage_tracker : int = 0
 
+@onready var combat_manager = get_node("/root/Combat")
+
 ##go through the children to see what i can add super to
 func connect_to_effect_signals():
 	pass
@@ -27,7 +29,8 @@ func setup_spell_node(data : SpellData):
 
 func process_block(grid_node_array : Array, new_chain_length : int):
 	chain_length = new_chain_length
-	if chain_length < chain_stage_tracker:
+	if chain_length < chain_stage_tracker - 1:
+		print("test")
 		chain_stage_tracker = 0
 		spell_reset()
 	
@@ -48,9 +51,8 @@ func trigger_spell_effect():
 	pass
 
 func progress_spell(chain_stage: int):
-	on_spell_progressed.emit(chain_stage_tracker)
+	on_spell_progressed.emit(chain_stage)
 	chain_stage_tracker += 1
-	spell_stage_tracker += 1
 
 func complete_spell():
 	on_spell_complete.emit()
