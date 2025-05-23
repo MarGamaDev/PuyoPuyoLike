@@ -93,5 +93,5 @@ func select_enemy(enemy_index: int) -> void:
 	selected_enemy.set_as_selected(true)
 
 func damage_targeted_enemy(damage: int) ->void:
+	print("damage test")
 	on_targeted_damage_dealt.emit(damage)
-	print("fireball test")

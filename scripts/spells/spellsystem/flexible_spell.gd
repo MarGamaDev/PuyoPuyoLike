@@ -9,6 +9,7 @@ func setup_spell_node(data : SpellData):
 	recipe_contents = spell_data.recipe_contents
 	recipe_length = recipe_contents.size()
 	setup_flexible_array(recipe_contents)
+	connect_to_effect_signals()
 
 func check_block_against_recipe(grid_node_array : Array, new_chain_length : int):
 	var block_type : Puyo.PUYO_TYPE = grid_node_array[0].puyo.puyo_type

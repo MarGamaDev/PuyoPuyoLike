@@ -37,6 +37,7 @@ func add_spell(spell_data: SpellData):
 		spell_node.on_spell_progressed.connect(progress_spell_visuals)
 		spell_node.on_spell_progress_reset.connect(reset_spell_visuals)
 		spell_node.on_spell_complete.connect(spell_complete_visuals)
+		spell_node.connect_to_effect_signals()
 		$EquippedSpellsContainer.add_spell(spell_data)
 
 func block_spell_check(puyo_array : Array, chain_length : int):

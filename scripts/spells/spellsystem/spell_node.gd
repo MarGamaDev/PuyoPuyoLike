@@ -22,6 +22,7 @@ func setup_spell_node(data : SpellData):
 	recipe_type = spell_data.recipe_type
 	recipe_contents = spell_data.recipe_contents
 	recipe_length = recipe_contents.size()
+	connect_to_effect_signals()
 	
 
 func process_block(grid_node_array : Array, new_chain_length : int):
