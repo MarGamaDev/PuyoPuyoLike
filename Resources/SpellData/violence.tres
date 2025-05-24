@@ -7,6 +7,6 @@ script = ExtResource("1_uf5ug")
 spell_name = "Violence"
 spell_description = "Deal [DAMAGE AMOUNT] times the number of enemies damage to all enemies. show them their insignificance"
 recipe_type = 2
-recipe_contents = Array[int]([3, 4])
+recipe_contents = Array[int]([3, 3])
 spell_path = ""
 metadata/_custom_type_script = "uid://dnec0n0x4urar"

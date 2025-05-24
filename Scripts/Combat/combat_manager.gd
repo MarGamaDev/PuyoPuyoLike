@@ -15,6 +15,7 @@ signal on_enemy_registered(enemy: Enemy)
 signal on_enemy_deregistered(enemy: Enemy)
 signal on_player_life_lost()
 signal on_encounter_finished()
+signal on_delay_enemy_attack(delay_turns : int)
 
 @export var puyo_values: PuyoValueData
 
@@ -106,3 +107,6 @@ func gain_shield(shield: int):
 
 func gain_counter(counter : int):
 	on_counter_gained.emit(counter)
+
+func delay_enemies(delay_time : int):
+	on_delay_enemy_attack.emit(delay_time)

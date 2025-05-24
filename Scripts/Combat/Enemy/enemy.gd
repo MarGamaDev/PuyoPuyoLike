@@ -35,6 +35,7 @@ func _ready() -> void:
 	combat_manager.connect("on_aoe_damage_dealt", take_player_attack)
 	combat_manager.connect("on_player_turn_taken", handle_turn)
 	combat_manager.connect("on_player_life_lost", reset_attack_timer)
+	combat_manager.connect("on_delay_enemy_attack", add_to_timer)
 	combat_manager.register_enemy(self)
 	
 	combat_effects_manager = get_node("/root/Combat/CombatEffectsManager")
@@ -93,3 +94,6 @@ func set_as_selected(is_selected: bool) -> void:
 		combat_manager.connect("on_targeted_damage_dealt", take_player_attack)
 	elif combat_manager.is_connected("on_targeted_damage_dealt", take_player_attack):
 		combat_manager.disconnect("on_targeted_damage_dealt", take_player_attack)
+
+func add_to_timer(amount_to_add : int) -> void:
+	attack_countdown = attack_countdown - amount_to_add
