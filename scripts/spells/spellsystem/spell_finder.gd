@@ -8,7 +8,8 @@ static var spell_effect_dictionary : Dictionary = {
 	"Resentment" : "res://Scenes/spells/resentment_spell.tscn",
 	"Vindication" : "res://Scenes/spells/vindication_spell.tscn",
 	"Adamance" : "res://Scenes/spells/adamance_spell.tscn",
-	"Hatred" : "res://Scenes/spells/hatred_spell.tscn"
+	"Hatred" : "res://Scenes/spells/hatred_spell.tscn",
+	"Potential" : "res://Scenes/spells/potential_spell.tscn"
 }
 
 static func find_spell(name: String) -> String:

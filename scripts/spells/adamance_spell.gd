@@ -7,24 +7,26 @@ signal gain_shield(shield : int)
 signal gain_counter(counter : int)
 
 @onready var grid_manager : GridManager = puyo_manager.grid_manager
-var pop_flag = false
+
+var spell_trigger_flag = false
+
 func connect_to_effect_signals():
 	deal_aoe_damage.connect(combat_manager.damage_all_enemies)
 	deal_target_damage.connect(combat_manager.damage_targeted_enemy)
 	gain_shield.connect(combat_manager.gain_shield)
 	gain_counter.connect(combat_manager.gain_counter)
 	puyo_manager.on_chain_ending.connect(wall_pop)
-	pass
 
 func trigger_spell_effect():
-	pop_flag = true
-	print(puyo_manager.on_chain_ending.is_connected(wall_pop))
+	spell_trigger_flag = true
+	if !(puyo_manager.on_chain_ending.is_connected(wall_pop)):
+		puyo_manager.on_chain_ending.connect(wall_pop)
 	print("adamance test")
 
 func wall_pop(chain_length : int):
-	if pop_flag == false:
+	if spell_trigger_flag == false:
 		return
-	pop_flag = false
+	spell_trigger_flag = false
 	puyo_manager.on_chain_ending.disconnect(wall_pop)
 	print("wall pop test")
 	var blue_count = 0

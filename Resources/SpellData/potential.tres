@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="SpellData" load_steps=2 format=3 uid="uid://54m8cous0l5"]
+
+[ext_resource type="Script" uid="uid://dnec0n0x4urar" path="res://scripts/Data/spell_data.gd" id="1_rypt6"]
+
+[resource]
+script = ExtResource("1_rypt6")
+spell_name = "Potential"
+spell_description = "Once the current chain ends after casting this spell, trigger the effect of each humour type equal to [RAINBOW MULT VALUE] multiplied by  the chain length. Show them what you are capable of."
+recipe_type = 1
+recipe_contents = Array[int]([2, 3])
+metadata/_custom_type_script = "uid://dnec0n0x4urar"
