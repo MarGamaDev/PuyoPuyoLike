@@ -1,5 +1,6 @@
 extends HardSequentialSpell
 
+##gains sheild and delays the enemy's turn
 @export var spell_shield_amount : int = 10
 @export var enemy_delay_amount : int = 3
 
