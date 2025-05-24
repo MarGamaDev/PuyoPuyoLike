@@ -24,6 +24,10 @@ PlayerData="*res://Scripts/Data/player_data.gd"
 window/size/viewport_width=1200
 window/size/viewport_height=900
 
+[global_group]
+
+spell_data_resources=""
+
 [input]
 
 puyo_left={

@@ -31,11 +31,14 @@ var recipe_contents : Array[Puyo.PUYO_TYPE] = []
 var recipe_rects : Array[TextureRect] = []
 var default_sprites : Array[Texture2D] = []
 
+var reward_flag : bool = false
+
 func _ready():
 	var viewport_height = get_viewport_rect().size.y
 	custom_minimum_size.y = viewport_height / 9
 
-func create_spell_container(new_spell_data : SpellData) -> void:
+func create_spell_container(new_spell_data : SpellData, reward_check := false) -> void:
+	reward_flag = reward_check
 	spell_data = new_spell_data
 	recipe_contents = spell_data.recipe_contents
 	recipe_length = recipe_contents.size()
@@ -57,7 +60,10 @@ func fill_recipe_container() -> void:
 		new_component.size_flags_vertical = Control.SIZE_SHRINK_CENTER
 		new_component.expand_mode = TextureRect.EXPAND_KEEP_SIZE
 		if puyo_component_flag:
-			new_component.texture = load(recipe_puyo_inactive_sprite_dictionary[recipe_contents[(i / 2)]])
+			if reward_flag:
+				new_component.texture = load(recipe_puyo_active_sprite_dictionary[recipe_contents[(i / 2)]])
+			else:
+				new_component.texture = load(recipe_puyo_inactive_sprite_dictionary[recipe_contents[(i / 2)]])
 			puyo_component_flag = false
 		else:
 			new_component.texture = connection_texture

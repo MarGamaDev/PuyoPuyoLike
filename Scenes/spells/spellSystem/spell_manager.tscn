@@ -1,11 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://br4sb0wwxwr2o"]
+[gd_scene load_steps=3 format=3 uid="uid://br4sb0wwxwr2o"]
 
 [ext_resource type="Script" uid="uid://62suwvfwb2yg" path="res://scripts/spells/spellsystem/spell_manager.gd" id="1_l1yqq"]
 [ext_resource type="PackedScene" uid="uid://c5du1g626to65" path="res://Scenes/RewardScreen/equipped_spells_container.tscn" id="2_peavi"]
-[ext_resource type="Resource" uid="uid://chpfc1l7gjsqn" path="res://Resources/SpellData/endurance.tres" id="2_xoggv"]
 
 [node name="SpellManager" type="Node2D"]
 script = ExtResource("1_l1yqq")
-test_spell = ExtResource("2_xoggv")
 
 [node name="EquippedSpellsContainer" parent="." instance=ExtResource("2_peavi")]

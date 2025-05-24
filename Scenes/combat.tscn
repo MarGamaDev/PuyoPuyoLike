@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://d3naap4gnytxh"]
+[gd_scene load_steps=32 format=3 uid="uid://d3naap4gnytxh"]
 
 [ext_resource type="Script" uid="uid://b0h0tx4msve02" path="res://scripts/Combat/combat_manager.gd" id="1_4ln8h"]
 [ext_resource type="Resource" uid="uid://b01ucdggd8ykf" path="res://Resources/puyo_value_data.tres" id="2_xisnc"]
@@ -13,11 +13,54 @@
 [ext_resource type="Script" uid="uid://b4hbt6qjcu26g" path="res://scripts/Combat/encounter_manager.gd" id="8_twsak"]
 [ext_resource type="PackedScene" uid="uid://b3qfdcqaqmgk4" path="res://Scenes/Combat/combat_effects_manager.tscn" id="11_w6tjk"]
 [ext_resource type="PackedScene" uid="uid://b2l1xn5ovaca4" path="res://Scenes/RewardScreen/reward_screen.tscn" id="11_xisnc"]
-[ext_resource type="Script" uid="uid://bc5i4sjlttc78" path="res://scripts/Inventory.gd" id="12_xisnc"]
 [ext_resource type="PackedScene" uid="uid://chmradttgb2ep" path="res://Scenes/Combat/life_counter.tscn" id="13_y8jr2"]
 [ext_resource type="Script" uid="uid://mn6m032nthh1" path="res://scripts/defense_visuals_manager.gd" id="15_50454"]
 [ext_resource type="Theme" uid="uid://qw5wdr2jerv7" path="res://Art/text/default_font.tres" id="15_f8ge6"]
 [ext_resource type="PackedScene" uid="uid://br4sb0wwxwr2o" path="res://Scenes/spells/spellSystem/spell_manager.tscn" id="16_50454"]
+[ext_resource type="Script" uid="uid://btkeiscf5dqtn" path="res://scripts/reward_manager.gd" id="18_ley77"]
+[ext_resource type="Script" uid="uid://bg0ln3ahjwmnc" path="res://scripts/Reward.gd" id="19_5g3cp"]
+[ext_resource type="Resource" uid="uid://b856s53iaaj10" path="res://Resources/SpellData/adamance.tres" id="20_iv3ie"]
+[ext_resource type="Resource" uid="uid://54m8cous0l5" path="res://Resources/SpellData/Ambition.tres" id="21_1rebt"]
+[ext_resource type="Resource" uid="uid://y8sgi72q7ip8" path="res://Resources/SpellData/brutality.tres" id="22_m7mm0"]
+[ext_resource type="Resource" uid="uid://bg1e6nm4v2p76" path="res://Resources/SpellData/caution.tres" id="23_h8gl5"]
+[ext_resource type="Resource" uid="uid://b61nt1wr7u671" path="res://Resources/SpellData/cunning.tres" id="24_c1kyn"]
+[ext_resource type="Resource" uid="uid://chpfc1l7gjsqn" path="res://Resources/SpellData/endurance.tres" id="25_2r6hp"]
+
+[sub_resource type="Resource" id="Resource_2n3pb"]
+script = ExtResource("19_5g3cp")
+reward_type = 0
+spell_data = ExtResource("20_iv3ie")
+metadata/_custom_type_script = "uid://bg0ln3ahjwmnc"
+
+[sub_resource type="Resource" id="Resource_r5ubg"]
+script = ExtResource("19_5g3cp")
+reward_type = 0
+spell_data = ExtResource("21_1rebt")
+metadata/_custom_type_script = "uid://bg0ln3ahjwmnc"
+
+[sub_resource type="Resource" id="Resource_ycqky"]
+script = ExtResource("19_5g3cp")
+reward_type = 0
+spell_data = ExtResource("22_m7mm0")
+metadata/_custom_type_script = "uid://bg0ln3ahjwmnc"
+
+[sub_resource type="Resource" id="Resource_8fshu"]
+script = ExtResource("19_5g3cp")
+reward_type = 0
+spell_data = ExtResource("24_c1kyn")
+metadata/_custom_type_script = "uid://bg0ln3ahjwmnc"
+
+[sub_resource type="Resource" id="Resource_qwuba"]
+script = ExtResource("19_5g3cp")
+reward_type = 0
+spell_data = ExtResource("23_h8gl5")
+metadata/_custom_type_script = "uid://bg0ln3ahjwmnc"
+
+[sub_resource type="Resource" id="Resource_tasd2"]
+script = ExtResource("19_5g3cp")
+reward_type = 0
+spell_data = ExtResource("25_2r6hp")
+metadata/_custom_type_script = "uid://bg0ln3ahjwmnc"
 
 [node name="Combat" type="Node2D"]
 script = ExtResource("1_4ln8h")
@@ -105,13 +148,6 @@ layer = 2
 visible = false
 puyo_manager = NodePath("../PuyoManager")
 
-[node name="RewardScreen" parent="." instance=ExtResource("11_xisnc")]
-layer = 3
-visible = false
-
-[node name="Inventory" type="Node2D" parent="."]
-script = ExtResource("12_xisnc")
-
 [node name="LifeCounter" parent="." instance=ExtResource("13_y8jr2")]
 position = Vector2(4.335, 24.765)
 
@@ -142,6 +178,14 @@ theme = ExtResource("15_f8ge6")
 theme_override_font_sizes/normal_font_size = 25
 text = "Counter:"
 
+[node name="RewardManager" type="Node2D" parent="."]
+script = ExtResource("18_ley77")
+reward_pool = Array[ExtResource("19_5g3cp")]([SubResource("Resource_2n3pb"), SubResource("Resource_r5ubg"), SubResource("Resource_ycqky"), SubResource("Resource_8fshu"), SubResource("Resource_qwuba"), SubResource("Resource_tasd2")])
+
+[node name="RewardScreen" parent="RewardManager" instance=ExtResource("11_xisnc")]
+layer = 3
+visible = false
+
 [connection signal="on_combat_started" from="." to="PuyoManager" method="reset_game"]
 [connection signal="on_combat_started" from="." to="EncounterManager" method="load_next_encounter"]
 [connection signal="on_counter_gained" from="." to="Player" method="add_counter"]
@@ -165,10 +209,11 @@ text = "Counter:"
 [connection signal="on_set_life_to" from="Player" to="LifeCounter" method="set_lives_to"]
 [connection signal="on_shield_change" from="Player" to="DefenseVisualsManager" method="update_shield_visuals"]
 [connection signal="on_rest_stop" from="EncounterManager" to="PuyoManager" method="pause_puyo"]
-[connection signal="on_rest_stop" from="EncounterManager" to="RewardScreen" method="generate_pool"]
+[connection signal="on_rest_stop" from="EncounterManager" to="RewardManager/RewardScreen" method="generate_pool"]
 [connection signal="on_update_encounter" from="EncounterManager" to="." method="process_encounter_updated"]
 [connection signal="start_game" from="PuyoTestUI" to="." method="start_combat"]
-[connection signal="on_reward_chosen" from="RewardScreen" to="Inventory" method="add_to_inventory"]
-[connection signal="restart_combat_after_reward" from="RewardScreen" to="." method="start_combat"]
+[connection signal="on_reward_chosen" from="RewardManager/RewardScreen" to="RewardManager" method="remove_from_pool"]
+[connection signal="on_spell_reward_chosen" from="RewardManager/RewardScreen" to="SpellManager" method="add_spell"]
+[connection signal="restart_combat_after_reward" from="RewardManager/RewardScreen" to="." method="start_combat"]
 
 [editable path="CombatEffectsManager"]
