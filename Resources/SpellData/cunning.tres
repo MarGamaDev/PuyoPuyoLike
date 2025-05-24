@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="SpellData" load_steps=2 format=3 uid="uid://b61nt1wr7u671"]
+
+[ext_resource type="Script" uid="uid://dnec0n0x4urar" path="res://scripts/Data/spell_data.gd" id="1_p0k2j"]
+
+[resource]
+script = ExtResource("1_p0k2j")
+spell_name = "Cunning"
+spell_description = "The next time you would deal counterattack damage, deal double the damage you would deal. Let them fall into your traps."
+recipe_type = 1
+recipe_contents = Array[int]([5, 4, 5])
+metadata/_custom_type_script = "uid://dnec0n0x4urar"

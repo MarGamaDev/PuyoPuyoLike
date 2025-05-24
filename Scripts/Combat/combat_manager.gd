@@ -23,6 +23,7 @@ var selected_enemy: Enemy
 
 var current_encounter : Encounter
 
+
 func _ready() -> void:
 	start_combat()
 
@@ -104,5 +105,4 @@ func gain_shield(shield: int):
 	on_shield_gained.emit(shield)
 
 func gain_counter(counter : int):
-	print("coutner gained : %s" % counter)
 	on_counter_gained.emit(counter)
