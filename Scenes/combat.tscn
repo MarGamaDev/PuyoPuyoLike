@@ -155,7 +155,6 @@ texture = ExtResource("5_ley77")
 stretch_mode = 5
 
 [node name="Frame" type="CanvasLayer" parent="."]
-layer = 2
 
 [node name="TextureRect" type="TextureRect" parent="Frame"]
 anchors_preset = 15
@@ -187,13 +186,13 @@ position = Vector2(824, 248)
 
 [node name="PuyoTestUI" parent="." node_paths=PackedStringArray("puyo_manager") instance=ExtResource("5_yt1oa")]
 layer = 2
-visible = false
 puyo_manager = NodePath("../PuyoManager")
 
 [node name="LifeCounter" parent="." instance=ExtResource("13_y8jr2")]
 position = Vector2(4.335, 24.765)
 
 [node name="SpellManager" parent="." instance=ExtResource("16_50454")]
+top_level = true
 
 [node name="DefenseVisualsManager" type="Node2D" parent="."]
 script = ExtResource("15_50454")
@@ -253,9 +252,10 @@ visible = false
 [connection signal="on_rest_stop" from="EncounterManager" to="PuyoManager" method="pause_puyo"]
 [connection signal="on_rest_stop" from="EncounterManager" to="RewardManager/RewardScreen" method="generate_pool"]
 [connection signal="on_update_encounter" from="EncounterManager" to="." method="process_encounter_updated"]
+[connection signal="deal_fuck_damage" from="PuyoTestUI" to="." method="damage_all_enemies"]
 [connection signal="start_game" from="PuyoTestUI" to="." method="start_combat"]
+[connection signal="all_clear_for_next_encounter" from="SpellManager" to="." method="start_combat"]
 [connection signal="on_reward_chosen" from="RewardManager/RewardScreen" to="RewardManager" method="remove_from_pool"]
 [connection signal="on_spell_reward_chosen" from="RewardManager/RewardScreen" to="SpellManager" method="add_spell"]
-[connection signal="restart_combat_after_reward" from="RewardManager/RewardScreen" to="." method="start_combat"]
 
 [editable path="CombatEffectsManager"]

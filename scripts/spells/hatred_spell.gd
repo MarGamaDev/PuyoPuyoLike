@@ -26,7 +26,7 @@ func trigger_spell_effect():
 	hatred_flag = true
 
 func launch_hatred_attack(grid_node_array : Array, new_chain_length : int):
-	print(grid_node_array.size())
+	#print(grid_node_array.size())
 	var value: int = puyo_values.get_base_value(Puyo.PUYO_TYPE.GREEN) * grid_node_array.size()
 	var mult: int = puyo_values.get_multiplier(Puyo.PUYO_TYPE.GREEN) * new_chain_length
 	deal_phlegm_spell_damage.emit(value * mult)

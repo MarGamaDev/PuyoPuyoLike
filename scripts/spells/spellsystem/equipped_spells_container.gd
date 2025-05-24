@@ -14,3 +14,8 @@ func add_spell(spell_data: SpellData) -> SpellContainer:
 func all_spell_reset():
 	for i in equipped_spell_containers:
 		i.reset_recipe_visual()
+
+func remove_spell(index : int):
+	var to_remove = equipped_spell_containers[index]
+	equipped_spell_containers.remove_at(index)
+	to_remove.queue_free()

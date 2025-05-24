@@ -1,6 +1,7 @@
 extends CanvasLayer
 
 signal start_game
+signal deal_fuck_damage(damage)
 
 @export var puyo_manager : Node2D
 @onready var grid_manager : Node2D = puyo_manager.find_child("GridManager")
@@ -43,3 +44,8 @@ func _on_test_reset_button_pressed() -> void:
 
 func _on_junk_test_pressed() -> void:
 	grid_manager.add_to_spawn_queue(PuyoQueueEvent.create(PuyoQueueEvent.EVENT_TYPE.JUNK_SLAM,2))
+
+
+func _on_button_2_pressed() -> void:
+	deal_fuck_damage.emit(300)
+	pass # Replace with function body.

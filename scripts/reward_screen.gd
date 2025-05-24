@@ -63,6 +63,5 @@ func on_reward_button_pressed(reward : Reward):
 		on_spell_reward_chosen.emit(reward.spell_data)
 	else:
 		on_item_reward_chosen.emit()
-	restart_combat_after_reward.emit()
 	hide()
 	reset_pool(reward)

@@ -86,7 +86,7 @@ func reset_recipe_visual():
 		recipe_rects[i].texture = default_sprites[i]
 
 func progress_spell_visual(component_to_activate: int):
-	print(component_to_activate)
+	#print(component_to_activate)
 	recipe_rects[component_to_activate * 2].texture = load(recipe_puyo_active_sprite_dictionary[recipe_contents[component_to_activate]])
 
 func on_new_player_turn_taken():

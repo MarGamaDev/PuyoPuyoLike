@@ -10,6 +10,8 @@ particle_flag_disable_z = true
 gravity = Vector3(0, 0, 0)
 
 [node name="SpellContainer" type="Control"]
+z_index = 3
+z_as_relative = false
 layout_mode = 3
 anchor_right = 0.234
 anchor_bottom = 0.114
@@ -20,6 +22,7 @@ grow_vertical = 0
 script = ExtResource("1_w1h6g")
 
 [node name="SpellFrame" type="TextureRect" parent="."]
+z_index = -2
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.043
