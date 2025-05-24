@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://b82f1h5dy54rx"]
 
-[ext_resource type="Script" uid="uid://b7nfsk8l6n7aj" path="res://scripts/spells/spellsystem/spell_container.gd" id="1_w1h6g"]
+[ext_resource type="Script" uid="uid://b7nfsk8l6n7aj" path="res://Scripts/spells/spellsystem/spell_container.gd" id="1_w1h6g"]
 [ext_resource type="Theme" uid="uid://qw5wdr2jerv7" path="res://Art/text/default_font.tres" id="2_vgyca"]
 [ext_resource type="Texture2D" uid="uid://7e64hhcudbus" path="res://Art/spell elements/puyo-spellContainer.png" id="2_w1h6g"]
 [ext_resource type="Texture2D" uid="uid://dqohymee1bv55" path="res://Placeholder Art/puyo_pop.png" id="6_n2pxk"]

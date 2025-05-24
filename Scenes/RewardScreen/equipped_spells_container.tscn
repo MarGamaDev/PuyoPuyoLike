@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://c5du1g626to65"]
 
-[ext_resource type="Script" uid="uid://bgpcdsqgynag" path="res://scripts/spells/spellsystem/equipped_spells_container.gd" id="1_33u70"]
+[ext_resource type="Script" uid="uid://bgpcdsqgynag" path="res://Scripts/spells/spellsystem/equipped_spells_container.gd" id="1_33u70"]
 
 [node name="EquippedSpellsContainer" type="CanvasLayer"]
 script = ExtResource("1_33u70")
