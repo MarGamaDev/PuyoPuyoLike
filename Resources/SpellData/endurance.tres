@@ -7,6 +7,6 @@ script = ExtResource("1_dgpfg")
 spell_name = "Endurance"
 spell_description = "Gain [Shield amount] shield, and delay all enemy's attacks by [delay time] turns. show them no weakness."
 recipe_type = 2
-recipe_contents = Array[int]([2, 3])
+recipe_contents = Array[int]([2, 2])
 spell_path = "res://Scenes/spells/endurance_spell.tscn"
 metadata/_custom_type_script = "uid://dnec0n0x4urar"
