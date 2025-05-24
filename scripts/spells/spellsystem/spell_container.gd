@@ -33,6 +33,9 @@ var default_sprites : Array[Texture2D] = []
 
 var reward_flag : bool = false
 
+var sprite_scaling = 1
+var connection_scaling = 1
+
 func _ready():
 	var viewport_height = get_viewport_rect().size.y
 	custom_minimum_size.y = viewport_height / 9
@@ -49,16 +52,22 @@ func fill_recipe_container() -> void:
 	if recipe_length <= 1:
 		return
 	
+	if recipe_length == 3:
+		connection_scaling = 0.75
+	elif recipe_length > 3:
+		connection_scaling = 0.6
+		sprite_scaling = 0.8
+	
 	var connections_needed : int = recipe_length - 1
 	var puyo_component_flag : bool = true
 	var connection_texture : Texture2D = load(recipe_type_sprite_dictionary[spell_data.recipe_type])
 	
 	for i in range(0, connections_needed + recipe_length):
 		var new_component : TextureRect = TextureRect.new()
-		new_component.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT
-		new_component.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
-		new_component.size_flags_vertical = Control.SIZE_SHRINK_CENTER
-		new_component.expand_mode = TextureRect.EXPAND_KEEP_SIZE
+		new_component.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+		new_component.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+		new_component.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		#new_component.size_flags_vertical = Control.SIZE_SHRINK_CENTER
 		if puyo_component_flag:
 			if reward_flag:
 				new_component.texture = load(recipe_puyo_active_sprite_dictionary[recipe_contents[(i / 2)]])
@@ -77,6 +86,7 @@ func reset_recipe_visual():
 		recipe_rects[i].texture = default_sprites[i]
 
 func progress_spell_visual(component_to_activate: int):
+	print(component_to_activate)
 	recipe_rects[component_to_activate * 2].texture = load(recipe_puyo_active_sprite_dictionary[recipe_contents[component_to_activate]])
 
 func on_new_player_turn_taken():

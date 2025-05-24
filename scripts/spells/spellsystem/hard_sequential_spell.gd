@@ -5,6 +5,10 @@ var current_component_stage : int = 0
 var current_component_stage_flag : bool = false
 var current_chain_match_found_flag : bool = false
 
+func progress_spell(chain_stage: int):
+	on_spell_progressed.emit(chain_stage - 1)
+	chain_stage_tracker += 1
+
 func check_block_against_recipe(grid_node_array : Array, new_chain_length : int):
 	if current_component_stage == new_chain_length:
 		current_component_stage_flag = true

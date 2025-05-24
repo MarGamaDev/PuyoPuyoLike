@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://d3naap4gnytxh"]
+[gd_scene load_steps=44 format=3 uid="uid://d3naap4gnytxh"]
 
 [ext_resource type="Script" uid="uid://b0h0tx4msve02" path="res://scripts/Combat/combat_manager.gd" id="1_4ln8h"]
 [ext_resource type="Resource" uid="uid://b01ucdggd8ykf" path="res://Resources/puyo_value_data.tres" id="2_xisnc"]
@@ -25,6 +25,12 @@
 [ext_resource type="Resource" uid="uid://bg1e6nm4v2p76" path="res://Resources/SpellData/caution.tres" id="23_h8gl5"]
 [ext_resource type="Resource" uid="uid://b61nt1wr7u671" path="res://Resources/SpellData/cunning.tres" id="24_c1kyn"]
 [ext_resource type="Resource" uid="uid://chpfc1l7gjsqn" path="res://Resources/SpellData/endurance.tres" id="25_2r6hp"]
+[ext_resource type="Resource" uid="uid://0sxxfgqq136b" path="res://Resources/SpellData/foresight.tres" id="26_fvi2h"]
+[ext_resource type="Resource" uid="uid://ndpoihfsl1kh" path="res://Resources/SpellData/hatred.tres" id="27_xu8d0"]
+[ext_resource type="Resource" uid="uid://dys7v8r3l87iu" path="res://Resources/SpellData/recklessness.tres" id="28_47v24"]
+[ext_resource type="Resource" uid="uid://dx303qqfbt5yf" path="res://Resources/SpellData/resentment.tres" id="29_8is30"]
+[ext_resource type="Resource" uid="uid://cirwldmyumrkl" path="res://Resources/SpellData/vindication.tres" id="30_2520b"]
+[ext_resource type="Resource" uid="uid://b8ahfsm0ro7k" path="res://Resources/SpellData/violence.tres" id="31_r4oui"]
 
 [sub_resource type="Resource" id="Resource_2n3pb"]
 script = ExtResource("19_5g3cp")
@@ -60,6 +66,42 @@ metadata/_custom_type_script = "uid://bg0ln3ahjwmnc"
 script = ExtResource("19_5g3cp")
 reward_type = 0
 spell_data = ExtResource("25_2r6hp")
+metadata/_custom_type_script = "uid://bg0ln3ahjwmnc"
+
+[sub_resource type="Resource" id="Resource_iv3ie"]
+script = ExtResource("19_5g3cp")
+reward_type = 0
+spell_data = ExtResource("26_fvi2h")
+metadata/_custom_type_script = "uid://bg0ln3ahjwmnc"
+
+[sub_resource type="Resource" id="Resource_1rebt"]
+script = ExtResource("19_5g3cp")
+reward_type = 0
+spell_data = ExtResource("27_xu8d0")
+metadata/_custom_type_script = "uid://bg0ln3ahjwmnc"
+
+[sub_resource type="Resource" id="Resource_m7mm0"]
+script = ExtResource("19_5g3cp")
+reward_type = 0
+spell_data = ExtResource("28_47v24")
+metadata/_custom_type_script = "uid://bg0ln3ahjwmnc"
+
+[sub_resource type="Resource" id="Resource_h8gl5"]
+script = ExtResource("19_5g3cp")
+reward_type = 0
+spell_data = ExtResource("29_8is30")
+metadata/_custom_type_script = "uid://bg0ln3ahjwmnc"
+
+[sub_resource type="Resource" id="Resource_c1kyn"]
+script = ExtResource("19_5g3cp")
+reward_type = 0
+spell_data = ExtResource("30_2520b")
+metadata/_custom_type_script = "uid://bg0ln3ahjwmnc"
+
+[sub_resource type="Resource" id="Resource_2r6hp"]
+script = ExtResource("19_5g3cp")
+reward_type = 0
+spell_data = ExtResource("31_r4oui")
 metadata/_custom_type_script = "uid://bg0ln3ahjwmnc"
 
 [node name="Combat" type="Node2D"]
@@ -180,7 +222,7 @@ text = "Counter:"
 
 [node name="RewardManager" type="Node2D" parent="."]
 script = ExtResource("18_ley77")
-reward_pool = Array[ExtResource("19_5g3cp")]([SubResource("Resource_2n3pb"), SubResource("Resource_r5ubg"), SubResource("Resource_ycqky"), SubResource("Resource_8fshu"), SubResource("Resource_qwuba"), SubResource("Resource_tasd2")])
+reward_pool = Array[ExtResource("19_5g3cp")]([SubResource("Resource_2n3pb"), SubResource("Resource_r5ubg"), SubResource("Resource_ycqky"), SubResource("Resource_8fshu"), SubResource("Resource_qwuba"), SubResource("Resource_tasd2"), SubResource("Resource_iv3ie"), SubResource("Resource_1rebt"), SubResource("Resource_m7mm0"), SubResource("Resource_h8gl5"), SubResource("Resource_c1kyn"), SubResource("Resource_2r6hp")])
 
 [node name="RewardScreen" parent="RewardManager" instance=ExtResource("11_xisnc")]
 layer = 3
