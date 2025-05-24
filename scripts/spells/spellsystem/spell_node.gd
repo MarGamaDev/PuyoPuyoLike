@@ -16,6 +16,7 @@ var chain_stage_tracker : int = 0
 @onready var combat_manager : CombatManager = get_node("/root/Combat")
 @onready var puyo_manager : PuyoManager = get_node("/root/Combat/PuyoManager")
 @onready var player : Player = get_node("/root/Combat/Player")
+@onready var encounter_manager : EncounterManager = get_node("/root/Combat/EncounterManager")
 
 ##go through the children to see what i can add super to
 func connect_to_effect_signals():
@@ -53,7 +54,7 @@ func trigger_spell_effect():
 	pass
 
 func progress_spell(chain_stage: int):
-	on_spell_progressed.emit(chain_stage)
+	on_spell_progressed.emit(chain_stage - 1)
 	chain_stage_tracker += 1
 
 func complete_spell():

@@ -1,4 +1,5 @@
 extends Node2D
+class_name EncounterManager
 
 signal on_update_encounter(encounter: Encounter)
 signal on_rest_stop()

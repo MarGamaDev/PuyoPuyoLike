@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://5b3max2icbpt"]
+
+[ext_resource type="Script" uid="uid://bpn0vbevc1kdx" path="res://scripts/spells/violence_spell.gd" id="1_dklmu"]
+
+[node name="ViolenceSpell" type="Node2D"]
+script = ExtResource("1_dklmu")
+metadata/_custom_type_script = "uid://cdcoe870nlqgf"
