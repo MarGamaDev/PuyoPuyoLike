@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bh56uxpmn85gw"
-path="res://.godot/imported/Puyo_Blue.png-13b6ad7c0dd97690c57d239a0e48ebc0.ctex"
+uid="uid://c4yv3sgackjej"
+path="res://.godot/imported/puyo-equalSign.png-1b2339857c602b3fd975d3a912a86032.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Puyo_Blue.png"
-dest_files=["res://.godot/imported/Puyo_Blue.png-13b6ad7c0dd97690c57d239a0e48ebc0.ctex"]
+source_file="res://Art/spell elements/puyo-equalSign.png"
+dest_files=["res://.godot/imported/puyo-equalSign.png-1b2339857c602b3fd975d3a912a86032.ctex"]
 
 [params]
 

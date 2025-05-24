@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dkpsalijf0ray"
-path="res://.godot/imported/Puyo_Yellow.png-dfc1f860b94672d4d94f2d5922068f98.ctex"
+uid="uid://csoroeu2gqsl0"
+path="res://.godot/imported/puyo_grid.jpeg-3543415743603743068519a37e773fe7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Puyo_Yellow.png"
-dest_files=["res://.godot/imported/Puyo_Yellow.png-dfc1f860b94672d4d94f2d5922068f98.ctex"]
+source_file="res://Art/puyo elements/puyo_grid.jpeg"
+dest_files=["res://.godot/imported/puyo_grid.jpeg-3543415743603743068519a37e773fe7.ctex"]
 
 [params]
 

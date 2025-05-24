@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bdccfbkis3gqq"
-path="res://.godot/imported/Heart_1.png-5debb93cac2050381d6832c9bdefb97b.ctex"
+uid="uid://ckdbux3335a5t"
+path="res://.godot/imported/puyo-yellowIcon-deactive.png-ee18767085f260871bc791c55fadaf7c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Heart_1.png"
-dest_files=["res://.godot/imported/Heart_1.png-5debb93cac2050381d6832c9bdefb97b.ctex"]
+source_file="res://Art/spell elements/puyo-yellowIcon-deactive.png"
+dest_files=["res://.godot/imported/puyo-yellowIcon-deactive.png-ee18767085f260871bc791c55fadaf7c.ctex"]
 
 [params]
 

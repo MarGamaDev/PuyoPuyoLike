@@ -1,12 +1,14 @@
-[gd_scene load_steps=17 format=3 uid="uid://d3naap4gnytxh"]
+[gd_scene load_steps=19 format=3 uid="uid://d3naap4gnytxh"]
 
 [ext_resource type="Script" uid="uid://b0h0tx4msve02" path="res://scripts/Combat/combat_manager.gd" id="1_4ln8h"]
 [ext_resource type="Resource" uid="uid://b01ucdggd8ykf" path="res://Resources/puyo_value_data.tres" id="2_xisnc"]
-[ext_resource type="Texture2D" uid="uid://brsfj1k05k7e7" path="res://Art/combat_background.png" id="2_yt1oa"]
+[ext_resource type="Texture2D" uid="uid://brsfj1k05k7e7" path="res://Art/combat screen elements/combat_background.png" id="2_yt1oa"]
+[ext_resource type="Texture2D" uid="uid://cxsythtmmprp" path="res://Art/combat screen elements/puyo-background2.png" id="4_jcm61"]
 [ext_resource type="PackedScene" uid="uid://buetvmo3m42v5" path="res://Scenes/PuyoPuyo/puyo_manager.tscn" id="4_ubpar"]
+[ext_resource type="Texture2D" uid="uid://b6mw0e4wlxw7m" path="res://Art/combat screen elements/background-puyo-enemy.png" id="5_ley77"]
 [ext_resource type="PackedScene" uid="uid://dh8e8u4ch381l" path="res://Scenes/Combat/player.tscn" id="5_ut0kg"]
 [ext_resource type="PackedScene" uid="uid://1hbj1uv66mu2" path="res://Scenes/DevTools/puyo_test_ui.tscn" id="5_yt1oa"]
-[ext_resource type="Texture2D" uid="uid://14ejxpdanarl" path="res://Art/combat_frame.png" id="7_3w34b"]
+[ext_resource type="Texture2D" uid="uid://14ejxpdanarl" path="res://Art/combat screen elements/combat_frame.png" id="7_3w34b"]
 [ext_resource type="PackedScene" uid="uid://carcnx12jkm8f" path="res://Scenes/Combat/Encounters/attack_test_encounter.tscn" id="8_f8ge6"]
 [ext_resource type="Script" uid="uid://b4hbt6qjcu26g" path="res://scripts/Combat/encounter_manager.gd" id="8_twsak"]
 [ext_resource type="PackedScene" uid="uid://b3qfdcqaqmgk4" path="res://Scenes/Combat/combat_effects_manager.tscn" id="11_w6tjk"]
@@ -31,6 +33,41 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_yt1oa")
+
+[node name="TextureRect2" type="TextureRect" parent="Background"]
+anchors_preset = -1
+anchor_left = 0.407
+anchor_top = 0.124
+anchor_right = 0.48
+anchor_bottom = 0.365
+offset_left = -12.4
+offset_top = -17.6
+offset_right = 21.0
+offset_bottom = 33.5
+texture = ExtResource("4_jcm61")
+stretch_mode = 5
+
+[node name="TextureRect3" type="TextureRect" parent="Background"]
+anchors_preset = -1
+anchor_left = 0.397
+anchor_top = 0.618
+anchor_right = 0.485
+anchor_bottom = 0.907
+offset_left = -22.4
+offset_top = -4.20001
+offset_right = 15.0
+offset_bottom = 1.69995
+texture = ExtResource("4_jcm61")
+stretch_mode = 5
+
+[node name="TextureRect4" type="TextureRect" parent="Background"]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.132
+anchor_right = 0.896
+anchor_bottom = 0.46
+texture = ExtResource("5_ley77")
+stretch_mode = 5
 
 [node name="Frame" type="CanvasLayer" parent="."]
 layer = 2
@@ -76,6 +113,7 @@ visible = false
 script = ExtResource("12_xisnc")
 
 [node name="LifeCounter" parent="." instance=ExtResource("13_y8jr2")]
+position = Vector2(4.335, 24.765)
 
 [node name="SpellManager" parent="." instance=ExtResource("16_50454")]
 

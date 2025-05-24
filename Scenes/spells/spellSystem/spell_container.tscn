@@ -1,9 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://b82f1h5dy54rx"]
+[gd_scene load_steps=6 format=3 uid="uid://b82f1h5dy54rx"]
 
 [ext_resource type="Script" uid="uid://b7nfsk8l6n7aj" path="res://scripts/spells/spellsystem/spell_container.gd" id="1_w1h6g"]
 [ext_resource type="Theme" uid="uid://qw5wdr2jerv7" path="res://Art/text/default_font.tres" id="2_vgyca"]
-[ext_resource type="Texture2D" uid="uid://b480cnlhxsl2q" path="res://Placeholder Art/puyo_blue.png" id="3_b4wli"]
-[ext_resource type="Texture2D" uid="uid://dg717j8i6xptj" path="res://Placeholder Art/flexible_connection.png" id="4_skmuq"]
+[ext_resource type="Texture2D" uid="uid://7e64hhcudbus" path="res://Art/spell elements/puyo-spellContainer.png" id="2_w1h6g"]
 [ext_resource type="Texture2D" uid="uid://dqohymee1bv55" path="res://Placeholder Art/puyo_pop.png" id="6_n2pxk"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_biiyc"]
@@ -22,13 +21,18 @@ script = ExtResource("1_w1h6g")
 
 [node name="SpellFrame" type="TextureRect" parent="."]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = -1
+anchor_right = 1.043
+anchor_bottom = 0.975
+offset_right = -0.0830078
+offset_bottom = -0.0349426
 grow_horizontal = 2
 grow_vertical = 2
+texture = ExtResource("2_w1h6g")
+expand_mode = 1
 
 [node name="SpellFrame" type="ColorRect" parent="SpellFrame"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -44,8 +48,13 @@ anchor_left = 0.02
 anchor_top = 0.05
 anchor_right = 0.98
 anchor_bottom = 0.4
+offset_left = 0.380001
+offset_top = 5.87
+offset_right = -8.37997
+offset_bottom = -0.0399742
 
 [node name="SpellGraphic" type="ColorRect" parent="SpellGraphic"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -59,8 +68,12 @@ layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.05
 anchor_top = 0.1
-anchor_right = 0.95
+anchor_right = 0.841
 anchor_bottom = 0.9
+offset_left = 8.95
+offset_top = -4.0
+offset_right = 8.95
+offset_bottom = -4.0
 theme = ExtResource("2_vgyca")
 text = "Spell Name"
 horizontal_alignment = 1
@@ -69,45 +82,12 @@ vertical_alignment = 1
 [node name="RecipeContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.02
-anchor_top = 0.465
-anchor_right = 0.98
-anchor_bottom = 0.922
+anchor_left = 0.126
+anchor_top = 0.362
+anchor_right = 0.814
+anchor_bottom = 0.827
 theme_override_constants/separation = 0
 alignment = 1
-
-[node name="TextureRect" type="TextureRect" parent="."]
-visible = false
-layout_mode = 2
-offset_left = 71.62
-offset_top = 47.709
-offset_right = 121.62
-offset_bottom = 97.709
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture = ExtResource("3_b4wli")
-stretch_mode = 4
-
-[node name="TextureRect3" type="TextureRect" parent="TextureRect"]
-layout_mode = 2
-offset_left = 61.0
-offset_right = 111.0
-offset_bottom = 50.0
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture = ExtResource("3_b4wli")
-stretch_mode = 4
-
-[node name="TextureRect2" type="TextureRect" parent="TextureRect"]
-layout_mode = 2
-offset_left = 50.0
-offset_top = 8.0
-offset_right = 86.0
-offset_bottom = 38.0
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture = ExtResource("4_skmuq")
-stretch_mode = 4
 
 [node name="TestParticleEffect" type="GPUParticles2D" parent="."]
 position = Vector2(281, 52)

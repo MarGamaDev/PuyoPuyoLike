@@ -1,19 +1,28 @@
 extends Control
 class_name SpellContainer
 
-var recipe_puyo_sprite_dictionary = {
+var recipe_puyo_active_sprite_dictionary = {
 	Puyo.PUYO_TYPE.JUNK : "res://Placeholder Art/puyo_junk.png",
-	Puyo.PUYO_TYPE.RED : "res://Art/Puyo_Red.png",
-	Puyo.PUYO_TYPE.GREEN : "res://Art/Puyo_Green.png",
-	Puyo.PUYO_TYPE.BLUE : "res://Art/Puyo_Blue.png",
-	Puyo.PUYO_TYPE.YELLOW : "res://Art/Puyo_Yellow.png",
+	Puyo.PUYO_TYPE.RED : "res://Art/spell elements/puyo-redIcon.png",
+	Puyo.PUYO_TYPE.GREEN : "res://Art/spell elements/puyo-greenIcon.png",
+	Puyo.PUYO_TYPE.BLUE : "res://Art/spell elements/puyo-blackIcon.png",
+	Puyo.PUYO_TYPE.YELLOW : "res://Art/spell elements/puyo-yellowIcon.png",
+	#Puyo.PUYO_TYPE.RAINBOW : "res://Placeholder Art/puyo_rainbow.png"
+}
+
+var recipe_puyo_inactive_sprite_dictionary = {
+	Puyo.PUYO_TYPE.JUNK : "res://Placeholder Art/puyo_junk.png",
+	Puyo.PUYO_TYPE.RED : "res://Art/spell elements/puyo-redIcon-deactive.png",
+	Puyo.PUYO_TYPE.GREEN : "res://Art/spell elements/puyo-greenIcon-deactive.png",
+	Puyo.PUYO_TYPE.BLUE : "res://Art/spell elements/puyo-blackIcon_deactive.png",
+	Puyo.PUYO_TYPE.YELLOW : "res://Art/spell elements/puyo-yellowIcon-deactive.png",
 	#Puyo.PUYO_TYPE.RAINBOW : "res://Placeholder Art/puyo_rainbow.png"
 }
 
 var recipe_type_sprite_dictionary = {
-	SpellData.RECIPE_TYPE.FLEXIBLE : "res://Placeholder Art/flexible_connection.png",
-	SpellData.RECIPE_TYPE.SEQUENTIAL : "res://Placeholder Art/sequential_connection.png",
-	SpellData.RECIPE_TYPE.HARD_SEQUENTIAL : "res://Placeholder Art/hard_sequential_connection.png"
+	SpellData.RECIPE_TYPE.FLEXIBLE : "res://Art/spell elements/puyo-plusSign.png",
+	SpellData.RECIPE_TYPE.SEQUENTIAL : "res://Art/spell elements/puyo-arrowSign.png",
+	SpellData.RECIPE_TYPE.HARD_SEQUENTIAL : "res://Art/spell elements/puyo-equalSign.png"
 } 
 
 var spell_data : SpellData
@@ -48,7 +57,7 @@ func fill_recipe_container() -> void:
 		new_component.size_flags_vertical = Control.SIZE_SHRINK_CENTER
 		new_component.expand_mode = TextureRect.EXPAND_KEEP_SIZE
 		if puyo_component_flag:
-			new_component.texture = load(recipe_puyo_sprite_dictionary[recipe_contents[(i / 2)]])
+			new_component.texture = load(recipe_puyo_inactive_sprite_dictionary[recipe_contents[(i / 2)]])
 			puyo_component_flag = false
 		else:
 			new_component.texture = connection_texture
@@ -62,7 +71,7 @@ func reset_recipe_visual():
 		recipe_rects[i].texture = default_sprites[i]
 
 func progress_spell_visual(component_to_activate: int):
-	recipe_rects[component_to_activate * 2].texture = load(recipe_puyo_sprite_dictionary[Puyo.PUYO_TYPE.JUNK])
+	recipe_rects[component_to_activate * 2].texture = load(recipe_puyo_active_sprite_dictionary[recipe_contents[component_to_activate]])
 
 func on_new_player_turn_taken():
 	reset_recipe_visual()

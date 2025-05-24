@@ -1,8 +1,8 @@
 [gd_scene load_steps=10 format=3 uid="uid://chmradttgb2ep"]
 
 [ext_resource type="Script" uid="uid://dyqhrj2sem0vh" path="res://scripts/Combat/life_counter.gd" id="1_v5ltv"]
-[ext_resource type="Texture2D" uid="uid://bdccfbkis3gqq" path="res://Art/Heart_1.png" id="2_nhhke"]
-[ext_resource type="Texture2D" uid="uid://bjr13db4820kp" path="res://Art/Heart_2.png" id="3_nwvjo"]
+[ext_resource type="Texture2D" uid="uid://bdccfbkis3gqq" path="res://Art/combat screen elements/Heart_1.png" id="2_nhhke"]
+[ext_resource type="Texture2D" uid="uid://bjr13db4820kp" path="res://Art/combat screen elements/Heart_2.png" id="3_nwvjo"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_nhhke"]
 animations = [{

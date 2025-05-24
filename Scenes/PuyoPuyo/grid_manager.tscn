@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://ccmkst5npwi3n" path="res://scripts/audio/sound_effect.gd" id="5_onoqd"]
 [ext_resource type="AudioStream" uid="uid://dtfg7tw4n02cc" path="res://Placeholder Art/Clink.1.wav" id="6_5hofm"]
 [ext_resource type="AudioStream" uid="uid://dq2fpel8tfo2o" path="res://Placeholder Art/Thud.1.wav" id="7_tssi5"]
-[ext_resource type="Texture2D" uid="uid://csoroeu2gqsl0" path="res://Art/puyo_grid.jpeg" id="8_ahia6"]
+[ext_resource type="Texture2D" uid="uid://csoroeu2gqsl0" path="res://Art/puyo elements/puyo_grid.jpeg" id="8_ahia6"]
 
 [sub_resource type="Animation" id="Animation_87frd"]
 resource_name = "Queue_rotating"

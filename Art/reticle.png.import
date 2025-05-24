@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://brsfj1k05k7e7"
-path="res://.godot/imported/combat_background.png-4b071e6b6289b1f977a7d0381d3dd802.ctex"
+uid="uid://cggqu3v1nirvy"
+path="res://.godot/imported/reticle.png-005c95ecd9e38664c859075b0a5f049a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/combat_background.png"
-dest_files=["res://.godot/imported/combat_background.png-4b071e6b6289b1f977a7d0381d3dd802.ctex"]
+source_file="res://Art/reticle.png"
+dest_files=["res://.godot/imported/reticle.png-005c95ecd9e38664c859075b0a5f049a.ctex"]
 
 [params]
 
