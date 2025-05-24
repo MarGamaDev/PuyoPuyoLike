@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="SpellData" load_steps=2 format=3 uid="uid://dys7v8r3l87iu"]
+
+[ext_resource type="Script" uid="uid://dnec0n0x4urar" path="res://scripts/Data/spell_data.gd" id="1_kpmoi"]
+
+[resource]
+script = ExtResource("1_kpmoi")
+spell_name = "Recklessness"
+spell_description = "Deal [Damage amount] to each enemy. Show them unbound violence."
+recipe_type = 1
+recipe_contents = Array[int]([3, 3])
+spell_path = "res://Scenes/spells/recklessness_spell.tscn"
+metadata/_custom_type_script = "uid://dnec0n0x4urar"

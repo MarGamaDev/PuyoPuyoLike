@@ -1,5 +1,7 @@
 extends SequentialSpell
 
+##doubles the damage dealt the next time you counter
+
 signal setup_counter_buff(multiplier : int)
 
 var counter_buff : int = 1 #this is added to a 1 value, so having this equal to 1 is doubling

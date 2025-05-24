@@ -1,5 +1,8 @@
 extends SequentialSpell
 
+##after doing a chained rainbow in a specific order, at the end of the chain,
+##trigger the effect of each puyo type (rainbow mult value * chain length) times
+
 @export var rainbow_mult_value : int = 5
 
 signal deal_aoe_damage(damage : int)

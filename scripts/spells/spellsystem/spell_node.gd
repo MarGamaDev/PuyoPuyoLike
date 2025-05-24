@@ -59,6 +59,7 @@ func progress_spell(chain_stage: int):
 func complete_spell():
 	on_spell_complete.emit()
 	trigger_spell_effect()
-	##if we need ot reset this here make sure to override in spells like hatred
-	#spell_reset()
+	##remember to override without the reset for spells that care about how much
+	##you chain after casting
+	spell_reset()
 	print("spell complete")

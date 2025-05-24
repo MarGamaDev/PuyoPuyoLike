@@ -1,5 +1,8 @@
 extends FlexibleSpell
 
+##afer casting, the rest of the chain is treated as if there were also green
+##blocks being popped in addition to the current block
+
 signal deal_phlegm_spell_damage(damage : int)
 
 @export var puyo_values: PuyoValueData
@@ -27,3 +30,8 @@ func launch_hatred_attack(grid_node_array : Array, new_chain_length : int):
 	var value: int = puyo_values.get_base_value(Puyo.PUYO_TYPE.GREEN) * grid_node_array.size()
 	var mult: int = puyo_values.get_multiplier(Puyo.PUYO_TYPE.GREEN) * new_chain_length
 	deal_phlegm_spell_damage.emit(value * mult)
+
+func complete_spell():
+	on_spell_complete.emit()
+	trigger_spell_effect()
+	print("spell complete")

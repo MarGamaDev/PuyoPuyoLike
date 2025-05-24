@@ -13,6 +13,7 @@ var type_text = {
 @export var spell_description: String
 @export var recipe_type : RECIPE_TYPE
 @export var recipe_contents : Array[Puyo.PUYO_TYPE] #ordered correctly
+@export var spell_path : String = ""
 
 #func get_spell_path() -> String:
 	#return spell_effect_dictionary[spell_name]
