@@ -20,7 +20,6 @@ func add_spell(spell_data: SpellData):
 		
 		spell_node.setup_spell_node(spell_data)
 		equipped_spells.append(spell_node)
-		$SpellHolder.add_child(spell_node)
 		var spell_container = $EquippedSpellsContainer.add_spell(spell_data)
 		spell_node.on_spell_progressed.connect(spell_container.progress_spell_visual)
 		spell_node.on_spell_progress_reset.connect(spell_container.reset_recipe_visual)

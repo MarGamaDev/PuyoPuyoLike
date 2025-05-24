@@ -212,6 +212,7 @@ func grid_state_check():
 		await grid_state_check()
 		chain_ended.emit(max_chain)
 		max_chain = 0
+		chain_length = 0
 	else:
 		if event_queue.size() == 0 and start_flag:
 			event_queue.append(PuyoQueueEvent.create(PuyoQueueEvent.EVENT_TYPE.PLAYER))
@@ -367,7 +368,7 @@ func pop_puyos(puyo_groups:Array = puyos_to_pop):
 #starts a board check loop
 func check_board(puyo_groups : Array) -> bool:
 	if puyo_groups.is_empty():
-		chain_length = 0
+		#chain_length = 0
 		board_check_delay.emit()
 		return false
 	else:

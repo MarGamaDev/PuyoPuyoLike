@@ -5,7 +5,7 @@ signal on_spell_progress_reset
 signal on_spell_progressed(chain_stage : int)
 signal on_spell_complete
 
-var spell_data : SpellData
+@export var spell_data : SpellData
 var recipe_type : SpellData.RECIPE_TYPE
 var chain_length : int = 0
 var recipe_contents : Array[Puyo.PUYO_TYPE] = []
@@ -59,5 +59,6 @@ func progress_spell(chain_stage: int):
 func complete_spell():
 	on_spell_complete.emit()
 	trigger_spell_effect()
-	spell_reset()
+	##if we need ot reset this here make sure to override in spells like hatred
+	#spell_reset()
 	print("spell complete")

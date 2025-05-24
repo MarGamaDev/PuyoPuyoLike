@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://crrxbbn3t8477"]
+
+[ext_resource type="Script" uid="uid://dbp4sn2ou6lq4" path="res://scripts/spells/potential_spell.gd" id="1_q0bi7"]
+
+[node name="PotentialSpell" type="Node2D"]
+script = ExtResource("1_q0bi7")
+metadata/_custom_type_script = "uid://qt78oiw24c77"
