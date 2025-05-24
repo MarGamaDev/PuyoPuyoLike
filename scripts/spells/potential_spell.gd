@@ -26,9 +26,6 @@ func rainbow_attack(chain_length : int):
 		return
 	spell_trigger_flag = false
 	puyo_manager.on_chain_ending.disconnect(rainbow_attack)
-	print("rainbow test")
-	print("rainbow mult value: %s" % rainbow_mult_value)
-	print("chain_length: %s" % chain_length)
 	deal_aoe_damage.emit(rainbow_mult_value * chain_length)
 	deal_target_damage.emit(rainbow_mult_value * chain_length)
 	gain_shield.emit(rainbow_mult_value * chain_length)

@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://crrxbbn3t8477"]
+
+[ext_resource type="Script" uid="uid://dbp4sn2ou6lq4" path="res://scripts/spells/potential_spell.gd" id="1_stg7m"]
+[ext_resource type="Resource" uid="uid://54m8cous0l5" path="res://Resources/SpellData/Ambition.tres" id="2_v5p46"]
+
+[node name="AmbitionSpell" type="Node2D"]
+script = ExtResource("1_stg7m")
+spell_data = ExtResource("2_v5p46")
+metadata/_custom_type_script = "uid://qt78oiw24c77"

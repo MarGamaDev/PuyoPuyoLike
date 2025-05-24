@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_rypt6")
-spell_name = "Potential"
+spell_name = "Ambition"
 spell_description = "Once the current chain ends after casting this spell, trigger the effect of each humour type equal to [RAINBOW MULT VALUE] multiplied by  the chain length. Show them what you are capable of."
 recipe_type = 1
 recipe_contents = Array[int]([2, 3])
