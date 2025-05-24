@@ -12,7 +12,8 @@ static var spell_effect_dictionary : Dictionary = {
 	"Ambition" : "res://Scenes/spells/ambition_spell.tscn",
 	"Cunning" : "res://Scenes/spells/cunning_spell.tscn",
 	"Recklessness" : "res://Scenes/spells/recklessness_spell.tscn",
-	"Brutality" : "res://Scenes/spells/brutality_spell.tscn"
+	"Brutality" : "res://Scenes/spells/brutality_spell.tscn",
+	"Caution" : "res://Scenes/spells/caution_spell.tscn"
 }
 
 static func find_spell(name: String) -> String:

@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cbykntjx6g1w8"]
+
+[ext_resource type="Script" uid="uid://btdse5ry22osr" path="res://scripts/spells/caution_spell.gd" id="1_s75er"]
+
+[node name="CautionSpell" type="Node2D"]
+script = ExtResource("1_s75er")
+metadata/_custom_type_script = "uid://qt78oiw24c77"
