@@ -8,4 +8,5 @@ spell_name = "Resentment"
 spell_description = "Deal [Damage] damage to all enemies. make them burn."
 recipe_type = 1
 recipe_contents = Array[int]([4, 3, 4])
+spell_path = "res://Scenes/spells/resentment_spell.tscn"
 metadata/_custom_type_script = "uid://dnec0n0x4urar"

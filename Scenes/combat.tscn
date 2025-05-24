@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://d3naap4gnytxh"]
+[gd_scene load_steps=17 format=3 uid="uid://d3naap4gnytxh"]
 
 [ext_resource type="Script" uid="uid://b0h0tx4msve02" path="res://scripts/Combat/combat_manager.gd" id="1_4ln8h"]
 [ext_resource type="Resource" uid="uid://b01ucdggd8ykf" path="res://Resources/puyo_value_data.tres" id="2_xisnc"]
@@ -13,6 +13,8 @@
 [ext_resource type="PackedScene" uid="uid://b2l1xn5ovaca4" path="res://Scenes/RewardScreen/reward_screen.tscn" id="11_xisnc"]
 [ext_resource type="Script" uid="uid://bc5i4sjlttc78" path="res://scripts/Inventory.gd" id="12_xisnc"]
 [ext_resource type="PackedScene" uid="uid://chmradttgb2ep" path="res://Scenes/Combat/life_counter.tscn" id="13_y8jr2"]
+[ext_resource type="Script" uid="uid://mn6m032nthh1" path="res://Scenes/defense_visuals_manager.gd" id="15_50454"]
+[ext_resource type="Theme" uid="uid://qw5wdr2jerv7" path="res://Art/text/default_font.tres" id="15_f8ge6"]
 [ext_resource type="PackedScene" uid="uid://br4sb0wwxwr2o" path="res://Scenes/spells/spellSystem/spell_manager.tscn" id="16_50454"]
 
 [node name="Combat" type="Node2D"]
@@ -77,6 +79,31 @@ script = ExtResource("12_xisnc")
 
 [node name="SpellManager" parent="." instance=ExtResource("16_50454")]
 
+[node name="DefenseVisualsManager" type="Node2D" parent="."]
+script = ExtResource("15_50454")
+
+[node name="TestCounters" type="CanvasLayer" parent="DefenseVisualsManager"]
+
+[node name="TestShieldLabel" type="RichTextLabel" parent="DefenseVisualsManager/TestCounters"]
+anchors_preset = -1
+anchor_left = 0.526
+anchor_top = 0.618
+anchor_right = 0.647
+anchor_bottom = 0.672
+theme = ExtResource("15_f8ge6")
+theme_override_font_sizes/normal_font_size = 25
+text = "Shield: "
+
+[node name="TestCounterLabel" type="RichTextLabel" parent="DefenseVisualsManager/TestCounters"]
+anchors_preset = -1
+anchor_left = 0.509
+anchor_top = 0.704
+anchor_right = 0.661
+anchor_bottom = 0.767
+theme = ExtResource("15_f8ge6")
+theme_override_font_sizes/normal_font_size = 25
+text = "Counter:"
+
 [connection signal="on_combat_started" from="." to="PuyoManager" method="reset_game"]
 [connection signal="on_combat_started" from="." to="EncounterManager" method="load_next_encounter"]
 [connection signal="on_counter_gained" from="." to="Player" method="add_counter"]
@@ -90,6 +117,7 @@ script = ExtResource("12_xisnc")
 [connection signal="on_end_player_turn" from="PuyoManager" to="." method="end_player_turn"]
 [connection signal="on_player_created" from="PuyoManager" to="SpellManager" method="reset_spell_visuals"]
 [connection signal="player_attack" from="PuyoManager" to="." method="process_player_attack"]
+[connection signal="on_counter_change" from="Player" to="DefenseVisualsManager" method="update_counter_visuals"]
 [connection signal="on_counter_triggered" from="Player" to="." method="trigger_counter"]
 [connection signal="on_life_gain" from="Player" to="LifeCounter" method="gain_a_life"]
 [connection signal="on_life_lost" from="Player" to="." method="lose_player_life"]
@@ -97,6 +125,7 @@ script = ExtResource("12_xisnc")
 [connection signal="on_life_lost" from="Player" to="LifeCounter" method="lose_a_life"]
 [connection signal="on_player_damage_taken" from="Player" to="PuyoManager" method="process_damage_taken"]
 [connection signal="on_set_life_to" from="Player" to="LifeCounter" method="set_lives_to"]
+[connection signal="on_shield_change" from="Player" to="DefenseVisualsManager" method="update_shield_visuals"]
 [connection signal="on_rest_stop" from="EncounterManager" to="PuyoManager" method="pause_puyo"]
 [connection signal="on_rest_stop" from="EncounterManager" to="RewardScreen" method="generate_pool"]
 [connection signal="on_update_encounter" from="EncounterManager" to="." method="process_encounter_updated"]

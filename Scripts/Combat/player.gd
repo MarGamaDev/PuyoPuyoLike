@@ -11,6 +11,8 @@ signal on_life_lost
 signal on_life_gain
 signal on_set_life_to(num : int)
 signal on_player_death
+signal on_shield_change(new_shield: int)
+signal on_counter_change(new_counter: int)
 
 var lives : int = 3
 var shield : int = 0
@@ -35,26 +37,31 @@ func receive_attack(attack: EnemyAttack) -> void:
 func add_counter(counter_gained: int) -> void:
 	on_counter_gain.emit(counter_gained)
 	counter += counter_gained
+	on_counter_change.emit(counter)
 
 func add_shield(shield_gained: int) -> void:
 	on_shield_gain.emit(shield_gained)
 	shield += shield_gained
+	on_shield_change.emit(shield)
 
 func handle_damage(damage: int) -> int:
 	if damage <= counter:
 		on_counter_triggered.emit(counter * counter_buff)
 		counter_buff = 1
 		counter = 0
+		on_counter_change.emit(counter)
 		return 0
 	
 	if damage <= shield:
 		on_shield_lost.emit(damage)
 		shield -= damage
+		on_shield_change.emit(shield)
 		return 0
 	else:
 		on_shield_lost.emit(shield)
 		damage -= shield
 		shield = 0
+		on_shield_change.emit(shield)
 		return damage
 
 func lose_life() -> void:

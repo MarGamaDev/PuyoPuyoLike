@@ -8,4 +8,5 @@ spell_name = "Adamance"
 spell_description = "Trigger all humours touching the walls as if they had been crushed during the final chain. Show them they cannot change."
 recipe_type = 1
 recipe_contents = Array[int]([3, 5, 3])
+spell_path = "res://Scenes/spells/adamance_spell.tscn"
 metadata/_custom_type_script = "uid://dnec0n0x4urar"

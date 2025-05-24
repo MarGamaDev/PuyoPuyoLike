@@ -4,4 +4,5 @@
 
 [resource]
 default_font = ExtResource("1_swmlj")
+default_font_size = 20
 /fonts/default = ExtResource("1_swmlj")

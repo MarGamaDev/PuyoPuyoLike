@@ -8,4 +8,5 @@ spell_name = "Cunning"
 spell_description = "The next time you would deal counterattack damage, deal double the damage you would deal. Let them fall into your traps."
 recipe_type = 1
 recipe_contents = Array[int]([5, 4, 5])
+spell_path = "res://Scenes/spells/cunning_spell.tscn"
 metadata/_custom_type_script = "uid://dnec0n0x4urar"
