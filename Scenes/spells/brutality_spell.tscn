@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://dct1eh2elmyay"]
+
+[ext_resource type="Script" uid="uid://cpaiygh86hvy3" path="res://Scenes/spells/brutality_spell.gd" id="1_v0jga"]
+[ext_resource type="Resource" uid="uid://y8sgi72q7ip8" path="res://Resources/SpellData/brutality.tres" id="2_1grda"]
+
+[node name="BrutalitySpell" type="Node2D"]
+script = ExtResource("1_v0jga")
+spell_data = ExtResource("2_1grda")
+metadata/_custom_type_script = "uid://qt78oiw24c77"
