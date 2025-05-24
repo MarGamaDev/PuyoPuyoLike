@@ -4,6 +4,7 @@ signal on_reward_chosen(reward : Reward)
 signal restart_combat_after_reward()
 signal on_spell_reward_chosen(spell_data : SpellData)
 signal on_item_reward_chosen
+signal clear_board
 
 @onready var rewards_container : HBoxContainer = $RewardsContainer
 @onready var reward_choice_scene : PackedScene = preload("res://Scenes/RewardScreen/reward_choice.tscn")
@@ -21,6 +22,7 @@ func _ready():
 	pass
 
 func generate_pool(new_pool_size := reward_choice_pool_size):
+	clear_board.emit()
 	if rest_flag:
 		await get_tree().create_timer(0.4).timeout
 		show()

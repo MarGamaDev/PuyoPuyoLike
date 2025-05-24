@@ -255,6 +255,7 @@ visible = false
 [connection signal="deal_fuck_damage" from="PuyoTestUI" to="." method="damage_all_enemies"]
 [connection signal="start_game" from="PuyoTestUI" to="." method="start_combat"]
 [connection signal="all_clear_for_next_encounter" from="SpellManager" to="." method="start_combat"]
+[connection signal="clear_board" from="RewardManager/RewardScreen" to="PuyoManager" method="destroy_leftover_puyos"]
 [connection signal="on_reward_chosen" from="RewardManager/RewardScreen" to="RewardManager" method="remove_from_pool"]
 [connection signal="on_spell_reward_chosen" from="RewardManager/RewardScreen" to="SpellManager" method="add_spell"]
 

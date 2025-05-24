@@ -395,6 +395,9 @@ func create_player_puyo():
 		fill_puyo_queue()
 		add_child(player_puyos[0])
 		add_child(player_puyos[1])
+		player_puyos[0].add_to_group("Puyos")
+		player_puyos[1].add_to_group("Puyos")
+		
 		player_puyos[0].connect("reached_bottom", play_puyo_thud)
 		
 		player_rotation = 0
@@ -477,6 +480,7 @@ func player_down_tick():
 			var node_to_fill = grid[new_puyo_position.x][new_puyo_position.y]
 			var new_puyo : Puyo = puyo_scene.instantiate()
 			new_puyo.set_type(new_puyo_base.get_type())
+			new_puyo.add_to_group("Puyos")
 			node_to_fill.add_child(new_puyo)
 			node_to_fill.set_puyo(new_puyo)
 			if (!(check_next_move([next_moves[i]]))) or player_rotation == 1 or player_rotation == 3:
