@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="SpellData" load_steps=2 format=3 uid="uid://0sxxfgqq136b"]
+
+[ext_resource type="Script" uid="uid://dnec0n0x4urar" path="res://scripts/Data/spell_data.gd" id="1_er2ii"]
+
+[resource]
+script = ExtResource("1_er2ii")
+spell_name = "Foresight"
+spell_description = "Deal damage to the enemy equal to your current counter. let them fall before they feel it."
+recipe_type = 1
+recipe_contents = Array[int]([5, 5])
+spell_path = "res://Scenes/spells/foresight_spell.tscn"
+metadata/_custom_type_script = "uid://dnec0n0x4urar"
