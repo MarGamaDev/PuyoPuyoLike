@@ -3,7 +3,7 @@ extends CanvasLayer
 signal on_reward_chosen(reward : Reward)
 signal restart_combat_after_reward()
 signal on_spell_reward_chosen(spell_data : SpellData)
-signal on_item_reward_chosen
+signal on_relic_reward_chosen(relic_data : RelicData)
 signal clear_board
 signal on_reward_skipped
 
@@ -24,6 +24,7 @@ func _ready():
 
 func generate_pool(new_pool_size := reward_choice_pool_size):
 	clear_board.emit()
+	reset_pool()
 	if rest_flag:
 		await get_tree().create_timer(0.4).timeout
 		show()
@@ -31,7 +32,7 @@ func generate_pool(new_pool_size := reward_choice_pool_size):
 		reward_choices = []
 		choice_containers = []
 		var reward_check = true
-		for i in range(0, reward_choice_pool_size):
+		for i in range(reward_choices.size(), 3):
 			var new_item_for_pool : Reward
 			while reward_check:
 				new_item_for_pool = possible_rewards.pick_random()
@@ -65,7 +66,7 @@ func on_reward_button_pressed(reward : Reward):
 	if reward.reward_type == Reward.REWARD_TYPE.SPELL:
 		on_spell_reward_chosen.emit(reward.spell_data, reward)
 	else:
-		on_item_reward_chosen.emit()
+		on_relic_reward_chosen.emit(reward.relic_data)
 	hide()
 	reset_pool()
 

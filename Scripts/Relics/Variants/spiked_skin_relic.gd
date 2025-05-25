@@ -2,8 +2,10 @@ extends BaseRelic
 
 func initialize() -> void:
 	super()
-	get_node("root/Combat/Player").connect("on_life_lost", return_damage)
+	player.on_player_damage_taken.connect(return_damage)
+	
 
-func return_damage() -> void:
+func return_damage(damage_taken, attack_type) -> void:
+	print("proc spikeskin")
 	(get_node("/root/Combat") as CombatManager).damage_all_enemies(3) 
-	pass
+	update_enemy_damage_visuals.emit()

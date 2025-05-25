@@ -262,7 +262,7 @@ anchor_top = 0.25
 anchor_right = 0.901
 anchor_bottom = 0.5
 
-[node name="ItemImage" type="TextureRect" parent="."]
+[node name="RelicImage" type="TextureRect" parent="."]
 visible = false
 layout_mode = 1
 anchors_preset = -1
@@ -274,7 +274,7 @@ texture = ExtResource("3_ljidh")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="ItemImage"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="RelicImage"]
 libraries = {
 &"": SubResource("AnimationLibrary_ljidh")
 }

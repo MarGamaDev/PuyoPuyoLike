@@ -28,6 +28,7 @@ signal on_taking_turn()
 
 var health_to_display : int = 0
 var damage_number_effect_queue : Array[int] = []
+var death_flag = false
 
 func _ready() -> void:
 	
@@ -80,10 +81,11 @@ func take_damage(damage: int) -> void:
 	instance_data.health -= damage
 	if damage > 0:
 		damage_number_effect_queue.append(damage)
-	if instance_data.health <= 0:
+	if instance_data.health <= 0 and death_flag == false:
 		die()
 
 func die() -> void:
+	death_flag = true
 	await wait_for_animation
 	on_death.emit()
 	# add in animation

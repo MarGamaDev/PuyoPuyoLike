@@ -31,8 +31,9 @@ func create_player_attack_effect(puyos : Array, chain : int):
 			create_green_attack(puyo_position)
 
 func create_red_attack(start_position : Vector2):
-	var enemy_position = combat_manager.selected_enemy.global_position
-	create_attack_effect(start_position, enemy_position, AttackEffectData.EFFECT_TYPE.PLAYER_RED)
+	if combat_manager.selected_enemy != null:
+		var enemy_position = combat_manager.selected_enemy.global_position
+		create_attack_effect(start_position, enemy_position, AttackEffectData.EFFECT_TYPE.PLAYER_RED)
 
 func create_green_attack(start_position : Vector2):
 	for i in combat_manager.enemies:

@@ -13,11 +13,12 @@ func create_reward(new_reward: Reward):
 	if reward.reward_type == Reward.REWARD_TYPE.SPELL:
 		create_spell_reward()
 	else:
-		create_item_reward()
+		create_relic_reward()
 
 func create_spell_reward():
 	var spell : SpellData = reward.spell_data
 	$RewardNameLabel.text = spell.spell_name
+	$RewardTypeLabel.show()
 	$RewardTypeLabel.text = "Spell - %s" % spell.type_text[spell.recipe_type]
 	$SpellContainer.create_spell_container(spell, true)
 	$SpellContainer.show()
@@ -25,7 +26,14 @@ func create_spell_reward():
 	$FlavorTextLabel.text = spell.flavor_text
 	
 
-func create_item_reward():
+func create_relic_reward():
+	var relic : RelicData = reward.relic_data
+	$RewardNameLabel.text = relic.name
+	$RewardTypeLabel.hide()
+	$RelicImage.show()
+	$RelicImage.texture = relic.sprite
+	$RewardDescriptionLabel.text = relic.description
+	$FlavorTextLabel.text = relic.flavor_text
 	pass
 
 func _on_button_pressed() -> void:
@@ -33,11 +41,11 @@ func _on_button_pressed() -> void:
 
 
 func _on_button_mouse_entered() -> void:
-	$ItemImage/AnimationPlayer.play("itemHover")
+	$RelicImage/AnimationPlayer.play("itemHover")
 
 
 func _on_button_mouse_exited() -> void:
-	$ItemImage/AnimationPlayer.play_backwards("itemHover")
+	$RelicImage/AnimationPlayer.play_backwards("itemHover")
 	
 
 func turn_off_button():
