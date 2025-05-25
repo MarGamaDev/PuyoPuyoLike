@@ -1,9 +1,11 @@
-[gd_resource type="Resource" script_class="RelicData" load_steps=2 format=3 uid="uid://bkt3yag6anqym"]
+[gd_resource type="Resource" script_class="RelicData" load_steps=3 format=3 uid="uid://bkt3yag6anqym"]
 
 [ext_resource type="Script" uid="uid://dfyomjxsahuhw" path="res://Scripts/Relics/System/relic_data.gd" id="1_5r3hd"]
+[ext_resource type="Texture2D" uid="uid://bh56uxpmn85gw" path="res://Art/puyo elements/Puyo_Blue.png" id="2_fy2ex"]
 
 [resource]
 script = ExtResource("1_5r3hd")
+sprite = ExtResource("2_fy2ex")
 name = "Spiked Skin"
 description = "When taking damage, deal 3 damage to all enemies."
 flavor_text = "It's like hugging sandpaper."

@@ -1,5 +1,4 @@
 class_name BaseRelic extends Node
-@export var relic_sprite: Texture
 @export var relic_data: RelicData
 
 func initialize() -> void:

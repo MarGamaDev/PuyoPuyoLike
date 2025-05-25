@@ -4,7 +4,7 @@ func add_relic(relic_data: RelicData) -> void:
 	var new_relic = load(relic_data.filepath)
 	new_relic.reparent(self)
 	new_relic.initialize()
-	add_relic_visual(new_relic.sprite)
+	add_relic_visual(relic_data.sprite)
 	pass
 
 func add_relic_visual(sprite: Texture) -> void:
