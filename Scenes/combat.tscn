@@ -84,6 +84,13 @@ grow_vertical = 2
 texture = ExtResource("7_3w34b")
 expand_mode = 1
 
+[node name="Label" type="Label" parent="Frame"]
+offset_left = 23.0
+offset_top = 14.0
+offset_right = 260.0
+offset_bottom = 37.0
+text = "TEST BUTTONS ARE STILL HERE"
+
 [node name="PuyoManager" parent="." instance=ExtResource("4_ubpar")]
 position = Vector2(123, 128)
 scale = Vector2(1.09, 1.09)

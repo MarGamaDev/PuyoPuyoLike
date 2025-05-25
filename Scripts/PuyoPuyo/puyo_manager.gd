@@ -7,6 +7,7 @@ signal life_lost
 signal block_popped(popped_puyos : Array, chain_value : int)
 signal on_player_created
 signal on_chain_ending(max_chain : int)
+signal on_junk_popped(amount: int)
 
 @onready var grid_manager : GridManager = $GridManager
 
@@ -54,3 +55,8 @@ func destroy_leftover_puyos():
 	#for to_delete in get_tree().get_nodes_in_group("Puyos"):
 		#to_delete.queue_free()
 	pass
+
+
+func _on_grid_manager_junk_popped(amount: int) -> void:
+	on_junk_popped.emit(amount)
+	pass # Replace with function body.

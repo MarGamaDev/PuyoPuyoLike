@@ -12,6 +12,7 @@ signal player_created
 signal queue_event_added(event_type : PuyoQueueEvent)
 signal junk_created
 signal chain_ended(max_chain : int)
+signal junk_popped(amount : int)
 
 #loading the grid nodes to instantiate them
 @onready var grid_node_scene = load("res://Scenes/PuyoPuyo/grid_node.tscn")
@@ -345,6 +346,7 @@ func check_node(node_to_check: GridNode, node_group: Array, puyo_type:= Puyo.PUY
 	return node_group
 
 func pop_puyos(puyo_groups:Array = puyos_to_pop):
+	var junk_popped_now = 0
 	if puyo_groups.is_empty():
 		pass
 	for group in puyo_groups:
@@ -359,10 +361,12 @@ func pop_puyos(puyo_groups:Array = puyos_to_pop):
 				new_pop_effect.restart()
 			for junk_neighbours : GridNode in pop_node.neighbours:
 				if junk_neighbours.get_type() == Puyo.PUYO_TYPE.JUNK:
+					junk_popped_now += 1
 					junk_neighbours.puyo.pop()
 					junk_neighbours.reset()
 			pop_node.puyo.pop()
 			pop_node.reset()
+	junk_popped.emit(junk_popped_now)
 	puyos_to_pop = Array()
 
 #starts a board check loop

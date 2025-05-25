@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://cu7b2undy1n05"]
+
+[ext_resource type="Script" uid="uid://qhautjt7hc6y" path="res://Scripts/Relics/Variants/junk_to_damage.gd" id="1_tfdf1"]
+[ext_resource type="Resource" uid="uid://3rn8ybs54gpa" path="res://Resources/RelicData/junk_to_damage.tres" id="2_g7jj0"]
+
+[node name="JunkToDamage" type="Node"]
+script = ExtResource("1_tfdf1")
+relic_data = ExtResource("2_g7jj0")
+metadata/_custom_type_script = "uid://bn2jxby1kth4g"
