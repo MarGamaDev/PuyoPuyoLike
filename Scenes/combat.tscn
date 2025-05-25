@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://d3naap4gnytxh"]
+[gd_scene load_steps=27 format=3 uid="uid://d3naap4gnytxh"]
 
 [ext_resource type="Script" uid="uid://b0h0tx4msve02" path="res://Scripts/Combat/combat_manager.gd" id="1_4ln8h"]
 [ext_resource type="Resource" uid="uid://b01ucdggd8ykf" path="res://Resources/puyo_value_data.tres" id="2_xisnc"]
@@ -11,9 +11,13 @@
 [ext_resource type="Texture2D" uid="uid://14ejxpdanarl" path="res://Art/combat screen elements/combat_frame.png" id="7_3w34b"]
 [ext_resource type="PackedScene" uid="uid://carcnx12jkm8f" path="res://Scenes/Combat/Encounters/attack_test_encounter.tscn" id="8_f8ge6"]
 [ext_resource type="Script" uid="uid://b4hbt6qjcu26g" path="res://Scripts/Combat/encounter_manager.gd" id="8_twsak"]
+[ext_resource type="PackedScene" uid="uid://dq858shoyju02" path="res://Scenes/Combat/Encounters/GruntEncounter.tscn" id="11_5g3cp"]
 [ext_resource type="PackedScene" uid="uid://b3qfdcqaqmgk4" path="res://Scenes/Combat/combat_effects_manager.tscn" id="11_w6tjk"]
 [ext_resource type="PackedScene" uid="uid://b2l1xn5ovaca4" path="res://Scenes/RewardScreen/reward_screen.tscn" id="11_xisnc"]
+[ext_resource type="PackedScene" uid="uid://cuj4wx1wkdopv" path="res://Scenes/Combat/Encounters/single_grunt_encounter.tscn" id="12_2n3pb"]
+[ext_resource type="PackedScene" uid="uid://cawgcce4rjrb0" path="res://Scenes/Combat/Encounters/magician_encounter.tscn" id="13_r5ubg"]
 [ext_resource type="PackedScene" uid="uid://chmradttgb2ep" path="res://Scenes/Combat/life_counter.tscn" id="13_y8jr2"]
+[ext_resource type="PackedScene" uid="uid://spggxai8tcru" path="res://Scenes/Combat/Encounters/slam_boss_encounter.tscn" id="14_ycqky"]
 [ext_resource type="PackedScene" uid="uid://dpkr5l8qrkrou" path="res://Scenes/Relics/System/relic_manager.tscn" id="15_3cqtn"]
 [ext_resource type="PackedScene" uid="uid://bif55k0mmcvqf" path="res://Scenes/Combat/defense_visuals_manager.tscn" id="15_tmuf1"]
 [ext_resource type="PackedScene" uid="uid://br4sb0wwxwr2o" path="res://Scenes/spells/spellSystem/spell_manager.tscn" id="16_50454"]
@@ -93,7 +97,7 @@ scale = Vector2(1.09, 1.09)
 [node name="EncounterManager" type="Node2D" parent="."]
 position = Vector2(823, 250)
 script = ExtResource("8_twsak")
-encounter_array = Array[PackedScene]([ExtResource("8_f8ge6")])
+encounter_array = Array[PackedScene]([ExtResource("8_f8ge6"), ExtResource("11_5g3cp"), ExtResource("12_2n3pb"), ExtResource("13_r5ubg"), ExtResource("14_ycqky"), ExtResource("11_5g3cp")])
 
 [node name="CombatEffectsManager" parent="." instance=ExtResource("11_w6tjk")]
 

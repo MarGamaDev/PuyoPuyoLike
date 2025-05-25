@@ -1,10 +1,10 @@
 [gd_scene load_steps=8 format=3 uid="uid://spggxai8tcru"]
 
 [ext_resource type="PackedScene" uid="uid://bx5kscp85ypry" path="res://Scenes/Combat/Enemy/enemy.tscn" id="1_ccs0t"]
-[ext_resource type="Script" uid="uid://c086ewc7gw56k" path="res://scripts/Combat/encounter.gd" id="1_vw1g0"]
-[ext_resource type="Script" uid="uid://c27m7mkd1up2" path="res://scripts/Combat/Enemy/enemy_data.gd" id="2_vw1g0"]
+[ext_resource type="Script" uid="uid://c086ewc7gw56k" path="res://Scripts/Combat/encounter.gd" id="1_vw1g0"]
+[ext_resource type="Script" uid="uid://c27m7mkd1up2" path="res://Scripts/Combat/Enemy/enemy_data.gd" id="2_vw1g0"]
 [ext_resource type="Texture2D" uid="uid://dhmt056l2npcp" path="res://Placeholder Art/map_node_images/enemy_location.png" id="3_wg0x2"]
-[ext_resource type="Script" uid="uid://6v5kccermtmr" path="res://scripts/Combat/Enemy/enemy_attack.gd" id="4_a8axw"]
+[ext_resource type="Script" uid="uid://6v5kccermtmr" path="res://Scripts/Combat/Enemy/enemy_attack.gd" id="4_a8axw"]
 
 [sub_resource type="Resource" id="Resource_cv6dq"]
 script = ExtResource("2_vw1g0")
