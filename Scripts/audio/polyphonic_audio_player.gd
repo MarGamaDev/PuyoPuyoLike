@@ -1,5 +1,7 @@
 extends AudioStreamPlayer2D
 
+class_name PolyphonicAudioPlayer
+
 @export var audio_library : AudioLibrary
 @export var custom_max_polyphony : int = 32
 

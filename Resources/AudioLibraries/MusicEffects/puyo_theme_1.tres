@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="SoundEffect" load_steps=3 format=3 uid="uid://bhan8a6naa7gk"]
+
+[ext_resource type="Script" uid="uid://ccmkst5npwi3n" path="res://Scripts/audio/sound_effect.gd" id="1_x4amy"]
+[ext_resource type="AudioStream" uid="uid://dr6ge7216dayb" path="res://Audio/Music/PuyoPuyoTheme_1.mp3" id="2_pff5c"]
+
+[resource]
+script = ExtResource("1_x4amy")
+tag = "PuyoPuyoTheme_1"
+stream = ExtResource("2_pff5c")
+metadata/_custom_type_script = "uid://ccmkst5npwi3n"
