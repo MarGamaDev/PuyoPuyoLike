@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://brvve6vrgtcnh"]
 
 [ext_resource type="Theme" uid="uid://qw5wdr2jerv7" path="res://Art/text/default_font.tres" id="1_h6lxd"]
-[ext_resource type="Script" uid="uid://b8lcat8ap5x50" path="res://scripts/reward_choice.gd" id="2_m3q4d"]
+[ext_resource type="Script" uid="uid://b8lcat8ap5x50" path="res://Scripts/reward_choice.gd" id="2_m3q4d"]
 [ext_resource type="Texture2D" uid="uid://b6oxgd10fqwpj" path="res://Placeholder Art/box.png" id="3_ljidh"]
 [ext_resource type="PackedScene" uid="uid://b82f1h5dy54rx" path="res://Scenes/spells/spellSystem/spell_container.tscn" id="3_m3q4d"]
 
@@ -224,7 +224,7 @@ size_flags_horizontal = 3
 theme = ExtResource("1_h6lxd")
 script = ExtResource("2_m3q4d")
 
-[node name="RewardNameLabel" type="Label" parent="."]
+[node name="RewardNameLabel" type="RichTextLabel" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.1
@@ -233,13 +233,13 @@ anchor_right = 0.9
 anchor_bottom = 0.148
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/normal_font_size = 66
 text = "Item name"
+fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="RewardTypeLabel" type="Label" parent="."]
+[node name="RewardTypeLabel" type="RichTextLabel" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.1
@@ -248,8 +248,7 @@ anchor_right = 0.9
 anchor_bottom = 0.2
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/normal_font_size = 36
 text = "Spell or Item"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -289,7 +288,7 @@ anchor_right = 0.9
 anchor_bottom = 0.957
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/normal_font_size = 20
+theme_override_font_sizes/normal_font_size = 35
 text = "Reward Description"
 fit_content = true
 horizontal_alignment = 1

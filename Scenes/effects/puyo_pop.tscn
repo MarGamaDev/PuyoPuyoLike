@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://8yo7gx0ooj4c"]
 
 [ext_resource type="Texture2D" uid="uid://dqohymee1bv55" path="res://Placeholder Art/puyo_pop.png" id="1_1li7p"]
-[ext_resource type="Script" uid="uid://d30hnw5751f41" path="res://scripts/effects/puyo_pop_particles.gd" id="2_j1dro"]
+[ext_resource type="Script" uid="uid://d30hnw5751f41" path="res://Scripts/effects/puyo_pop_particles.gd" id="2_j1dro"]
 
 [sub_resource type="Gradient" id="Gradient_j1dro"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)

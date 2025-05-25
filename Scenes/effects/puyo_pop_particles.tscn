@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dro6x2xet1xav"]
 
 [ext_resource type="Texture2D" uid="uid://hvooavpam6hd" path="res://Placeholder Art/puyo_out_of_bounds.png" id="1_kkms8"]
-[ext_resource type="Script" uid="uid://d30hnw5751f41" path="res://scripts/effects/puyo_pop_particles.gd" id="2_skgoy"]
+[ext_resource type="Script" uid="uid://d30hnw5751f41" path="res://Scripts/effects/puyo_pop_particles.gd" id="2_skgoy"]
 
 [node name="PuyoPopParticles" type="GPUParticles2D"]
 emitting = false

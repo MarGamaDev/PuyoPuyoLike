@@ -46,7 +46,7 @@ size_flags_vertical = 3
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="SpellChoiceMenu/ColorRect"]
+[node name="Label" type="RichTextLabel" parent="SpellChoiceMenu/ColorRect"]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.026

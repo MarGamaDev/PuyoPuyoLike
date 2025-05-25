@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://copdt5sgr6w4o"]
 
-[ext_resource type="Script" uid="uid://bysr3fa2ip1ad" path="res://scripts/effects/attack_particle_effect.gd" id="1_47cro"]
+[ext_resource type="Script" uid="uid://bysr3fa2ip1ad" path="res://Scripts/effects/attack_particle_effect.gd" id="1_47cro"]
 [ext_resource type="Texture2D" uid="uid://gmla32085lxi" path="res://Placeholder Art/placeholder_twinkle.png" id="2_44lgp"]
 [ext_resource type="Texture2D" uid="uid://dqohymee1bv55" path="res://Placeholder Art/puyo_pop.png" id="3_44lgp"]
 

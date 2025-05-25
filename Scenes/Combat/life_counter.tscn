@@ -35,6 +35,23 @@ tracks/0/keys = {
 "values": [Vector2(0.913043, 0.913043), Vector2(0.953, 0.953), Vector2(0.913043, 0.913043)]
 }
 
+[sub_resource type="Animation" id="Animation_01gpm"]
+resource_name = "Beat2"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Heart2:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.266667, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.913043, 0.913043), Vector2(0.953, 0.953), Vector2(0.913043, 0.913043)]
+}
+
 [sub_resource type="Animation" id="Animation_cf6pw"]
 resource_name = "Beat3"
 length = 0.5
@@ -67,23 +84,6 @@ tracks/0/keys = {
 "values": [Vector2(0.913043, 0.913043)]
 }
 
-[sub_resource type="Animation" id="Animation_01gpm"]
-resource_name = "Beat2"
-length = 0.5
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../Heart2:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.266667, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(0.913043, 0.913043), Vector2(0.953, 0.953), Vector2(0.913043, 0.913043)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nwvjo"]
 _data = {
 &"Beat": SubResource("Animation_nhhke"),
@@ -95,7 +95,7 @@ _data = {
 [node name="LifeCounter" type="Node2D"]
 script = ExtResource("1_v5ltv")
 
-[node name="ExtraLives" type="Label" parent="."]
+[node name="ExtraLives" type="RichTextLabel" parent="."]
 visible = false
 offset_left = 513.0
 offset_top = 742.0
