@@ -4,7 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://gmla32085lxi" path="res://Placeholder Art/placeholder_twinkle.png" id="2_44lgp"]
 [ext_resource type="Texture2D" uid="uid://dqohymee1bv55" path="res://Placeholder Art/puyo_pop.png" id="3_44lgp"]
 
-[sub_resource type="Curve2D" id="Curve2D_y1t4w"]
+[sub_resource type="Curve2D" id="Curve2D_44lgp"]
+resource_local_to_scene = true
 
 [sub_resource type="Curve" id="Curve_44lgp"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.108475, 0.995953), 0.0, 0.0, 0, 0, Vector2(0.738806, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.0172249), -3.33397, 0.0, 0, 0]
@@ -31,7 +32,7 @@ alpha_curve = SubResource("CurveTexture_y1t4w")
 script = ExtResource("1_47cro")
 
 [node name="Path2D" type="Path2D" parent="."]
-curve = SubResource("Curve2D_y1t4w")
+curve = SubResource("Curve2D_44lgp")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
 loop = false
