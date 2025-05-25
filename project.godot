@@ -10,10 +10,11 @@ config_version=5
 
 [application]
 
-config/name="Puyo-Puyo-Like"
-run/main_scene="uid://d3naap4gnytxh"
+config/name="Umoris"
+config/version="0.1"
+run/main_scene="uid://dc6oe7dfg2ice"
 config/features=PackedStringArray("4.4", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="uid://dehy5ghfyon84"
 
 [autoload]
 
