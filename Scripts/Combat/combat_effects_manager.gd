@@ -32,7 +32,8 @@ func create_red_attack(start_position : Vector2):
 	create_attack_effect(start_position, enemy_position, AttackEffectData.EFFECT_TYPE.PLAYER_RED)
 
 func create_green_attack(start_position : Vector2):
-	create_attack_effect(start_position,$Markers/EnemyLocation.position, AttackEffectData.EFFECT_TYPE.PLAYER_GREEN)
+	for i in combat_manager.enemies:
+		create_attack_effect(start_position, i.global_position, AttackEffectData.EFFECT_TYPE.PLAYER_GREEN)
 
 func create_shield_puyo_effect(start_position : Vector2):
 	var end_position = $Markers/PlayerShieldLocation.position
