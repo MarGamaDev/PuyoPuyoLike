@@ -7,40 +7,58 @@
 script = ExtResource("1_esjl1")
 
 [node name="Background" type="ColorRect" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 150.0
-offset_top = 95.0
-offset_right = -150.0
-offset_bottom = -95.0
+anchors_preset = -1
+anchor_left = 0.125
+anchor_top = 0.106
+anchor_right = 0.875
+anchor_bottom = 0.894
+offset_top = -0.400009
+offset_right = -0.00012207
+offset_bottom = 0.399963
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.490196, 0.639216, 0, 0.376471)
 
 [node name="Label" type="Label" parent="Background"]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -151.0
-offset_top = 31.0
-offset_right = 151.0
-offset_bottom = 86.0
+anchors_preset = -1
+anchor_left = 0.332
+anchor_top = 0.044
+anchor_right = 0.668
+anchor_bottom = 0.121
+offset_left = 0.199982
+offset_top = -0.240002
+offset_right = -0.200012
+offset_bottom = 0.0899963
 grow_horizontal = 2
 theme = ExtResource("2_ibqxd")
 theme_override_font_sizes/font_size = 40
 text = "Choose reward:"
 
 [node name="RewardsContainer" type="HBoxContainer" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 182.0
-offset_top = 210.0
-offset_right = -182.0
-offset_bottom = -125.0
+anchors_preset = -1
+anchor_left = 0.126
+anchor_top = 0.108
+anchor_right = 0.872
+anchor_bottom = 0.891
+offset_left = 30.8
+offset_top = 112.8
+offset_right = -28.4
+offset_bottom = -26.9
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 10
 alignment = 1
+
+[node name="SkipButton" type="Button" parent="."]
+anchors_preset = -1
+anchor_left = 0.42
+anchor_top = 0.913
+anchor_right = 0.58
+anchor_bottom = 0.957
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("2_ibqxd")
+text = "Skip Reward"
+
+[connection signal="pressed" from="SkipButton" to="." method="on_skip_button_pressed"]

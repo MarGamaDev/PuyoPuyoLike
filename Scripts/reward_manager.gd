@@ -18,5 +18,8 @@ func get_pool() -> Array[Reward]:
 	return reward_pool
 
 func remove_from_pool(to_remove: Reward):
+	if to_remove == null:
+		print("reward skipped")
+		return
 	var index = reward_pool.find(to_remove)
 	reward_pool[index].has_been_taken = true

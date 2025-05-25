@@ -5,6 +5,7 @@ signal restart_combat_after_reward()
 signal on_spell_reward_chosen(spell_data : SpellData)
 signal on_item_reward_chosen
 signal clear_board
+signal on_reward_skipped
 
 @onready var rewards_container : HBoxContainer = $RewardsContainer
 @onready var reward_choice_scene : PackedScene = preload("res://Scenes/RewardScreen/reward_choice.tscn")
@@ -51,7 +52,7 @@ func generate_pool(new_pool_size := reward_choice_pool_size):
 		
 		rest_flag = false
 
-func reset_pool(reward_unused):
+func reset_pool(reward_unused = null):
 	for i in choice_containers:
 		i.queue_free()
 	reward_choices = []
@@ -67,4 +68,10 @@ func on_reward_button_pressed(reward : Reward):
 	else:
 		on_item_reward_chosen.emit()
 	hide()
-	reset_pool(reward)
+	reset_pool()
+
+func on_skip_button_pressed():
+	hide()
+	reset_pool()
+	on_reward_chosen.emit(null)
+	on_reward_skipped.emit()

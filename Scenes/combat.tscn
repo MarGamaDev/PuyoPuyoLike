@@ -171,6 +171,7 @@ visible = false
 [connection signal="all_clear_for_next_encounter" from="SpellManager" to="." method="start_combat"]
 [connection signal="clear_board" from="RewardManager/RewardScreen" to="PuyoManager" method="destroy_leftover_puyos"]
 [connection signal="on_reward_chosen" from="RewardManager/RewardScreen" to="RewardManager" method="remove_from_pool"]
+[connection signal="on_reward_skipped" from="RewardManager/RewardScreen" to="." method="start_combat"]
 [connection signal="on_spell_reward_chosen" from="RewardManager/RewardScreen" to="SpellManager" method="add_spell"]
 
 [editable path="CombatEffectsManager"]

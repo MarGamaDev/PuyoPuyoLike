@@ -51,5 +51,6 @@ func _on_grid_manager_chain_ended(max_chain: int) -> void:
 	on_chain_ending.emit(max_chain)
 
 func destroy_leftover_puyos():
-	for to_delete in get_tree().get_nodes_in_group("Puyos"):
-		to_delete.queue_free()
+	#for to_delete in get_tree().get_nodes_in_group("Puyos"):
+		#to_delete.queue_free()
+	pass
