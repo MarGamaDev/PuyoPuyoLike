@@ -16,6 +16,7 @@ signal on_enemy_deregistered(enemy: Enemy)
 signal on_player_life_lost()
 signal on_encounter_finished()
 signal on_delay_enemy_attack(delay_turns : int)
+signal on_game_paused()
 
 @export var puyo_values: PuyoValueData
 
@@ -33,6 +34,10 @@ func _physics_process(_delta: float) -> void:
 		var index = enemies.find(selected_enemy) + 1
 		index %= enemies.size()
 		select_enemy(index);
+	
+	if Input.is_action_just_pressed("toggle_pause"):
+		on_game_paused.emit()
+		get_tree().paused = true
 
 func process_player_attack(attack : PlayerAttack) -> void:
 	var value: int = puyo_values.get_base_value(attack.type) * attack.size

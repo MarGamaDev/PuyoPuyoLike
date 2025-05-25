@@ -45,7 +45,6 @@ func generate_pool(new_pool_size := reward_choice_pool_size):
 			var new_reward_choice : RewardChoice = reward_choice_scene.instantiate()
 			new_reward_choice.connect("on_reward_chosen", on_reward_button_pressed)
 			new_reward_choice.connect("on_reward_chosen", reset_pool)
-			##will need to change this to draw on a pool
 			new_reward_choice.create_reward(i)
 			$RewardsContainer.add_child(new_reward_choice)
 			choice_containers.append(new_reward_choice)

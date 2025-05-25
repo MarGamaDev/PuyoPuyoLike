@@ -38,3 +38,7 @@ func _on_button_mouse_entered() -> void:
 
 func _on_button_mouse_exited() -> void:
 	$ItemImage/AnimationPlayer.play_backwards("itemHover")
+	
+
+func turn_off_button():
+	$Button.hide()
