@@ -1,6 +1,8 @@
 class_name Enemy
 extends Node2D
 
+signal wait_for_animation
+
 enum AttackBehaviour {
 	RANDOM,
 	ORDERED
@@ -22,7 +24,10 @@ signal on_take_damage()
 signal on_taking_turn()
 
 @onready var combat_manager: Node
-@onready var combat_effects_manager: Node
+@onready var combat_effects_manager: CombatEffectsManager
+
+var health_to_display : int = 0
+var damage_number_effect_queue : Array[int] = []
 
 func _ready() -> void:
 	
@@ -30,6 +35,7 @@ func _ready() -> void:
 	$Sprite.texture = instance_data.sprite
 	$Healthbar.max_value = instance_data.health
 	$Healthbar.value = instance_data.health
+	health_to_display = instance_data.health
 	
 	combat_manager = get_node("/root/Combat")
 	combat_manager.connect("on_aoe_damage_dealt", take_player_attack)
@@ -39,6 +45,7 @@ func _ready() -> void:
 	combat_manager.register_enemy(self)
 	
 	combat_effects_manager = get_node("/root/Combat/CombatEffectsManager")
+	combat_effects_manager.damage_effect_hit.connect(update_damage_visually)
 	
 	current_attack = attacks[0]
 
@@ -71,14 +78,13 @@ func take_player_attack(damage: int) -> void:
 func take_damage(damage: int) -> void:
 	on_take_damage.emit()
 	instance_data.health -= damage
-	$Healthbar.value = instance_data.health	
 	if damage > 0:
-		combat_effects_manager.create_damage_number_effect(damage, global_position)
-		$HurtFlashAnim.play("animation")
+		damage_number_effect_queue.append(damage)
 	if instance_data.health <= 0:
 		die()
 
 func die() -> void:
+	await wait_for_animation
 	on_death.emit()
 	# add in animation
 	combat_manager.deregister_enemy(self)
@@ -97,3 +103,15 @@ func set_as_selected(is_selected: bool) -> void:
 
 func add_to_timer(amount_to_add : int) -> void:
 	attack_countdown = attack_countdown - amount_to_add
+
+func update_damage_visually():
+	if damage_number_effect_queue.size() == 0:
+		return
+	else:
+		var new_damage = damage_number_effect_queue.pop_front()
+		health_to_display -= new_damage
+		$Healthbar.value = health_to_display
+		combat_effects_manager.create_damage_number_effect(new_damage, global_position)
+		$HurtFlashAnim.play("animation")
+		wait_for_animation.emit()
+		

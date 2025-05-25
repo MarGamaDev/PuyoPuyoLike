@@ -3,6 +3,7 @@ extends Node2D
 class_name AttackParticleEffect
 
 signal on_reaching_path_end()
+signal on_damage_effect_hit
 
 var effect_sprite_dictionary = {
 	AttackEffectData.EFFECT_TYPE.PLAYER_RED : "res://Art/puyo elements/Puyo_Red.png",
@@ -12,9 +13,9 @@ var effect_sprite_dictionary = {
 	AttackEffectData.EFFECT_TYPE.JUNK : "res://Placeholder Art/puyo_junk.png"
 }
 
-@export var particle_accelleration : float = 1.8
+@export var particle_accelleration : float = 2
 @export var particle_speed : float = 5
-@export var max_particle_speed : float = 40
+@export var max_particle_speed : float = 60
 @export var min_curve_angle_degrees : float = 35
 @export var max_curve_angle_degrees : float = 90
 @export var min_curve_intensity : float = 150
@@ -30,6 +31,7 @@ var end_point : Vector2
 var curve_point_offset : float = 0
 var curve_length : float
 var effect_type : AttackEffectData.EFFECT_TYPE
+var damage_flag = false
 
 @onready var particle_effect : GPUParticles2D = $Path2D/PathFollow2D/EndEffect
 
@@ -40,6 +42,8 @@ func _physics_process(delta: float) -> void:
 		$Path2D/PathFollow2D.progress += particle_speed
 		if $Path2D/PathFollow2D.progress_ratio >= 0.975:
 			started = false
+			if damage_flag:
+				on_damage_effect_hit.emit()
 			$Path2D.curve.clear_points()
 			play_particle_effect()
 			$Path2D/PathFollow2D/ProjectileSprite.hide()
@@ -49,10 +53,11 @@ func _ready():
 	max_curve_angle_degrees = deg_to_rad(max_curve_angle_degrees)
 	#create_effect(Vector2(0,0), Vector2(300,300), AttackEffectData.EFFECT_TYPE.PLAYER_RED)
 
-func create_effect(start_point : Vector2, end_point : Vector2, effect_type: AttackEffectData.EFFECT_TYPE):
+func create_effect(start_point : Vector2, end_point : Vector2, effect_type: AttackEffectData.EFFECT_TYPE, new_damage_flag = false):
 	set_points(start_point, end_point)
 	$Path2D/PathFollow2D/ProjectileSprite.texture = load(effect_sprite_dictionary[effect_type])
 	started = true
+	damage_flag = new_damage_flag
 	pass
 
 func set_points(start : Vector2, end : Vector2):

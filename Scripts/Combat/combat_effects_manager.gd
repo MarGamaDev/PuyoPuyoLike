@@ -1,4 +1,7 @@
 extends Node2D
+class_name CombatEffectsManager
+
+signal damage_effect_hit
 
 var damage_text_scene: PackedScene = preload("res://Scenes/effects/text_particle_effect.tscn")
 var attack_effect_scene : PackedScene = preload("res://Scenes/effects/attack_particle_effect.tscn")
@@ -50,4 +53,8 @@ func create_counter_puyo_effect(start_position : Vector2):
 func create_attack_effect(start_position : Vector2, end_position : Vector2, effect_type: AttackEffectData.EFFECT_TYPE):
 	var new_attack_effect : AttackParticleEffect = attack_effect_scene.instantiate()
 	$PuyoAttackEffectLayer.add_child(new_attack_effect)
-	new_attack_effect.create_effect(start_position, end_position, effect_type)
+	new_attack_effect.on_damage_effect_hit.connect(on_damage_effect_completed)
+	new_attack_effect.create_effect(start_position, end_position, effect_type, true)
+
+func on_damage_effect_completed():
+	damage_effect_hit.emit()
