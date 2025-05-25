@@ -5,10 +5,10 @@ class_name AttackParticleEffect
 signal on_reaching_path_end()
 
 var effect_sprite_dictionary = {
-	AttackEffectData.EFFECT_TYPE.PLAYER_RED : "res://Art/Puyo_Red.png",
-	AttackEffectData.EFFECT_TYPE.PLAYER_GREEN : "res://Art/Puyo_Green.png",
-	AttackEffectData.EFFECT_TYPE.PLAYER_BLUE : "res://Art/Puyo_Blue.png",
-	AttackEffectData.EFFECT_TYPE.PLAYER_YELLOW : "res://Art/Puyo_Yellow.png",
+	AttackEffectData.EFFECT_TYPE.PLAYER_RED : "res://Art/puyo elements/Puyo_Red.png",
+	AttackEffectData.EFFECT_TYPE.PLAYER_GREEN : "res://Art/puyo elements/Puyo_Green.png",
+	AttackEffectData.EFFECT_TYPE.PLAYER_BLUE : "res://Art/puyo elements/Puyo_Blue.png",
+	AttackEffectData.EFFECT_TYPE.PLAYER_YELLOW : "res://Art/puyo elements/Puyo_Yellow.png",
 	AttackEffectData.EFFECT_TYPE.JUNK : "res://Placeholder Art/puyo_junk.png"
 }
 
@@ -40,6 +40,7 @@ func _physics_process(delta: float) -> void:
 		$Path2D/PathFollow2D.progress += particle_speed
 		if $Path2D/PathFollow2D.progress_ratio >= 0.975:
 			started = false
+			$Path2D.curve.clear_points()
 			play_particle_effect()
 			$Path2D/PathFollow2D/ProjectileSprite.hide()
 

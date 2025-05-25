@@ -96,11 +96,14 @@ encounter_array = Array[PackedScene]([ExtResource("8_f8ge6")])
 
 [node name="CombatEffectsManager" parent="." instance=ExtResource("11_w6tjk")]
 
-[node name="PlayerLocation" parent="CombatEffectsManager" index="0"]
-position = Vector2(690, 585)
+[node name="EnemyLocation" parent="CombatEffectsManager/Markers" index="1"]
+position = Vector2(820, 244)
 
-[node name="EnemyLocation" parent="CombatEffectsManager" index="1"]
-position = Vector2(824, 248)
+[node name="PlayerShieldLocation" parent="CombatEffectsManager/Markers" index="2"]
+position = Vector2(654, 613)
+
+[node name="PlayerCounterLocation" parent="CombatEffectsManager/Markers" index="3"]
+position = Vector2(655, 533)
 
 [node name="PuyoTestUI" parent="." node_paths=PackedStringArray("puyo_manager") instance=ExtResource("5_yt1oa")]
 layer = 2

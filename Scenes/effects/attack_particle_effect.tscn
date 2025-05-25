@@ -49,7 +49,6 @@ process_material = SubResource("ParticleProcessMaterial_1o3b0")
 
 [node name="testSprite" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(300, 300)
 texture = ExtResource("2_44lgp")
 
 [connection signal="finished" from="Path2D/PathFollow2D/EndEffect" to="." method="_on_end_effect_finished"]
