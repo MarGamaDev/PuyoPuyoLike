@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="RelicData" load_steps=2 format=3 uid="uid://bkt3yag6anqym"]
+
+[ext_resource type="Script" uid="uid://dfyomjxsahuhw" path="res://Scripts/Relics/System/relic_data.gd" id="1_5r3hd"]
+
+[resource]
+script = ExtResource("1_5r3hd")
+name = "Spiked Skin"
+description = "When taking damage, deal 3 damage to all enemies."
+flavor_text = "It's like hugging sandpaper."
+file_path = "res://Scenes/Relics/Variants/spiked_skin.tscn"
+metadata/_custom_type_script = "uid://dfyomjxsahuhw"

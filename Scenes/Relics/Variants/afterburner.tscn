@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://c6jo2wndwei3l"]
+
+[ext_resource type="Script" uid="uid://dvb8npukpv5a1" path="res://Scripts/Relics/Variants/afterburner_relic.gd" id="1_q65x0"]
+[ext_resource type="Resource" uid="uid://cqroghplk4shi" path="res://Resources/RelicData/afterburner.tres" id="2_87bd2"]
+
+[node name="Afterburner" type="Node2D"]
+script = ExtResource("1_q65x0")
+relic_data = ExtResource("2_87bd2")

@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://205ms45gkd6m"]
+
+[ext_resource type="Script" uid="uid://bjvl8p5f3off6" path="res://Scripts/Relics/Variants/spiked_skin_relic.gd" id="1_k0lbb"]
+[ext_resource type="Resource" uid="uid://bkt3yag6anqym" path="res://Resources/RelicData/spiked_skin.tres" id="2_c0fic"]
+
+[node name="SpikedSkin" type="Node2D"]
+script = ExtResource("1_k0lbb")
+relic_data = ExtResource("2_c0fic")

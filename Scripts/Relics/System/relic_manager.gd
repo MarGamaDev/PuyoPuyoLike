@@ -1,6 +1,7 @@
 class_name RelicManager extends Node
 
-func add_relic(new_relic: BaseRelic) -> void:
+func add_relic(relic_data: RelicData) -> void:
+	var new_relic = load(relic_data.filepath)
 	new_relic.reparent(self)
 	new_relic.initialize()
 	add_relic_visual(new_relic.sprite)

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="RelicData" load_steps=2 format=3 uid="uid://cqroghplk4shi"]
+
+[ext_resource type="Script" uid="uid://dfyomjxsahuhw" path="res://Scripts/Relics/System/relic_data.gd" id="1_4b62y"]
+
+[resource]
+script = ExtResource("1_4b62y")
+name = "Afterburner"
+description = "When popping red humours, deal an additional 3 damage to target enemy"
+flavor_text = "Your blood runs hot."
+file_path = "res://Scenes/Relics/Variants/afterburner.tscn"
+metadata/_custom_type_script = "uid://dfyomjxsahuhw"
