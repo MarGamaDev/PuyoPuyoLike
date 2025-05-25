@@ -1,11 +1,12 @@
 [gd_resource type="Resource" script_class="SpellData" load_steps=2 format=3 uid="uid://ndpoihfsl1kh"]
 
-[ext_resource type="Script" uid="uid://dnec0n0x4urar" path="res://scripts/Data/spell_data.gd" id="1_ojtyq"]
+[ext_resource type="Script" uid="uid://dnec0n0x4urar" path="res://Scripts/Data/spell_data.gd" id="1_ojtyq"]
 
 [resource]
 script = ExtResource("1_ojtyq")
 spell_name = "Hatred"
-spell_description = "After casting this spell,  for the rest of the chain, all crushed humours also have phlegm's effect on top of their own. Let them be dust. "
+spell_description = "After casting this spell,  for the rest of the chain, all crushed humours also have phlegm's effect on top of their own."
+flavor_text = "Let them be dust. "
 recipe_type = 1
 recipe_contents = Array[int]([3, 4, 3])
 spell_path = "res://Scenes/spells/hatred_spell.tscn"

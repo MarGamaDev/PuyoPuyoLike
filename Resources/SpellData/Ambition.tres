@@ -1,11 +1,12 @@
 [gd_resource type="Resource" script_class="SpellData" load_steps=2 format=3 uid="uid://54m8cous0l5"]
 
-[ext_resource type="Script" uid="uid://dnec0n0x4urar" path="res://scripts/Data/spell_data.gd" id="1_sipac"]
+[ext_resource type="Script" uid="uid://dnec0n0x4urar" path="res://Scripts/Data/spell_data.gd" id="1_sipac"]
 
 [resource]
 script = ExtResource("1_sipac")
 spell_name = "Ambition"
-spell_description = "Once the current chain ends after casting this spell, trigger the effect of each humour type equal to [RAINBOW MULT VALUE] multiplied by  the chain length. Show them what you are capable of."
+spell_description = "Once the current chain ends after casting this spell, trigger the effect of each humour type equal to [RAINBOW MULT VALUE] multiplied by  the chain length."
+flavor_text = "Show them what you are capable of."
 recipe_type = 1
 recipe_contents = Array[int]([2, 3])
 spell_path = "res://Scenes/spells/ambition_spell.tscn"

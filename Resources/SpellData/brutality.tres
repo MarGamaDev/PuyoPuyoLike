@@ -1,11 +1,12 @@
 [gd_resource type="Resource" script_class="SpellData" load_steps=2 format=3 uid="uid://y8sgi72q7ip8"]
 
-[ext_resource type="Script" uid="uid://dnec0n0x4urar" path="res://scripts/Data/spell_data.gd" id="1_y4qyo"]
+[ext_resource type="Script" uid="uid://dnec0n0x4urar" path="res://Scripts/Data/spell_data.gd" id="1_y4qyo"]
 
 [resource]
 script = ExtResource("1_y4qyo")
 spell_name = "Brutality"
-spell_description = "Deal [damage amount] to the targeted enemy. Let them feel the scale of your actions."
+spell_description = "Deal [damage amount] to the targeted enemy."
+flavor_text = "Let them feel the severity of your actions."
 recipe_type = 1
 recipe_contents = Array[int]([4, 4])
 spell_path = "res://Scenes/spells/brutality_spell.tscn"

@@ -1,11 +1,12 @@
 [gd_resource type="Resource" script_class="SpellData" load_steps=2 format=3 uid="uid://cirwldmyumrkl"]
 
-[ext_resource type="Script" uid="uid://dnec0n0x4urar" path="res://scripts/Data/spell_data.gd" id="1_kf77e"]
+[ext_resource type="Script" uid="uid://dnec0n0x4urar" path="res://Scripts/Data/spell_data.gd" id="1_kf77e"]
 
 [resource]
 script = ExtResource("1_kf77e")
 spell_name = "Vindication"
-spell_description = "deal damage equal to the amount of shield and chained gained by the end of the chain. Let them feel your pain."
+spell_description = "deal damage equal to the amount of shield and chained gained by the end of the chain."
+flavor_text = "Let them feel your pain."
 recipe_type = 0
 recipe_contents = Array[int]([2, 5, 2])
 spell_path = "res://Scenes/spells/vindication_spell.tscn"

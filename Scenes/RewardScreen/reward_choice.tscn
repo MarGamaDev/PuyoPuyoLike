@@ -250,6 +250,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/normal_font_size = 36
 text = "Spell or Item"
+scroll_active = false
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -260,7 +261,6 @@ anchor_left = 0.1
 anchor_top = 0.25
 anchor_right = 0.901
 anchor_bottom = 0.5
-offset_right = 0.199951
 
 [node name="ItemImage" type="TextureRect" parent="."]
 visible = false
@@ -282,15 +282,33 @@ libraries = {
 [node name="RewardDescriptionLabel" type="RichTextLabel" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.1
-anchor_top = 0.55
-anchor_right = 0.9
-anchor_bottom = 0.957
+anchor_left = 0.059
+anchor_top = 0.444
+anchor_right = 0.941
+anchor_bottom = 0.867
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/normal_font_size = 35
 text = "Reward Description"
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FlavorTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.046
+anchor_top = 0.877
+anchor_right = 0.95
+anchor_bottom = 0.974
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0.577008, 0.577008, 0.577008, 1)
+theme_override_font_sizes/normal_font_size = 35
+text = "RewardFlavorText
+"
 fit_content = true
+scroll_active = false
 horizontal_alignment = 1
 vertical_alignment = 1
 

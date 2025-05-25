@@ -22,6 +22,7 @@ func create_spell_reward():
 	$SpellContainer.create_spell_container(spell, true)
 	$SpellContainer.show()
 	$RewardDescriptionLabel.text = spell.spell_description
+	$FlavorTextLabel.text = spell.flavor_text
 	
 
 func create_item_reward():

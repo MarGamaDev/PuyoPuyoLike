@@ -1,11 +1,12 @@
 [gd_resource type="Resource" script_class="SpellData" load_steps=2 format=3 uid="uid://b856s53iaaj10"]
 
-[ext_resource type="Script" uid="uid://dnec0n0x4urar" path="res://scripts/Data/spell_data.gd" id="1_ev1xr"]
+[ext_resource type="Script" uid="uid://dnec0n0x4urar" path="res://Scripts/Data/spell_data.gd" id="1_ev1xr"]
 
 [resource]
 script = ExtResource("1_ev1xr")
 spell_name = "Adamance"
-spell_description = "Trigger all humours touching the walls as if they had been crushed during the final chain. Show them they cannot change."
+spell_description = "Trigger all humours touching the walls as if they had been crushed during the final chain."
+flavor_text = "Show them that you will not falter."
 recipe_type = 1
 recipe_contents = Array[int]([3, 5, 3])
 spell_path = "res://Scenes/spells/adamance_spell.tscn"
