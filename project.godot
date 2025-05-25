@@ -16,6 +16,10 @@ run/main_scene="uid://dc6oe7dfg2ice"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="uid://dehy5ghfyon84"
 
+[audio]
+
+general/default_playback_type.web=0
+
 [autoload]
 
 PlayerData="*res://Scripts/Data/player_data.gd"
@@ -24,7 +28,6 @@ PlayerData="*res://Scripts/Data/player_data.gd"
 
 window/size/viewport_width=1200
 window/size/viewport_height=900
-window/size/borderless=true
 window/stretch/mode="viewport"
 
 [global_group]
