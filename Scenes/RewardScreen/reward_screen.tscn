@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://b2l1xn5ovaca4"]
 
-[ext_resource type="Script" uid="uid://bc2ba6w1wow0y" path="res://scripts/reward_screen.gd" id="1_esjl1"]
+[ext_resource type="Script" uid="uid://bc2ba6w1wow0y" path="res://Scripts/reward_screen.gd" id="1_esjl1"]
 [ext_resource type="Theme" uid="uid://qw5wdr2jerv7" path="res://Art/text/default_font.tres" id="2_ibqxd"]
 
 [node name="RewardScreen" type="CanvasLayer"]

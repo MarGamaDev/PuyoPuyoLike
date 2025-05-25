@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://d3naap4gnytxh"]
+[gd_scene load_steps=19 format=3 uid="uid://d3naap4gnytxh"]
 
 [ext_resource type="Script" uid="uid://b0h0tx4msve02" path="res://Scripts/Combat/combat_manager.gd" id="1_4ln8h"]
 [ext_resource type="Resource" uid="uid://b01ucdggd8ykf" path="res://Resources/puyo_value_data.tres" id="2_xisnc"]
@@ -15,10 +15,9 @@
 [ext_resource type="PackedScene" uid="uid://b2l1xn5ovaca4" path="res://Scenes/RewardScreen/reward_screen.tscn" id="11_xisnc"]
 [ext_resource type="PackedScene" uid="uid://chmradttgb2ep" path="res://Scenes/Combat/life_counter.tscn" id="13_y8jr2"]
 [ext_resource type="Theme" uid="uid://qw5wdr2jerv7" path="res://Art/text/default_font.tres" id="15_f8ge6"]
-[ext_resource type="Script" path="res://Scripts/spells/spellsystem/spell_manager.gd" id="15_ley77"]
 [ext_resource type="PackedScene" uid="uid://br4sb0wwxwr2o" path="res://Scenes/spells/spellSystem/spell_manager.tscn" id="16_50454"]
 [ext_resource type="Script" uid="uid://mn6m032nthh1" path="res://Scripts/defense_visuals_manager.gd" id="16_tmuf1"]
-[ext_resource type="Script" path="res://Scripts/reward_manager.gd" id="18_5kjvk"]
+[ext_resource type="Script" uid="uid://btkeiscf5dqtn" path="res://Scripts/reward_manager.gd" id="18_5kjvk"]
 
 [node name="Combat" type="Node2D"]
 script = ExtResource("1_4ln8h")
@@ -109,10 +108,6 @@ position = Vector2(4.335, 24.765)
 
 [node name="SpellManager" parent="." instance=ExtResource("16_50454")]
 top_level = true
-script = ExtResource("15_ley77")
-test_spell = null
-test_spell_2 = null
-test_spell_3 = null
 
 [node name="DefenseVisualsManager" type="Node2D" parent="."]
 script = ExtResource("16_tmuf1")
