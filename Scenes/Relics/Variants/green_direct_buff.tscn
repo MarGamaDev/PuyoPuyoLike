@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://byyhjebmufx58"]
+
+[ext_resource type="Script" uid="uid://dnsavo6rk2pfn" path="res://Scripts/Relics/Variants/green_direct_buff.gd" id="1_8l5gx"]
+[ext_resource type="Resource" uid="uid://oxanirh0uyts" path="res://Resources/RelicData/green_direct_buff.tres" id="2_6blio"]
+
+[node name="GreenDirectBuff" type="Node"]
+script = ExtResource("1_8l5gx")
+relic_data = ExtResource("2_6blio")
+metadata/_custom_type_script = "uid://bn2jxby1kth4g"

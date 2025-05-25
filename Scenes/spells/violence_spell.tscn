@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://5b3max2icbpt"]
 
-[ext_resource type="Script" uid="uid://bpn0vbevc1kdx" path="res://scripts/spells/violence_spell.gd" id="1_dklmu"]
+[ext_resource type="Script" uid="uid://bpn0vbevc1kdx" path="res://Scripts/spells/violence_spell.gd" id="1_dklmu"]
 [ext_resource type="Resource" uid="uid://b8ahfsm0ro7k" path="res://Resources/SpellData/violence.tres" id="2_hlpfi"]
 
 [node name="ViolenceSpell" type="Node2D"]
