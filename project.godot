@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Umoris"
+config/name="Umortis"
 config/version="0.1"
 run/main_scene="uid://dc6oe7dfg2ice"
 config/features=PackedStringArray("4.4", "GL Compatibility")
