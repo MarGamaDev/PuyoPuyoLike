@@ -8,16 +8,19 @@ signal all_clear_for_next_encounter()
 @export var test_spell_3 :SpellData
 
 @onready var equipped_spells : Array[SpellNode] = []
+@onready var spell_corresponding_rewards : Array[Reward] = []
 
 var chain_stage_tracker : int = 0
 
 var awaiting_spell_data_holder : SpellData
+var awaiting_reward : Reward
 
-func add_spell(spell_data: SpellData):
+func add_spell(spell_data: SpellData, reward: Reward):
 	if equipped_spells.size() >= 3 or spell_data == null:
 		print("too many spells!")
 		$SpellChoiceMenu.show()
 		awaiting_spell_data_holder = spell_data
+		awaiting_reward = reward
 		$SpellChoiceMenu.handle_spell_selection(equipped_spells)
 	else:
 		var spell_node : SpellNode
@@ -26,6 +29,7 @@ func add_spell(spell_data: SpellData):
 		
 		spell_node.setup_spell_node(spell_data)
 		equipped_spells.append(spell_node)
+		spell_corresponding_rewards.append(reward)
 		var spell_container = $EquippedSpellsContainer.add_spell(spell_data)
 		spell_node.on_spell_progressed.connect(spell_container.progress_spell_visual)
 		spell_node.on_spell_progress_reset.connect(spell_container.reset_recipe_visual)
@@ -52,7 +56,10 @@ func spell_to_remove_selected(index: int):
 	$EquippedSpellsContainer.remove_spell(index)
 	var to_remove = equipped_spells[index]
 	equipped_spells.remove_at(index)
+	##currently re-adds spells to pool
+	spell_corresponding_rewards[index].has_been_taken = false
+	spell_corresponding_rewards.remove_at(index)
 	to_remove.queue_free()
 	$SpellChoiceMenu.hide()
-	add_spell(awaiting_spell_data_holder)
+	add_spell(awaiting_spell_data_holder, awaiting_reward)
 	pass

@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://br4sb0wwxwr2o"]
 
-[ext_resource type="Script" path="res://Scripts/spells/spellsystem/spell_manager.gd" id="1_puv1a"]
+[ext_resource type="Script" uid="uid://62suwvfwb2yg" path="res://Scripts/spells/spellsystem/spell_manager.gd" id="1_puv1a"]
 [ext_resource type="PackedScene" uid="uid://c5du1g626to65" path="res://Scenes/RewardScreen/equipped_spells_container.tscn" id="2_peavi"]
 [ext_resource type="Theme" uid="uid://qw5wdr2jerv7" path="res://Art/text/default_font.tres" id="6_g4xtm"]
 [ext_resource type="Script" uid="uid://be13s32sf0pr1" path="res://Scripts/spells/spellsystem/spell_choice_menu.gd" id="6_rdgyv"]

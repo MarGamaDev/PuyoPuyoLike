@@ -35,7 +35,7 @@ func generate_pool(new_pool_size := reward_choice_pool_size):
 			while reward_check:
 				new_item_for_pool = possible_rewards.pick_random()
 				#print(reward_choices.has(new_item_for_pool))
-				if !(reward_choices.has(new_item_for_pool)) and new_item_for_pool:
+				if !(reward_choices.has(new_item_for_pool)) and !new_item_for_pool.has_been_taken:
 					reward_check = false
 			reward_check = true
 			reward_choices.append(new_item_for_pool)
@@ -60,9 +60,10 @@ func reset_pool(reward_unused):
 
 @warning_ignore("shadowed_variable_base_class")
 func on_reward_button_pressed(reward : Reward):
+	reward.has_been_taken = true
 	on_reward_chosen.emit(reward)
 	if reward.reward_type == Reward.REWARD_TYPE.SPELL:
-		on_spell_reward_chosen.emit(reward.spell_data)
+		on_spell_reward_chosen.emit(reward.spell_data, reward)
 	else:
 		on_item_reward_chosen.emit()
 	hide()
