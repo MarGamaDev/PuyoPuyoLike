@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://d3naap4gnytxh"]
+[gd_scene load_steps=28 format=3 uid="uid://d3naap4gnytxh"]
 
 [ext_resource type="Script" uid="uid://b0h0tx4msve02" path="res://Scripts/Combat/combat_manager.gd" id="1_4ln8h"]
 [ext_resource type="Resource" uid="uid://b01ucdggd8ykf" path="res://Resources/puyo_value_data.tres" id="2_xisnc"]
@@ -26,6 +26,7 @@
 [ext_resource type="PackedScene" uid="uid://bu3friywynij8" path="res://Scenes/animations and audio stuff/polyphonic_audio_player.tscn" id="19_ley77"]
 [ext_resource type="Resource" uid="uid://bdhafmfgutg4q" path="res://Resources/AudioLibraries/music_library.tres" id="20_tmuf1"]
 [ext_resource type="PackedScene" uid="uid://c2aqaph0fpnb1" path="res://Scenes/pause_manager.tscn" id="21_5kjvk"]
+[ext_resource type="AudioStream" uid="uid://dr6ge7216dayb" path="res://Audio/Music/PuyoPuyoTheme_1.mp3" id="26_2n3pb"]
 
 [node name="Combat" type="Node2D"]
 script = ExtResource("1_4ln8h")
@@ -145,6 +146,9 @@ script = ExtResource("19_5kjvk")
 
 [node name="MusicPlayer" parent="SoundManager" instance=ExtResource("19_ley77")]
 audio_library = ExtResource("20_tmuf1")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="SoundManager"]
+stream = ExtResource("26_2n3pb")
 
 [node name="PauseManager" parent="." node_paths=PackedStringArray("spell_manager") instance=ExtResource("21_5kjvk")]
 spell_manager = NodePath("../SpellManager")
