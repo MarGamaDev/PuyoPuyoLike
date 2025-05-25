@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bx5kscp85ypry"]
+[gd_scene load_steps=15 format=3 uid="uid://bx5kscp85ypry"]
 
 [ext_resource type="Script" uid="uid://346xwma4f44y" path="res://Scripts/Combat/Enemy/enemy.gd" id="1_1f0kj"]
 [ext_resource type="Resource" uid="uid://g1vp61rtgpme" path="res://Resources/Enemies/test_enemy.tres" id="2_287tu"]
@@ -8,6 +8,68 @@
 [ext_resource type="Resource" uid="uid://cn0op1aiuirgi" path="res://Resources/EnemyAttacks/test_enemy_attack_2.tres" id="5_auwsv"]
 [ext_resource type="PackedScene" uid="uid://b8mrbhnjhixwm" path="res://Scenes/Combat/Enemy/intent.tscn" id="7_rvs3k"]
 [ext_resource type="Texture2D" uid="uid://cggqu3v1nirvy" path="res://Art/reticle.png" id="8_oy6l1"]
+
+[sub_resource type="Animation" id="Animation_1xvn7"]
+resource_name = "selector_spin"
+length = 5.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -6.28319]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.83, 1.63, 2.46, 3.26, 4.09, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.8, 0.8), Vector2(0.65, 0.65), Vector2(0.8, 0.8), Vector2(0.65, 0.65), Vector2(0.8, 0.8), Vector2(0.65, 0.65), Vector2(0.8, 0.8)]
+}
+
+[sub_resource type="Animation" id="Animation_km0dy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.7, 0.7)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0sllc"]
+_data = {
+&"RESET": SubResource("Animation_km0dy"),
+&"selector_spin": SubResource("Animation_1xvn7")
+}
 
 [sub_resource type="Animation" id="Animation_3h84l"]
 length = 0.001
@@ -66,8 +128,15 @@ position = Vector2(-36, -97)
 
 [node name="Selector" type="Sprite2D" parent="."]
 visible = false
-scale = Vector2(0.88, 0.88)
+scale = Vector2(0.7, 0.7)
 texture = ExtResource("8_oy6l1")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Selector"]
+libraries = {
+&"": SubResource("AnimationLibrary_0sllc")
+}
+autoplay = "selector_spin"
+speed_scale = 0.5
 
 [node name="HurtFlashAnim" type="AnimationPlayer" parent="."]
 libraries = {
