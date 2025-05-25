@@ -2,7 +2,15 @@ extends Node2D
 class_name DefenseVisualsManager
 
 func update_shield_visuals(new_shield : int):
-	$TestCounters/TestShieldLabel.text = "Shield: %s" % new_shield
+	$UIElements/ShieldMeter/ShieldLabel.text = str(new_shield)
+	if  new_shield == 0:
+		$UIElements/ShieldMeter/ShieldIcon.set_modulate(Color(0.5,0.5,0.5))
+	else:
+		$UIElements/ShieldMeter/ShieldIcon.set_modulate(Color(1,1,1))
 
 func update_counter_visuals(new_counter : int):
-	$TestCounters/TestCounterLabel.text = "Counter: %s" % new_counter
+	$UIElements/CounterMeter/CounterLabel.text = str(new_counter)
+	if new_counter == 0:
+		$UIElements/CounterMeter/CounterIcon.set_modulate(Color(0.5,0.5,0.5))
+	else:
+		$UIElements/CounterMeter/CounterIcon.set_modulate(Color(1,1,1))

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dct1eh2elmyay"]
 
-[ext_resource type="Script" uid="uid://cpaiygh86hvy3" path="res://scripts/spells/brutality_spell.gd" id="1_v0jga"]
+[ext_resource type="Script" uid="uid://cpaiygh86hvy3" path="res://Scripts/spells/brutality_spell.gd" id="1_v0jga"]
 [ext_resource type="Resource" uid="uid://y8sgi72q7ip8" path="res://Resources/SpellData/brutality.tres" id="2_1grda"]
 
 [node name="BrutalitySpell" type="Node2D"]
