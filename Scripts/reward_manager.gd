@@ -9,12 +9,12 @@ var spell_data_file_list : PackedStringArray
 var relic_data_file_list : PackedStringArray
 
 func _ready() -> void:
-	spell_data_file_list = DirAccess.get_files_at(spell_data_folder_path)
+	spell_data_file_list = ResourceLoader.list_directory(spell_data_folder_path)
 	for spell_file in spell_data_file_list:
 		var spell = load(spell_data_folder_path + spell_file)
 		var new_reward : Reward = Reward.create_spell_reward(spell)
 		reward_pool.append(new_reward)
-	relic_data_file_list = DirAccess.get_files_at(relic_data_folder_path)
+	relic_data_file_list = ResourceLoader.list_directory(relic_data_folder_path)
 	for relic_file in relic_data_file_list:
 		var relic = load(relic_data_folder_path + relic_file)
 		var new_reward : Reward = Reward.create_relic_reward(relic)
