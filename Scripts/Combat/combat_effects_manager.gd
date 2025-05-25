@@ -50,6 +50,11 @@ func create_counter_puyo_effect(start_position : Vector2):
 	$PuyoAttackEffectLayer.add_child(new_attack_effect)
 	new_attack_effect.create_effect(start_position, end_position, AttackEffectData.EFFECT_TYPE.PLAYER_YELLOW)
 
+func create_counterattack_effect():
+	var start_position = $Markers/PlayerCounterLocation.position
+	var enemy_position = combat_manager.selected_enemy.global_position
+	create_attack_effect(start_position, enemy_position, AttackEffectData.EFFECT_TYPE.PLAYER_YELLOW)
+
 func create_attack_effect(start_position : Vector2, end_position : Vector2, effect_type: AttackEffectData.EFFECT_TYPE):
 	var new_attack_effect : AttackParticleEffect = attack_effect_scene.instantiate()
 	$PuyoAttackEffectLayer.add_child(new_attack_effect)
@@ -58,3 +63,7 @@ func create_attack_effect(start_position : Vector2, end_position : Vector2, effe
 
 func on_damage_effect_completed():
 	damage_effect_hit.emit()
+
+
+func _on_player_on_counter_triggered(counter_amount: int) -> void:
+	create_counterattack_effect()

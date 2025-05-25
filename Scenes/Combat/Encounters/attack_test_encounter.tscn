@@ -14,9 +14,9 @@ metadata/_custom_type_script = "uid://c27m7mkd1up2"
 
 [sub_resource type="Resource" id="Resource_l06n0"]
 script = ExtResource("5_o2g0m")
-damage = 1
+damage = 4
 number_of_swings = 1
-number_of_turns_till_swing = 20
+number_of_turns_till_swing = 6
 attack_type = 0
 metadata/_custom_type_script = "uid://6v5kccermtmr"
 

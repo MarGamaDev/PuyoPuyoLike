@@ -149,6 +149,7 @@ spell_manager = NodePath("../SpellManager")
 [connection signal="player_attack" from="PuyoManager" to="." method="process_player_attack"]
 [connection signal="on_counter_change" from="Player" to="DefenseVisualsManager" method="update_counter_visuals"]
 [connection signal="on_counter_triggered" from="Player" to="." method="trigger_counter"]
+[connection signal="on_counter_triggered" from="Player" to="CombatEffectsManager" method="_on_player_on_counter_triggered"]
 [connection signal="on_life_gain" from="Player" to="LifeCounter" method="gain_a_life"]
 [connection signal="on_life_lost" from="Player" to="." method="lose_player_life"]
 [connection signal="on_life_lost" from="Player" to="PuyoManager" method="reset_game"]
