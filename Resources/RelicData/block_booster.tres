@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="RelicData" load_steps=3 format=3 uid="uid://ctd4dnur3vu1l"]
+
+[ext_resource type="Script" uid="uid://dfyomjxsahuhw" path="res://Scripts/Relics/System/relic_data.gd" id="1_0447s"]
+[ext_resource type="Texture2D" uid="uid://hvooavpam6hd" path="res://Placeholder Art/puyo_out_of_bounds.png" id="2_13tg8"]
+
+[resource]
+script = ExtResource("1_0447s")
+sprite = ExtResource("2_13tg8")
+name = "(WIPNAME) Block Booster"
+description = "fill in later"
+flavor_text = "fill in later"
+file_path = "res://Scenes/Relics/Variants/block_booster.tscn"
+metadata/_custom_type_script = "uid://dfyomjxsahuhw"

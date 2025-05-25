@@ -2,6 +2,12 @@ class_name RelicManager extends Node
 
 signal all_clear_for_next_encounter
 
+@export var test_relic : RelicData
+
+func _physics_process(delta: float) -> void:
+	if Input.is_action_just_pressed("TESTING_player_spawn"):
+		test_add_relic()
+
 func add_relic(relic_data: RelicData) -> void:
 	var new_relic = await load(relic_data.file_path).instantiate()
 	add_child(new_relic)
@@ -26,3 +32,11 @@ func update_enemy_visual_damage_queue():
 	for enemy : Enemy in combat_manager.enemies:
 		enemy.update_damage_visually()
 	
+
+func test_add_relic():
+	var new_relic = await load(test_relic.file_path).instantiate()
+	add_child(new_relic)
+	#new_relic.reparent(self)
+	new_relic.initialize()
+	add_relic_visual(test_relic.sprite)
+	new_relic.update_enemy_damage_visuals.connect(update_enemy_visual_damage_queue)

@@ -8,13 +8,13 @@
 
 [sub_resource type="Resource" id="Resource_o2g0m"]
 script = ExtResource("3_cnxer")
-health = 1
+health = 100
 sprite = ExtResource("4_o2g0m")
 metadata/_custom_type_script = "uid://c27m7mkd1up2"
 
 [sub_resource type="Resource" id="Resource_l06n0"]
 script = ExtResource("5_o2g0m")
-damage = 4
+damage = 2
 number_of_swings = 1
 number_of_turns_till_swing = 6
 attack_type = 0

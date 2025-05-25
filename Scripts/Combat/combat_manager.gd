@@ -89,8 +89,8 @@ func process_encounter_updated(_encounter: Encounter) -> void:
 	select_enemy(0)
 
 func start_combat() -> void:
-	print("combat started")
 	on_combat_started.emit()
+	
 	#$SpellManager.add_spell($SpellManager.test_spell)
 	#$SpellManager.add_spell($SpellManager.test_spell_2)
 	#$SpellManager.add_spell($SpellManager.test_spell_3)
