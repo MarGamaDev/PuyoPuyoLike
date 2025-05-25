@@ -19,6 +19,7 @@ var shield : int = 0
 var counter : int = 0
 
 var counter_buff : int = 1
+var counter_relic_buff : int = 1
 
 func _ready():
 	on_set_life_to.emit(lives)
@@ -46,7 +47,7 @@ func add_shield(shield_gained: int) -> void:
 
 func handle_damage(damage: int) -> int:
 	if damage <= counter:
-		on_counter_triggered.emit(counter * counter_buff)
+		on_counter_triggered.emit(counter * counter_buff * counter_relic_buff)
 		counter_buff = 1
 		counter = 0
 		on_counter_change.emit(counter)
@@ -76,3 +77,6 @@ func lose_life() -> void:
 
 func increase_counter_buff(new_buff : int) -> void:
 	counter_buff += new_buff
+
+func add_relic_counter_buff(new_buff : int) -> void:
+	counter_relic_buff = new_buff
