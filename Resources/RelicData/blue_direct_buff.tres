@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="RelicData" load_steps=3 format=3 uid="uid://bn02cthwxocgv"]
+
+[ext_resource type="Script" uid="uid://dfyomjxsahuhw" path="res://Scripts/Relics/System/relic_data.gd" id="1_0jj4u"]
+[ext_resource type="Texture2D" uid="uid://b480cnlhxsl2q" path="res://Placeholder Art/puyo_blue.png" id="2_v17nv"]
+
+[resource]
+script = ExtResource("1_0jj4u")
+sprite = ExtResource("2_v17nv")
+name = "blue direct buff"
+description = "wip"
+flavor_text = "wip"
+file_path = "res://Scenes/Relics/Variants/blue_direct_buff.tscn"
+metadata/_custom_type_script = "uid://dfyomjxsahuhw"

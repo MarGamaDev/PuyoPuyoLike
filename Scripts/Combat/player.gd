@@ -21,6 +21,8 @@ var counter : int = 0
 var counter_buff : int = 1
 var counter_relic_buff : int = 1
 
+var minimum_shield : int = 0
+
 func _ready():
 	on_set_life_to.emit(lives)
 
@@ -56,18 +58,20 @@ func handle_damage(damage: int) -> int:
 	if damage <= shield:
 		on_shield_lost.emit(damage)
 		shield -= damage
+		if shield < minimum_shield:
+			shield = 0 + minimum_shield
 		on_shield_change.emit(shield)
 		return 0
 	else:
 		on_shield_lost.emit(shield)
 		damage -= shield
-		shield = 0
+		shield = 0 + minimum_shield
 		on_shield_change.emit(shield)
 		return damage
 
 func lose_life() -> void:
 	lives -= 1
-	shield = 0
+	shield = 0 + minimum_shield
 	counter = 0
 	if lives <= 0:
 		print("game_over")
@@ -80,3 +84,15 @@ func increase_counter_buff(new_buff : int) -> void:
 
 func add_relic_counter_buff(new_buff : int) -> void:
 	counter_relic_buff = new_buff
+
+func add_minimum_shield(amount : int) -> void:
+	minimum_shield += amount
+	print("min shield : %s" % minimum_shield)
+
+func reset_counter_and_shield(reset_minimum := true) -> void:
+	counter = 0
+	shield = 0
+	on_shield_change.emit(shield)
+	on_counter_change.emit(counter)
+	if reset_minimum:
+		minimum_shield = 0
