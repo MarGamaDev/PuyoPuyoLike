@@ -13,6 +13,7 @@ signal on_set_life_to(num : int)
 signal on_player_death
 signal on_shield_change(new_shield: int)
 signal on_counter_change(new_counter: int)
+signal on_attack_blocked(damage_blocked : int, shield_before_damage : int)
 
 var lives : int = 3
 var shield : int = 0
@@ -56,6 +57,7 @@ func handle_damage(damage: int) -> int:
 		return 0
 	
 	if damage <= shield:
+		on_attack_blocked.emit(damage, shield)
 		on_shield_lost.emit(damage)
 		shield -= damage
 		if shield < minimum_shield:
