@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bkfqh7m3iffq2"]
 
-[ext_resource type="Script" uid="uid://ohqwgkqnq7rt" path="res://scripts/spells/endurance_spell.gd" id="1_c4jti"]
+[ext_resource type="Script" uid="uid://ohqwgkqnq7rt" path="res://Scripts/spells/endurance_spell.gd" id="1_c4jti"]
 [ext_resource type="Resource" uid="uid://chpfc1l7gjsqn" path="res://Resources/SpellData/endurance.tres" id="2_hgvne"]
 
 [node name="EnduranceSpell" type="Node2D"]

@@ -11,5 +11,5 @@ func connect_to_effect_signals():
 
 func trigger_spell_effect():
 	deal_spell_damage.emit(spell_damage)
-	update_enemy_damage_visuals.emit()
+	combat_effects.create_spell_effect(container_location_marker.global_position, combat_manager.selected_enemy.global_position, AttackEffectData.EFFECT_TYPE.PLAYER_RED)
 	print("Brutality cast")

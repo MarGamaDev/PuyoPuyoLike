@@ -48,8 +48,16 @@ func wall_pop(chain_length : int):
 							red_count += 1
 						Puyo.PUYO_TYPE.GREEN:
 							green_count += 1
-	deal_aoe_damage.emit(green_count * chain_length)
-	deal_target_damage.emit(red_count * chain_length)
-	gain_shield.emit(blue_count * chain_length)
-	gain_counter.emit(yellow_count * chain_length)
-	update_enemy_damage_visuals.emit()
+	if green_count > 0:
+		deal_aoe_damage.emit(green_count * chain_length)
+		for i in combat_manager.enemies:
+			combat_effects.create_spell_effect(container_location_marker.global_position, i.global_position, AttackEffectData.EFFECT_TYPE.PLAYER_GREEN)
+	if red_count > 0:
+		deal_target_damage.emit(red_count * chain_length)
+		combat_effects.create_spell_effect(container_location_marker.global_position, combat_manager.selected_enemy.global_position, AttackEffectData.EFFECT_TYPE.PLAYER_RED)
+	if blue_count > 0:
+		gain_shield.emit(blue_count * chain_length)
+		combat_effects.create_spell_effect(container_location_marker.global_position, combat_effects.shield_location_marker, AttackEffectData.EFFECT_TYPE.PLAYER_BLUE, false)
+	if yellow_count > 0:
+		gain_counter.emit(yellow_count * chain_length)
+		combat_effects.create_spell_effect(container_location_marker.global_position, combat_effects.counter_location_marker, AttackEffectData.EFFECT_TYPE.PLAYER_YELLOW, false)

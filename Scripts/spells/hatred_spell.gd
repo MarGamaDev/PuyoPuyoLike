@@ -30,9 +30,10 @@ func launch_hatred_attack(grid_node_array : Array, new_chain_length : int):
 	var value: int = puyo_values.get_base_value(Puyo.PUYO_TYPE.GREEN) * grid_node_array.size()
 	var mult: int = puyo_values.get_multiplier(Puyo.PUYO_TYPE.GREEN) * new_chain_length
 	deal_phlegm_spell_damage.emit(value * mult)
+	for i in combat_manager.enemies:
+		combat_effects.create_spell_effect(container_location_marker.global_position, i.global_position, AttackEffectData.EFFECT_TYPE.PLAYER_GREEN)
 
 func complete_spell():
 	on_spell_complete.emit(recipe_length)
-	update_enemy_damage_visuals.emit()
 	trigger_spell_effect()
 	print("spell complete")

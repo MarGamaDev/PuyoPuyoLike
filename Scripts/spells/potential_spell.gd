@@ -31,8 +31,16 @@ func rainbow_attack(chain_length : int):
 	spell_trigger_flag = false
 	print("ambition rainbow attack!")
 	puyo_manager.on_chain_ending.disconnect(rainbow_attack)
+	
 	deal_aoe_damage.emit(rainbow_mult_value * chain_length)
+	for i in combat_manager.enemies:
+		combat_effects.create_spell_effect(container_location_marker.global_position, i.global_position, AttackEffectData.EFFECT_TYPE.PLAYER_GREEN)
+	
 	deal_target_damage.emit(rainbow_mult_value * chain_length)
+	combat_effects.create_spell_effect(container_location_marker.global_position, combat_manager.selected_enemy.global_position, AttackEffectData.EFFECT_TYPE.PLAYER_RED)
+	
 	gain_shield.emit(rainbow_mult_value * chain_length)
+	combat_effects.create_spell_effect(container_location_marker.global_position, combat_effects.shield_location_marker, AttackEffectData.EFFECT_TYPE.PLAYER_BLUE, false)
+	
 	gain_counter.emit(rainbow_mult_value * chain_length)
-	update_enemy_damage_visuals.emit()
+	combat_effects.create_spell_effect(container_location_marker.global_position, combat_effects.counter_location_marker, AttackEffectData.EFFECT_TYPE.PLAYER_YELLOW, false)

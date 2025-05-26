@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="SpellData" load_steps=2 format=3 uid="uid://chpfc1l7gjsqn"]
 
-[ext_resource type="Script" uid="uid://dnec0n0x4urar" path="res://Scripts/Data/spell_data.gd" id="1_dgpfg"]
+[ext_resource type="Script" uid="uid://dnec0n0x4urar" path="res://Scripts/Data/spell_data.gd" id="1_vry50"]
 
 [resource]
-script = ExtResource("1_dgpfg")
+script = ExtResource("1_vry50")
 spell_name = "Endurance"
 spell_description = "Gain [Shield amount] shield, and delay all enemy's attacks by [delay time] turns."
 flavor_text = "show them no weakness."

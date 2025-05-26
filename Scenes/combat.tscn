@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://b3qfdcqaqmgk4" path="res://Scenes/Combat/combat_effects_manager.tscn" id="11_w6tjk"]
 [ext_resource type="PackedScene" uid="uid://b2l1xn5ovaca4" path="res://Scenes/RewardScreen/reward_screen.tscn" id="11_xisnc"]
 [ext_resource type="PackedScene" uid="uid://chmradttgb2ep" path="res://Scenes/Combat/life_counter.tscn" id="13_y8jr2"]
-[ext_resource type="Resource" uid="uid://cirwldmyumrkl" path="res://Resources/SpellData/vindication.tres" id="15_2n3pb"]
+[ext_resource type="Resource" uid="uid://b856s53iaaj10" path="res://Resources/SpellData/adamance.tres" id="15_2n3pb"]
 [ext_resource type="PackedScene" uid="uid://dpkr5l8qrkrou" path="res://Scenes/Relics/System/relic_manager.tscn" id="15_3cqtn"]
 [ext_resource type="PackedScene" uid="uid://bif55k0mmcvqf" path="res://Scenes/Combat/defense_visuals_manager.tscn" id="15_tmuf1"]
 [ext_resource type="PackedScene" uid="uid://br4sb0wwxwr2o" path="res://Scenes/spells/spellSystem/spell_manager.tscn" id="16_50454"]

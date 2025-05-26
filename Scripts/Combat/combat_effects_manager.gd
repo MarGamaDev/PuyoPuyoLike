@@ -7,6 +7,8 @@ var damage_text_scene: PackedScene = preload("res://Scenes/effects/text_particle
 var attack_effect_scene : PackedScene = preload("res://Scenes/effects/attack_particle_effect.tscn")
 
 @onready var player_location : Vector2 = $Markers/PlayerLocation.position
+@onready var shield_location_marker :Vector2 = $Markers/PlayerShieldLocation.global_position
+@onready var counter_location_marker :Vector2 = $Markers/PlayerCounterLocation.global_position
 @onready var combat_manager : CombatManager = get_node("/root/Combat")
 ##todo: make 
 
@@ -70,8 +72,8 @@ func _on_player_on_counter_triggered(counter_amount: int) -> void:
 	create_counterattack_effect()
 
 ##CAN CHANGE THIS ONCE IT'S ALL LINKED UP BETTER
-func create_spell_effect(start_position : Vector2, end_position : Vector2, effect_type: AttackEffectData.EFFECT_TYPE):
+func create_spell_effect(start_position : Vector2, end_position : Vector2, effect_type: AttackEffectData.EFFECT_TYPE, attack_signal_flag := true):
 	var new_attack_effect : AttackParticleEffect = attack_effect_scene.instantiate()
 	$PuyoAttackEffectLayer.add_child(new_attack_effect)
 	new_attack_effect.on_damage_effect_hit.connect(on_damage_effect_completed)
-	new_attack_effect.create_effect(start_position, end_position, effect_type, true)
+	new_attack_effect.create_effect(start_position, end_position, effect_type, attack_signal_flag)
