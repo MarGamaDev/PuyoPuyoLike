@@ -21,6 +21,7 @@ var counter : int = 0
 
 var counter_buff : int = 1
 var counter_relic_buff : int = 1
+var yellow_shield_buff_flag = false
 
 var minimum_shield : int = 0
 
@@ -65,6 +66,10 @@ func handle_damage(damage: int) -> int:
 		on_shield_change.emit(shield)
 		return 0
 	else:
+		if yellow_shield_buff_flag and counter > 0:
+			var shield_counter_buff = int(0.5 * counter)
+			shield += shield_counter_buff
+			print("yellow shield buff blocked : %s" %shield_counter_buff)
 		on_shield_lost.emit(shield)
 		damage -= shield
 		shield = 0 + minimum_shield
@@ -98,3 +103,7 @@ func reset_counter_and_shield(reset_minimum := true) -> void:
 	on_counter_change.emit(counter)
 	if reset_minimum:
 		minimum_shield = 0
+
+func gain_yellow_shield_relic_buff():
+	yellow_shield_buff_flag = true
+	print("yellow shielf buff gained")

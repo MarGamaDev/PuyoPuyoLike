@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://x8y1nich577p"]
+
+[ext_resource type="Script" uid="uid://cnyvhwi5upn14" path="res://Scripts/Relics/Variants/yellow_flexibility_buff.gd" id="1_6lne8"]
+[ext_resource type="Resource" uid="uid://db3hjdohmyeux" path="res://Resources/RelicData/yellow_flexibility_buff.tres" id="2_lwdwh"]
+
+[node name="YellowFlexibilityBuff" type="Node"]
+script = ExtResource("1_6lne8")
+relic_data = ExtResource("2_lwdwh")
+metadata/_custom_type_script = "uid://bn2jxby1kth4g"
