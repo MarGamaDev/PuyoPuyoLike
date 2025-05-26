@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="RelicData" load_steps=3 format=3 uid="uid://cc5tucu1d2unu"]
+
+[ext_resource type="Script" uid="uid://dfyomjxsahuhw" path="res://Scripts/Relics/System/relic_data.gd" id="1_t1hfh"]
+[ext_resource type="Texture2D" uid="uid://ytf3c74p3bjc" path="res://Art/spell elements/puyo-greenIcon.png" id="2_xrvey"]
+
+[resource]
+script = ExtResource("1_t1hfh")
+sprite = ExtResource("2_xrvey")
+name = "green flexibility buff"
+description = "wip"
+flavor_text = "wip"
+file_path = "res://Scenes/Relics/Variants/green_flexibility_buff.tscn"
+metadata/_custom_type_script = "uid://dfyomjxsahuhw"
