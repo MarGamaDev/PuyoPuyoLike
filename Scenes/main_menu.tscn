@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://c67v5u2go0uhq" path="res://Scripts/main_menu.gd" id="1_ce3w2"]
 [ext_resource type="Theme" uid="uid://qw5wdr2jerv7" path="res://Art/text/default_font.tres" id="1_n45e2"]
 [ext_resource type="Texture2D" uid="uid://dxjytwlr6d84f" path="res://Placeholder Art/menu_background.png" id="2_n45e2"]
-[ext_resource type="Texture2D" uid="uid://b6oxgd10fqwpj" path="res://Placeholder Art/box.png" id="3_opfnp"]
 [ext_resource type="Texture2D" uid="uid://d4feofqxnrx5x" path="res://Placeholder Art/logo.png" id="4_cp0ys"]
+[ext_resource type="Texture2D" uid="uid://cuet3laww0w3o" path="res://Art/Main_Character.png" id="4_n45e2"]
 
 [sub_resource type="Animation" id="Animation_t1dhk"]
 length = 0.001
@@ -258,7 +258,8 @@ offset_right = -48.0
 offset_bottom = 987.0
 grow_horizontal = 0
 grow_vertical = 2
-texture = ExtResource("3_opfnp")
+texture = ExtResource("4_n45e2")
+stretch_mode = 5
 
 [node name="Logo" type="TextureRect" parent="MenuPage"]
 modulate = Color(1, 1, 1, 0)

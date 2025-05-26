@@ -8,6 +8,6 @@ script = ExtResource("1_18jtn")
 sprite = ExtResource("2_8crmw")
 name = "world record"
 description = "wip"
-flavor_text = "wip"
+flavor_text = ""
 file_path = "res://Scenes/Relics/Variants/world_record.tscn"
 metadata/_custom_type_script = "uid://dfyomjxsahuhw"

@@ -7,7 +7,7 @@
 [ext_resource type="Resource" uid="uid://ctf2g8pw88fk2" path="res://Resources/EnemyAttacks/test_enemy_attack_1.tres" id="4_1dp5w"]
 [ext_resource type="Resource" uid="uid://cn0op1aiuirgi" path="res://Resources/EnemyAttacks/test_enemy_attack_2.tres" id="5_auwsv"]
 [ext_resource type="PackedScene" uid="uid://b8mrbhnjhixwm" path="res://Scenes/Combat/Enemy/intent.tscn" id="7_rvs3k"]
-[ext_resource type="Texture2D" uid="uid://cggqu3v1nirvy" path="res://Art/reticle.png" id="8_oy6l1"]
+[ext_resource type="Texture2D" uid="uid://cggqu3v1nirvy" path="res://Art/combat screen elements/reticle.png" id="8_oy6l1"]
 
 [sub_resource type="Animation" id="Animation_km0dy"]
 length = 0.001

@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://d3naap4gnytxh"]
+[gd_scene load_steps=30 format=3 uid="uid://d3naap4gnytxh"]
 
 [ext_resource type="Script" uid="uid://b0h0tx4msve02" path="res://Scripts/Combat/combat_manager.gd" id="1_4ln8h"]
 [ext_resource type="Resource" uid="uid://b01ucdggd8ykf" path="res://Resources/puyo_value_data.tres" id="2_xisnc"]
@@ -23,7 +23,46 @@
 [ext_resource type="PackedScene" uid="uid://bu3friywynij8" path="res://Scenes/animations and audio stuff/polyphonic_audio_player.tscn" id="19_ley77"]
 [ext_resource type="Resource" uid="uid://bdhafmfgutg4q" path="res://Resources/AudioLibraries/music_library.tres" id="20_tmuf1"]
 [ext_resource type="PackedScene" uid="uid://c2aqaph0fpnb1" path="res://Scenes/pause_manager.tscn" id="21_5kjvk"]
+[ext_resource type="Texture2D" uid="uid://cuet3laww0w3o" path="res://Art/Main_Character.png" id="25_e8ln5"]
 [ext_resource type="AudioStream" uid="uid://dr6ge7216dayb" path="res://Audio/Music/PuyoPuyoTheme_1.mp3" id="26_2n3pb"]
+[ext_resource type="Script" uid="uid://c6s3gimgvg7mb" path="res://Scenes/player_sprite.gd" id="26_5g3cp"]
+
+[sub_resource type="Animation" id="Animation_2n3pb"]
+resource_name = "PlayerHurt"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.862193, 0, 0.0764161, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_r5ubg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ycqky"]
+_data = {
+&"PlayerHurt": SubResource("Animation_2n3pb"),
+&"RESET": SubResource("Animation_r5ubg")
+}
 
 [node name="Combat" type="Node2D"]
 script = ExtResource("1_4ln8h")
@@ -110,10 +149,10 @@ encounter_array = Array[PackedScene]([ExtResource("8_f8ge6")])
 position = Vector2(820, 244)
 
 [node name="PlayerShieldLocation" parent="CombatEffectsManager/Markers" index="2"]
-position = Vector2(654, 613)
+position = Vector2(541, 484)
 
 [node name="PlayerCounterLocation" parent="CombatEffectsManager/Markers" index="3"]
-position = Vector2(655, 533)
+position = Vector2(541, 401)
 
 [node name="PuyoTestUI" parent="." node_paths=PackedStringArray("puyo_manager") instance=ExtResource("5_yt1oa")]
 layer = 2
@@ -151,6 +190,24 @@ stream = ExtResource("26_2n3pb")
 [node name="PauseManager" parent="." node_paths=PackedStringArray("spell_manager") instance=ExtResource("21_5kjvk")]
 spell_manager = NodePath("../SpellManager")
 
+[node name="PlayerSpriteMask" type="ColorRect" parent="."]
+clip_children = 1
+offset_left = 603.0
+offset_top = 451.0
+offset_right = 794.0
+offset_bottom = 747.0
+
+[node name="PlayerSprite" type="Sprite2D" parent="PlayerSpriteMask"]
+position = Vector2(105, 142)
+scale = Vector2(1.22666, 1.22666)
+texture = ExtResource("25_e8ln5")
+script = ExtResource("26_5g3cp")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerSpriteMask/PlayerSprite"]
+libraries = {
+&"": SubResource("AnimationLibrary_ycqky")
+}
+
 [connection signal="on_combat_started" from="." to="PuyoManager" method="reset_game"]
 [connection signal="on_combat_started" from="." to="Player" method="reset_counter_and_shield"]
 [connection signal="on_combat_started" from="." to="EncounterManager" method="load_next_encounter"]
@@ -174,6 +231,7 @@ spell_manager = NodePath("../SpellManager")
 [connection signal="on_life_lost" from="Player" to="PuyoManager" method="reset_game"]
 [connection signal="on_life_lost" from="Player" to="LifeCounter" method="lose_a_life"]
 [connection signal="on_player_damage_taken" from="Player" to="PuyoManager" method="process_damage_taken"]
+[connection signal="on_player_damage_taken" from="Player" to="PlayerSpriteMask/PlayerSprite" method="_on_player_on_player_damage_taken"]
 [connection signal="on_set_life_to" from="Player" to="LifeCounter" method="set_lives_to"]
 [connection signal="on_shield_change" from="Player" to="DefenseVisualsManager" method="update_shield_visuals"]
 [connection signal="on_rest_stop" from="EncounterManager" to="PuyoManager" method="pause_puyo"]
