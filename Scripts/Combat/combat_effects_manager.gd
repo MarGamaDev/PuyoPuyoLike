@@ -68,3 +68,10 @@ func on_damage_effect_completed():
 
 func _on_player_on_counter_triggered(counter_amount: int) -> void:
 	create_counterattack_effect()
+
+##CAN CHANGE THIS ONCE IT'S ALL LINKED UP BETTER
+func create_spell_effect(start_position : Vector2, end_position : Vector2, effect_type: AttackEffectData.EFFECT_TYPE):
+	var new_attack_effect : AttackParticleEffect = attack_effect_scene.instantiate()
+	$PuyoAttackEffectLayer.add_child(new_attack_effect)
+	new_attack_effect.on_damage_effect_hit.connect(on_damage_effect_completed)
+	new_attack_effect.create_effect(start_position, end_position, effect_type, true)

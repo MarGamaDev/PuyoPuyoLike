@@ -42,6 +42,7 @@ func add_spell(spell_data: SpellData, reward: Reward):
 		spell_node.on_spell_complete.connect(spell_cast)
 		spell_node.update_enemy_damage_visuals.connect(update_enemy_visual_damage_queue)
 		spell_node.connect_to_effect_signals()
+		spell_node.link_to_contianer(spell_container.get_marker())
 		all_clear_for_next_encounter.emit()
 
 func block_spell_check(puyo_array : Array, chain_length : int):
@@ -89,6 +90,7 @@ func test_add_spell(spell_data: SpellData):
 		spell_node.on_spell_complete.connect(spell_cast)
 		spell_node.update_enemy_damage_visuals.connect(update_enemy_visual_damage_queue)
 		spell_node.connect_to_effect_signals()
+		spell_node.link_to_contianer(spell_container.get_marker())
 
 #may not need this later
 func update_enemy_visual_damage_queue():

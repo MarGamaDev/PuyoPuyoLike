@@ -13,10 +13,13 @@ var recipe_length : int = 0
 var spell_stage_tracker : int = 0
 var chain_stage_tracker : int = 0
 
+var container_location_marker : Control
+
 @onready var combat_manager : CombatManager = get_node("/root/Combat")
 @onready var puyo_manager : PuyoManager = get_node("/root/Combat/PuyoManager")
 @onready var player : Player = get_node("/root/Combat/Player")
 @onready var encounter_manager : EncounterManager = get_node("/root/Combat/EncounterManager")
+@onready var combat_effects : CombatEffectsManager = get_node("/root/Combat/CombatEffectsManager")
 
 signal update_enemy_damage_visuals
 
@@ -66,3 +69,6 @@ func complete_spell():
 	##you chain after casting
 	spell_reset()
 	print("spell complete")
+
+func link_to_contianer(new_container_marker : Control):
+	container_location_marker = new_container_marker

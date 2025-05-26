@@ -15,4 +15,5 @@ func reversal_attack(chain_mult : int):
 	var damage = chain_mult * (player.counter + player.shield)
 	print("damage : %s" % damage)
 	deal_spell_damage.emit(damage)
-	update_enemy_damage_visuals.emit()
+	combat_effects.create_spell_effect(container_location_marker.global_position, combat_manager.selected_enemy.global_position, AttackEffectData.EFFECT_TYPE.PLAYER_BLUE)
+	#update_enemy_damage_visuals.emit()

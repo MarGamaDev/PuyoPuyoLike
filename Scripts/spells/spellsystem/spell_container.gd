@@ -96,3 +96,6 @@ func on_new_player_turn_taken():
 func on_spell_complete() -> void:
 	reset_recipe_visual()
 	$TestParticleEffect.restart()
+
+func get_marker() -> Control:
+	return $EffectMarker

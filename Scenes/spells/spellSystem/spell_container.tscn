@@ -101,3 +101,13 @@ amount = 1
 texture = ExtResource("6_n2pxk")
 one_shot = true
 process_material = SubResource("ParticleProcessMaterial_biiyc")
+
+[node name="EffectMarker" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
