@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bif55k0mmcvqf"]
+[gd_scene load_steps=6 format=3 uid="uid://bif55k0mmcvqf"]
 
 [ext_resource type="Script" uid="uid://mn6m032nthh1" path="res://Scripts/defense_visuals_manager.gd" id="1_hy080"]
 [ext_resource type="Theme" uid="uid://qw5wdr2jerv7" path="res://Art/text/default_font.tres" id="2_flc2i"]
 [ext_resource type="Texture2D" uid="uid://bg1c8xhd56y45" path="res://Placeholder Art/counter_icon.png" id="3_0upjn"]
 [ext_resource type="Texture2D" uid="uid://ce7hlakgtf0l6" path="res://Placeholder Art/shield_icon.png" id="4_x3ix8"]
+[ext_resource type="Texture2D" uid="uid://cout30nmga87f" path="res://Placeholder Art/puyo_junk.png" id="5_0upjn"]
 
 [node name="DefenseVisualsManager" type="Node2D"]
 script = ExtResource("1_hy080")
@@ -115,4 +116,56 @@ theme_override_colors/default_color = Color(0, 0.772549, 1, 1)
 theme_override_font_sizes/normal_font_size = 36
 text = "0"
 scroll_active = false
+vertical_alignment = 1
+
+[node name="JunkIndicator" type="Control" parent="UIElements"]
+visible = false
+layout_mode = 3
+anchor_left = 0.163
+anchor_top = 0.044
+anchor_right = 0.286
+anchor_bottom = 0.101
+offset_left = 0.399994
+offset_top = 0.399998
+offset_right = 1.79999
+offset_bottom = 0.0999985
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="UIElements/JunkIndicator"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.095
+anchor_top = -0.145
+anchor_right = 1.065
+anchor_bottom = 1.169
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.388235)
+
+[node name="TextureRect" type="TextureRect" parent="UIElements/JunkIndicator"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.013
+anchor_right = 0.405
+anchor_bottom = 0.987
+offset_top = -0.0169004
+offset_right = -0.0580063
+offset_bottom = 0.0168991
+grow_vertical = 2
+size_flags_horizontal = 3
+texture = ExtResource("5_0upjn")
+stretch_mode = 4
+
+[node name="JunkText" type="RichTextLabel" parent="UIElements/JunkIndicator"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.439
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -0.411003
+theme = ExtResource("2_flc2i")
+theme_override_font_sizes/normal_font_size = 31
+text = "X 0"
+horizontal_alignment = 1
 vertical_alignment = 1

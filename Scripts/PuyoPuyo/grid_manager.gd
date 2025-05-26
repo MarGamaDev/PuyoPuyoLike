@@ -10,7 +10,7 @@ signal down_check_finished
 signal turn_tick
 signal player_created
 signal queue_event_added(event_type : PuyoQueueEvent)
-signal junk_created
+signal junk_created(amount : int)
 signal chain_ended(max_chain : int)
 signal junk_popped(amount : int)
 
@@ -591,7 +591,7 @@ func add_to_spawn_queue(new_event: PuyoQueueEvent):
 
 #used for specific junk patterns that fall from the top
 func create_junk_specific(junk_positions : Array[Vector2i]):
-	junk_created.emit()
+	junk_created.emit(junk_positions.size())
 	#junk positions will be from left to right top to bottom
 	for i in junk_positions:
 		var junk_puyo : Puyo = puyo_scene.instantiate()
@@ -601,9 +601,8 @@ func create_junk_specific(junk_positions : Array[Vector2i]):
 			node_to_fill.set_puyo(junk_puyo)
 			node_to_fill.set_type(Puyo.PUYO_TYPE.JUNK)
 
-#this just creates x rows of junk
 func create_junk_row(junk_amount: int):
-	junk_created.emit()
+	junk_created.emit(junk_amount)
 	var number_of_rows : int = int(junk_amount / grid_width)
 	var remaining_junk : int = junk_amount - (number_of_rows * grid_width)
 	var row_offset : int = 0
@@ -627,7 +626,6 @@ func create_junk_row(junk_amount: int):
 					node_to_fill.set_type(Puyo.PUYO_TYPE.JUNK)
 
 func create_junk_random(junk_num: int):
-	junk_created.emit()
 	var junk_positions : Array[Vector2i] = []
 	var junk_amount = 0
 	#need to make sure there's enough spaces to spawn the junk
@@ -656,7 +654,7 @@ func create_junk_random(junk_num: int):
 	create_junk_specific(junk_positions)
 
 func replace_junk_specific(junk_positions : Array[Vector2i]):
-	junk_created.emit()
+	junk_created.emit(junk_positions.size())
 	#junk positions will be from left to right top to bottom
 	for i in junk_positions:
 		var junk_puyo : Puyo = puyo_scene.instantiate()
