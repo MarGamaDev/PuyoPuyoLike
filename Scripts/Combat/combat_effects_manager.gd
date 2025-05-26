@@ -77,3 +77,9 @@ func create_spell_effect(start_position : Vector2, end_position : Vector2, effec
 	$PuyoAttackEffectLayer.add_child(new_attack_effect)
 	new_attack_effect.on_damage_effect_hit.connect(on_damage_effect_completed)
 	new_attack_effect.create_effect(start_position, end_position, effect_type, attack_signal_flag)
+	
+func create_relic_effect(start_position : Vector2, end_position : Vector2, effect_type: AttackEffectData.EFFECT_TYPE, attack_signal_flag := true):
+	var new_attack_effect : AttackParticleEffect = attack_effect_scene.instantiate()
+	$PuyoAttackEffectLayer.add_child(new_attack_effect)
+	new_attack_effect.on_damage_effect_hit.connect(on_damage_effect_completed)
+	new_attack_effect.create_effect(start_position, end_position, effect_type, attack_signal_flag)	

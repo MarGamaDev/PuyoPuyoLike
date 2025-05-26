@@ -14,7 +14,8 @@ func on_attack_blocked(damage_blocked : int, shield_before_damage : int):
 	if damage_blocked <= shield_before_damage:
 		print("blue flexibility buff triggered")
 		deal_shield_damage.emit(int(0.5 * shield_before_damage))
-		update_enemy_damage_visuals.emit()
+		combat_effects.create_relic_effect(self.global_position, combat_manager.selected_enemy.global_position, AttackEffectData.EFFECT_TYPE.PLAYER_BLUE)
+		#update_enemy_damage_visuals.emit()
 	#print("damage blocked %s" % damage_blocked)
 	#print("shield before %s " % shield_before_damage)
 	pass

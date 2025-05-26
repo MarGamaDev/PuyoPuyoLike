@@ -8,6 +8,8 @@ class_name BaseRelic extends Node
 @onready var encounter_manager : EncounterManager = get_node("/root/Combat/EncounterManager")
 @onready var spell_manager : SpellManager = get_node("/root/Combat/SpellManager")
 
+@onready var combat_effects : CombatEffectsManager = get_node("/root/Combat/CombatEffectsManager")
+
 signal update_enemy_damage_visuals
 
 func initialize() -> void:

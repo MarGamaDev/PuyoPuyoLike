@@ -6,8 +6,7 @@ signal all_clear_for_next_encounter
 
 func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("TESTING_player_spawn"):
-		pass
-		#test_add_relic()
+		test_add_relic()
 
 func add_relic(relic_data: RelicData) -> void:
 	var new_relic = await load(relic_data.file_path).instantiate()

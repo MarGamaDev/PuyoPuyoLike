@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://cuwhoeey2nths" path="res://Scripts/Relics/Variants/direct_yellow_buff.gd" id="1_b2dek"]
 [ext_resource type="Resource" uid="uid://d25fifgmqa3e1" path="res://Resources/RelicData/direct_yellow_buff.tres" id="2_xrjud"]
 
-[node name="DirectYellowBuff" type="Node"]
+[node name="DirectYellowBuff" type="Node2D"]
 script = ExtResource("1_b2dek")
 relic_data = ExtResource("2_xrjud")
-metadata/_custom_type_script = "uid://bn2jxby1kth4g"
