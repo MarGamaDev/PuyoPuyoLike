@@ -2,6 +2,7 @@ extends Node2D
 class_name SpellManager
 
 signal all_clear_for_next_encounter()
+signal on_spell_cast(spell_length : int)
 
 @export var test_spell : SpellData
 @export var test_spell_2 : SpellData
@@ -34,6 +35,7 @@ func add_spell(spell_data: SpellData, reward: Reward):
 		spell_node.on_spell_progressed.connect(spell_container.progress_spell_visual)
 		spell_node.on_spell_progress_reset.connect(spell_container.reset_recipe_visual)
 		spell_node.on_spell_complete.connect(spell_container.on_spell_complete)
+		spell_node.on_spell_complete.connect(spell_cast)
 		spell_node.connect_to_effect_signals()
 		all_clear_for_next_encounter.emit()
 
@@ -63,3 +65,7 @@ func spell_to_remove_selected(index: int):
 	$SpellChoiceMenu.hide()
 	add_spell(awaiting_spell_data_holder, awaiting_reward)
 	pass
+
+func spell_cast(spell_length : int):
+	print("spell cast")
+	on_spell_cast.emit(spell_length)

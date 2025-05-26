@@ -3,7 +3,7 @@ class_name SpellNode
 
 signal on_spell_progress_reset
 signal on_spell_progressed(chain_stage : int)
-signal on_spell_complete
+signal on_spell_complete(spell_length : int)
 
 @export var spell_data : SpellData
 var recipe_type : SpellData.RECIPE_TYPE
@@ -58,7 +58,7 @@ func progress_spell(chain_stage: int):
 	chain_stage_tracker += 1
 
 func complete_spell():
-	on_spell_complete.emit()
+	on_spell_complete.emit(recipe_length)
 	trigger_spell_effect()
 	##remember to override without the reset for spells that care about how much
 	##you chain after casting

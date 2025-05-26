@@ -6,6 +6,8 @@ class_name BaseRelic extends Node
 @onready var combat_manager : CombatManager = get_node("/root/Combat")
 @onready var puyo_values : PuyoValueData = combat_manager.puyo_values
 @onready var encounter_manager : EncounterManager = get_node("/root/Combat/EncounterManager")
+@onready var spell_manager : SpellManager = get_node("/root/Combat/SpellManager")
+
 signal update_enemy_damage_visuals
 
 func initialize() -> void:
