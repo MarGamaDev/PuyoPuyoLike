@@ -23,12 +23,15 @@ func reset_relic(max_chain_unused : int):
 
 #gets given an array of grid nodes
 func gemini_trigger(block : Array, chain_length : int):
-	print("gemini trigger")
 	var block_type : Puyo.PUYO_TYPE = block[0].puyo.puyo_type
 	var bonus_counter = 0
 	for i in range(0, types_in_chain.size()):
 		if types_in_chain[i] == block_type:
 			bonus_counter += 1
-	print(bonus_counter)
 	types_in_chain.append(block_type)
+	if bonus_counter > 0:
+		print("gemini procced")
+		symmetry_strike.emit(PlayerAttack.create_manually(bonus_counter * puyo_boost_per_match, block_type, chain_length))
+		if block_type == Puyo.PUYO_TYPE.GREEN or block_type == Puyo.PUYO_TYPE.RED:
+			update_enemy_damage_visuals.emit()
 	pass
