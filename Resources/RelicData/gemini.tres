@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="RelicData" load_steps=3 format=3 uid="uid://c1aj5ru0lme7u"]
+
+[ext_resource type="Script" uid="uid://dfyomjxsahuhw" path="res://Scripts/Relics/System/relic_data.gd" id="1_m8h2f"]
+[ext_resource type="Texture2D" uid="uid://dqohymee1bv55" path="res://Placeholder Art/puyo_pop.png" id="2_gi606"]
+
+[resource]
+script = ExtResource("1_m8h2f")
+sprite = ExtResource("2_gi606")
+name = "gemini"
+description = "wip"
+flavor_text = "wip"
+file_path = "res://Scenes/Relics/Variants/gemini.tscn"
+metadata/_custom_type_script = "uid://dfyomjxsahuhw"

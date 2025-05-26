@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://cbtl371p7s4"]
+
+[ext_resource type="Script" uid="uid://pmvvnwfbwxnq" path="res://Scripts/Relics/Variants/gemini.gd" id="1_7ev7p"]
+[ext_resource type="Resource" uid="uid://c1aj5ru0lme7u" path="res://Resources/RelicData/gemini.tres" id="2_2c3y3"]
+
+[node name="Gemini" type="Node"]
+script = ExtResource("1_7ev7p")
+relic_data = ExtResource("2_2c3y3")
+metadata/_custom_type_script = "uid://bn2jxby1kth4g"
