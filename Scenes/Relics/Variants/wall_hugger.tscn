@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://chcn1mmv030xg"]
+
+[ext_resource type="Script" uid="uid://csfn70sh2608n" path="res://Scripts/Relics/Variants/wall_hugger.gd" id="1_p0adw"]
+[ext_resource type="Resource" uid="uid://cvrmb74hefdd6" path="res://Resources/RelicData/wall_hugger.tres" id="2_7anju"]
+
+[node name="WallHugger" type="Node"]
+script = ExtResource("1_p0adw")
+relic_data = ExtResource("2_7anju")
+metadata/_custom_type_script = "uid://bn2jxby1kth4g"

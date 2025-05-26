@@ -369,7 +369,7 @@ func pop_puyos(puyo_groups:Array = puyos_to_pop):
 	junk_popped.emit(junk_popped_now)
 	puyos_to_pop = Array()
 
-#starts a board check loop
+#starts a board check loop. puyo groups is an array of arrays of gridnodes
 func check_board(puyo_groups : Array) -> bool:
 	if puyo_groups.is_empty():
 		#chain_length = 0

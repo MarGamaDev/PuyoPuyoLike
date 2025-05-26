@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="RelicData" load_steps=3 format=3 uid="uid://cvrmb74hefdd6"]
+
+[ext_resource type="Script" uid="uid://dfyomjxsahuhw" path="res://Scripts/Relics/System/relic_data.gd" id="1_b3377"]
+[ext_resource type="Texture2D" uid="uid://gmla32085lxi" path="res://Placeholder Art/placeholder_twinkle.png" id="2_75ki1"]
+
+[resource]
+script = ExtResource("1_b3377")
+sprite = ExtResource("2_75ki1")
+name = "wall hugger"
+description = "wip"
+flavor_text = "wip"
+file_path = "res://Scenes/Relics/Variants/wall_hugger.tscn"
+metadata/_custom_type_script = "uid://dfyomjxsahuhw"

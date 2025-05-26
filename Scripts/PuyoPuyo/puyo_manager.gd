@@ -4,6 +4,7 @@ class_name PuyoManager
 signal player_attack(PlayerAttack)
 signal on_end_player_turn()
 signal life_lost
+#emits an array of gridnodes
 signal block_popped(popped_puyos : Array, chain_value : int)
 signal on_player_created
 signal on_chain_ending(max_chain : int)
@@ -30,8 +31,10 @@ func lose_life():
 	$GridManager.hide()
 	life_lost.emit()
 
+#chain_stage is an array of arrays of gridnodes
 func chain_stage_popped(chain_stage : Array, chain_value: int):
 	for puyo_block : Array in chain_stage:
+		#emits an array og gridnodes
 		block_popped.emit(puyo_block, chain_value)
 		#print("chain type: ", puyo_block[0].get_type(), " with ", puyo_block.size(), " puyos, chain length ", chain_value)
 		#send attack to the combat manager
