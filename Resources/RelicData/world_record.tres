@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="RelicData" load_steps=3 format=3 uid="uid://m44q6dbv7wbt"]
+
+[ext_resource type="Script" uid="uid://dfyomjxsahuhw" path="res://Scripts/Relics/System/relic_data.gd" id="1_18jtn"]
+[ext_resource type="Texture2D" uid="uid://b51dmrjp1h2im" path="res://Art/spell elements/puyo-plusSign.png" id="2_8crmw"]
+
+[resource]
+script = ExtResource("1_18jtn")
+sprite = ExtResource("2_8crmw")
+name = "world record"
+description = "wip"
+flavor_text = "wip"
+file_path = "res://Scenes/Relics/Variants/world_record.tscn"
+metadata/_custom_type_script = "uid://dfyomjxsahuhw"
