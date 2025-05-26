@@ -17,7 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://dpkr5l8qrkrou" path="res://Scenes/Relics/System/relic_manager.tscn" id="15_3cqtn"]
 [ext_resource type="PackedScene" uid="uid://bif55k0mmcvqf" path="res://Scenes/Combat/defense_visuals_manager.tscn" id="15_tmuf1"]
 [ext_resource type="PackedScene" uid="uid://br4sb0wwxwr2o" path="res://Scenes/spells/spellSystem/spell_manager.tscn" id="16_50454"]
-[ext_resource type="Resource" uid="uid://cvrmb74hefdd6" path="res://Resources/RelicData/wall_hugger.tres" id="16_umvpd"]
+[ext_resource type="Resource" uid="uid://cifa18qb0t6e8" path="res://Resources/RelicData/skyscraper.tres" id="16_umvpd"]
 [ext_resource type="Script" uid="uid://btkeiscf5dqtn" path="res://Scripts/reward_manager.gd" id="18_5kjvk"]
 [ext_resource type="Script" uid="uid://dvlv4xl60gxig" path="res://Scripts/audio/sound_manager.gd" id="19_5kjvk"]
 [ext_resource type="PackedScene" uid="uid://bu3friywynij8" path="res://Scenes/animations and audio stuff/polyphonic_audio_player.tscn" id="19_ley77"]

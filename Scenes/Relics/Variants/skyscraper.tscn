@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://di84reaoxydux"]
+
+[ext_resource type="Script" uid="uid://3epbnnogs2nl" path="res://Scripts/Relics/Variants/skyscraper.gd" id="1_hs55r"]
+[ext_resource type="Resource" uid="uid://cifa18qb0t6e8" path="res://Resources/RelicData/skyscraper.tres" id="2_jb8el"]
+
+[node name="Skyscraper" type="Node"]
+script = ExtResource("1_hs55r")
+relic_data = ExtResource("2_jb8el")
+metadata/_custom_type_script = "uid://bn2jxby1kth4g"

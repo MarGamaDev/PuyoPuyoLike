@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="RelicData" load_steps=3 format=3 uid="uid://cifa18qb0t6e8"]
+
+[ext_resource type="Script" uid="uid://dfyomjxsahuhw" path="res://Scripts/Relics/System/relic_data.gd" id="1_vlb4h"]
+[ext_resource type="Texture2D" uid="uid://ce7hlakgtf0l6" path="res://Placeholder Art/shield_icon.png" id="2_u5bge"]
+
+[resource]
+script = ExtResource("1_vlb4h")
+sprite = ExtResource("2_u5bge")
+name = "skyscraper"
+description = "wip"
+flavor_text = "wip"
+file_path = "res://Scenes/Relics/Variants/skyscraper.tscn"
+metadata/_custom_type_script = "uid://dfyomjxsahuhw"
