@@ -6,8 +6,8 @@
 [resource]
 script = ExtResource("1_0jj4u")
 sprite = ExtResource("2_v17nv")
-name = "blue direct buff"
-description = "wip"
-flavor_text = "wip"
+name = "My body protects me"
+description = "Whenever you crush Black Bile,  increase your minimum shield by 1 for the rest of this fight."
+flavor_text = "Grow a shell so tough that they cannot pass through"
 file_path = "res://Scenes/Relics/Variants/blue_direct_buff.tscn"
 metadata/_custom_type_script = "uid://dfyomjxsahuhw"

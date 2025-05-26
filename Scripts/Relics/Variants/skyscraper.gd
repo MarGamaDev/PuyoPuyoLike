@@ -3,8 +3,8 @@ extends BaseRelic
 signal skyscraper_attack(attack : PlayerAttack)
 
 ##gives blocks extra puyos, if they are above a certain threshold on the board
-@export var height_threshold : int = 8
-@export var extra_puyos_on_success : int = 3
+@export var height_threshold : int = 6
+@export var extra_puyos_on_success : int = 2
 
 func initialize():
 	super()

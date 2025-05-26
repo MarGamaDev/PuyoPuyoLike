@@ -1,6 +1,6 @@
 class_name AfterBurner extends BaseRelic
-
-@export var damage_enhancement :int = 3
+##whenever you pop a red block, treat it as if it had 2 more puyos
+@export var damage_enhancement :int = 2
 
 func initialize() -> void:
 	super()

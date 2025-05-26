@@ -6,8 +6,8 @@
 [resource]
 script = ExtResource("1_p1ygr")
 sprite = ExtResource("2_wejel")
-name = "test yellow counter buff"
-description = "yellow counter buff"
-flavor_text = "aaaaaaaa"
+name = "My mind jumps quickly"
+description = "Your counterattacks deal extra damage"
+flavor_text = "Find the weak points that they did not know they had"
 file_path = "res://Scenes/Relics/Variants/direct_yellow_buff.tscn"
 metadata/_custom_type_script = "uid://dfyomjxsahuhw"

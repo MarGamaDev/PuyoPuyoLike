@@ -6,8 +6,8 @@
 [resource]
 script = ExtResource("1_iijg5")
 sprite = ExtResource("2_23vqy")
-name = "green direct buff"
-description = "WIP green deals extra damage per enemy hit"
-flavor_text = "wip"
+name = "My hand reaches all"
+description = "whenever you crush phlegm, deal extra damage for each enemy hit."
+flavor_text = "Feel all that is within your grasp"
 file_path = "res://Scenes/Relics/Variants/green_direct_buff.tscn"
 metadata/_custom_type_script = "uid://dfyomjxsahuhw"

@@ -6,8 +6,8 @@
 [resource]
 script = ExtResource("1_txq0h")
 sprite = ExtResource("2_nrghx")
-name = "red flexibility buff"
-description = "wip"
-flavor_text = "wip"
+name = "Fiercer than ever before"
+description = "Chains of length 3 or higher containing blood give you shield equal to a third of the damag dealt."
+flavor_text = "As if you were aflame"
 file_path = "res://Scenes/Relics/Variants/red_flexibility_buff.tscn"
 metadata/_custom_type_script = "uid://dfyomjxsahuhw"

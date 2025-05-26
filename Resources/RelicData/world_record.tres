@@ -6,8 +6,8 @@
 [resource]
 script = ExtResource("1_18jtn")
 sprite = ExtResource("2_8crmw")
-name = "world record"
-description = "wip"
-flavor_text = ""
+name = "A sense of accomplishment"
+description = "After each chain, trigger a random humour a number of times equal to your highest chain length after picking this sensation."
+flavor_text = "You should be very pleased with yourself"
 file_path = "res://Scenes/Relics/Variants/world_record.tscn"
 metadata/_custom_type_script = "uid://dfyomjxsahuhw"

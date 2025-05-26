@@ -2,7 +2,7 @@ extends BaseRelic
 
 #whenever you have a chain of 3 or higher, if red is inside the chain, gain shield
 #equal to a third of the damage dealt
-@export var chain_requirement :int = 2
+@export var chain_requirement :int = 3
 @export var shield_gain_reducer : float = 0.3
 
 signal gain_relic_shield(shield : int)

@@ -7,5 +7,5 @@ func initialize() -> void:
 
 func return_damage(damage_taken, attack_type) -> void:
 	print("proc spikeskin")
-	(get_node("/root/Combat") as CombatManager).damage_all_enemies(3) 
+	(get_node("/root/Combat") as CombatManager).damage_all_enemies(5) 
 	update_enemy_damage_visuals.emit()

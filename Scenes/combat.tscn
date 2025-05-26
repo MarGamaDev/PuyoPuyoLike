@@ -25,7 +25,7 @@
 [ext_resource type="PackedScene" uid="uid://c2aqaph0fpnb1" path="res://Scenes/pause_manager.tscn" id="21_5kjvk"]
 [ext_resource type="Texture2D" uid="uid://cuet3laww0w3o" path="res://Art/Main_Character.png" id="25_e8ln5"]
 [ext_resource type="AudioStream" uid="uid://dr6ge7216dayb" path="res://Audio/Music/PuyoPuyoTheme_1.mp3" id="26_2n3pb"]
-[ext_resource type="Script" uid="uid://c6s3gimgvg7mb" path="res://Scenes/player_sprite.gd" id="26_5g3cp"]
+[ext_resource type="Script" uid="uid://c6s3gimgvg7mb" path="res://Scripts/player_sprite.gd" id="26_5g3cp"]
 
 [sub_resource type="Animation" id="Animation_2n3pb"]
 resource_name = "PlayerHurt"

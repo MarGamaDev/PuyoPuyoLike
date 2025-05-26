@@ -6,8 +6,8 @@
 [resource]
 script = ExtResource("1_m8h2f")
 sprite = ExtResource("2_gi606")
-name = "gemini"
-description = "wip"
-flavor_text = "wip"
+name = "An eerie familiarity"
+description = "Crushing multiple blocks of the same humour in a single chain boosts their power."
+flavor_text = "Focus on the you that is here"
 file_path = "res://Scenes/Relics/Variants/gemini.tscn"
 metadata/_custom_type_script = "uid://dfyomjxsahuhw"

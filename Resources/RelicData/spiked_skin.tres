@@ -6,8 +6,8 @@
 [resource]
 script = ExtResource("1_5r3hd")
 sprite = ExtResource("2_fy2ex")
-name = "Spiked Skin"
-description = "When taking damage, deal 3 damage to all enemies."
-flavor_text = "It's like hugging sandpaper."
+name = "A sharp pain"
+description = "When taking damage, deal 5 damage to each enemy"
+flavor_text = "Like 20 nails stuck in places you can't find"
 file_path = "res://Scenes/Relics/Variants/spiked_skin.tscn"
 metadata/_custom_type_script = "uid://dfyomjxsahuhw"
