@@ -14,4 +14,5 @@ func connect_to_effect_signals():
 func trigger_spell_effect():
 	gain_spell_shield.emit(spell_shield_amount)
 	delay_enemies.emit(enemy_delay_amount)
+	update_enemy_damage_visuals.emit()
 	print("endurance cast")

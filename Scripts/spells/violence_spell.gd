@@ -10,4 +10,5 @@ func connect_to_effect_signals():
 func trigger_spell_effect():
 	var enemy_count = encounter_manager.current_encounter.enemy_count
 	deal_spell_damage.emit(spell_base_damage * enemy_count)
+	update_enemy_damage_visuals.emit()
 	print("Violence cast for: %s" % (enemy_count * spell_base_damage))

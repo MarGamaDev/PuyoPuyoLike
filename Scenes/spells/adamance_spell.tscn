@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bs3t7yad2176g"]
 
-[ext_resource type="Script" uid="uid://ksbu6isj475r" path="res://scripts/spells/adamance_spell.gd" id="1_l2s6a"]
+[ext_resource type="Script" uid="uid://ksbu6isj475r" path="res://Scripts/spells/adamance_spell.gd" id="1_l2s6a"]
 [ext_resource type="Resource" uid="uid://b856s53iaaj10" path="res://Resources/SpellData/adamance.tres" id="2_5a2dh"]
 
 [node name="AdamanceSpell" type="Node2D"]

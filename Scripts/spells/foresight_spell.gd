@@ -13,4 +13,5 @@ func counter_deal_damage(chain_mult_unused: int):
 	puyo_manager.on_chain_ending.disconnect(counter_deal_damage)
 	var counter_damage = player.counter
 	deal_spell_damage.emit(counter_damage)
+	update_enemy_damage_visuals.emit()
 	print("foresight cast for %s" % counter_damage)

@@ -52,3 +52,4 @@ func wall_pop(chain_length : int):
 	deal_target_damage.emit(red_count * chain_length)
 	gain_shield.emit(blue_count * chain_length)
 	gain_counter.emit(yellow_count * chain_length)
+	update_enemy_damage_visuals.emit()

@@ -16,6 +16,10 @@ var chain_stage_tracker : int = 0
 var awaiting_spell_data_holder : SpellData
 var awaiting_reward : Reward
 
+func _physics_process(delta: float) -> void:
+	if Input.is_action_just_pressed("TESTING_player_spawn"):
+		test_add_spell(test_spell, )
+
 func add_spell(spell_data: SpellData, reward: Reward):
 	if equipped_spells.size() >= 3 or spell_data == null:
 		print("too many spells!")
@@ -36,6 +40,7 @@ func add_spell(spell_data: SpellData, reward: Reward):
 		spell_node.on_spell_progress_reset.connect(spell_container.reset_recipe_visual)
 		spell_node.on_spell_complete.connect(spell_container.on_spell_complete)
 		spell_node.on_spell_complete.connect(spell_cast)
+		spell_node.update_enemy_damage_visuals.connect(update_enemy_visual_damage_queue)
 		spell_node.connect_to_effect_signals()
 		all_clear_for_next_encounter.emit()
 
@@ -69,3 +74,26 @@ func spell_to_remove_selected(index: int):
 func spell_cast(spell_length : int):
 	print("spell cast")
 	on_spell_cast.emit(spell_length)
+
+func test_add_spell(spell_data: SpellData):
+		var spell_node : SpellNode
+		spell_node = load(SpellFinder.find_spell(spell_data.spell_name)).instantiate()
+		add_child(spell_node)
+		
+		spell_node.setup_spell_node(spell_data)
+		equipped_spells.append(spell_node)
+		var spell_container = $EquippedSpellsContainer.add_spell(spell_data)
+		spell_node.on_spell_progressed.connect(spell_container.progress_spell_visual)
+		spell_node.on_spell_progress_reset.connect(spell_container.reset_recipe_visual)
+		spell_node.on_spell_complete.connect(spell_container.on_spell_complete)
+		spell_node.on_spell_complete.connect(spell_cast)
+		spell_node.update_enemy_damage_visuals.connect(update_enemy_visual_damage_queue)
+		spell_node.connect_to_effect_signals()
+
+#may not need this later
+func update_enemy_visual_damage_queue():
+	var combat_manager : CombatManager = get_node("/root/Combat")
+	for enemy : Enemy in combat_manager.enemies:
+		print("damage_should_be_updating")
+		enemy.update_damage_visually()
+	

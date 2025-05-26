@@ -15,3 +15,4 @@ func reversal_attack(chain_mult : int):
 	var damage = chain_mult * (player.counter + player.shield)
 	print("damage : %s" % damage)
 	deal_spell_damage.emit(damage)
+	update_enemy_damage_visuals.emit()

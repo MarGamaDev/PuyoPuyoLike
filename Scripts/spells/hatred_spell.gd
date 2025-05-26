@@ -33,5 +33,6 @@ func launch_hatred_attack(grid_node_array : Array, new_chain_length : int):
 
 func complete_spell():
 	on_spell_complete.emit(recipe_length)
+	update_enemy_damage_visuals.emit()
 	trigger_spell_effect()
 	print("spell complete")

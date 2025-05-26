@@ -11,3 +11,4 @@ func connect_to_effect_signals():
 func trigger_spell_effect():
 	print("Resentment cast")
 	deal_spell_damage.emit(spell_damage)
+	update_enemy_damage_visuals.emit()
