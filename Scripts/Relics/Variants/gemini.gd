@@ -32,6 +32,14 @@ func gemini_trigger(block : Array, chain_length : int):
 	if bonus_counter > 0:
 		print("gemini procced")
 		symmetry_strike.emit(PlayerAttack.create_manually(bonus_counter * puyo_boost_per_match, block_type, chain_length))
-		if block_type == Puyo.PUYO_TYPE.GREEN or block_type == Puyo.PUYO_TYPE.RED:
-			update_enemy_damage_visuals.emit()
+		match block_type:
+			Puyo.PUYO_TYPE.RED:
+				combat_effects.create_relic_effect(self.global_position, combat_manager.selected_enemy.global_position, AttackEffectData.EFFECT_TYPE.PLAYER_RED)
+			Puyo.PUYO_TYPE.GREEN:
+				for enemy : Enemy in combat_manager.enemies:
+						combat_effects.create_relic_effect(self.global_position, enemy.global_position, AttackEffectData.EFFECT_TYPE.PLAYER_GREEN)
+			Puyo.PUYO_TYPE.BLUE:
+				combat_effects.create_relic_effect(self.global_position, combat_effects.shield_location_marker, AttackEffectData.EFFECT_TYPE.PLAYER_BLUE, false)
+			Puyo.PUYO_TYPE.YELLOW:
+				combat_effects.create_relic_effect(self.global_position, combat_effects.counter_location_marker, AttackEffectData.EFFECT_TYPE.PLAYER_YELLOW, false)
 	pass

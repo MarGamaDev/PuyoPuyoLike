@@ -30,11 +30,13 @@ func update_green_buff_on_start(encounter : Encounter):
 func update_green_buff_on_enemy_death(unused_enemy : Enemy):
 	enemy_count -= 1
 	green_buff += 1
+	combat_effects.create_relic_effect(unused_enemy.global_position, self.global_position, AttackEffectData.EFFECT_TYPE.PLAYER_GREEN)
 	pass
 
 func trigger_green_attack(attack : PlayerAttack):
 	if attack.type == Puyo.PUYO_TYPE.GREEN:
 		green_buff_attack.emit(green_buff * attack.chain)
-		update_enemy_damage_visuals.emit()
+		for enemy : Enemy in combat_manager.enemies:
+			combat_effects.create_relic_effect(self.global_position, enemy.global_position, AttackEffectData.EFFECT_TYPE.PLAYER_GREEN)
 		print("green buff attack activated, buff = %s" % green_buff)
 		pass

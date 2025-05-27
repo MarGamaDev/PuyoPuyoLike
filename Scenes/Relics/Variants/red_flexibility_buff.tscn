@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://d2qafulqle286" path="res://Scripts/Relics/Variants/red_flexibility_buff.gd" id="1_g3v28"]
 [ext_resource type="Resource" uid="uid://cou23j3x0qknv" path="res://Resources/RelicData/red_flexibility_buff.tres" id="2_s4067"]
 
-[node name="RedFlexibilityBuff" type="Node"]
+[node name="RedFlexibilityBuff" type="Node2D"]
 script = ExtResource("1_g3v28")
 relic_data = ExtResource("2_s4067")
-metadata/_custom_type_script = "uid://bn2jxby1kth4g"

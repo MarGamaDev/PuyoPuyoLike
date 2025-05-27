@@ -13,4 +13,5 @@ func initialize():
 func green_pop(attack: PlayerAttack) -> void:
 	var enemy_count = encounter_manager.current_encounter.enemy_count
 	deal_aoe_damage.emit(extra_damage_per_enemy * enemy_count * puyo_values.green_chain_multiplier * attack.chain)
-	update_enemy_damage_visuals.emit()
+	for enemy : Enemy in combat_manager.enemies:
+		combat_effects.create_relic_effect(self.global_position, enemy.global_position, AttackEffectData.EFFECT_TYPE.PLAYER_GREEN)

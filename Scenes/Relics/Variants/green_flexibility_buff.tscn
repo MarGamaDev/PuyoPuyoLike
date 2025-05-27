@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://ckjxn2feseydg" path="res://Scripts/Relics/Variants/green_flexibility_buff.gd" id="1_2iqr2"]
 [ext_resource type="Resource" uid="uid://cc5tucu1d2unu" path="res://Resources/RelicData/green_flexibility_buff.tres" id="2_5ad50"]
 
-[node name="GreenFlexibilityBuff" type="Node"]
+[node name="GreenFlexibilityBuff" type="Node2D"]
 script = ExtResource("1_2iqr2")
 relic_data = ExtResource("2_5ad50")
-metadata/_custom_type_script = "uid://bn2jxby1kth4g"

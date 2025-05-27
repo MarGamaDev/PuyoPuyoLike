@@ -13,17 +13,20 @@ func add_relic(relic_data: RelicData) -> void:
 	add_child(new_relic)
 	#new_relic.reparent(self)
 	new_relic.initialize()
-	add_relic_visual(relic_data.sprite)
+	var relic_visual_rect = add_relic_visual(test_relic.sprite).get_global_rect()
 	new_relic.update_enemy_damage_visuals.connect(update_enemy_visual_damage_queue)
+	await get_tree().create_timer(0.1).timeout
+	new_relic.global_position = relic_visual_rect.position + (relic_visual_rect.size)
 	all_clear_for_next_encounter.emit()
 	pass
 
-func add_relic_visual(sprite: Texture) -> void:
+func add_relic_visual(sprite: Texture) -> TextureRect:
 	var new_visual = TextureRect.new()
 	new_visual.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 	new_visual.expand_mode = TextureRect.EXPAND_KEEP_SIZE
 	new_visual.texture = sprite
 	$CanvasLayer/RelicContainer.add_child(new_visual)
+	return new_visual
 	pass
 
 #may not need this later
@@ -38,5 +41,7 @@ func test_add_relic():
 	add_child(new_relic)
 	#new_relic.reparent(self)
 	new_relic.initialize()
-	add_relic_visual(test_relic.sprite)
+	var relic_visual_rect = add_relic_visual(test_relic.sprite).get_global_rect()
 	new_relic.update_enemy_damage_visuals.connect(update_enemy_visual_damage_queue)
+	await get_tree().create_timer(0.1).timeout
+	new_relic.global_position = relic_visual_rect.position + (relic_visual_rect.size)

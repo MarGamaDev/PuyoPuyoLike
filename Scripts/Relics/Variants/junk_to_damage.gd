@@ -15,4 +15,5 @@ func junk_pop(junk_amount : int):
 	if junk_amount > 0:
 		deal_junk_damage.emit(junk_damage * junk_amount)
 		##replace with effect
-		update_enemy_damage_visuals.emit()
+		for enemy : Enemy in combat_manager.enemies:
+			combat_effects.create_relic_effect(self.global_position, enemy.global_position, AttackEffectData.EFFECT_TYPE.JUNK)
