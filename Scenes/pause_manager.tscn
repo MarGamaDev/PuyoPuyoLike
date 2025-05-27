@@ -10,7 +10,6 @@ script = ExtResource("1_s3tu7")
 
 [node name="PauseMenu" type="CanvasLayer" parent="."]
 layer = 3
-visible = false
 
 [node name="ColorRect" type="ColorRect" parent="PauseMenu"]
 anchors_preset = 15

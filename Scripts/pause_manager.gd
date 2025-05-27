@@ -39,6 +39,15 @@ func fill_spell_screen():
 		equipped_spell_containers.append(spell_reward_visual)
 		$PauseMenu/PageTabs/Spells.add_child(spell_reward_visual)
 		spell_reward_visual.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	
+	var empty_slots = 3 - equipped_spells.size()
+	for i in range(0, empty_slots):
+		var empty_reward : RewardChoice = reward_choice_scene.instantiate()
+		empty_reward.create_empty_spell_reward()
+		empty_reward.turn_off_button()
+		equipped_spell_containers.append(empty_reward)
+		$PauseMenu/PageTabs/Spells.add_child(empty_reward)
+		empty_reward.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 
 func reset_pause_screen():
 	$PauseMenu.hide()
