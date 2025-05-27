@@ -73,6 +73,7 @@ func determine_next_attack() -> void:
 
 func unleash_attack() ->void:
 	on_attacking_player.emit(current_attack, self)
+	$AttackAnimation.play("attack")
 	attack_countdown = 0
 	determine_next_attack()
 
