@@ -99,3 +99,8 @@ func _on_player_trigger_countered_effect(enemy: Enemy) -> void:
 	new_text_effect.position = enemy.global_position
 	add_child(new_text_effect)
 	new_text_effect.create_counter_effect()
+
+
+func _on_combat_started() -> void:
+	$PuyoAttackEffectLayer/combat_start_effect.start_effect()
+	pass # Replace with function body.

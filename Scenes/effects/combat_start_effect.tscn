@@ -1,0 +1,146 @@
+[gd_scene load_steps=11 format=3 uid="uid://bfnvlq1ni4fi3"]
+
+[ext_resource type="Texture2D" uid="uid://bh56uxpmn85gw" path="res://Art/puyo elements/Puyo_Blue.png" id="1_kjciq"]
+[ext_resource type="Script" uid="uid://cvkktycnvarlu" path="res://Scripts/effects/combat_start_effect.gd" id="1_ogg7a"]
+[ext_resource type="Texture2D" uid="uid://ccfdjr3e4b7wc" path="res://Art/puyo elements/Puyo_Green.png" id="3_llogu"]
+[ext_resource type="Texture2D" uid="uid://dehy5ghfyon84" path="res://Art/puyo elements/Puyo_Red.png" id="4_jpavi"]
+[ext_resource type="Texture2D" uid="uid://dkpsalijf0ray" path="res://Art/puyo elements/Puyo_Yellow.png" id="5_abu0d"]
+[ext_resource type="Theme" uid="uid://qw5wdr2jerv7" path="res://Art/text/default_font.tres" id="6_llogu"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dmyhl"]
+particle_flag_disable_z = true
+orbit_velocity_min = 0.509
+orbit_velocity_max = 0.509
+radial_velocity_min = 622.78
+radial_velocity_max = 731.27
+
+[sub_resource type="Animation" id="Animation_ogg7a"]
+resource_name = "fade_out"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.13333, 1.43333),
+"transitions": PackedFloat32Array(1, 1, 0.183011),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RichTextLabel:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.28, 3.89),
+"transitions": PackedFloat32Array(0.34151, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_llogu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RichTextLabel:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jpavi"]
+_data = {
+&"RESET": SubResource("Animation_llogu"),
+&"fade_out": SubResource("Animation_ogg7a")
+}
+
+[node name="combat_start_effect" type="Node2D"]
+script = ExtResource("1_ogg7a")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." groups=["emmitters"]]
+emitting = false
+amount = 3
+texture = ExtResource("1_kjciq")
+lifetime = 7.0
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_dmyhl")
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="." groups=["emmitters"]]
+emitting = false
+amount = 3
+texture = ExtResource("3_llogu")
+lifetime = 7.0
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_dmyhl")
+
+[node name="GPUParticles2D3" type="GPUParticles2D" parent="." groups=["emmitters"]]
+emitting = false
+amount = 3
+texture = ExtResource("4_jpavi")
+lifetime = 7.0
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_dmyhl")
+
+[node name="GPUParticles2D4" type="GPUParticles2D" parent="." groups=["emmitters"]]
+emitting = false
+amount = 3
+texture = ExtResource("5_abu0d")
+lifetime = 7.0
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_dmyhl")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_jpavi")
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -105.0
+offset_top = -48.0
+offset_right = 105.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.128209
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("6_llogu")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/normal_font_size = 96
+text = "Start!"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
