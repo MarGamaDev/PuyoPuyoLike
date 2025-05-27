@@ -6,6 +6,8 @@ signal skyscraper_attack(attack : PlayerAttack)
 @export var height_threshold : int = 6
 @export var extra_puyos_on_success : int = 2
 
+
+
 func initialize():
 	super()
 	puyo_manager.block_popped.connect(skyscraper_trigger)
@@ -20,5 +22,14 @@ func skyscraper_trigger(block : Array, chain_length):
 	if highest_point < height_threshold:
 		print("skyscraper procced")
 		skyscraper_attack.emit(PlayerAttack.create_manually(extra_puyos_on_success, block[0].puyo.puyo_type, chain_length))
-		update_enemy_damage_visuals.emit()
+		match block[0].puyo.puyo_type:
+			Puyo.PUYO_TYPE.BLUE:
+				combat_effects.create_relic_effect(self.global_position, combat_effects.shield_location_marker, AttackEffectData.EFFECT_TYPE.PLAYER_BLUE, false)
+			Puyo.PUYO_TYPE.YELLOW:
+				combat_effects.create_relic_effect(self.global_position, combat_effects.counter_location_marker, AttackEffectData.EFFECT_TYPE.PLAYER_YELLOW, false)
+			Puyo.PUYO_TYPE.RED:
+				combat_effects.create_relic_effect(self.global_position, combat_manager.selected_enemy.global_position, AttackEffectData.EFFECT_TYPE.PLAYER_RED)
+			Puyo.PUYO_TYPE.GREEN:
+				for enemy : Enemy in combat_manager.enemies:
+					combat_effects.create_relic_effect(self.global_position, enemy.global_position, AttackEffectData.EFFECT_TYPE.PLAYER_GREEN)
 	pass

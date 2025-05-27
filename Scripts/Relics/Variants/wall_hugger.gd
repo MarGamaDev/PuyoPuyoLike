@@ -36,10 +36,17 @@ func wall_pop(block : Array, chain_length : int):
 				red_count += 1
 			Puyo.PUYO_TYPE.GREEN:
 				green_count += 1
-	
-	deal_aoe_damage.emit(green_count * chain_length * puyo_values.green_base_value * puyo_values.green_chain_multiplier)
-	deal_target_damage.emit(red_count * chain_length * puyo_values.red_base_value * puyo_values.red_chain_multiplier)
-	gain_shield.emit(blue_count * chain_length * puyo_values.blue_chain_multiplier * puyo_values.blue_base_value)
-	gain_counter.emit(yellow_count * chain_length * puyo_values. yellow_base_value * puyo_values.yellow_chain_multiplier)
-	update_enemy_damage_visuals.emit()
+	if green_count > 0:
+		deal_aoe_damage.emit(green_count * chain_length * puyo_values.green_base_value * puyo_values.green_chain_multiplier)
+		for i in combat_manager.enemies:
+			combat_effects.create_spell_effect(self.global_position, i.global_position, AttackEffectData.EFFECT_TYPE.PLAYER_GREEN)
+	if red_count > 0:
+		deal_target_damage.emit(red_count * chain_length * puyo_values.red_base_value * puyo_values.red_chain_multiplier)
+		combat_effects.create_spell_effect(self.global_position, combat_manager.selected_enemy.global_position, AttackEffectData.EFFECT_TYPE.PLAYER_RED)
+	if blue_count > 0:
+		gain_shield.emit(blue_count * chain_length * puyo_values.blue_chain_multiplier * puyo_values.blue_base_value)
+		combat_effects.create_spell_effect(self.global_position, combat_effects.shield_location_marker, AttackEffectData.EFFECT_TYPE.PLAYER_BLUE, false)
+	if yellow_count > 0:
+		gain_counter.emit(yellow_count * chain_length * puyo_values. yellow_base_value * puyo_values.yellow_chain_multiplier)
+		combat_effects.create_spell_effect(self.global_position, combat_effects.counter_location_marker, AttackEffectData.EFFECT_TYPE.PLAYER_YELLOW, false)
 	pass

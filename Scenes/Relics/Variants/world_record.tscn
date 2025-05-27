@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://bwtjaksp6ocdv" path="res://Scripts/Relics/Variants/world_record.gd" id="1_oe2q2"]
 [ext_resource type="Resource" uid="uid://m44q6dbv7wbt" path="res://Resources/RelicData/world_record.tres" id="2_hcxxy"]
 
-[node name="WorldRecord" type="Node"]
+[node name="WorldRecord" type="Node2D"]
 script = ExtResource("1_oe2q2")
 relic_data = ExtResource("2_hcxxy")
-metadata/_custom_type_script = "uid://bn2jxby1kth4g"

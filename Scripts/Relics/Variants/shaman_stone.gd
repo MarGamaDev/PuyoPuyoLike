@@ -26,6 +26,13 @@ func shaman_stone_trigger(spell_length : int):
 			3:
 				type = Puyo.PUYO_TYPE.YELLOW
 		shaman_stone_attack.emit(PlayerAttack.create_manually(pop_amount,type,1))
-		if type == Puyo.PUYO_TYPE.RED or type == Puyo.PUYO_TYPE.GREEN:
-			update_enemy_damage_visuals.emit()
-	
+		match type:
+			Puyo.PUYO_TYPE.RED:
+				combat_effects.create_relic_effect(self.global_position, combat_manager.selected_enemy.global_position, AttackEffectData.EFFECT_TYPE.PLAYER_RED)
+			Puyo.PUYO_TYPE.GREEN:
+				for enemy : Enemy in combat_manager.enemies:
+						combat_effects.create_relic_effect(self.global_position, enemy.global_position, AttackEffectData.EFFECT_TYPE.PLAYER_GREEN)
+			Puyo.PUYO_TYPE.BLUE:
+				combat_effects.create_relic_effect(self.global_position, combat_effects.shield_location_marker, AttackEffectData.EFFECT_TYPE.PLAYER_BLUE, false)
+			Puyo.PUYO_TYPE.YELLOW:
+				combat_effects.create_relic_effect(self.global_position, combat_effects.counter_location_marker, AttackEffectData.EFFECT_TYPE.PLAYER_YELLOW, false)
