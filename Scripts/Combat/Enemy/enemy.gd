@@ -30,12 +30,16 @@ var health_to_display : int = 0
 var damage_number_effect_queue : Array[int] = []
 var death_flag = false
 
+var health_suffix = " / 100"
+
 func _ready() -> void:
 	
 	instance_data = enemy_data.duplicate(true);
 	$Sprite.texture = instance_data.sprite
 	$Healthbar.max_value = instance_data.health
 	$Healthbar.value = instance_data.health
+	health_suffix = "/ " + str(instance_data.health)
+	$Healthbar/HealthLabel.text = str(instance_data.health) + health_suffix
 	health_to_display = instance_data.health
 	
 	combat_manager = get_node("/root/Combat")
@@ -113,6 +117,7 @@ func update_damage_visually():
 	else:
 		var new_damage = damage_number_effect_queue.pop_front()
 		health_to_display -= new_damage
+		$Healthbar/HealthLabel.text = str(health_to_display) + health_suffix
 		$Healthbar.value = health_to_display
 		combat_effects_manager.create_damage_number_effect(new_damage, global_position)
 		$HurtFlashAnim.play("animation")

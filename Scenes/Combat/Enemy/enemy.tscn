@@ -1,11 +1,14 @@
-[gd_scene load_steps=14 format=3 uid="uid://bx5kscp85ypry"]
+[gd_scene load_steps=17 format=3 uid="uid://bx5kscp85ypry"]
 
 [ext_resource type="Script" uid="uid://346xwma4f44y" path="res://Scripts/Combat/Enemy/enemy.gd" id="1_1f0kj"]
 [ext_resource type="Texture2D" uid="uid://b13c5dnd5eyu6" path="res://icon.svg" id="2_afpow"]
 [ext_resource type="Script" uid="uid://6v5kccermtmr" path="res://Scripts/Combat/Enemy/enemy_attack.gd" id="3_ghaa6"]
 [ext_resource type="Resource" uid="uid://ctf2g8pw88fk2" path="res://Resources/EnemyAttacks/test_enemy_attack_1.tres" id="4_1dp5w"]
 [ext_resource type="Resource" uid="uid://cn0op1aiuirgi" path="res://Resources/EnemyAttacks/test_enemy_attack_2.tres" id="5_auwsv"]
+[ext_resource type="Texture2D" uid="uid://66s8e5674uel" path="res://Art/combat screen elements/puyo-healthbar_background.png" id="6_1xvn7"]
+[ext_resource type="Texture2D" uid="uid://lt3tpkgdg1ar" path="res://Art/combat screen elements/puyo-healthbar.png" id="7_km0dy"]
 [ext_resource type="PackedScene" uid="uid://b8mrbhnjhixwm" path="res://Scenes/Combat/Enemy/intent.tscn" id="7_rvs3k"]
+[ext_resource type="Texture2D" uid="uid://bks7guysqefce" path="res://Art/combat screen elements/puyo-healthbar2.png" id="8_0sllc"]
 [ext_resource type="Texture2D" uid="uid://cggqu3v1nirvy" path="res://Art/combat screen elements/reticle.png" id="8_oy6l1"]
 
 [sub_resource type="Animation" id="Animation_km0dy"]
@@ -114,12 +117,35 @@ attacks = Array[ExtResource("3_ghaa6")]([ExtResource("4_1dp5w"), ExtResource("5_
 [node name="Sprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_afpow")
 
-[node name="Healthbar" type="ProgressBar" parent="."]
-offset_left = -64.0
-offset_top = 56.0
-offset_right = 64.0
-offset_bottom = 86.0
+[node name="Healthbar" type="TextureProgressBar" parent="."]
+offset_left = -90.0
+offset_top = 62.0
+offset_right = 90.0
+offset_bottom = 77.0
+size_flags_stretch_ratio = 0.0
 value = 100.0
+texture_under = ExtResource("6_1xvn7")
+texture_over = ExtResource("7_km0dy")
+texture_progress = ExtResource("8_0sllc")
+
+[node name="HealthLabel" type="RichTextLabel" parent="Healthbar"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -42.0
+offset_top = 25.0
+offset_right = 42.0
+offset_bottom = 55.0
+grow_horizontal = 2
+theme_override_colors/default_color = Color(1, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/normal_font_size = 20
+text = "100/100"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Intent" parent="." instance=ExtResource("7_rvs3k")]
 position = Vector2(0, -65)
