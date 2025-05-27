@@ -6,8 +6,8 @@
 [resource]
 script = ExtResource("1_0447s")
 sprite = ExtResource("2_13tg8")
-name = "A burst of energy"
+name = "A Burst of Energy"
 description = "Each humour after the 4th in a block counts as an extra random humour."
-flavor_text = "Let it out all at once"
+flavor_text = "Let it out all at once."
 file_path = "res://Scenes/Relics/Variants/block_booster.tscn"
 metadata/_custom_type_script = "uid://dfyomjxsahuhw"

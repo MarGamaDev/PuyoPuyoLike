@@ -10,7 +10,7 @@ var effect_sprite_dictionary = {
 	AttackEffectData.EFFECT_TYPE.PLAYER_GREEN : "res://Art/puyo elements/Puyo_Green.png",
 	AttackEffectData.EFFECT_TYPE.PLAYER_BLUE : "res://Art/puyo elements/Puyo_Blue.png",
 	AttackEffectData.EFFECT_TYPE.PLAYER_YELLOW : "res://Art/puyo elements/Puyo_Yellow.png",
-	AttackEffectData.EFFECT_TYPE.JUNK : "res://Placeholder Art/puyo_junk.png"
+	AttackEffectData.EFFECT_TYPE.JUNK : "res://Art/puyo elements/Puyo_Junk.png"
 }
 
 @export var particle_accelleration : float = 2

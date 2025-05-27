@@ -1,6 +1,6 @@
 extends HardSequentialSpell
 
-@export var spell_base_damage : int = 10
+@export var spell_base_damage : int = 15
 
 signal deal_spell_damage(damage : int)
 

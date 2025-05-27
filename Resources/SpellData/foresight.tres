@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_er2ii")
 spell_name = "Foresight"
-spell_description = "Deal damage to the enemy equal to your current counter."
+spell_description = "Deal damage to the targeted foe equal to your current counter."
 flavor_text = "let them fall before they feel it."
 recipe_type = 1
 recipe_contents = Array[int]([5, 5])

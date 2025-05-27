@@ -6,8 +6,8 @@
 [resource]
 script = ExtResource("1_2c2fm")
 sprite = ExtResource("2_msifn")
-name = "A poison within"
-description = "Whenever toxins are crushed, deal 1 damage to all enemies."
-flavor_text = "Don't let their infections take hold"
+name = "A Poison Within"
+description = "Whenever toxins are crushed, deal 1 damage to all foes."
+flavor_text = "Don't let their infections take hold."
 file_path = "res://Scenes/Relics/Variants/junk_to_damage.tscn"
 metadata/_custom_type_script = "uid://dfyomjxsahuhw"

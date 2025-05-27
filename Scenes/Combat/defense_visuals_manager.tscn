@@ -4,7 +4,7 @@
 [ext_resource type="Theme" uid="uid://qw5wdr2jerv7" path="res://Art/text/default_font.tres" id="2_flc2i"]
 [ext_resource type="Texture2D" uid="uid://bg1c8xhd56y45" path="res://Placeholder Art/counter_icon.png" id="3_0upjn"]
 [ext_resource type="Texture2D" uid="uid://ce7hlakgtf0l6" path="res://Placeholder Art/shield_icon.png" id="4_x3ix8"]
-[ext_resource type="Texture2D" uid="uid://cout30nmga87f" path="res://Placeholder Art/puyo_junk.png" id="5_0upjn"]
+[ext_resource type="Texture2D" uid="uid://dask40qwra1ig" path="res://Art/puyo elements/Puyo_Junk.png" id="5_0upjn"]
 
 [node name="DefenseVisualsManager" type="Node2D"]
 script = ExtResource("1_hy080")
@@ -119,7 +119,6 @@ scroll_active = false
 vertical_alignment = 1
 
 [node name="JunkIndicator" type="Control" parent="UIElements"]
-visible = false
 layout_mode = 3
 anchor_left = 0.163
 anchor_top = 0.044

@@ -2,7 +2,7 @@ extends Control
 class_name SpellContainer
 
 var recipe_puyo_active_sprite_dictionary = {
-	Puyo.PUYO_TYPE.JUNK : "res://Placeholder Art/puyo_junk.png",
+	Puyo.PUYO_TYPE.JUNK : "res://Art/puyo elements/Puyo_Junk.png",
 	Puyo.PUYO_TYPE.RED : "res://Art/spell elements/puyo-redIcon_new.png",
 	Puyo.PUYO_TYPE.GREEN : "res://Art/spell elements/puyo-greenIcon.png",
 	Puyo.PUYO_TYPE.BLUE : "res://Art/spell elements/puyo-blackIcon.png",
@@ -11,7 +11,7 @@ var recipe_puyo_active_sprite_dictionary = {
 }
 
 var recipe_puyo_inactive_sprite_dictionary = {
-	Puyo.PUYO_TYPE.JUNK : "res://Placeholder Art/puyo_junk.png",
+	Puyo.PUYO_TYPE.JUNK : "res://Art/puyo elements/Puyo_Junk.png",
 	Puyo.PUYO_TYPE.RED : "res://Art/spell elements/puyo-redIcon.png",
 	Puyo.PUYO_TYPE.GREEN : "res://Art/spell elements/puyo-greenIcon-deactive.png",
 	Puyo.PUYO_TYPE.BLUE : "res://Art/spell elements/puyo-blackIcon_deactive.png",

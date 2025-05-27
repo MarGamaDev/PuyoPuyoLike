@@ -6,8 +6,8 @@
 [resource]
 script = ExtResource("1_b3377")
 sprite = ExtResource("2_75ki1")
-name = "A crawling sensation"
+name = "A Crawling Sensation"
 description = "Humours touching a wall, floor, or ceiling are counted as two humours."
-flavor_text = "Nowhere is out of their reach"
+flavor_text = "Nowhere is out of their reach."
 file_path = "res://Scenes/Relics/Variants/wall_hugger.tscn"
 metadata/_custom_type_script = "uid://dfyomjxsahuhw"

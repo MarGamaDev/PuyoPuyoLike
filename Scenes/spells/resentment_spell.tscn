@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://8sfle7fgfhur"]
 
-[ext_resource type="Script" uid="uid://dnvp7d6hmnjiu" path="res://scripts/spells/resentment_spell.gd" id="1_nh7wt"]
+[ext_resource type="Script" uid="uid://dnvp7d6hmnjiu" path="res://Scripts/spells/resentment_spell.gd" id="1_nh7wt"]
 [ext_resource type="Resource" uid="uid://dx303qqfbt5yf" path="res://Resources/SpellData/resentment.tres" id="2_jlfoj"]
 
 [node name="ResentmentSpell" type="Node2D"]

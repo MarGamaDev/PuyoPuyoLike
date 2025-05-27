@@ -6,8 +6,8 @@
 [resource]
 script = ExtResource("1_t1hfh")
 sprite = ExtResource("2_xrvey")
-name = "Stronger than ever before"
-description = "Phlegm blocks gain deal damage when enemies are defeated, and when enemy numbers are low."
-flavor_text = "As if nothing was safe from you"
+name = "Stronger Than Ever Before"
+description = "Phlegm blocks gain deal damage when foes are defeated, and when foes attack alone."
+flavor_text = "As if nothing was safe from you."
 file_path = "res://Scenes/Relics/Variants/green_flexibility_buff.tscn"
 metadata/_custom_type_script = "uid://dfyomjxsahuhw"

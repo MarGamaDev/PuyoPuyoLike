@@ -6,8 +6,8 @@
 [resource]
 script = ExtResource("1_4b62y")
 sprite = ExtResource("2_nq2dx")
-name = "My heart burns deeply"
+name = "My Heart Burns Deeply"
 description = "Blocks of Blood are treated as if they had two extra humours."
-flavor_text = "Kindle your flames"
+flavor_text = "Let the heat wash over you."
 file_path = "res://Scenes/Relics/Variants/afterburner.tscn"
 metadata/_custom_type_script = "uid://dfyomjxsahuhw"

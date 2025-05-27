@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_sipac")
 spell_name = "Ambition"
-spell_description = "Once the current chain ends after casting this spell, trigger the effect of each humour type equal to [RAINBOW MULT VALUE] multiplied by  the chain length."
+spell_description = "Once the current chain ends after casting this spell, trigger the effect of each humour type equal to 5  times the chain length."
 flavor_text = "Show them what you are capable of."
 recipe_type = 1
 recipe_contents = Array[int]([2, 3, 4, 5])

@@ -6,8 +6,8 @@
 [resource]
 script = ExtResource("1_mi1us")
 sprite = ExtResource("2_5f7cn")
-name = "Faster than ever before"
+name = "Faster Than Ever Before"
 description = "Whenever you would take damage after losing shield, reduce it by half of your current counter."
-flavor_text = "As if you were the wind"
+flavor_text = "As if you were the wind."
 file_path = "res://Scenes/Relics/Variants/yellow_flexibility_buff.tscn"
 metadata/_custom_type_script = "uid://dfyomjxsahuhw"

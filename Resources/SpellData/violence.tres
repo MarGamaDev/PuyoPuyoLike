@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_uf5ug")
 spell_name = "Violence"
-spell_description = "Deal [DAMAGE AMOUNT] times the number of enemies damage to all enemies."
+spell_description = "Deal 15 times the number of enemies damage to all foes."
 flavor_text = "Show them their insignificance"
 recipe_type = 2
 recipe_contents = Array[int]([3, 3])

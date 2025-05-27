@@ -3,7 +3,7 @@ extends SequentialSpell
 ##recklessness deals flat damage to all enemies
 signal deal_spell_damage(damage : int)
 
-@export var spell_damage : int = 20
+@export var spell_damage : int = 30
 
 func connect_to_effect_signals():
 	deal_spell_damage.connect(combat_manager.damage_all_enemies)

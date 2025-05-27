@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_oii6r")
 sprite = ExtResource("2_7xgwu")
-name = "Tougher than ever before"
+name = "Tougher Than Ever Before"
 description = "Whenever you fully block an attack, deal half of your shield as damage."
 flavor_text = "As if you were made of lead."
 file_path = "res://Scenes/Relics/Variants/blue_flexibility_buff.tscn"

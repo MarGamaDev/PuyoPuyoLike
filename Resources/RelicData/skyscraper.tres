@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_vlb4h")
 sprite = ExtResource("2_u5bge")
-name = "a strong vertigo"
+name = "A Strong Sense of Vertigo"
 description = "If a block is crushed within the top 6 rows, it gains 3 more humours."
 flavor_text = "Don't look down."
 file_path = "res://Scenes/Relics/Variants/skyscraper.tscn"

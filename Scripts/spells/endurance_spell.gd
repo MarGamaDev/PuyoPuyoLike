@@ -1,8 +1,8 @@
 extends HardSequentialSpell
 
 ##gains sheild and delays the enemy's turn
-@export var spell_shield_amount : int = 10
-@export var enemy_delay_amount : int = 3
+@export var spell_shield_amount : int = 25
+@export var enemy_delay_amount : int = 4
 
 signal gain_spell_shield(shield : int)
 signal delay_enemies(turns : int)

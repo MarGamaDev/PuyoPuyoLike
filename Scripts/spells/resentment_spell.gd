@@ -1,7 +1,7 @@
 extends SequentialSpell
 
 #deals a damage blast to every enemy
-@export var spell_damage = 40
+@export var spell_damage = 45
 
 signal deal_spell_damage(damage : int)
 
