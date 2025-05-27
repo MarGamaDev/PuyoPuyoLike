@@ -15,6 +15,11 @@ signal on_shield_change(new_shield: int)
 signal on_counter_change(new_counter: int)
 signal on_attack_blocked(damage_blocked : int, shield_before_damage : int)
 
+signal trigger_blocked_effect(enemy : Enemy)
+signal trigger_countered_effect(enemy : Enemy)
+
+@onready var combat_effects_manager : CombatEffectsManager = get_node("/root/Combat/CombatEffectsManager")
+
 var lives : int = 3
 var shield : int = 0
 var counter : int = 0
@@ -28,15 +33,17 @@ var minimum_shield : int = 0
 func _ready():
 	on_set_life_to.emit(lives)
 
-func receive_attack(attack: EnemyAttack) -> void:
+func receive_attack(attack: EnemyAttack, enemy: Enemy) -> void:
 	on_player_attacked.emit()
 	var damage_taken = 0
 	for i in range(attack.number_of_swings):
-		damage_taken += handle_damage(attack.damage)
+		damage_taken += handle_damage(attack.damage, enemy)
 	#add shield = 0 if we want to have the shield reset between attacks
 	#if damage_taken > 0: #resets counter if damage is taken
 		#counter = 0
 		#if we want counter to reset between attacks no matter what, just remove condition
+	if damage_taken > 0 and enemy != null:
+		combat_effects_manager.create_attack_effect(enemy.global_position, combat_effects_manager.junk_indicator_marker, AttackEffectData.EFFECT_TYPE.JUNK)
 	on_player_damage_taken.emit(damage_taken, attack.attack_type)
 
 func add_counter(counter_gained: int) -> void:
@@ -49,15 +56,17 @@ func add_shield(shield_gained: int) -> void:
 	shield += shield_gained
 	on_shield_change.emit(shield)
 
-func handle_damage(damage: int) -> int:
+func handle_damage(damage: int, enemy : Enemy) -> int:
 	if damage <= counter:
 		on_counter_triggered.emit(int(counter * counter_buff * counter_relic_buff))
+		trigger_countered_effect.emit(enemy)
 		counter_buff = 1
 		counter = 0
 		on_counter_change.emit(counter)
 		return 0
 	
 	if damage <= shield:
+		trigger_blocked_effect.emit(enemy)
 		on_attack_blocked.emit(damage, shield)
 		on_shield_lost.emit(damage)
 		shield -= damage

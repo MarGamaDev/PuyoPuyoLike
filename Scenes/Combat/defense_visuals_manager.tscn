@@ -1,13 +1,39 @@
-[gd_scene load_steps=6 format=3 uid="uid://bif55k0mmcvqf"]
+[gd_scene load_steps=13 format=3 uid="uid://bif55k0mmcvqf"]
 
 [ext_resource type="Script" uid="uid://mn6m032nthh1" path="res://Scripts/defense_visuals_manager.gd" id="1_hy080"]
+[ext_resource type="Texture2D" uid="uid://14ejxpdanarl" path="res://Art/combat screen elements/combat_frame.png" id="2_5ub1w"]
 [ext_resource type="Theme" uid="uid://qw5wdr2jerv7" path="res://Art/text/default_font.tres" id="2_flc2i"]
 [ext_resource type="Texture2D" uid="uid://bg1c8xhd56y45" path="res://Placeholder Art/counter_icon.png" id="3_0upjn"]
+[ext_resource type="Texture2D" uid="uid://bqn6txoeuk8rt" path="res://Art/combat screen elements/puyo-yellowbar.png" id="4_5o5ee"]
+[ext_resource type="Texture2D" uid="uid://bji3agmpa6ksr" path="res://Art/combat screen elements/puyo-yellowbar_mask.png" id="4_2844j"]
 [ext_resource type="Texture2D" uid="uid://ce7hlakgtf0l6" path="res://Placeholder Art/shield_icon.png" id="4_x3ix8"]
 [ext_resource type="Texture2D" uid="uid://dask40qwra1ig" path="res://Art/puyo elements/Puyo_Junk.png" id="5_0upjn"]
+[ext_resource type="Texture2D" uid="uid://dfqs8xpmfr6x0" path="res://Art/combat screen elements/puyo-yellowbar2.png" id="5_5ub1w"]
+[ext_resource type="Texture2D" uid="uid://ck30nv426flqx" path="res://Art/combat screen elements/puyo-bluebar_mask.png" id="8_4wqrr"]
+[ext_resource type="Texture2D" uid="uid://dcaitvosnxw61" path="res://Art/combat screen elements/puyo-bluebar2.png" id="9_u4h68"]
+[ext_resource type="Texture2D" uid="uid://bsmh2fylu6kke" path="res://Art/combat screen elements/puyo-bluebar.png" id="10_nwvjn"]
 
 [node name="DefenseVisualsManager" type="Node2D"]
 script = ExtResource("1_hy080")
+
+[node name="Frame" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="TextureRect" type="TextureRect" parent="Frame"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_5ub1w")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="Frame"]
+offset_left = 23.0
+offset_top = 14.0
+offset_right = 260.0
+offset_bottom = 37.0
+text = "TEST BUTTONS ARE STILL HERE"
 
 [node name="TestCounters" type="CanvasLayer" parent="."]
 visible = false
@@ -40,9 +66,15 @@ anchor_left = 0.387
 anchor_top = 0.407
 anchor_right = 0.5
 anchor_bottom = 0.476
+offset_left = 375.6
+offset_top = 30.7
+offset_right = 375.6
+offset_bottom = 30.7
 metadata/_edit_use_anchors_ = true
+metadata/_edit_group_ = true
 
 [node name="ColorRect" type="ColorRect" parent="UIElements/CounterMeter"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -52,6 +84,7 @@ grow_vertical = 2
 color = Color(1, 0.105882, 0.270588, 0.737255)
 
 [node name="CounterIcon" type="TextureRect" parent="UIElements/CounterMeter"]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.385
@@ -60,20 +93,54 @@ texture = ExtResource("3_0upjn")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="CounterLabel" type="RichTextLabel" parent="UIElements/CounterMeter"]
+[node name="CounterBackgroundMask" type="TextureRect" parent="UIElements/CounterMeter"]
+clip_children = 1
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.11
+anchor_right = 1.077
+anchor_bottom = 0.628
+offset_right = -0.041214
+offset_bottom = 0.001194
+texture = ExtResource("4_2844j")
+stretch_mode = 4
+
+[node name="CounterBackground" type="TextureRect" parent="UIElements/CounterMeter/CounterBackgroundMask"]
+layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+texture = ExtResource("5_5ub1w")
+
+[node name="CounterFrame" type="TextureRect" parent="UIElements/CounterMeter"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.077
+anchor_bottom = 0.628
+offset_right = -0.041214
+offset_bottom = 0.001194
+texture = ExtResource("4_5o5ee")
+stretch_mode = 4
+
+[node name="CounterLabel" type="RichTextLabel" parent="UIElements/CounterMeter"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.526
+anchor_right = 0.972
+anchor_bottom = 0.555
+offset_left = 0.274399
+offset_top = -2.30002
+offset_right = -0.203201
+offset_bottom = 5.23448
+grow_horizontal = 2
+grow_vertical = 2
 theme = ExtResource("2_flc2i")
-theme_override_colors/default_color = Color(1, 1, 0, 1)
-theme_override_font_sizes/normal_font_size = 36
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 30
 text = "0"
 scroll_active = false
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ShieldMeter" type="Control" parent="UIElements"]
@@ -82,9 +149,15 @@ anchor_left = 0.395
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.57
+offset_left = 172.0
+offset_top = -53.0
+offset_right = 172.0
+offset_bottom = -53.0
 metadata/_edit_use_anchors_ = true
+metadata/_edit_group_ = true
 
 [node name="ColorRect" type="ColorRect" parent="UIElements/ShieldMeter"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -94,6 +167,7 @@ grow_vertical = 2
 color = Color(1, 0.105882, 0.411765, 0.721569)
 
 [node name="ShieldIcon" type="TextureRect" parent="UIElements/ShieldMeter"]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.385
@@ -102,21 +176,53 @@ texture = ExtResource("4_x3ix8")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="ShieldLabel" type="RichTextLabel" parent="UIElements/ShieldMeter"]
+[node name="ShieldBackgroundMask" type="TextureRect" parent="UIElements/ShieldMeter"]
+clip_children = 1
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.11
+anchor_right = 1.077
+anchor_bottom = 0.628
+offset_right = -0.041214
+offset_bottom = 0.001194
+texture = ExtResource("8_4wqrr")
+stretch_mode = 4
+
+[node name="ShieldBackground" type="TextureRect" parent="UIElements/ShieldMeter/ShieldBackgroundMask"]
+layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+texture = ExtResource("9_u4h68")
+
+[node name="ShieldFrame" type="TextureRect" parent="UIElements/ShieldMeter"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.077
+anchor_bottom = 0.628
+offset_right = -0.041214
+offset_bottom = 0.001194
+texture = ExtResource("10_nwvjn")
+stretch_mode = 4
+
+[node name="ShieldLabel" type="RichTextLabel" parent="UIElements/ShieldMeter"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.932
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
 theme = ExtResource("2_flc2i")
-theme_override_colors/default_color = Color(0, 0.772549, 1, 1)
-theme_override_font_sizes/normal_font_size = 36
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 30
 text = "0"
+fit_content = true
 scroll_active = false
-vertical_alignment = 1
+shortcut_keys_enabled = false
+horizontal_alignment = 1
+vertical_alignment = 3
 
 [node name="JunkIndicator" type="Control" parent="UIElements"]
 visible = false

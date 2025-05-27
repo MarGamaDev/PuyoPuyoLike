@@ -15,4 +15,6 @@ script = ExtResource("1_wg6ri")
 
 [node name="PlayerCounterLocation" type="Marker2D" parent="Markers"]
 
+[node name="JunkIndicatorLocation" type="Marker2D" parent="Markers"]
+
 [node name="PuyoAttackEffectLayer" type="CanvasLayer" parent="."]

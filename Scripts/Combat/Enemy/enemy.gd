@@ -18,7 +18,7 @@ var attack_index = 0
 var attack_countdown := 0
 
 signal on_taking_player_attack()
-signal on_attacking_player(enemy_attack: EnemyAttack)
+signal on_attacking_player(enemy_attack: EnemyAttack, enemy: Enemy)
 signal on_death()
 signal on_take_damage()
 signal on_taking_turn()
@@ -68,7 +68,7 @@ func determine_next_attack() -> void:
 	current_attack = attacks[attack_index]
 
 func unleash_attack() ->void:
-	on_attacking_player.emit(current_attack)
+	on_attacking_player.emit(current_attack, self)
 	attack_countdown = 0
 	determine_next_attack()
 

@@ -150,10 +150,13 @@ encounter_array = Array[PackedScene]([ExtResource("8_f8ge6")])
 position = Vector2(820, 244)
 
 [node name="PlayerShieldLocation" parent="CombatEffectsManager/Markers" index="2"]
-position = Vector2(541, 484)
+position = Vector2(727, 412)
 
 [node name="PlayerCounterLocation" parent="CombatEffectsManager/Markers" index="3"]
-position = Vector2(541, 401)
+position = Vector2(926, 414)
+
+[node name="JunkIndicatorLocation" parent="CombatEffectsManager/Markers" index="4"]
+position = Vector2(276, 64)
 
 [node name="PuyoTestUI" parent="." node_paths=PackedStringArray("puyo_manager") instance=ExtResource("5_yt1oa")]
 layer = 2
@@ -200,8 +203,8 @@ offset_right = 794.0
 offset_bottom = 747.0
 
 [node name="PlayerSprite" type="Sprite2D" parent="PlayerSpriteMask"]
-position = Vector2(105, 142)
-scale = Vector2(1.22666, 1.22666)
+position = Vector2(101, 129)
+scale = Vector2(1.36709, 1.36709)
 texture = ExtResource("25_e8ln5")
 script = ExtResource("26_5g3cp")
 
@@ -238,6 +241,8 @@ libraries = {
 [connection signal="on_player_damage_taken" from="Player" to="PlayerSpriteMask/PlayerSprite" method="_on_player_on_player_damage_taken"]
 [connection signal="on_set_life_to" from="Player" to="LifeCounter" method="set_lives_to"]
 [connection signal="on_shield_change" from="Player" to="DefenseVisualsManager" method="update_shield_visuals"]
+[connection signal="trigger_blocked_effect" from="Player" to="CombatEffectsManager" method="_on_player_trigger_blocked_effect"]
+[connection signal="trigger_countered_effect" from="Player" to="CombatEffectsManager" method="_on_player_trigger_countered_effect"]
 [connection signal="on_rest_stop" from="EncounterManager" to="PuyoManager" method="pause_puyo"]
 [connection signal="on_rest_stop" from="EncounterManager" to="RewardManager/RewardScreen" method="generate_pool"]
 [connection signal="on_update_encounter" from="EncounterManager" to="." method="process_encounter_updated"]

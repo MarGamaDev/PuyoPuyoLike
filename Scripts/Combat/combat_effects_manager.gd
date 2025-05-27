@@ -9,6 +9,7 @@ var attack_effect_scene : PackedScene = preload("res://Scenes/effects/attack_par
 @onready var player_location : Vector2 = $Markers/PlayerLocation.position
 @onready var shield_location_marker :Vector2 = $Markers/PlayerShieldLocation.global_position
 @onready var counter_location_marker :Vector2 = $Markers/PlayerCounterLocation.global_position
+@onready var junk_indicator_marker : Vector2 = $Markers/JunkIndicatorLocation.global_position
 @onready var combat_manager : CombatManager = get_node("/root/Combat")
 ##todo: make 
 
@@ -67,7 +68,6 @@ func create_attack_effect(start_position : Vector2, end_position : Vector2, effe
 func on_damage_effect_completed():
 	damage_effect_hit.emit()
 
-
 func _on_player_on_counter_triggered(counter_amount: int) -> void:
 	create_counterattack_effect()
 
@@ -82,4 +82,20 @@ func create_relic_effect(start_position : Vector2, end_position : Vector2, effec
 	var new_attack_effect : AttackParticleEffect = attack_effect_scene.instantiate()
 	$PuyoAttackEffectLayer.add_child(new_attack_effect)
 	new_attack_effect.on_damage_effect_hit.connect(on_damage_effect_completed)
-	new_attack_effect.create_effect(start_position, end_position, effect_type, attack_signal_flag)	
+	new_attack_effect.create_effect(start_position, end_position, effect_type, attack_signal_flag)
+
+func _on_player_trigger_blocked_effect(enemy : Enemy) -> void:
+	if enemy == null:
+		return
+	var new_text_effect : TextParticleEffect = damage_text_scene.instantiate()
+	new_text_effect.position = enemy.global_position
+	add_child(new_text_effect)
+	new_text_effect.create_blocked_effect()
+
+func _on_player_trigger_countered_effect(enemy: Enemy) -> void:
+	if enemy == null:
+		return
+	var new_text_effect : TextParticleEffect = damage_text_scene.instantiate()
+	new_text_effect.position = enemy.global_position
+	add_child(new_text_effect)
+	new_text_effect.create_counter_effect()

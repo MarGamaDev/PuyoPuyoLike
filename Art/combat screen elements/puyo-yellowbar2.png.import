@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bks7guysqefce"
-path="res://.godot/imported/puyo-healthbar2.png-870ea8b11d812808883fb7d7d0eb2ad4.ctex"
+uid="uid://dfqs8xpmfr6x0"
+path="res://.godot/imported/puyo-yellowbar2.png-0b575c516c9e492419a39f1227939968.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/combat screen elements/puyo-healthbar2.png"
-dest_files=["res://.godot/imported/puyo-healthbar2.png-870ea8b11d812808883fb7d7d0eb2ad4.ctex"]
+source_file="res://Art/combat screen elements/puyo-yellowbar2.png"
+dest_files=["res://.godot/imported/puyo-yellowbar2.png-0b575c516c9e492419a39f1227939968.ctex"]
 
 [params]
 

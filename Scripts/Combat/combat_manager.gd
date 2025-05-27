@@ -10,7 +10,7 @@ signal on_junk_cleared(int)
 
 signal on_combat_started()
 signal on_player_turn_taken()
-signal on_enemy_attack(attack: EnemyAttack)
+signal on_enemy_attack(attack: EnemyAttack, enemy_index : int)
 signal on_enemy_registered(enemy: Enemy)
 signal on_enemy_deregistered(enemy: Enemy)
 signal on_player_life_lost()
@@ -57,8 +57,8 @@ func process_player_attack(attack : PlayerAttack) -> void:
 func end_player_turn() -> void:
 	on_player_turn_taken.emit()
 
-func process_enemy_attack(enemy_attack: EnemyAttack) -> void:
-	on_enemy_attack.emit(enemy_attack)
+func process_enemy_attack(enemy_attack: EnemyAttack, enemy : Enemy) -> void:
+	on_enemy_attack.emit(enemy_attack, enemy)
 
 func register_enemy(enemy : Enemy) -> void:
 	#print("enemy registered")

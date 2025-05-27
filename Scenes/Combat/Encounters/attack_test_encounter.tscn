@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://carcnx12jkm8f"]
+[gd_scene load_steps=9 format=3 uid="uid://carcnx12jkm8f"]
 
 [ext_resource type="Script" uid="uid://c086ewc7gw56k" path="res://Scripts/Combat/encounter.gd" id="1_oe6c0"]
 [ext_resource type="PackedScene" uid="uid://bx5kscp85ypry" path="res://Scenes/Combat/Enemy/enemy.tscn" id="2_o2g0m"]
@@ -10,13 +10,22 @@
 script = ExtResource("3_cnxer")
 health = 10
 sprite = ExtResource("4_o2g0m")
+index = 0
 metadata/_custom_type_script = "uid://c27m7mkd1up2"
 
 [sub_resource type="Resource" id="Resource_l06n0"]
 script = ExtResource("5_o2g0m")
 damage = 2
 number_of_swings = 1
-number_of_turns_till_swing = 1000
+number_of_turns_till_swing = 3
+attack_type = 0
+metadata/_custom_type_script = "uid://6v5kccermtmr"
+
+[sub_resource type="Resource" id="Resource_cnxer"]
+script = ExtResource("5_o2g0m")
+damage = 2
+number_of_swings = 1
+number_of_turns_till_swing = 10000
 attack_type = 0
 metadata/_custom_type_script = "uid://6v5kccermtmr"
 
@@ -35,4 +44,4 @@ attacks = Array[ExtResource("5_o2g0m")]([SubResource("Resource_l06n0")])
 position = Vector2(-89, 0)
 attack_behaviour = 1
 enemy_data = SubResource("Resource_o2g0m")
-attacks = Array[ExtResource("5_o2g0m")]([SubResource("Resource_l06n0")])
+attacks = Array[ExtResource("5_o2g0m")]([SubResource("Resource_cnxer")])
