@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://crqfa6h27n48x"]
+
+[ext_resource type="Script" uid="uid://dpapvumr7pa21" path="res://Scripts/Relics/Variants/certain_green_puyo.gd" id="1_tudcb"]
+[ext_resource type="Resource" uid="uid://dnqce7ev0rrwl" path="res://Resources/RelicData/certain_green_puyo.tres" id="2_5b543"]
+
+[node name="CertainGreenPuyo" type="Node2D"]
+script = ExtResource("1_tudcb")
+relic_data = ExtResource("2_5b543")

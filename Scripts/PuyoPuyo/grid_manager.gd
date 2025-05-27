@@ -565,7 +565,7 @@ func fill_puyo_queue():
 	while puyo_queue.size() <= 2:
 		var new_puyos = [puyo_scene.instantiate(), puyo_scene.instantiate()]
 		#grab a random item from the puyopool
-		var puyo_types = PlayerData.get_puyo_pool().pick_random()
+		var puyo_types = $PuyoPoolManager.get_puyo_pair()
 		new_puyos[0].set_type(puyo_types[0])
 		new_puyos[1].set_type(puyo_types[1])
 		puyo_queue.append(new_puyos)

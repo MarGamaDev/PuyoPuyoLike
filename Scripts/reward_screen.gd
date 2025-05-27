@@ -17,6 +17,7 @@ var choice_containers : Array[RewardChoice]
 var rest_flag = true
 
 var possible_rewards : Array[Reward]
+var puyo_certain_relic_flag = false
 
 func _ready():
 	possible_rewards = get_node("/root/Combat/RewardManager").get_pool()
@@ -39,6 +40,9 @@ func generate_pool(new_pool_size := reward_choice_pool_size):
 				#print(reward_choices.has(new_item_for_pool))
 				if !(reward_choices.has(new_item_for_pool)) and !new_item_for_pool.has_been_taken:
 					reward_check = false
+				if new_item_for_pool.reward_type == Reward.REWARD_TYPE.RELIC:
+					if new_item_for_pool.relic_data.is_part_of_certain_cycle and puyo_certain_relic_flag:
+						reward_check = true
 			reward_check = true
 			reward_choices.append(new_item_for_pool)
 		

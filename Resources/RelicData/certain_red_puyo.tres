@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="RelicData" load_steps=3 format=3 uid="uid://c15y2mgljgetv"]
+
+[ext_resource type="Script" uid="uid://dfyomjxsahuhw" path="res://Scripts/Relics/System/relic_data.gd" id="1_pp2mx"]
+[ext_resource type="Texture2D" uid="uid://bugmlybu50rhd" path="res://Placeholder Art/puyo_red.png" id="2_84e8a"]
+
+[resource]
+script = ExtResource("1_pp2mx")
+sprite = ExtResource("2_84e8a")
+name = "certain red puyo"
+description = "every third pair will always have a red humour"
+flavor_text = "noice"
+file_path = "res://Scenes/Relics/Variants/certain_red_puyo.tscn"
+is_part_of_certain_cycle = true
+metadata/_custom_type_script = "uid://dfyomjxsahuhw"

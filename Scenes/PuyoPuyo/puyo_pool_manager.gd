@@ -1,0 +1,21 @@
+extends Node2D
+
+class_name PuyoPoolManager
+
+var puyos_to_add : Array = []
+@export var puyo_certain_interval = 3
+var puyo_counter = 1
+
+func get_puyo_pair() -> Array:
+	var to_return : Array = PlayerData.get_puyo_pool().pick_random()
+	if puyo_counter == puyo_certain_interval:
+		for i in range(0, puyos_to_add.size()):
+			to_return[i] = puyos_to_add[i]
+		puyo_counter = 1
+	else:
+		puyo_counter += 1
+	return to_return
+
+func add_certain_puyo(type : Puyo.PUYO_TYPE):
+	puyos_to_add.append(type)
+	

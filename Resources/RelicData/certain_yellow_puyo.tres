@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="RelicData" load_steps=3 format=3 uid="uid://bnki0vbnduyba"]
+
+[ext_resource type="Script" uid="uid://dfyomjxsahuhw" path="res://Scripts/Relics/System/relic_data.gd" id="1_42rcl"]
+[ext_resource type="Texture2D" uid="uid://bugmlybu50rhd" path="res://Placeholder Art/puyo_red.png" id="2_1dxhv"]
+
+[resource]
+script = ExtResource("1_42rcl")
+sprite = ExtResource("2_1dxhv")
+name = "certain yellow puyo"
+description = "wip"
+flavor_text = "noice"
+file_path = "res://Scenes/Relics/Variants/certain_yellow_puyo.tscn"
+is_part_of_certain_cycle = true
+metadata/_custom_type_script = "uid://dfyomjxsahuhw"
