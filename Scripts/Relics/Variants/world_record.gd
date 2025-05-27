@@ -35,7 +35,8 @@ func trigger_record_effect(chain : int):
 		send_bonus_attack.emit(PlayerAttack.create_manually(bonus_per_chain_point * highest_chain, type, 1))
 		match type:
 			Puyo.PUYO_TYPE.RED:
-				combat_effects.create_relic_effect(self.global_position, combat_manager.selected_enemy.global_position, AttackEffectData.EFFECT_TYPE.PLAYER_RED)
+				if combat_manager.selected_enemy != null:
+					combat_effects.create_relic_effect(self.global_position, combat_manager.selected_enemy.global_position, AttackEffectData.EFFECT_TYPE.PLAYER_RED)
 			Puyo.PUYO_TYPE.GREEN:
 				for enemy : Enemy in combat_manager.enemies:
 						combat_effects.create_relic_effect(self.global_position, enemy.global_position, AttackEffectData.EFFECT_TYPE.PLAYER_GREEN)

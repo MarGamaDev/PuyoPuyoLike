@@ -37,11 +37,21 @@ func create_relic_reward():
 	pass
 
 func create_empty_spell_reward():
-	$RewardNameLabel.text = "Spell slot empty"
+	$RewardNameLabel.text = "Emotion slot empty"
 	$RewardTypeLabel.hide()
 	$RelicImage.hide()
 	$RewardDescriptionLabel.text = ""
 	$FlavorTextLabel.text = ""
+
+func create_empty_relic_reward():
+	$RewardNameLabel.text = "Click a Sensation"
+	$RewardTypeLabel.hide()
+	$RelicImage.hide()
+	$SpellContainer.hide()
+	$RelicImage.hide()
+	$RewardDescriptionLabel.hide()
+	$FlavorTextLabel.hide()
+	turn_off_button()
 
 func _on_button_pressed() -> void:
 	on_reward_chosen.emit(reward)

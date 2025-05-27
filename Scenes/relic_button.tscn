@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://bmeywbv5iru25"]
+
+[ext_resource type="Script" uid="uid://78coon6e6b6w" path="res://Scripts/relic_button.gd" id="1_tec0g"]
+[ext_resource type="Texture2D" uid="uid://ce7hlakgtf0l6" path="res://Placeholder Art/shield_icon.png" id="2_ms6sp"]
+
+[node name="RelicButton" type="TextureRect"]
+anchors_preset = -1
+anchor_right = 0.08
+anchor_bottom = 0.107
+texture = ExtResource("2_ms6sp")
+script = ExtResource("1_tec0g")
+
+[node name="TextureRect" type="Button" parent="."]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.300003
+grow_horizontal = 2
+grow_vertical = 2
+
+[connection signal="pressed" from="TextureRect" to="." method="_on_texture_rect_pressed"]

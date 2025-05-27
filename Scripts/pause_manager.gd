@@ -1,11 +1,20 @@
 extends Node2D
 
 @export var spell_manager: SpellManager
+@export var relic_manager : RelicManager
 @onready var reward_choice_scene : PackedScene = preload("res://Scenes/RewardScreen/reward_choice.tscn")
+@onready var relic_button_scene : PackedScene = preload("res://Scenes/relic_button.tscn")
 
 var pause_delay_flag = false
 
 var equipped_spell_containers : Array[RewardChoice] = []
+
+var equipped_relic_data : Array[RelicData] = []
+var relic_buttons : Array[RelicButton] = []
+
+func _ready() -> void:
+	spell_manager = get_node("/root/Combat/SpellManager")
+	relic_manager = get_node("/root/Combat/RelicManager")
 
 func _physics_process(_delta: float) -> void:
 	
@@ -20,6 +29,7 @@ func on_game_paused():
 	print("game paused")
 	pause_delay_flag = true
 	fill_spell_screen()
+	fill_relic_screen()
 
 func fill_spell_screen():
 	if spell_manager.equipped_spells.size() == 0:
@@ -49,6 +59,29 @@ func fill_spell_screen():
 		$PauseMenu/PageTabs/Spells.add_child(empty_reward)
 		empty_reward.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 
+func fill_relic_screen():
+	$PauseMenu/PageTabs/Items/RelicDescription.text = "Click a Relic to examine"
+	$PauseMenu/PageTabs/Items/RelicFlavor.text = ""
+	$PauseMenu/PageTabs/Items/RelicName.text = ""
+	for relic : RelicData in relic_manager.equipped_relics:
+		equipped_relic_data.append(relic)
+	
+	if equipped_relic_data.size() <= 0:
+		$PauseMenu/PageTabs/Items/NoRelicsLabel.show()
+		return
+	else:
+		$PauseMenu/PageTabs/Items/NoRelicsLabel.hide()
+	
+	for relic_data :RelicData in equipped_relic_data:
+		var new_button : RelicButton = relic_button_scene.instantiate()
+		new_button.initialize(relic_data)
+		new_button.on_relic_selected.connect(_on_relic_selected)
+		new_button.size_flags_stretch_ratio = TextureRect.STRETCH_KEEP
+		new_button.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+		new_button.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+		$PauseMenu/PageTabs/Items/RelicGrid.add_child(new_button)
+		relic_buttons.append(new_button)
+
 func reset_pause_screen():
 	$PauseMenu.hide()
 	for i in range(0, equipped_spell_containers.size()):
@@ -56,4 +89,18 @@ func reset_pause_screen():
 		spell_holder.queue_free()
 		equipped_spell_containers[i] = null
 	equipped_spell_containers = []
-		
+	for i in range(0, equipped_relic_data.size()):
+		var relic_holder = relic_buttons[i]
+		relic_holder.queue_free()
+		relic_buttons[i] = null
+	equipped_relic_data = []
+	relic_buttons = []
+
+func _on_quit_button_pressed() -> void:
+	get_tree().paused = false
+	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
+
+func _on_relic_selected(relic : RelicData):
+	$PauseMenu/PageTabs/Items/RelicDescription.text = relic.description
+	$PauseMenu/PageTabs/Items/RelicFlavor.text = relic.flavor_text
+	$PauseMenu/PageTabs/Items/RelicName.text = relic.name

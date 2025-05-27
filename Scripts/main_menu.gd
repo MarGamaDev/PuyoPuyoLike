@@ -3,8 +3,12 @@ extends Control
 var tutorial_page_number : int = 0
 @onready var tutorial_pages : Array = [$Tutorial/TutorialOptions, $Tutorial/PuyoTutorial, $Tutorial/GameTutorial, $Tutorial/GameTutorial2]
 
+func _ready() -> void:
+	print("menu ready")
+	#$MenuAnimationTimer.start(0.3)
 
 func play_animations():
+	print("anims starting")
 	$MenuPage/AnimationPlayer.play("logo")
 	$MenuPage/AnimationPlayer2.play("buttons")
 

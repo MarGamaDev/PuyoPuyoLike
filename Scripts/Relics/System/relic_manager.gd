@@ -3,6 +3,7 @@ class_name RelicManager extends Node
 signal all_clear_for_next_encounter
 
 @export var test_relic : RelicData
+var equipped_relics : Array[RelicData] = []
 
 func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("TESTING_player_spawn"):
@@ -13,8 +14,9 @@ func add_relic(relic_data: RelicData) -> void:
 	add_child(new_relic)
 	#new_relic.reparent(self)
 	new_relic.initialize()
-	var relic_visual_rect = add_relic_visual(test_relic.sprite).get_global_rect()
+	var relic_visual_rect = add_relic_visual(relic_data.sprite).get_global_rect()
 	new_relic.update_enemy_damage_visuals.connect(update_enemy_visual_damage_queue)
+	equipped_relics.append(relic_data)
 	await get_tree().create_timer(0.1).timeout
 	new_relic.global_position = relic_visual_rect.position + (relic_visual_rect.size)
 	all_clear_for_next_encounter.emit()
@@ -43,5 +45,6 @@ func test_add_relic():
 	new_relic.initialize()
 	var relic_visual_rect = add_relic_visual(test_relic.sprite).get_global_rect()
 	new_relic.update_enemy_damage_visuals.connect(update_enemy_visual_damage_queue)
+	equipped_relics.append(test_relic)
 	await get_tree().create_timer(0.1).timeout
 	new_relic.global_position = relic_visual_rect.position + (relic_visual_rect.size)
