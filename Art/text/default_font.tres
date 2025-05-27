@@ -1,8 +1,10 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://qw5wdr2jerv7"]
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://qw5wdr2jerv7"]
 
 [ext_resource type="FontFile" uid="uid://bqhwly8j5bia" path="res://Art/text/DoubleHomicide.ttf" id="1_swmlj"]
+[ext_resource type="FontFile" uid="uid://cpp3i77apvo6a" path="res://Art/text/Alkhemikal.ttf" id="2_jbko1"]
 
 [resource]
 default_base_scale = 1.0
+default_font = ExtResource("2_jbko1")
 default_font_size = 20
 /fonts/default = ExtResource("1_swmlj")
