@@ -324,7 +324,6 @@ theme_override_font_sizes/font_size = 30
 text = "Credits"
 
 [node name="QuitButton" type="Button" parent="MenuPage/Buttons"]
-visible = false
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -334,6 +333,7 @@ offset_top = -138.0
 offset_right = 1129.0
 offset_bottom = -32.0
 grow_vertical = 0
+text = "Quit"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="MenuPage"]
 root_node = NodePath("../Logo")
@@ -754,6 +754,7 @@ text = "previous tutorial page"
 [connection signal="pressed" from="MenuPage/Buttons/StartButton" to="." method="open_tutorial"]
 [connection signal="pressed" from="MenuPage/Buttons/OptionsButton" to="." method="_on_options_button_pressed"]
 [connection signal="pressed" from="MenuPage/Buttons/CreditsButton" to="." method="_on_credits_button_pressed"]
+[connection signal="pressed" from="MenuPage/Buttons/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="timeout" from="MenuAnimationTimer" to="." method="play_animations"]
 [connection signal="pressed" from="OptionsPage/ReturnButton" to="." method="return_to_menu"]
 [connection signal="pressed" from="CreditsPage/ReturnButton" to="." method="return_to_menu"]

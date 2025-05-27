@@ -55,3 +55,7 @@ func last_page():
 	tutorial_pages[tutorial_page_number].hide()
 	tutorial_page_number -= 1
 	tutorial_pages[tutorial_page_number].show()
+
+
+func _on_quit_button_pressed() -> void:
+	get_tree().quit()
