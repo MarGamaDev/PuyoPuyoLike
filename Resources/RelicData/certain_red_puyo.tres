@@ -6,9 +6,9 @@
 [resource]
 script = ExtResource("1_pp2mx")
 sprite = ExtResource("2_84e8a")
-name = "certain red puyo"
-description = "every third pair will always have a red humour"
-flavor_text = "noice"
+name = "A Sense of Superiority"
+description = "Every third pair of humours will always contain Blood."
+flavor_text = "This, at least, you can be sure of."
 file_path = "res://Scenes/Relics/Variants/certain_red_puyo.tscn"
 is_part_of_certain_cycle = true
 metadata/_custom_type_script = "uid://dfyomjxsahuhw"
