@@ -62,5 +62,6 @@ func _on_return_button_pressed() -> void:
 
 
 func _on_relic_manager_on_relic_added() -> void:
+	print("relic added")
 	relics_picked_up += 1
 	pass # Replace with function body.

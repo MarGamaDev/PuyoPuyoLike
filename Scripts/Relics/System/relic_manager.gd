@@ -19,6 +19,7 @@ func add_relic(relic_data: RelicData) -> void:
 	new_relic.update_enemy_damage_visuals.connect(update_enemy_visual_damage_queue)
 	equipped_relics.append(relic_data)
 	await get_tree().create_timer(0.1).timeout
+	on_relic_added.emit()
 	new_relic.global_position = relic_visual_rect.position + (relic_visual_rect.size)
 	all_clear_for_next_encounter.emit()
 	pass
