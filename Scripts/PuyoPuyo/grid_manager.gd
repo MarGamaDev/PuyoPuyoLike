@@ -352,6 +352,9 @@ func pop_puyos(puyo_groups:Array = puyos_to_pop):
 	for group in puyo_groups:
 		if group.is_empty():
 			continue
+		else:
+			##PLAY A POP SFX HERE
+			pass
 		for pop_node : GridNode in group:
 			var new_pop_effect = puyo_pop_effect.instantiate()
 			add_child(new_pop_effect)

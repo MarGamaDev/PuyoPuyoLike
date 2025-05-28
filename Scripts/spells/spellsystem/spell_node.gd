@@ -63,6 +63,7 @@ func progress_spell(chain_stage: int):
 	chain_stage_tracker += 1
 
 func complete_spell():
+	##play sfx here
 	on_spell_complete.emit(recipe_length, spell_data.spell_name)
 	trigger_spell_effect()
 	##remember to override without the reset for spells that care about how much

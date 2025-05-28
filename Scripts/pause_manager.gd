@@ -60,7 +60,7 @@ func fill_spell_screen():
 		empty_reward.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 
 func fill_relic_screen():
-	$PauseMenu/PageTabs/Items/RelicDescription.text = "Click a Relic to examine"
+	$PauseMenu/PageTabs/Items/RelicDescription.text = "Choose a sensation to reflect on"
 	$PauseMenu/PageTabs/Items/RelicFlavor.text = ""
 	$PauseMenu/PageTabs/Items/RelicName.text = ""
 	for relic : RelicData in relic_manager.equipped_relics:

@@ -124,3 +124,5 @@ func update_damage_visually():
 		$HurtFlashAnim.play("animation")
 		wait_for_animation.emit()
 		
+func play_entrance_animation():
+	$AnimationPlayer.play("EntranceAnimation")

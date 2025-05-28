@@ -59,6 +59,7 @@ func add_shield(shield_gained: int) -> void:
 func handle_damage(damage: int, enemy : Enemy) -> int:
 	if damage <= counter:
 		on_counter_triggered.emit(int(counter * counter_buff * counter_relic_buff))
+		##PLAY COUNTER/ATTACK SFX HERE
 		trigger_countered_effect.emit(enemy)
 		counter_buff = 1
 		counter = 0
@@ -83,6 +84,7 @@ func handle_damage(damage: int, enemy : Enemy) -> int:
 		damage -= shield
 		shield = 0 + minimum_shield
 		on_shield_change.emit(shield)
+		##PLAY DAMAGED SFX HERE
 		return damage
 
 func lose_life() -> void:

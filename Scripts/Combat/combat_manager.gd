@@ -53,11 +53,13 @@ func process_player_attack(attack : PlayerAttack) -> void:
 			on_counter_gained.emit(value * mult)
 		Puyo.PUYO_TYPE.JUNK:
 			on_junk_cleared.emit(attack.size)
+	##PLAY ATTACK AND DEFENSE SFX HERE
 
 func end_player_turn() -> void:
 	on_player_turn_taken.emit()
 
 func process_enemy_attack(enemy_attack: EnemyAttack, enemy : Enemy) -> void:
+	##PLAY ENEMY ATTACK SFX HERE
 	on_enemy_attack.emit(enemy_attack, enemy)
 
 func register_enemy(enemy : Enemy) -> void:
@@ -65,6 +67,7 @@ func register_enemy(enemy : Enemy) -> void:
 	on_enemy_registered.emit(enemy)
 	enemies.push_back(enemy)
 	enemy.connect("on_attacking_player", process_enemy_attack)
+	enemy.play_entrance_animation()
 
 func deregister_enemy(enemy : Enemy) -> void:
 	#print("enemy deregistered")

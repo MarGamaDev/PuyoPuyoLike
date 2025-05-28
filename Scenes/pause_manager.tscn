@@ -11,7 +11,6 @@ script = ExtResource("1_s3tu7")
 
 [node name="PauseMenu" type="CanvasLayer" parent="."]
 layer = 3
-visible = false
 
 [node name="ColorRect" type="ColorRect" parent="PauseMenu"]
 anchors_preset = 15
@@ -54,16 +53,17 @@ anchor_top = 0.187
 anchor_right = 0.98
 anchor_bottom = 0.97
 theme = ExtResource("2_8elxi")
+theme_override_font_sizes/font_size = 40
 tab_alignment = 1
 current_tab = 1
 
-[node name="Spells" type="HBoxContainer" parent="PauseMenu/PageTabs"]
+[node name="Emotions" type="HBoxContainer" parent="PauseMenu/PageTabs"]
 visible = false
 layout_mode = 2
 alignment = 1
 metadata/_tab_index = 0
 
-[node name="NoSpellsLabel" type="RichTextLabel" parent="PauseMenu/PageTabs/Spells"]
+[node name="NoSpellsLabel" type="RichTextLabel" parent="PauseMenu/PageTabs/Emotions"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/normal_font_size = 66
@@ -71,11 +71,11 @@ text = "No emotions equipped... :("
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Items" type="Control" parent="PauseMenu/PageTabs"]
+[node name="Sensations" type="Control" parent="PauseMenu/PageTabs"]
 layout_mode = 2
 metadata/_tab_index = 1
 
-[node name="RelicGrid" type="GridContainer" parent="PauseMenu/PageTabs/Items"]
+[node name="RelicGrid" type="GridContainer" parent="PauseMenu/PageTabs/Sensations"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.035
@@ -83,7 +83,7 @@ anchor_top = 0.041
 anchor_right = 0.458
 anchor_bottom = 0.963
 
-[node name="NoRelicsLabel" type="RichTextLabel" parent="PauseMenu/PageTabs/Items"]
+[node name="NoRelicsLabel" type="RichTextLabel" parent="PauseMenu/PageTabs/Sensations"]
 visible = false
 layout_mode = 1
 anchors_preset = -1
@@ -95,7 +95,7 @@ text = "No relics stinky :("
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="RelicDescription" type="RichTextLabel" parent="PauseMenu/PageTabs/Items"]
+[node name="RelicDescription" type="RichTextLabel" parent="PauseMenu/PageTabs/Sensations"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.576
@@ -104,11 +104,11 @@ anchor_right = 0.993
 anchor_bottom = 0.679
 offset_left = 0.447937
 offset_right = 0.0639648
-text = "Click a Relic to examine"
+text = "Choose a sensation to reflect on"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="RelicFlavor" type="RichTextLabel" parent="PauseMenu/PageTabs/Items"]
+[node name="RelicFlavor" type="RichTextLabel" parent="PauseMenu/PageTabs/Sensations"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.576
@@ -120,7 +120,7 @@ offset_right = 0.0639648
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="RelicName" type="RichTextLabel" parent="PauseMenu/PageTabs/Items"]
+[node name="RelicName" type="RichTextLabel" parent="PauseMenu/PageTabs/Sensations"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.576
