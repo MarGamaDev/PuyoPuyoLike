@@ -21,7 +21,9 @@ func update_counter_visuals(new_counter : int):
 		$UIElements/CounterMeter/CounterBackgroundMask/CounterBackground.set_modulate(Color(1,1,1))
 		$UIElements/CounterMeter/CounterFrame.set_modulate(Color(1,1,1))
 
-func add_junk_in_queue(junk_amount: int, attack_type : EnemyAttack.EnemyAttackType ):
+func add_junk_in_queue(junk_amount: int, attack_type : EnemyAttack.EnemyAttackType):
+	if attack_type == EnemyAttack.EnemyAttackType.REPLACE_YELLOW or attack_type == EnemyAttack.EnemyAttackType.REPLACE_BLUE or attack_type == EnemyAttack.EnemyAttackType.REPLACE_RED or attack_type == EnemyAttack.EnemyAttackType.REPLACE_GREEN:
+		return
 	junk_in_queue = junk_in_queue + junk_amount
 	if junk_in_queue > 0:
 		$UIElements/JunkIndicator.show()
@@ -34,3 +36,7 @@ func remove_junk_in_queue(junk_amount : int):
 		junk_in_queue = 0
 	else:
 		$UIElements/JunkIndicator/JunkText.text = "x %s" % (junk_in_queue)
+
+func clear_junk_queue():
+	junk_in_queue
+	$UIElements/JunkIndicator/JunkText.text = "x %s" % (junk_in_queue)

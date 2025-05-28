@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dmdsrn5kh1fm8"]
 
 [ext_resource type="Theme" uid="uid://qw5wdr2jerv7" path="res://Art/text/default_font.tres" id="1_1vm0e"]
-[ext_resource type="Script" uid="uid://c83ti5l6u8iu7" path="res://Scenes/death_manager.gd" id="1_ucnlj"]
+[ext_resource type="Script" uid="uid://c83ti5l6u8iu7" path="res://Scripts/death_manager.gd" id="1_ucnlj"]
 
 [node name="DeathManager" type="Node2D"]
 process_mode = 3
