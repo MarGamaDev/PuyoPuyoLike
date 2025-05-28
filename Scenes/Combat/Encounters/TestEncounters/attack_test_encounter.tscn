@@ -10,7 +10,7 @@
 script = ExtResource("3_cnxer")
 health = 10
 sprite = ExtResource("4_o2g0m")
-index = 0
+boss = false
 metadata/_custom_type_script = "uid://c27m7mkd1up2"
 
 [sub_resource type="Resource" id="Resource_l06n0"]

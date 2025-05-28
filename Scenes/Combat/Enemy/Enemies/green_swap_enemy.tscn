@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://dqbdnsky7c8r6"]
+
+[ext_resource type="PackedScene" uid="uid://bx5kscp85ypry" path="res://Scenes/Combat/Enemy/enemy.tscn" id="1_347re"]
+[ext_resource type="Resource" uid="uid://bklw3f4wufoj8" path="res://Resources/Enemies/green_swap_enemy.tres" id="2_347re"]
+[ext_resource type="Script" uid="uid://6v5kccermtmr" path="res://Scripts/Combat/Enemy/enemy_attack.gd" id="3_22ifa"]
+
+[sub_resource type="Resource" id="Resource_74omc"]
+script = ExtResource("3_22ifa")
+damage = 999
+number_of_swings = 1
+number_of_turns_till_swing = 8
+attack_type = 8
+metadata/_custom_type_script = "uid://6v5kccermtmr"
+
+[sub_resource type="Resource" id="Resource_vscos"]
+script = ExtResource("3_22ifa")
+damage = 10
+number_of_swings = 1
+number_of_turns_till_swing = 7
+attack_type = 0
+metadata/_custom_type_script = "uid://6v5kccermtmr"
+
+[node name="GreenSwapEnemy" instance=ExtResource("1_347re")]
+enemy_data = ExtResource("2_347re")
+attacks = Array[ExtResource("3_22ifa")]([SubResource("Resource_74omc"), SubResource("Resource_vscos")])

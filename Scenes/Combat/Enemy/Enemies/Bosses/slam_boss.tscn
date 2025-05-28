@@ -1,0 +1,33 @@
+[gd_scene load_steps=7 format=3 uid="uid://bt82bjiwxvc68"]
+
+[ext_resource type="PackedScene" uid="uid://bx5kscp85ypry" path="res://Scenes/Combat/Enemy/enemy.tscn" id="1_ilsb2"]
+[ext_resource type="Resource" uid="uid://cv76ifvj8weke" path="res://Resources/Enemies/Bosses/slam_boss.tres" id="2_1i303"]
+[ext_resource type="Script" uid="uid://6v5kccermtmr" path="res://Scripts/Combat/Enemy/enemy_attack.gd" id="3_l0by6"]
+
+[sub_resource type="Resource" id="Resource_2dk3l"]
+script = ExtResource("3_l0by6")
+damage = 50
+number_of_swings = 1
+number_of_turns_till_swing = 11
+attack_type = 3
+metadata/_custom_type_script = "uid://6v5kccermtmr"
+
+[sub_resource type="Resource" id="Resource_agw3u"]
+script = ExtResource("3_l0by6")
+damage = 60
+number_of_swings = 1
+number_of_turns_till_swing = 13
+attack_type = 3
+metadata/_custom_type_script = "uid://6v5kccermtmr"
+
+[sub_resource type="Resource" id="Resource_n1d35"]
+script = ExtResource("3_l0by6")
+damage = 40
+number_of_swings = 1
+number_of_turns_till_swing = 9
+attack_type = 3
+metadata/_custom_type_script = "uid://6v5kccermtmr"
+
+[node name="SlamBoss" instance=ExtResource("1_ilsb2")]
+enemy_data = ExtResource("2_1i303")
+attacks = Array[ExtResource("3_l0by6")]([SubResource("Resource_2dk3l"), SubResource("Resource_agw3u"), SubResource("Resource_n1d35")])

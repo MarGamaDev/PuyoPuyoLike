@@ -1,0 +1,33 @@
+[gd_scene load_steps=7 format=3 uid="uid://c3ht04jxirvgo"]
+
+[ext_resource type="PackedScene" uid="uid://bx5kscp85ypry" path="res://Scenes/Combat/Enemy/enemy.tscn" id="1_imq6j"]
+[ext_resource type="Resource" uid="uid://dmh6nqit7f2fl" path="res://Resources/Enemies/rogue_grunt.tres" id="2_iigrq"]
+[ext_resource type="Script" uid="uid://6v5kccermtmr" path="res://Scripts/Combat/Enemy/enemy_attack.gd" id="3_klxcf"]
+
+[sub_resource type="Resource" id="Resource_iigrq"]
+script = ExtResource("3_klxcf")
+damage = 3
+number_of_swings = 1
+number_of_turns_till_swing = 3
+attack_type = 0
+metadata/_custom_type_script = "uid://6v5kccermtmr"
+
+[sub_resource type="Resource" id="Resource_klxcf"]
+script = ExtResource("3_klxcf")
+damage = 2
+number_of_swings = 2
+number_of_turns_till_swing = 5
+attack_type = 0
+metadata/_custom_type_script = "uid://6v5kccermtmr"
+
+[sub_resource type="Resource" id="Resource_hamq8"]
+script = ExtResource("3_klxcf")
+damage = 1
+number_of_swings = 6
+number_of_turns_till_swing = 6
+attack_type = 0
+metadata/_custom_type_script = "uid://6v5kccermtmr"
+
+[node name="RogueGrunt" instance=ExtResource("1_imq6j")]
+enemy_data = ExtResource("2_iigrq")
+attacks = Array[ExtResource("3_klxcf")]([SubResource("Resource_iigrq"), SubResource("Resource_klxcf"), SubResource("Resource_hamq8")])

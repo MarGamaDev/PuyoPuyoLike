@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=3 format=3 uid="uid://cv76ifvj8weke"]
+
+[ext_resource type="Script" uid="uid://c27m7mkd1up2" path="res://Scripts/Combat/Enemy/enemy_data.gd" id="1_0uwio"]
+[ext_resource type="Texture2D" uid="uid://cycswl8kjp7r7" path="res://Art/Enemies/Enemy_Trick_Skull.png" id="2_rsmoq"]
+
+[resource]
+script = ExtResource("1_0uwio")
+health = 120
+sprite = ExtResource("2_rsmoq")
+boss = true
+metadata/_custom_type_script = "uid://c27m7mkd1up2"

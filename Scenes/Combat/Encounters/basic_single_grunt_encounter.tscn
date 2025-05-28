@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cf740hk1qyu2a"]
+
+[ext_resource type="Script" uid="uid://c086ewc7gw56k" path="res://Scripts/Combat/encounter.gd" id="1_0gmrd"]
+[ext_resource type="PackedScene" uid="uid://cwhle1snwc5h4" path="res://Scenes/Combat/Enemy/Enemies/basic_grunt.tscn" id="2_h8ida"]
+
+[node name="BasicSingleGruntEncounter" type="Node2D"]
+script = ExtResource("1_0gmrd")
+metadata/_custom_type_script = "uid://c086ewc7gw56k"
+
+[node name="Enemy" parent="." instance=ExtResource("2_h8ida")]

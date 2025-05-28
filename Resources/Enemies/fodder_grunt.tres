@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=3 format=3 uid="uid://c8ebmbtrhaq6p"]
+
+[ext_resource type="Script" uid="uid://c27m7mkd1up2" path="res://Scripts/Combat/Enemy/enemy_data.gd" id="1_ny0y0"]
+[ext_resource type="Texture2D" uid="uid://crpm2t7elwi2a" path="res://Art/Enemies/Enemy_Grunt_Kidney_Sisters.png" id="2_dxetx"]
+
+[resource]
+script = ExtResource("1_ny0y0")
+health = 10
+sprite = ExtResource("2_dxetx")
+boss = false
+metadata/_custom_type_script = "uid://c27m7mkd1up2"

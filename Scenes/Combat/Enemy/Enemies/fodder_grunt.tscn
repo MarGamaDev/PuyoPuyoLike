@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://c5756ap1reasm"]
+
+[ext_resource type="PackedScene" uid="uid://bx5kscp85ypry" path="res://Scenes/Combat/Enemy/enemy.tscn" id="1_yba6j"]
+[ext_resource type="Resource" uid="uid://c8ebmbtrhaq6p" path="res://Resources/Enemies/fodder_grunt.tres" id="2_m3j5d"]
+[ext_resource type="Script" uid="uid://6v5kccermtmr" path="res://Scripts/Combat/Enemy/enemy_attack.gd" id="3_8adet"]
+
+[sub_resource type="Resource" id="Resource_e8jox"]
+script = ExtResource("3_8adet")
+damage = 2
+number_of_swings = 1
+number_of_turns_till_swing = 6
+attack_type = 0
+metadata/_custom_type_script = "uid://6v5kccermtmr"
+
+[sub_resource type="Resource" id="Resource_q7l1r"]
+script = ExtResource("3_8adet")
+damage = 1
+number_of_swings = 2
+number_of_turns_till_swing = 7
+attack_type = 0
+metadata/_custom_type_script = "uid://6v5kccermtmr"
+
+[node name="FodderGrunt" instance=ExtResource("1_yba6j")]
+enemy_data = ExtResource("2_m3j5d")
+attacks = Array[ExtResource("3_8adet")]([SubResource("Resource_e8jox"), SubResource("Resource_q7l1r")])

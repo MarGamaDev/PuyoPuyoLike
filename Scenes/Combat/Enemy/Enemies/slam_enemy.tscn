@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://byi0l5w72737u"]
+
+[ext_resource type="PackedScene" uid="uid://bx5kscp85ypry" path="res://Scenes/Combat/Enemy/enemy.tscn" id="1_4x1t6"]
+[ext_resource type="Resource" uid="uid://cenky60jx5amh" path="res://Resources/Enemies/slam_enemy.tres" id="2_i4fyw"]
+[ext_resource type="Script" uid="uid://6v5kccermtmr" path="res://Scripts/Combat/Enemy/enemy_attack.gd" id="3_vph7q"]
+
+[sub_resource type="Resource" id="Resource_forup"]
+script = ExtResource("3_vph7q")
+damage = 12
+number_of_swings = 1
+number_of_turns_till_swing = 9
+attack_type = 1
+metadata/_custom_type_script = "uid://6v5kccermtmr"
+
+[sub_resource type="Resource" id="Resource_sahy3"]
+script = ExtResource("3_vph7q")
+damage = 18
+number_of_swings = 1
+number_of_turns_till_swing = 11
+attack_type = 2
+metadata/_custom_type_script = "uid://6v5kccermtmr"
+
+[node name="SlamEnemy" instance=ExtResource("1_4x1t6")]
+enemy_data = ExtResource("2_i4fyw")
+attacks = Array[ExtResource("3_vph7q")]([SubResource("Resource_forup"), SubResource("Resource_sahy3")])

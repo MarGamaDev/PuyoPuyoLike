@@ -110,6 +110,33 @@ _data = {
 &"animation": SubResource("Animation_oy6l1")
 }
 
+[sub_resource type="Animation" id="Animation_ncugr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_0sllc"]
 resource_name = "attack"
 length = 0.5
@@ -136,33 +163,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(0.0853775, 1, 0.120742),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1.15625, 1.15625), Vector2(1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_ncugr"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_m78rk"]

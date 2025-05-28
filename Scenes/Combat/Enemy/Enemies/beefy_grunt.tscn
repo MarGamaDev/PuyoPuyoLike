@@ -1,0 +1,33 @@
+[gd_scene load_steps=7 format=3 uid="uid://dc5a7nle7m8q7"]
+
+[ext_resource type="PackedScene" uid="uid://bx5kscp85ypry" path="res://Scenes/Combat/Enemy/enemy.tscn" id="1_jhl53"]
+[ext_resource type="Resource" uid="uid://qjnack12a3rv" path="res://Resources/Enemies/beefy_grunt.tres" id="2_vbuku"]
+[ext_resource type="Script" uid="uid://6v5kccermtmr" path="res://Scripts/Combat/Enemy/enemy_attack.gd" id="3_7w62n"]
+
+[sub_resource type="Resource" id="Resource_yynvi"]
+script = ExtResource("3_7w62n")
+damage = 6
+number_of_swings = 2
+number_of_turns_till_swing = 8
+attack_type = 0
+metadata/_custom_type_script = "uid://6v5kccermtmr"
+
+[sub_resource type="Resource" id="Resource_me3sn"]
+script = ExtResource("3_7w62n")
+damage = 10
+number_of_swings = 1
+number_of_turns_till_swing = 7
+attack_type = 0
+metadata/_custom_type_script = "uid://6v5kccermtmr"
+
+[sub_resource type="Resource" id="Resource_57650"]
+script = ExtResource("3_7w62n")
+damage = 15
+number_of_swings = 1
+number_of_turns_till_swing = 8
+attack_type = 1
+metadata/_custom_type_script = "uid://6v5kccermtmr"
+
+[node name="BeefyGrunt" instance=ExtResource("1_jhl53")]
+enemy_data = ExtResource("2_vbuku")
+attacks = Array[ExtResource("3_7w62n")]([SubResource("Resource_yynvi"), SubResource("Resource_me3sn"), SubResource("Resource_57650")])
