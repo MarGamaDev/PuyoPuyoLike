@@ -200,6 +200,7 @@ position = Vector2(4.335, 24.765)
 
 [node name="SpellManager" parent="." instance=ExtResource("16_50454")]
 top_level = true
+position = Vector2(0, -2)
 test_spell = ExtResource("15_2n3pb")
 
 [node name="RelicManager" parent="." instance=ExtResource("15_3cqtn")]
