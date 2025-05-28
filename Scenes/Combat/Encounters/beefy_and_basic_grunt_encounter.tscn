@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://c65n3aaxsey1d"]
+
+[ext_resource type="Script" uid="uid://c086ewc7gw56k" path="res://Scripts/Combat/encounter.gd" id="1_s8tcx"]
+[ext_resource type="PackedScene" uid="uid://dc5a7nle7m8q7" path="res://Scenes/Combat/Enemy/Enemies/beefy_grunt.tscn" id="2_ixfbu"]
+[ext_resource type="PackedScene" uid="uid://cwhle1snwc5h4" path="res://Scenes/Combat/Enemy/Enemies/basic_grunt.tscn" id="3_ixfbu"]
+
+[node name="BeefyBasicGruntEncounter" type="Node2D"]
+script = ExtResource("1_s8tcx")
+enemy_count = 2
+metadata/_custom_type_script = "uid://c086ewc7gw56k"
+
+[node name="BeefyGrunt" parent="." instance=ExtResource("2_ixfbu")]
+position = Vector2(120, 0)
+
+[node name="BasicGrunt" parent="." instance=ExtResource("3_ixfbu")]
+position = Vector2(-122, 0)

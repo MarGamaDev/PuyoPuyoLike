@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://di0316psylwmu"]
+
+[ext_resource type="Script" uid="uid://c086ewc7gw56k" path="res://Scripts/Combat/encounter.gd" id="1_xe6od"]
+[ext_resource type="PackedScene" uid="uid://byi0l5w72737u" path="res://Scenes/Combat/Enemy/Enemies/slam_enemy.tscn" id="2_xe6od"]
+
+[node name="SlamEnemyEncounter" type="Node2D"]
+script = ExtResource("1_xe6od")
+metadata/_custom_type_script = "uid://c086ewc7gw56k"
+
+[node name="SlamEnemy" parent="." instance=ExtResource("2_xe6od")]

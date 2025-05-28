@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://dftapkofrfswv"]
+
+[ext_resource type="Script" uid="uid://c086ewc7gw56k" path="res://Scripts/Combat/encounter.gd" id="1_yaw2k"]
+[ext_resource type="PackedScene" uid="uid://diarh6dq6nlj8" path="res://Scenes/Combat/Enemy/Enemies/rogue_enemy.tscn" id="2_7yonf"]
+[ext_resource type="PackedScene" uid="uid://4ep54kp1lpt2" path="res://Scenes/Combat/Enemy/Enemies/improved_grunt.tscn" id="2_p82n7"]
+
+[node name="RogueBasicEncounter" type="Node2D"]
+script = ExtResource("1_yaw2k")
+enemy_count = 2
+metadata/_custom_type_script = "uid://c086ewc7gw56k"
+
+[node name="RogueEnemy" parent="." instance=ExtResource("2_7yonf")]
+position = Vector2(115, 0)
+
+[node name="ImprovedGrunt" parent="." instance=ExtResource("2_p82n7")]
+position = Vector2(-124, 0)

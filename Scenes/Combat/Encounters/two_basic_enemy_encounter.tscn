@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://3vkg1uc5ajcg"]
+
+[ext_resource type="Script" uid="uid://c086ewc7gw56k" path="res://Scripts/Combat/encounter.gd" id="1_6xkdt"]
+[ext_resource type="PackedScene" uid="uid://d2xn0h36inyvr" path="res://Scenes/Combat/Enemy/Enemies/basic_enemy.tscn" id="2_6xkdt"]
+
+[node name="TwoBasicEnemyEncounter" type="Node2D"]
+script = ExtResource("1_6xkdt")
+enemy_count = 2
+metadata/_custom_type_script = "uid://c086ewc7gw56k"
+
+[node name="BasicEnemy" parent="." instance=ExtResource("2_6xkdt")]
+position = Vector2(104, 0)
+
+[node name="BasicEnemy2" parent="." instance=ExtResource("2_6xkdt")]
+position = Vector2(-111, 0)

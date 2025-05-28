@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bjhct8s1dt14y"]
+
+[ext_resource type="Script" uid="uid://c086ewc7gw56k" path="res://Scripts/Combat/encounter.gd" id="1_sxwjw"]
+[ext_resource type="PackedScene" uid="uid://bt82bjiwxvc68" path="res://Scenes/Combat/Enemy/Enemies/Bosses/slam_boss.tscn" id="2_wivmj"]
+
+[node name="SlamBossEncounter" type="Node2D"]
+script = ExtResource("1_sxwjw")
+boss_encounter_flag = true
+metadata/_custom_type_script = "uid://c086ewc7gw56k"
+
+[node name="SlamBoss" parent="." instance=ExtResource("2_wivmj")]

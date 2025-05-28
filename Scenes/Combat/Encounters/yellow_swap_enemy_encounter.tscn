@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cv6guh5x455y2"]
+
+[ext_resource type="Script" uid="uid://c086ewc7gw56k" path="res://Scripts/Combat/encounter.gd" id="1_lwl32"]
+[ext_resource type="PackedScene" uid="uid://bl2w7idfa3xu5" path="res://Scenes/Combat/Enemy/Enemies/yellow_swap_enemy.tscn" id="2_lwl32"]
+
+[node name="YellowSwapEncounter" type="Node2D"]
+script = ExtResource("1_lwl32")
+metadata/_custom_type_script = "uid://c086ewc7gw56k"
+
+[node name="YellowSwapEnemy" parent="." instance=ExtResource("2_lwl32")]

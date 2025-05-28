@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bt7b30mjyd3ge"]
+
+[ext_resource type="Script" uid="uid://c086ewc7gw56k" path="res://Scripts/Combat/encounter.gd" id="1_kr1qo"]
+[ext_resource type="PackedScene" uid="uid://dmtuxbxfm38gv" path="res://Scenes/Combat/Enemy/Enemies/blue_swap_enemy.tscn" id="2_kr1qo"]
+
+[node name="BlueSwapEncounter" type="Node2D"]
+script = ExtResource("1_kr1qo")
+metadata/_custom_type_script = "uid://c086ewc7gw56k"
+
+[node name="BlueSwapEnemy" parent="." instance=ExtResource("2_kr1qo")]

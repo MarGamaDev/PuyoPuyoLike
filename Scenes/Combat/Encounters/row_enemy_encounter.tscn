@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://xbgynvh76885"]
+
+[ext_resource type="Script" uid="uid://c086ewc7gw56k" path="res://Scripts/Combat/encounter.gd" id="1_yguxv"]
+[ext_resource type="PackedScene" uid="uid://b2dsb1db70klu" path="res://Scenes/Combat/Enemy/Enemies/row_enemy.tscn" id="2_yguxv"]
+
+[node name="RowEnemyEncounter" type="Node2D"]
+script = ExtResource("1_yguxv")
+metadata/_custom_type_script = "uid://c086ewc7gw56k"
+
+[node name="RowEnemy" parent="." instance=ExtResource("2_yguxv")]

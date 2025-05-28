@@ -7,4 +7,4 @@
 script = ExtResource("1_0gmrd")
 metadata/_custom_type_script = "uid://c086ewc7gw56k"
 
-[node name="Enemy" parent="." instance=ExtResource("2_h8ida")]
+[node name="BasicGrunt" parent="." instance=ExtResource("2_h8ida")]

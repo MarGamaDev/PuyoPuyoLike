@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dg6hrl8tocm1f"]
+
+[ext_resource type="Script" uid="uid://c086ewc7gw56k" path="res://Scripts/Combat/encounter.gd" id="1_utqwj"]
+[ext_resource type="PackedScene" uid="uid://bauv0ifwp26w1" path="res://Scenes/Combat/Enemy/Enemies/Bosses/color_swap_boss.tscn" id="2_utqwj"]
+
+[node name="SwapBossEncounter" type="Node2D"]
+script = ExtResource("1_utqwj")
+boss_encounter_flag = true
+metadata/_custom_type_script = "uid://c086ewc7gw56k"
+
+[node name="ColorSwapBoss" parent="." instance=ExtResource("2_utqwj")]

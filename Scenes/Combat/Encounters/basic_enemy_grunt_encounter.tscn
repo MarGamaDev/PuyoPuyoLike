@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://c1winpfxl6c76"]
+
+[ext_resource type="Script" uid="uid://c086ewc7gw56k" path="res://Scripts/Combat/encounter.gd" id="1_fmlxs"]
+[ext_resource type="PackedScene" uid="uid://d2xn0h36inyvr" path="res://Scenes/Combat/Enemy/Enemies/basic_enemy.tscn" id="2_2m8k6"]
+[ext_resource type="PackedScene" uid="uid://cwhle1snwc5h4" path="res://Scenes/Combat/Enemy/Enemies/basic_grunt.tscn" id="3_6534q"]
+[ext_resource type="PackedScene" uid="uid://c5756ap1reasm" path="res://Scenes/Combat/Enemy/Enemies/fodder_grunt.tscn" id="4_orpkf"]
+
+[node name="BasicEnemyGruntEncounter" type="Node2D"]
+script = ExtResource("1_fmlxs")
+enemy_count = 3
+metadata/_custom_type_script = "uid://c086ewc7gw56k"
+
+[node name="BasicEnemy" parent="." instance=ExtResource("2_2m8k6")]
+position = Vector2(-205, 0)
+
+[node name="BasicGrunt" parent="." instance=ExtResource("3_6534q")]
+
+[node name="FodderGrunt" parent="." instance=ExtResource("4_orpkf")]
+position = Vector2(195, 0)

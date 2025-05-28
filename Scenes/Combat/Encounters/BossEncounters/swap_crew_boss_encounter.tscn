@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://tvvkudwbb652"]
+
+[ext_resource type="Script" uid="uid://c086ewc7gw56k" path="res://Scripts/Combat/encounter.gd" id="1_mjhdp"]
+[ext_resource type="PackedScene" uid="uid://dmtuxbxfm38gv" path="res://Scenes/Combat/Enemy/Enemies/blue_swap_enemy.tscn" id="2_soh3r"]
+[ext_resource type="PackedScene" uid="uid://dqbdnsky7c8r6" path="res://Scenes/Combat/Enemy/Enemies/green_swap_enemy.tscn" id="3_yj5ec"]
+[ext_resource type="PackedScene" uid="uid://bgcjl24ik2dh4" path="res://Scenes/Combat/Enemy/Enemies/red_swap_enemy.tscn" id="4_3pqph"]
+[ext_resource type="PackedScene" uid="uid://bl2w7idfa3xu5" path="res://Scenes/Combat/Enemy/Enemies/yellow_swap_enemy.tscn" id="5_18qdc"]
+
+[node name="SwapCrewBossEncounter" type="Node2D"]
+script = ExtResource("1_mjhdp")
+enemy_count = 4
+boss_encounter_flag = true
+metadata/_custom_type_script = "uid://c086ewc7gw56k"
+
+[node name="BlueSwapEnemy" parent="." instance=ExtResource("2_soh3r")]
+position = Vector2(92, 0)
+
+[node name="GreenSwapEnemy" parent="." instance=ExtResource("3_yj5ec")]
+position = Vector2(282, 0)
+
+[node name="RedSwapEnemy" parent="." instance=ExtResource("4_3pqph")]
+position = Vector2(-93, 0)
+
+[node name="YellowSwapEnemy" parent="." instance=ExtResource("5_18qdc")]
+position = Vector2(-279, 0)

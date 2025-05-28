@@ -1,0 +1,33 @@
+[gd_scene load_steps=7 format=3 uid="uid://d0rqqn3gno1f3"]
+
+[ext_resource type="Script" uid="uid://c086ewc7gw56k" path="res://Scripts/Combat/encounter.gd" id="1_nd5st"]
+[ext_resource type="PackedScene" uid="uid://b2dsb1db70klu" path="res://Scenes/Combat/Enemy/Enemies/row_enemy.tscn" id="2_fbr8k"]
+[ext_resource type="PackedScene" uid="uid://c3ht04jxirvgo" path="res://Scenes/Combat/Enemy/Enemies/rogue_grunt.tscn" id="3_wk3qy"]
+[ext_resource type="PackedScene" uid="uid://4ep54kp1lpt2" path="res://Scenes/Combat/Enemy/Enemies/improved_grunt.tscn" id="4_wmvum"]
+[ext_resource type="PackedScene" uid="uid://dc5a7nle7m8q7" path="res://Scenes/Combat/Enemy/Enemies/beefy_grunt.tscn" id="5_y8da6"]
+[ext_resource type="PackedScene" uid="uid://d2xn0h36inyvr" path="res://Scenes/Combat/Enemy/Enemies/basic_enemy.tscn" id="6_v2xq7"]
+
+[node name="ArmyBossEncounter" type="Node2D"]
+script = ExtResource("1_nd5st")
+enemy_count = 5
+boss_encounter_flag = true
+metadata/_custom_type_script = "uid://c086ewc7gw56k"
+
+[node name="RowEnemy" parent="." instance=ExtResource("2_fbr8k")]
+position = Vector2(-115, -39)
+scale = Vector2(0.75325, 0.75325)
+
+[node name="RogueGrunt" parent="." instance=ExtResource("3_wk3qy")]
+position = Vector2(108, -36)
+scale = Vector2(0.75325, 0.75325)
+
+[node name="ImprovedGrunt" parent="." instance=ExtResource("4_wmvum")]
+position = Vector2(218, 0)
+scale = Vector2(0.75325, 0.75325)
+
+[node name="BeefyGrunt" parent="." instance=ExtResource("5_y8da6")]
+position = Vector2(-227, 0)
+scale = Vector2(0.75325, 0.75325)
+
+[node name="BasicEnemy" parent="." instance=ExtResource("6_v2xq7")]
+scale = Vector2(0.75325, 0.75325)

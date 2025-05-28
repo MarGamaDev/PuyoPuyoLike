@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://ckj2qm67any3e"]
+
+[ext_resource type="Script" uid="uid://c086ewc7gw56k" path="res://Scripts/Combat/encounter.gd" id="1_seklx"]
+[ext_resource type="PackedScene" uid="uid://dqbdnsky7c8r6" path="res://Scenes/Combat/Enemy/Enemies/green_swap_enemy.tscn" id="2_7yu20"]
+[ext_resource type="PackedScene" uid="uid://c5756ap1reasm" path="res://Scenes/Combat/Enemy/Enemies/fodder_grunt.tscn" id="3_7yu20"]
+
+[node name="GreenSwapSupportEncounter" type="Node2D"]
+script = ExtResource("1_seklx")
+enemy_count = 3
+metadata/_custom_type_script = "uid://c086ewc7gw56k"
+
+[node name="GreenSwapEnemy" parent="." instance=ExtResource("2_7yu20")]
+position = Vector2(201, 0)
+
+[node name="FodderGrunt" parent="." instance=ExtResource("3_7yu20")]
+position = Vector2(-204, 0)
+
+[node name="FodderGrunt2" parent="." instance=ExtResource("3_7yu20")]

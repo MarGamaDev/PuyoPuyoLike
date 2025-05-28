@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cp8dw3wiup3fg"]
+
+[ext_resource type="Script" uid="uid://c086ewc7gw56k" path="res://Scripts/Combat/encounter.gd" id="1_o450r"]
+[ext_resource type="PackedScene" uid="uid://b2dsb1db70klu" path="res://Scenes/Combat/Enemy/Enemies/row_enemy.tscn" id="2_50y1p"]
+
+[node name="Rogue_enemy_encounter" type="Node2D"]
+script = ExtResource("1_o450r")
+metadata/_custom_type_script = "uid://c086ewc7gw56k"
+
+[node name="RowEnemy" parent="." instance=ExtResource("2_50y1p")]

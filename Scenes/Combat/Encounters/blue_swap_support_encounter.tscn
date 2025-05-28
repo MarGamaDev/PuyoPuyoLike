@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://cguhc4oawj187"]
+
+[ext_resource type="Script" uid="uid://c086ewc7gw56k" path="res://Scripts/Combat/encounter.gd" id="1_04omw"]
+[ext_resource type="PackedScene" uid="uid://dmtuxbxfm38gv" path="res://Scenes/Combat/Enemy/Enemies/blue_swap_enemy.tscn" id="2_tpdxo"]
+[ext_resource type="PackedScene" uid="uid://c3ht04jxirvgo" path="res://Scenes/Combat/Enemy/Enemies/rogue_grunt.tscn" id="3_tpdxo"]
+
+[node name="BlueSwapSupportEncounter" type="Node2D"]
+script = ExtResource("1_04omw")
+enemy_count = 2
+metadata/_custom_type_script = "uid://c086ewc7gw56k"
+
+[node name="BlueSwapEnemy" parent="." instance=ExtResource("2_tpdxo")]
+position = Vector2(100, 0)
+
+[node name="RogueGrunt" parent="." instance=ExtResource("3_tpdxo")]
+position = Vector2(-109, 0)
