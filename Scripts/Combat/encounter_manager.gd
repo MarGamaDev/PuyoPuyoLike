@@ -7,7 +7,7 @@ signal on_rest_stop()
 var boss_folder_path = "res://Scenes/Combat/Encounters/BossEncounters/"
 var normal_encounter_folder_path = "res://Scenes/Combat/Encounters/NormalEncounters/"
 
-
+@export var encounter_label : Label
 @export var encounter_array : PackedStringArray
 var boss_encounter_array : PackedStringArray
 var current_encounter : Encounter
@@ -24,6 +24,7 @@ func preload_encounters():
 	pass
 
 func load_next_encounter(boss_flag := false):
+	encounter_label.show()
 	if current_encounter != null:
 		current_encounter.queue_free()
 	var next_encounter
@@ -41,8 +42,13 @@ func check_for_rest_stop():
 	if rest_stop_counter == 0:
 		rest_stop_counter = encounters_between_rest_stops
 		on_rest_stop.emit()
+		encounter_label.hide()
+		encounter_label.text = "Next up: grunts"
 	elif rest_stop_counter == 1:
 		print("boss time!")
+		encounter_label.text == "Next up: reward"
 		load_next_encounter(true)
 	else:
 		load_next_encounter()
+	if rest_stop_counter == 2:
+		encounter_label.text = "Next up: Boss!"

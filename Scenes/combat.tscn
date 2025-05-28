@@ -157,15 +157,24 @@ offset_right = 260.0
 offset_bottom = 37.0
 text = "TEST BUTTONS ARE STILL HERE"
 
+[node name="EncounterLabel" type="Label" parent="Frame"]
+top_level = true
+offset_left = 703.0
+offset_top = 11.0
+offset_right = 933.0
+offset_bottom = 63.0
+text = "Next Encounter: "
+
 [node name="PuyoManager" parent="." instance=ExtResource("4_ubpar")]
 position = Vector2(123, 128)
 scale = Vector2(1.09, 1.09)
 
 [node name="Player" parent="." instance=ExtResource("5_ut0kg")]
 
-[node name="EncounterManager" type="Node2D" parent="."]
+[node name="EncounterManager" type="Node2D" parent="." node_paths=PackedStringArray("encounter_label")]
 position = Vector2(823, 250)
 script = ExtResource("8_twsak")
+encounter_label = NodePath("../Frame/EncounterLabel")
 
 [node name="CombatEffectsManager" parent="." instance=ExtResource("11_w6tjk")]
 
