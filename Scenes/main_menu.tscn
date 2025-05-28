@@ -1,10 +1,35 @@
-[gd_scene load_steps=10 format=3 uid="uid://dc6oe7dfg2ice"]
+[gd_scene load_steps=23 format=3 uid="uid://dc6oe7dfg2ice"]
 
 [ext_resource type="Script" uid="uid://c67v5u2go0uhq" path="res://Scripts/main_menu.gd" id="1_ce3w2"]
 [ext_resource type="Theme" uid="uid://qw5wdr2jerv7" path="res://Art/text/default_font.tres" id="1_n45e2"]
-[ext_resource type="Texture2D" uid="uid://dxjytwlr6d84f" path="res://Placeholder Art/menu_background.png" id="2_n45e2"]
+[ext_resource type="Texture2D" uid="uid://cladxjy54lkxt" path="res://Art/Title_WithLOGO-Compression.JPG" id="3_n45e2"]
 [ext_resource type="Texture2D" uid="uid://d4feofqxnrx5x" path="res://Placeholder Art/logo.png" id="4_cp0ys"]
 [ext_resource type="Texture2D" uid="uid://cuet3laww0w3o" path="res://Art/Main_Character.png" id="4_n45e2"]
+[ext_resource type="Texture2D" uid="uid://7e64hhcudbus" path="res://Art/spell elements/puyo-spellContainer.png" id="6_opfnp"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_opfnp"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yhxw7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_trj04"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_16hvj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vr1f0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t1dhk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5egv6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vtepg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8dnnj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m3bi6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wyh8j"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cp0ys"]
 
 [sub_resource type="Animation" id="Animation_t1dhk"]
 length = 0.001
@@ -233,7 +258,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_n45e2")
+texture = ExtResource("3_n45e2")
 expand_mode = 1
 
 [node name="MenuPage" type="Control" parent="."]
@@ -262,6 +287,7 @@ texture = ExtResource("4_n45e2")
 stretch_mode = 5
 
 [node name="Logo" type="TextureRect" parent="MenuPage"]
+visible = false
 modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_left = 124.0
@@ -287,27 +313,58 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 59.0
-offset_top = -407.0
+offset_left = 183.0
+offset_top = -235.0
 offset_right = 504.0
-offset_bottom = -298.0
+offset_bottom = -151.0
 grow_vertical = 0
 theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_opfnp")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_yhxw7")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_trj04")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_16hvj")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_vr1f0")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_t1dhk")
 text = "Start"
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="MenuPage/Buttons/StartButton"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_opfnp")
+expand_mode = 1
 
 [node name="OptionsButton" type="Button" parent="MenuPage/Buttons"]
+visible = false
 modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 59.0
-offset_top = -275.0
-offset_right = 504.0
-offset_bottom = -166.0
+offset_left = 216.0
+offset_top = -102.0
+offset_right = 530.0
+offset_bottom = -22.0
 grow_vertical = 0
 theme_override_font_sizes/font_size = 30
 text = "Options"
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="MenuPage/Buttons/OptionsButton"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_opfnp")
+expand_mode = 1
 
 [node name="CreditsButton" type="Button" parent="MenuPage/Buttons"]
 modulate = Color(1, 1, 1, 0)
@@ -315,13 +372,31 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 59.0
-offset_top = -132.0
-offset_right = 504.0
-offset_bottom = -23.0
+offset_left = 186.0
+offset_top = -140.0
+offset_right = 501.0
+offset_bottom = -57.0
 grow_vertical = 0
 theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_5egv6")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_vtepg")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_8dnnj")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_m3bi6")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_wyh8j")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_cp0ys")
 text = "Credits"
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="MenuPage/Buttons/CreditsButton"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_opfnp")
+expand_mode = 1
 
 [node name="QuitButton" type="Button" parent="MenuPage/Buttons"]
 layout_mode = 1
@@ -350,7 +425,6 @@ libraries = {
 [node name="MenuAnimationTimer" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
-autostart = true
 
 [node name="OptionsPage" type="Control" parent="."]
 visible = false

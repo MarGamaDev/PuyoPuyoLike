@@ -5,6 +5,10 @@ var tutorial_page_number : int = 0
 
 func _ready() -> void:
 	print("menu ready")
+	$MenuPage/AnimationPlayer2.play("buttons")
+	#$MenuPage/AnimationPlayer.play("logo")
+	#$MenuPage/AnimationPlayer.seek(2)
+	$MenuPage/AnimationPlayer2.seek(2)
 	#$MenuAnimationTimer.start(0.3)
 
 func play_animations():
