@@ -21,6 +21,7 @@ func add_relic(relic_data: RelicData) -> void:
 	await get_tree().create_timer(0.1).timeout
 	on_relic_added.emit()
 	new_relic.global_position = relic_visual_rect.position + (relic_visual_rect.size)
+	new_relic.global_position.x = new_relic.global_position.x + (equipped_relics.size() * 50)
 	all_clear_for_next_encounter.emit()
 	pass
 
@@ -50,3 +51,4 @@ func test_add_relic():
 	equipped_relics.append(test_relic)
 	await get_tree().create_timer(0.1).timeout
 	new_relic.global_position = relic_visual_rect.position + (relic_visual_rect.size)
+	new_relic.global_position.x = new_relic.global_position.x + (equipped_relics.size() * 50)
