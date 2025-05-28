@@ -1,6 +1,7 @@
 class_name RelicManager extends Node
 
 signal all_clear_for_next_encounter
+signal on_relic_added
 
 @export var test_relic : RelicData
 var equipped_relics : Array[RelicData] = []

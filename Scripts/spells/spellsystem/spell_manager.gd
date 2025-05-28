@@ -2,7 +2,7 @@ extends Node2D
 class_name SpellManager
 
 signal all_clear_for_next_encounter()
-signal on_spell_cast(spell_length : int)
+signal on_spell_cast(spell_length : int, spell_name : String)
 
 @export var test_spell : SpellData
 @export var test_spell_2 : SpellData
@@ -73,9 +73,9 @@ func spell_to_remove_selected(index: int):
 	add_spell(awaiting_spell_data_holder, awaiting_reward)
 	pass
 
-func spell_cast(spell_length : int):
+func spell_cast(spell_length : int, spell_name : String):
 	print("spell cast")
-	on_spell_cast.emit(spell_length)
+	on_spell_cast.emit(spell_length, spell_name)
 
 func test_add_spell(spell_data: SpellData):
 		var spell_node : SpellNode

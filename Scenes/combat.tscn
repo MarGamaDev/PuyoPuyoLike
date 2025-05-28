@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://d3naap4gnytxh"]
+[gd_scene load_steps=32 format=3 uid="uid://d3naap4gnytxh"]
 
 [ext_resource type="Script" uid="uid://b0h0tx4msve02" path="res://Scripts/Combat/combat_manager.gd" id="1_4ln8h"]
 [ext_resource type="Resource" uid="uid://b01ucdggd8ykf" path="res://Resources/puyo_value_data.tres" id="2_xisnc"]
@@ -27,6 +27,7 @@
 [ext_resource type="Texture2D" uid="uid://cuet3laww0w3o" path="res://Art/Main_Character.png" id="25_e8ln5"]
 [ext_resource type="AudioStream" uid="uid://dr6ge7216dayb" path="res://Audio/Music/PuyoPuyoTheme_1.mp3" id="26_2n3pb"]
 [ext_resource type="Script" uid="uid://c6s3gimgvg7mb" path="res://Scripts/player_sprite.gd" id="26_5g3cp"]
+[ext_resource type="PackedScene" uid="uid://dmdsrn5kh1fm8" path="res://Scenes/death_manager.tscn" id="28_r5ubg"]
 
 [sub_resource type="Animation" id="Animation_2n3pb"]
 resource_name = "PlayerHurt"
@@ -237,19 +238,25 @@ libraries = {
 &"": SubResource("AnimationLibrary_ycqky")
 }
 
+[node name="DeathManager" parent="." instance=ExtResource("28_r5ubg")]
+
 [connection signal="on_combat_started" from="." to="PuyoManager" method="reset_game"]
 [connection signal="on_combat_started" from="." to="Player" method="reset_counter_and_shield"]
 [connection signal="on_combat_started" from="." to="EncounterManager" method="load_next_encounter"]
 [connection signal="on_combat_started" from="." to="CombatEffectsManager" method="_on_combat_started"]
 [connection signal="on_counter_gained" from="." to="Player" method="add_counter"]
 [connection signal="on_encounter_finished" from="." to="EncounterManager" method="check_for_rest_stop"]
+[connection signal="on_encounter_finished" from="." to="DeathManager" method="score_increase"]
 [connection signal="on_enemy_attack" from="." to="Player" method="receive_attack"]
+[connection signal="on_enemy_deregistered" from="." to="DeathManager" method="_on_enemy_killed"]
 [connection signal="on_game_paused" from="." to="PauseManager" method="on_game_paused"]
 [connection signal="on_player_turn_taken" from="." to="SpellManager" method="on_player_turn_taken_spell_reset"]
 [connection signal="on_shield_gained" from="." to="Player" method="add_shield"]
 [connection signal="block_popped" from="PuyoManager" to="CombatEffectsManager" method="create_player_attack_effect"]
 [connection signal="block_popped" from="PuyoManager" to="SpellManager" method="block_spell_check"]
+[connection signal="block_popped" from="PuyoManager" to="DeathManager" method="_on_block_popped"]
 [connection signal="life_lost" from="PuyoManager" to="Player" method="lose_life"]
+[connection signal="on_chain_ending" from="PuyoManager" to="DeathManager" method="_on_chain_ending"]
 [connection signal="on_end_player_turn" from="PuyoManager" to="." method="end_player_turn"]
 [connection signal="on_junk_created" from="PuyoManager" to="DefenseVisualsManager" method="remove_junk_in_queue"]
 [connection signal="on_player_created" from="PuyoManager" to="SpellManager" method="reset_spell_visuals"]
@@ -264,6 +271,7 @@ libraries = {
 [connection signal="on_player_damage_taken" from="Player" to="PuyoManager" method="process_damage_taken"]
 [connection signal="on_player_damage_taken" from="Player" to="DefenseVisualsManager" method="add_junk_in_queue"]
 [connection signal="on_player_damage_taken" from="Player" to="PlayerSpriteMask/PlayerSprite" method="_on_player_on_player_damage_taken"]
+[connection signal="on_player_death" from="Player" to="DeathManager" method="create_death_screen"]
 [connection signal="on_set_life_to" from="Player" to="LifeCounter" method="set_lives_to"]
 [connection signal="on_shield_change" from="Player" to="DefenseVisualsManager" method="update_shield_visuals"]
 [connection signal="trigger_blocked_effect" from="Player" to="CombatEffectsManager" method="_on_player_trigger_blocked_effect"]
@@ -275,7 +283,9 @@ libraries = {
 [connection signal="start_game" from="PuyoTestUI" to="." method="start_combat"]
 [connection signal="trigger_heart_effect" from="LifeCounter" to="CombatEffectsManager" method="_create_heart_explosion"]
 [connection signal="all_clear_for_next_encounter" from="SpellManager" to="." method="start_combat"]
+[connection signal="on_spell_cast" from="SpellManager" to="DeathManager" method="_on_spell_cast"]
 [connection signal="all_clear_for_next_encounter" from="RelicManager" to="." method="start_combat"]
+[connection signal="on_relic_added" from="RelicManager" to="DeathManager" method="_on_relic_manager_on_relic_added"]
 [connection signal="clear_board" from="RewardManager/RewardScreen" to="PuyoManager" method="destroy_leftover_puyos"]
 [connection signal="on_relic_reward_chosen" from="RewardManager/RewardScreen" to="RelicManager" method="add_relic"]
 [connection signal="on_reward_chosen" from="RewardManager/RewardScreen" to="RewardManager" method="remove_from_pool"]

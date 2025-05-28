@@ -1,0 +1,111 @@
+[gd_scene load_steps=3 format=3 uid="uid://dmdsrn5kh1fm8"]
+
+[ext_resource type="Theme" uid="uid://qw5wdr2jerv7" path="res://Art/text/default_font.tres" id="1_1vm0e"]
+[ext_resource type="Script" uid="uid://c83ti5l6u8iu7" path="res://Scenes/death_manager.gd" id="1_ucnlj"]
+
+[node name="DeathManager" type="Node2D"]
+process_mode = 3
+script = ExtResource("1_ucnlj")
+
+[node name="DeathScreen" type="CanvasLayer" parent="."]
+layer = 7
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="DeathScreen"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.392157, 0, 0.0823529, 0.905882)
+
+[node name="GameOverMessage" type="RichTextLabel" parent="DeathScreen"]
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.178
+offset_bottom = -0.199997
+theme = ExtResource("1_1vm0e")
+theme_override_font_sizes/normal_font_size = 101
+text = "Game over...."
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScoreMessage" type="RichTextLabel" parent="DeathScreen"]
+anchors_preset = -1
+anchor_top = 0.187
+anchor_right = 1.0
+anchor_bottom = 0.276
+offset_top = -0.300003
+offset_bottom = -0.300003
+theme = ExtResource("1_1vm0e")
+theme_override_font_sizes/normal_font_size = 36
+text = "you survived X rounds, and killed Y foes."
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RelicSpellMessage" type="RichTextLabel" parent="DeathScreen"]
+anchors_preset = -1
+anchor_top = 0.32
+anchor_right = 1.0
+anchor_bottom = 0.4
+theme = ExtResource("1_1vm0e")
+theme_override_font_sizes/normal_font_size = 36
+text = "You felt X sensations, and channeled emotions Y times."
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MostCastSpell" type="RichTextLabel" parent="DeathScreen"]
+anchors_preset = -1
+anchor_top = 0.436
+anchor_right = 0.993
+anchor_bottom = 0.542
+offset_top = 7.59998
+offset_right = 16.3999
+offset_bottom = 8.19995
+theme = ExtResource("1_1vm0e")
+theme_override_font_sizes/normal_font_size = 36
+text = "Your most channelled emotion was: NAME"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PuyoStats" type="RichTextLabel" parent="DeathScreen"]
+anchors_preset = -1
+anchor_left = 0.007
+anchor_top = 0.578
+anchor_right = 0.993
+anchor_bottom = 0.702
+offset_left = -8.4
+offset_top = 7.79999
+offset_right = 8.3999
+offset_bottom = 8.19995
+theme = ExtResource("1_1vm0e")
+theme_override_font_sizes/normal_font_size = 36
+text = "Your highest chain was: CHAIN, and you crushed a total of X Humours."
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ReturnButton" type="Button" parent="DeathScreen"]
+anchors_preset = -1
+anchor_left = 0.32
+anchor_top = 0.756
+anchor_right = 0.673
+anchor_bottom = 0.871
+offset_left = 7.99997
+offset_top = -0.400024
+offset_right = 0.399963
+offset_bottom = 8.09998
+grow_horizontal = 2
+grow_vertical = 0
+text = "return to menu"
+
+[connection signal="pressed" from="DeathScreen/ReturnButton" to="." method="_on_return_button_pressed"]
