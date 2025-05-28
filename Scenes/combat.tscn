@@ -273,6 +273,7 @@ libraries = {
 [connection signal="on_update_encounter" from="EncounterManager" to="." method="process_encounter_updated"]
 [connection signal="deal_fuck_damage" from="PuyoTestUI" to="." method="damage_all_enemies"]
 [connection signal="start_game" from="PuyoTestUI" to="." method="start_combat"]
+[connection signal="trigger_heart_effect" from="LifeCounter" to="CombatEffectsManager" method="_create_heart_explosion"]
 [connection signal="all_clear_for_next_encounter" from="SpellManager" to="." method="start_combat"]
 [connection signal="all_clear_for_next_encounter" from="RelicManager" to="." method="start_combat"]
 [connection signal="clear_board" from="RewardManager/RewardScreen" to="PuyoManager" method="destroy_leftover_puyos"]

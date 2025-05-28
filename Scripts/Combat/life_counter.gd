@@ -6,6 +6,8 @@ extends Node2D
 var current_lives = 3
 @export var max_lives : int = 3
 
+signal trigger_heart_effect(position : Vector2)
+
 func _ready() -> void:
 	for i in range(0, 3):
 		lives_animation_players[i].play(lives_animation_names[i])
@@ -19,6 +21,7 @@ func set_lives_to(lives : int):
 func lose_a_life():
 	if current_lives > 0:
 		current_lives -= 1
+		trigger_heart_effect.emit(lives_array[current_lives].global_position)
 	if current_lives < 3:
 		lives_array[current_lives].frame = 1
 		lives_animation_players[current_lives].stop()

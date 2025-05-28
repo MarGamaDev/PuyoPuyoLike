@@ -5,6 +5,7 @@ signal damage_effect_hit
 
 var damage_text_scene: PackedScene = preload("res://Scenes/effects/text_particle_effect.tscn")
 var attack_effect_scene : PackedScene = preload("res://Scenes/effects/attack_particle_effect.tscn")
+var heart_explosion_scene : PackedScene = preload("res://Scenes/effects/heart_explosion_effect.tscn")
 
 @onready var player_location : Vector2 = $Markers/PlayerLocation.position
 @onready var shield_location_marker :Vector2 = $Markers/PlayerShieldLocation.global_position
@@ -104,3 +105,9 @@ func _on_player_trigger_countered_effect(enemy: Enemy) -> void:
 func _on_combat_started() -> void:
 	$PuyoAttackEffectLayer/combat_start_effect.start_effect()
 	pass # Replace with function body.
+
+func _create_heart_explosion(position : Vector2) -> void:
+	var heart_effect = heart_explosion_scene.instantiate()
+	$PuyoAttackEffectLayer.add_child(heart_effect)
+	heart_effect.global_position = position
+	heart_effect.start()
