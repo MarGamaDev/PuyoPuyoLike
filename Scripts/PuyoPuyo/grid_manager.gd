@@ -17,7 +17,7 @@ signal junk_popped(amount : int)
 #loading the grid nodes to instantiate them
 @onready var grid_node_scene = load("res://Scenes/PuyoPuyo/grid_node.tscn")
 @onready var puyo_scene = load("res://Scenes/PuyoPuyo/puyo.tscn")
-@onready var puyo_pop_effect = load("res://Scenes/effects/puyo_pop.tscn")
+@onready var puyo_pop_effect = load("res://Scenes/effects/heart_explosion_effect.tscn")
 
 @onready var sfx_player = $SFXPlayer
 
@@ -356,6 +356,8 @@ func pop_puyos(puyo_groups:Array = puyos_to_pop):
 			pass
 		for pop_node : GridNode in group:
 			var new_pop_effect = puyo_pop_effect.instantiate()
+			if pop_node.puyo != null:
+				new_pop_effect.start(pop_node.puyo.puyo_type)
 			add_child(new_pop_effect)
 			if new_pop_effect != null:
 				new_pop_effect.global_position.x = pop_node.puyo.global_position.x + (square_size / 2)
