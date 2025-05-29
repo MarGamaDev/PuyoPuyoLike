@@ -1395,6 +1395,12 @@ texture = ExtResource("10_5egv6")
 expand_mode = 1
 stretch_mode = 5
 
+[node name="warning" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 20.0
+text = "PLAYTEST VERSION - ASSETS MISSING AND NOT FINAL"
+
 [connection signal="pressed" from="MenuPage/Buttons/StartButton" to="." method="open_tutorial"]
 [connection signal="pressed" from="MenuPage/Buttons/OptionsButton" to="." method="_on_options_button_pressed"]
 [connection signal="pressed" from="MenuPage/Buttons/CreditsButton" to="." method="_on_credits_button_pressed"]

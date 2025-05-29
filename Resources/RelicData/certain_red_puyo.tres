@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="RelicData" load_steps=3 format=3 uid="uid://c15y2mgljgetv"]
 
 [ext_resource type="Script" uid="uid://dfyomjxsahuhw" path="res://Scripts/Relics/System/relic_data.gd" id="1_pp2mx"]
-[ext_resource type="Texture2D" uid="uid://bugmlybu50rhd" path="res://Placeholder Art/puyo_red.png" id="2_84e8a"]
+[ext_resource type="Texture2D" uid="uid://mvwbn6k8vi5" path="res://Art/spell elements/puyo-redIcon_new.png" id="2_84e8a"]
 
 [resource]
 script = ExtResource("1_pp2mx")

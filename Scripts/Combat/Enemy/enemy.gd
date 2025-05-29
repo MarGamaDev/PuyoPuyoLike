@@ -34,6 +34,9 @@ var death_flag = false
 
 var health_suffix = " / 100"
 
+var enemy_scale : Vector2
+var enemy_position : Vector2
+
 func _ready() -> void:
 	instance_data = enemy_data.duplicate(true);
 	instance_data.health += DifficultyManager.get_health_addition()
@@ -104,7 +107,7 @@ func die() -> void:
 	queue_free()
 
 func reset_attack_timer() -> void:
-	attack_countdown = 0
+	attack_countdown = randi_range(-1, 1)
 	$Intent.set_indicator(current_attack, current_attack.number_of_turns_till_swing - attack_countdown)
 
 func set_as_selected(is_selected: bool) -> void:
@@ -137,3 +140,8 @@ func starting_delay():
 	add_to_timer(starting_delay_amount)
 	$Intent.set_indicator(current_attack, current_attack.number_of_turns_till_swing - attack_countdown)
 	pass
+
+
+func reset_scale_and_position(unused : StringName):
+	$Sprite.scale = Vector2.ONE * instance_data.scale
+	

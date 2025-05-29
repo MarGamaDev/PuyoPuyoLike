@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="RelicData" load_steps=3 format=3 uid="uid://dnqce7ev0rrwl"]
 
 [ext_resource type="Script" uid="uid://dfyomjxsahuhw" path="res://Scripts/Relics/System/relic_data.gd" id="1_xikru"]
-[ext_resource type="Texture2D" uid="uid://bugmlybu50rhd" path="res://Placeholder Art/puyo_red.png" id="2_7lvqf"]
+[ext_resource type="Texture2D" uid="uid://ytf3c74p3bjc" path="res://Art/spell elements/puyo-greenIcon.png" id="2_xikru"]
 
 [resource]
 script = ExtResource("1_xikru")
-sprite = ExtResource("2_7lvqf")
+sprite = ExtResource("2_xikru")
 name = "A Sense of Courage"
 description = "Every third pair of humours will always contain Phlegm."
 flavor_text = "This, at least, you can be sure of."

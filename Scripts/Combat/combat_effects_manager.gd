@@ -22,10 +22,11 @@ func create_damage_number_effect(text: Variant, effect_position: Vector2):
 	new_text_effect.create(text)
 
 func create_chain_text_effect(chain : int):
-	var new_effect = chain_text_scene.instantiate()
-	$PuyoAttackEffectLayer.add_child(new_effect)
-	new_effect.global_position = $Markers/ChainMarker.global_position
-	new_effect.create(chain)
+	if chain > 1:
+		var new_effect = chain_text_scene.instantiate()
+		$PuyoAttackEffectLayer.add_child(new_effect)
+		new_effect.global_position = $Markers/ChainMarker.global_position
+		new_effect.create(chain)
 	pass
 
 func create_player_attack_effect(puyos : Array, chain : int):
