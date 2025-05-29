@@ -8,4 +8,6 @@ script = ExtResource("1_eksgd")
 health = 30
 sprite = ExtResource("2_pslhq")
 boss = false
+color_filter = Color(1, 1, 1, 1)
+scale = 0.5
 metadata/_custom_type_script = "uid://c27m7mkd1up2"
