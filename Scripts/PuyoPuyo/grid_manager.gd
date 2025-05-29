@@ -353,7 +353,16 @@ func pop_puyos(puyo_groups:Array = puyos_to_pop):
 		if group.is_empty():
 			continue
 		else:
-			##PLAY A POP SFX HERE
+			print("sfx here")
+			match(randi_range(0, 3)):
+				0:
+					sfx_player.play_sound_effect_from_library("pop_1")
+				1:
+					sfx_player.play_sound_effect_from_library("pop_2")
+				2:
+					sfx_player.play_sound_effect_from_library("pop_3")
+				3:
+					sfx_player.play_sound_effect_from_library("pop_4")
 			pass
 		for pop_node : GridNode in group:
 			var new_pop_effect = puyo_pop_effect.instantiate()
@@ -480,7 +489,7 @@ func player_down_tick():
 	else:# if player shouldn't be able to move, turn it into part of the grid
 		player_input_flag = false
 		$PlayerDownTimer.stop()
-		sfx_player.play_sound_effect_from_library("test_thud")
+		sfx_player.play_sound_effect_from_library("player_drop")
 		for i in range(0,2):
 			var new_puyo_base = player_puyos[i]
 			var new_puyo_position = Vector2(player_grid_positions[i])
@@ -666,6 +675,7 @@ func replace_junk_specific(junk_positions : Array[Vector2i]):
 			node_to_fill.add_child(junk_puyo)
 			node_to_fill.set_puyo(junk_puyo)
 		node_to_fill.set_type(Puyo.PUYO_TYPE.JUNK)
+		node_to_fill.puyo.become_junk()
 
 func junk_slam(junk_amount : int):
 	junk_created.emit()
@@ -709,9 +719,11 @@ func replace_color(color_to_replace, to_replace_with):
 			var node_to_check : GridNode = grid[j][i]
 			if node_to_check.is_holding_puyo and node_to_check.puyo.puyo_type == color_to_replace:
 				node_to_check.puyo.set_type(to_replace_with)
+				if to_replace_with == Puyo.PUYO_TYPE.JUNK:
+					node_to_check.puyo.become_junk()
 
 func play_puyo_thud():
-	sfx_player.play_sound_effect_from_library("test_thud")
+	sfx_player.play_sound_effect_from_library("player_drop")
 
 func delete_player():
 	player_input_flag = false

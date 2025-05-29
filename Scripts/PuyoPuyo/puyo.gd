@@ -113,3 +113,12 @@ func pop():
 
 func play_blink():
 	$BlinkAnimation.play("Blink")
+
+func become_junk():
+	$Pivot/AnimatedSprite2D.hide()
+	$Pivot/junk_look.show()
+	$TurntoJunk.play("become_junk")
+	print("test junk become")
+	await get_tree().create_timer(0.2).timeout
+	$Pivot/junk_look.hide()
+	$Pivot/AnimatedSprite2D.show()

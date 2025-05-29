@@ -220,10 +220,12 @@ visible = false
 script = ExtResource("19_5kjvk")
 
 [node name="MusicPlayer" parent="SoundManager" instance=ExtResource("19_ley77")]
+volume_db = -5.0
 audio_library = ExtResource("20_tmuf1")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="SoundManager"]
 stream = ExtResource("26_2n3pb")
+volume_db = -5.0
 
 [node name="PauseManager" parent="." node_paths=PackedStringArray("spell_manager") instance=ExtResource("21_5kjvk")]
 spell_manager = NodePath("../SpellManager")

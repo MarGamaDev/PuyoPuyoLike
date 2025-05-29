@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cqw1jv0baovrt"]
+[gd_scene load_steps=18 format=3 uid="uid://cqw1jv0baovrt"]
 
 [ext_resource type="Script" uid="uid://dub4mt75gbejk" path="res://Scripts/PuyoPuyo/puyo.gd" id="1_jkgo8"]
 [ext_resource type="Texture2D" uid="uid://hvooavpam6hd" path="res://Placeholder Art/puyo_out_of_bounds.png" id="2_2smv1"]
@@ -133,6 +133,67 @@ _data = {
 &"RESET": SubResource("Animation_3dqut")
 }
 
+[sub_resource type="Animation" id="Animation_k14li"]
+resource_name = "become_junk"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/junk_look:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.18, 0.18), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot/junk_look:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(25, 25), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_1ygd3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/junk_look:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.18, 0.18)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot/junk_look:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(25, 25)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_j2236"]
+_data = {
+&"RESET": SubResource("Animation_1ygd3"),
+&"become_junk": SubResource("Animation_k14li")
+}
+
 [node name="Puyo" type="Node2D"]
 script = ExtResource("1_jkgo8")
 
@@ -140,6 +201,13 @@ script = ExtResource("1_jkgo8")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Pivot"]
 sprite_frames = SubResource("SpriteFrames_x7fry")
+centered = false
+
+[node name="junk_look" type="Sprite2D" parent="Pivot"]
+visible = false
+position = Vector2(25, 25)
+scale = Vector2(0.18, 0.18)
+texture = ExtResource("3_k3jis")
 centered = false
 
 [node name="DropAnimation" type="AnimationPlayer" parent="."]
@@ -150,4 +218,9 @@ libraries = {
 [node name="BlinkAnimation" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_k14li")
+}
+
+[node name="TurntoJunk" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_j2236")
 }

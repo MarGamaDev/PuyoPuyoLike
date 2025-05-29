@@ -1,16 +1,44 @@
-[gd_resource type="Resource" script_class="AudioLibrary" load_steps=5 format=3 uid="uid://dq6q2or2pmb84"]
+[gd_resource type="Resource" script_class="AudioLibrary" load_steps=13 format=3 uid="uid://dq6q2or2pmb84"]
 
 [ext_resource type="Script" uid="uid://80p7cue2s0ca" path="res://Scripts/audio/audio_library.gd" id="1_5nucq"]
 [ext_resource type="Script" uid="uid://ccmkst5npwi3n" path="res://Scripts/audio/sound_effect.gd" id="2_1gmuk"]
-[ext_resource type="AudioStream" uid="uid://dtfg7tw4n02cc" path="res://Placeholder Art/Clink.1.wav" id="3_g0jph"]
+[ext_resource type="AudioStream" uid="uid://dq2fpel8tfo2o" path="res://Placeholder Art/Thud.1.wav" id="3_skuxp"]
+[ext_resource type="AudioStream" uid="uid://b5dfqtpkulh5h" path="res://Audio/PoppingSFX/Squelch.1.wav" id="4_skuxp"]
+[ext_resource type="AudioStream" uid="uid://cywp2cywf3f7c" path="res://Audio/PoppingSFX/Sqielch.2.wav" id="5_gy1ca"]
+[ext_resource type="AudioStream" uid="uid://ccjhjnywssoly" path="res://Audio/PoppingSFX/Squelch.3.wav" id="6_kdqvy"]
+[ext_resource type="AudioStream" uid="uid://d3bdjw5gjerej" path="res://Audio/PoppingSFX/Squelch.4.wav" id="7_xlxxw"]
 
 [sub_resource type="Resource" id="Resource_wfwa5"]
 script = ExtResource("2_1gmuk")
 tag = "player_drop"
-stream = ExtResource("3_g0jph")
+stream = ExtResource("3_skuxp")
+metadata/_custom_type_script = "uid://ccmkst5npwi3n"
+
+[sub_resource type="Resource" id="Resource_f3n3i"]
+script = ExtResource("2_1gmuk")
+tag = "pop_1"
+stream = ExtResource("4_skuxp")
+metadata/_custom_type_script = "uid://ccmkst5npwi3n"
+
+[sub_resource type="Resource" id="Resource_pvdm0"]
+script = ExtResource("2_1gmuk")
+tag = "pop_2"
+stream = ExtResource("5_gy1ca")
+metadata/_custom_type_script = "uid://ccmkst5npwi3n"
+
+[sub_resource type="Resource" id="Resource_htm8q"]
+script = ExtResource("2_1gmuk")
+tag = "pop_3"
+stream = ExtResource("6_kdqvy")
+metadata/_custom_type_script = "uid://ccmkst5npwi3n"
+
+[sub_resource type="Resource" id="Resource_1ssxi"]
+script = ExtResource("2_1gmuk")
+tag = "pop_4"
+stream = ExtResource("7_xlxxw")
 metadata/_custom_type_script = "uid://ccmkst5npwi3n"
 
 [resource]
 script = ExtResource("1_5nucq")
-sound_effects = Array[ExtResource("2_1gmuk")]([SubResource("Resource_wfwa5")])
+sound_effects = Array[ExtResource("2_1gmuk")]([SubResource("Resource_wfwa5"), SubResource("Resource_f3n3i"), SubResource("Resource_pvdm0"), SubResource("Resource_htm8q"), SubResource("Resource_1ssxi")])
 metadata/_custom_type_script = "uid://80p7cue2s0ca"
