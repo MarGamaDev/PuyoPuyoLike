@@ -353,16 +353,6 @@ func pop_puyos(puyo_groups:Array = puyos_to_pop):
 		if group.is_empty():
 			continue
 		else:
-			print("sfx here")
-			match(randi_range(0, 3)):
-				0:
-					sfx_player.play_sound_effect_from_library("pop_1")
-				1:
-					sfx_player.play_sound_effect_from_library("pop_2")
-				2:
-					sfx_player.play_sound_effect_from_library("pop_3")
-				3:
-					sfx_player.play_sound_effect_from_library("pop_4")
 			pass
 		for pop_node : GridNode in group:
 			var new_pop_effect = puyo_pop_effect.instantiate()
