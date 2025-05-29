@@ -8,6 +8,6 @@ spell_name = "Vindication"
 spell_description = "deal damage equal to the amount of shield and chained gained by the end of the chain."
 flavor_text = "Let them feel your pain."
 recipe_type = 0
-recipe_contents = Array[int]([2, 5, 2])
+recipe_contents = Array[int]([2, 5, 4])
 spell_path = "res://Scenes/spells/vindication_spell.tscn"
 metadata/_custom_type_script = "uid://dnec0n0x4urar"

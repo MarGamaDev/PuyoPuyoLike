@@ -1208,7 +1208,7 @@ theme_override_font_sizes/normal_font_size = 40
 bbcode_enabled = true
 text = "Become more powerful by [color=lightblue]Chanelling Emotions[/color] and [color=yellow]Feeling Sensations[/color].
 [color=yellow]Sensations[/color] have varied abilities that are triggered by a wide range of conditions.
-[color=lightblue]Emotions[/color] have impactful effects, but need to be [color=lightblue]channeled[/color] by crushing certain humour types in the same chain.
+[color=lightblue]Emotions[/color] have impactful effects, but need to be [color=lightblue]channeled[/color] by crushing certain humour types in the same chain. You can only hold 3 at once.
 Demanding emotions have to be done in a specific order, thought not necissarily one after another.
 Forgiving emotions can be activated in any order."
 scroll_active = false
