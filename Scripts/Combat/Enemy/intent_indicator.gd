@@ -16,10 +16,13 @@ var intent_sprite_dictionary = {
 }
 
 func set_indicator(attack: EnemyAttack, attack_timer: int) -> void:
-	if attack.number_of_swings > 1:
-		$Container/Damage.text = str(attack.damage + DifficultyManager.get_attack_addition()) + " X " + str(attack.number_of_swings)
+	if attack.attack_type == EnemyAttack.EnemyAttackType.REPLACE_RED or attack.attack_type == EnemyAttack.EnemyAttackType.REPLACE_GREEN or attack.attack_type == EnemyAttack.EnemyAttackType.REPLACE_YELLOW or attack.attack_type == EnemyAttack.EnemyAttackType.REPLACE_BLUE:
+		$Container/Damage.text = "Swap"
 	else:
-		$Container/Damage.text = str(attack.damage + DifficultyManager.get_attack_addition())
+		if attack.number_of_swings > 1:
+			$Container/Damage.text = str(attack.damage + DifficultyManager.get_attack_addition()) + " X " + str(attack.number_of_swings)
+		else:
+			$Container/Damage.text = str(attack.damage + DifficultyManager.get_attack_addition())
 	
 	$Container/TypeIndicator.texture = load(intent_sprite_dictionary[attack.attack_type])
 	print($Container/TypeIndicator)

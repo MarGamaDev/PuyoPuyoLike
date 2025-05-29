@@ -36,15 +36,19 @@ func _ready():
 func receive_attack(attack: EnemyAttack, enemy: Enemy) -> void:
 	on_player_attacked.emit()
 	var damage_taken = 0
-	for i in range(attack.number_of_swings):
-		damage_taken += handle_damage(attack.damage + DifficultyManager.get_attack_addition(), enemy)
-	#add shield = 0 if we want to have the shield reset between attacks
-	#if damage_taken > 0: #resets counter if damage is taken
-		#counter = 0
-		#if we want counter to reset between attacks no matter what, just remove condition
-	if damage_taken > 0 and enemy != null:
+	if attack.attack_type == EnemyAttack.EnemyAttackType.REPLACE_RED or attack.attack_type == EnemyAttack.EnemyAttackType.REPLACE_GREEN or attack.attack_type == EnemyAttack.EnemyAttackType.REPLACE_YELLOW or attack.attack_type == EnemyAttack.EnemyAttackType.REPLACE_BLUE:
 		combat_effects_manager.create_attack_effect(enemy.global_position, combat_effects_manager.junk_indicator_marker, AttackEffectData.EFFECT_TYPE.JUNK)
-	on_player_damage_taken.emit(damage_taken, attack.attack_type)
+		on_player_damage_taken.emit(damage_taken, attack.attack_type)
+	else:
+		for i in range(attack.number_of_swings):
+			damage_taken += handle_damage(attack.damage + DifficultyManager.get_attack_addition(), enemy)
+		#add shield = 0 if we want to have the shield reset between attacks
+		#if damage_taken > 0: #resets counter if damage is taken
+			#counter = 0
+			#if we want counter to reset between attacks no matter what, just remove condition
+		if damage_taken > 0 and enemy != null:
+			combat_effects_manager.create_attack_effect(enemy.global_position, combat_effects_manager.junk_indicator_marker, AttackEffectData.EFFECT_TYPE.JUNK)
+		on_player_damage_taken.emit(damage_taken, attack.attack_type)
 
 func add_counter(counter_gained: int) -> void:
 	on_counter_gain.emit(counter_gained)
