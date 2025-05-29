@@ -14,6 +14,8 @@ script = ExtResource("3_jerxu")
 health = 60
 sprite = ExtResource("4_2jjjh")
 boss = false
+color_filter = Color(1, 1, 1, 1)
+scale = 1.0
 metadata/_custom_type_script = "uid://c27m7mkd1up2"
 
 [sub_resource type="Resource" id="Resource_h73qp"]
@@ -37,6 +39,8 @@ script = ExtResource("3_jerxu")
 health = 25
 sprite = ExtResource("4_2jjjh")
 boss = false
+color_filter = Color(1, 1, 1, 1)
+scale = 1.0
 metadata/_custom_type_script = "uid://c27m7mkd1up2"
 
 [sub_resource type="Resource" id="Resource_jerxu"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://d3naap4gnytxh"]
+[gd_scene load_steps=32 format=3 uid="uid://d3naap4gnytxh"]
 
 [ext_resource type="Script" uid="uid://b0h0tx4msve02" path="res://Scripts/Combat/combat_manager.gd" id="1_4ln8h"]
 [ext_resource type="Resource" uid="uid://b01ucdggd8ykf" path="res://Resources/puyo_value_data.tres" id="2_xisnc"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://1hbj1uv66mu2" path="res://Scenes/DevTools/puyo_test_ui.tscn" id="5_yt1oa"]
 [ext_resource type="Texture2D" uid="uid://14ejxpdanarl" path="res://Art/combat screen elements/combat_frame.png" id="7_3w34b"]
 [ext_resource type="Script" uid="uid://b4hbt6qjcu26g" path="res://Scripts/Combat/encounter_manager.gd" id="8_twsak"]
+[ext_resource type="PackedScene" uid="uid://dxg6gjt3dql3m" path="res://Scenes/Combat/Encounters/NormalEncounters/MediumEncounters/fodder_army_encounter.tscn" id="10_r5ubg"]
 [ext_resource type="PackedScene" uid="uid://b3qfdcqaqmgk4" path="res://Scenes/Combat/combat_effects_manager.tscn" id="11_w6tjk"]
 [ext_resource type="PackedScene" uid="uid://b2l1xn5ovaca4" path="res://Scenes/RewardScreen/reward_screen.tscn" id="11_xisnc"]
 [ext_resource type="PackedScene" uid="uid://chmradttgb2ep" path="res://Scenes/Combat/life_counter.tscn" id="13_y8jr2"]
@@ -173,9 +174,10 @@ scale = Vector2(1.09, 1.09)
 [node name="Player" parent="." instance=ExtResource("5_ut0kg")]
 
 [node name="EncounterManager" type="Node2D" parent="." node_paths=PackedStringArray("encounter_label")]
-position = Vector2(823, 250)
+position = Vector2(835, 250)
 script = ExtResource("8_twsak")
 encounter_label = NodePath("../Frame/EncounterLabel")
+test_encounter = ExtResource("10_r5ubg")
 
 [node name="CombatEffectsManager" parent="." instance=ExtResource("11_w6tjk")]
 
