@@ -4,51 +4,96 @@ class_name EncounterManager
 signal on_update_encounter(encounter: Encounter)
 signal on_rest_stop()
 
-var boss_folder_path = "res://Scenes/Combat/Encounters/BossEncounters/"
-var normal_encounter_folder_path = "res://Scenes/Combat/Encounters/NormalEncounters/"
+var boss_folder_paths : Array[String] = ["res://Scenes/Combat/Encounters/BossEncounters/EasyBossEncounters/", "res://Scenes/Combat/Encounters/BossEncounters/MediumBossEncounters/", "res://Scenes/Combat/Encounters/BossEncounters/HardBossEncounters/"]
+var normal_encounter_folder_paths : Array[String] = ["res://Scenes/Combat/Encounters/NormalEncounters/EasyEncounters/", "res://Scenes/Combat/Encounters/NormalEncounters/MediumEncounters/", "res://Scenes/Combat/Encounters/NormalEncounters/HardEncounters/"]
 
 @export var encounter_label : Label
-@export var encounter_array : PackedStringArray
+var easy_encounters : PackedStringArray
+var medium_encounters: PackedStringArray
+var hard_encounters: PackedStringArray
+var easy_bosses : PackedStringArray
+var medium_bosses : PackedStringArray
+var hard_bosses : PackedStringArray
 var boss_encounter_array : PackedStringArray
+var bosses : Array[Array]
+var encounters : Array[Array]
 var current_encounter : Encounter
 @export var encounters_between_rest_stops : int = 3
-var rest_stop_counter : int
+var rest_stop_check : int
+
+var rest_stop_count : int = 0
+@export var rest_stops_where_difficulty_changes: Array[int] = [2,5]
+var current_difficulty : int = 0
+
+var first_encounter_flag = true
 
 func _ready():
-	rest_stop_counter = encounters_between_rest_stops
-	preload_encounters()
+	rest_stop_check = encounters_between_rest_stops
+	preload_encounter_lists()
 
-func preload_encounters():
-	encounter_array = ResourceLoader.list_directory(normal_encounter_folder_path)
-	boss_encounter_array = ResourceLoader.list_directory(boss_folder_path)
+func preload_encounter_lists():
+	easy_encounters = ResourceLoader.list_directory(normal_encounter_folder_paths[0])
+	medium_encounters = ResourceLoader.list_directory(normal_encounter_folder_paths[1])
+	hard_encounters = ResourceLoader.list_directory(normal_encounter_folder_paths[2])
+	easy_bosses = ResourceLoader.list_directory(boss_folder_paths[0])
+	medium_bosses = ResourceLoader.list_directory(boss_folder_paths[1])
+	hard_bosses = ResourceLoader.list_directory(boss_folder_paths[2])
+	encounters = [easy_encounters, medium_encounters, hard_encounters]
+	bosses = [easy_bosses, medium_bosses, hard_bosses]
 	pass
 
 func load_next_encounter(boss_flag := false):
 	encounter_label.show()
 	if current_encounter != null:
 		current_encounter.queue_free()
-	var next_encounter
-	if boss_flag:
-		next_encounter = load(boss_folder_path + boss_encounter_array[randi_range(0, boss_encounter_array.size() - 1)])
+	var next_encounter 
+	if first_encounter_flag:
+		next_encounter = load("res://Scenes/Combat/Encounters/NormalEncounters/EasyEncounters/basic_single_grunt_encounter.tscn")
+		first_encounter_flag = false
 	else:
-		next_encounter = load(normal_encounter_folder_path + encounter_array[randi_range(0, encounter_array.size() - 1)])
+		next_encounter = load(get_encounter(boss_flag))
 	current_encounter = next_encounter.instantiate()
 	add_child(current_encounter)
 	await current_encounter.on_encounter_initialized
 	on_update_encounter.emit(current_encounter)
 
 func check_for_rest_stop():
-	rest_stop_counter -= 1
-	if rest_stop_counter == 0:
-		rest_stop_counter = encounters_between_rest_stops
+	rest_stop_check -= 1
+	if rest_stop_check == 0:
+		rest_stop_check = encounters_between_rest_stops
 		on_rest_stop.emit()
+		rest_stop_count += 1
 		encounter_label.hide()
 		encounter_label.text = "Next up: grunts"
-	elif rest_stop_counter == 1:
+	elif rest_stop_check == 1:
 		print("boss time!")
 		encounter_label.text == "Next up: reward"
 		load_next_encounter(true)
 	else:
 		load_next_encounter()
-	if rest_stop_counter == 2:
+	if rest_stop_check == 2:
 		encounter_label.text = "Next up: Boss!"
+
+func get_encounter(boss_flag := false):
+	if current_difficulty < rest_stops_where_difficulty_changes.size():
+		if rest_stop_count >= rest_stops_where_difficulty_changes[current_difficulty]:
+			current_difficulty += 1
+			print("difficulty up")
+	var difficulty_chooser = 0
+	match current_difficulty:
+		0:
+			difficulty_chooser = 0
+		1:
+			if randi_range(0, 1) == 0:
+				difficulty_chooser = 0
+			else:
+				difficulty_chooser = 1
+		2:
+			if randi_range(0, 1) == 0:
+				difficulty_chooser = 1
+			else:
+				difficulty_chooser = 2
+	if boss_flag:
+		return (boss_folder_paths[difficulty_chooser] + bosses[difficulty_chooser][randi_range(0, bosses[difficulty_chooser].size() - 1)])
+	else:
+		return (normal_encounter_folder_paths[difficulty_chooser] + encounters[difficulty_chooser][randi_range(0, encounters[difficulty_chooser].size() - 1)])

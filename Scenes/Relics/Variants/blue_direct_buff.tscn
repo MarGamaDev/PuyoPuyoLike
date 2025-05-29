@@ -5,4 +5,5 @@
 
 [node name="BlueDirectBuff" type="Node2D"]
 script = ExtResource("1_3ww2k")
+shield_increase_amount = 2
 relic_data = ExtResource("2_jhaif")
