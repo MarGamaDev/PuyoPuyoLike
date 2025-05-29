@@ -120,6 +120,7 @@ _data = {
 [node name="GridManager" type="Node2D"]
 script = ExtResource("1_uowjv")
 down_tick_speed = 0.4
+player_down_speed = 1.2
 
 [node name="PlayerDownTimer" type="Timer" parent="."]
 

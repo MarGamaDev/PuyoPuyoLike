@@ -43,7 +43,7 @@ func preload_encounter_lists():
 	pass
 
 func load_next_encounter(boss_flag := false):
-	encounter_label.show()
+	#encounter_label.show()
 	if current_encounter != null:
 		current_encounter.queue_free()
 	var next_encounter 
@@ -62,6 +62,7 @@ func check_for_rest_stop():
 	if rest_stop_check == 0:
 		rest_stop_check = encounters_between_rest_stops
 		on_rest_stop.emit()
+		DifficultyManager.increase_scaling_multiplier()
 		rest_stop_count += 1
 		encounter_label.hide()
 		encounter_label.text = "Next up: grunts"
@@ -69,8 +70,10 @@ func check_for_rest_stop():
 		print("boss time!")
 		encounter_label.text == "Next up: reward"
 		load_next_encounter(true)
+		DifficultyManager.increase_scaling_flat()
 	else:
 		load_next_encounter()
+		DifficultyManager.increase_scaling_flat()
 	if rest_stop_check == 2:
 		encounter_label.text = "Next up: Boss!"
 

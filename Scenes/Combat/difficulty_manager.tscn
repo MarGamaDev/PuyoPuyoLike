@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://dd30t5pnjp2pr"]
+
+[node name="DifficultyManager" type="Node2D"]

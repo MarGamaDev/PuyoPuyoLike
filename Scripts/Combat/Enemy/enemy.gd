@@ -35,8 +35,8 @@ var death_flag = false
 var health_suffix = " / 100"
 
 func _ready() -> void:
-	
 	instance_data = enemy_data.duplicate(true);
+	instance_data.health += DifficultyManager.get_health_addition()
 	$Sprite.texture = instance_data.sprite
 	$Healthbar.max_value = instance_data.health
 	$Healthbar.value = instance_data.health

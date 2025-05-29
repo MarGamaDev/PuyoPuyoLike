@@ -37,7 +37,7 @@ func receive_attack(attack: EnemyAttack, enemy: Enemy) -> void:
 	on_player_attacked.emit()
 	var damage_taken = 0
 	for i in range(attack.number_of_swings):
-		damage_taken += handle_damage(attack.damage, enemy)
+		damage_taken += handle_damage(attack.damage + DifficultyManager.get_attack_addition(), enemy)
 	#add shield = 0 if we want to have the shield reset between attacks
 	#if damage_taken > 0: #resets counter if damage is taken
 		#counter = 0

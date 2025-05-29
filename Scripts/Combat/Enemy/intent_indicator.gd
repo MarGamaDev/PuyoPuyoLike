@@ -17,9 +17,9 @@ var intent_sprite_dictionary = {
 
 func set_indicator(attack: EnemyAttack, attack_timer: int) -> void:
 	if attack.number_of_swings > 1:
-		$Container/Damage.text = str(attack.damage) + " X " + str(attack.number_of_swings)
+		$Container/Damage.text = str(attack.damage + DifficultyManager.get_attack_addition()) + " X " + str(attack.number_of_swings)
 	else:
-		$Container/Damage.text = str(attack.damage)
+		$Container/Damage.text = str(attack.damage + DifficultyManager.get_attack_addition())
 	
 	$Container/TypeIndicator.texture = load(intent_sprite_dictionary[attack.attack_type])
 	

@@ -10,6 +10,7 @@ script = ExtResource("1_sea3v")
 [node name="GridManager" parent="." instance=ExtResource("2_ajnr3")]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.592157)
 position = Vector2(124, 26)
 scale = Vector2(0.76, 0.72)
 texture = ExtResource("3_4g3bt")
