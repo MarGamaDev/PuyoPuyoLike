@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dmgg4t44h3bhs" path="res://Art/combat screen elements/puyo-clock.png" id="4_3p7sj"]
 
 [node name="Intent" type="Node2D"]
+scale = Vector2(1.4, 1.4)
 script = ExtResource("1_ms868")
 
 [node name="Container" type="HBoxContainer" parent="."]
