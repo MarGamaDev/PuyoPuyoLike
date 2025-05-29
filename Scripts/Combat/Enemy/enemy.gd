@@ -22,6 +22,7 @@ signal on_attacking_player(enemy_attack: EnemyAttack, enemy: Enemy)
 signal on_death()
 signal on_take_damage()
 signal on_taking_turn()
+signal trigger_death_effect(position : Vector2)
 
 @onready var combat_manager: Node
 @onready var combat_effects_manager: CombatEffectsManager
@@ -52,6 +53,7 @@ func _ready() -> void:
 	
 	combat_effects_manager = get_node("/root/Combat/CombatEffectsManager")
 	combat_effects_manager.damage_effect_hit.connect(update_damage_visually)
+	trigger_death_effect.connect(combat_effects_manager._create_heart_explosion)
 	
 	current_attack = attacks[0]
 	starting_delay()
@@ -95,7 +97,7 @@ func die() -> void:
 	death_flag = true
 	await wait_for_animation
 	on_death.emit()
-	# add in animation
+	trigger_death_effect.emit(self.global_position)
 	combat_manager.deregister_enemy(self)
 	queue_free()
 
