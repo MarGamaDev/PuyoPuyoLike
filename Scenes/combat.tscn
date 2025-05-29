@@ -191,6 +191,12 @@ position = Vector2(926, 414)
 [node name="JunkIndicatorLocation" parent="CombatEffectsManager/Markers" index="4"]
 position = Vector2(276, 64)
 
+[node name="ChainMarker" parent="CombatEffectsManager/Markers" index="5"]
+position = Vector2(285, 514)
+
+[node name="PuyoAttackEffectLayer" parent="CombatEffectsManager" index="1"]
+layer = 14
+
 [node name="PuyoTestUI" parent="." node_paths=PackedStringArray("puyo_manager") instance=ExtResource("5_yt1oa")]
 layer = 2
 visible = false

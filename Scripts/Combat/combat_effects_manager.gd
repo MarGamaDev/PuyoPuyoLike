@@ -6,6 +6,7 @@ signal damage_effect_hit
 var damage_text_scene: PackedScene = preload("res://Scenes/effects/text_particle_effect.tscn")
 var attack_effect_scene : PackedScene = preload("res://Scenes/effects/attack_particle_effect.tscn")
 var heart_explosion_scene : PackedScene = preload("res://Scenes/effects/heart_explosion_effect.tscn")
+var chain_text_scene: PackedScene = preload("res://Scenes/effects/chain_text_particle_effect.tscn")
 
 @onready var player_location : Vector2 = $Markers/PlayerLocation.position
 @onready var shield_location_marker :Vector2 = $Markers/PlayerShieldLocation.global_position
@@ -20,7 +21,15 @@ func create_damage_number_effect(text: Variant, effect_position: Vector2):
 	add_child(new_text_effect)
 	new_text_effect.create(text)
 
+func create_chain_text_effect(chain : int):
+	var new_effect = chain_text_scene.instantiate()
+	$PuyoAttackEffectLayer.add_child(new_effect)
+	new_effect.global_position = $Markers/ChainMarker.global_position
+	new_effect.create(chain)
+	pass
+
 func create_player_attack_effect(puyos : Array, chain : int):
+	create_chain_text_effect(chain)
 	var puyo_type : Puyo.PUYO_TYPE = puyos[2].puyo.puyo_type
 	var puyo_position : Vector2 = puyos[0].puyo.global_position
 	var attack_type : AttackEffectData.EFFECT_TYPE

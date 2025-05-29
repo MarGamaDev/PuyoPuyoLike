@@ -1,0 +1,70 @@
+[gd_scene load_steps=7 format=3 uid="uid://572sn61pjx0o"]
+
+[ext_resource type="Script" uid="uid://bedv6202r8agk" path="res://Scripts/effects/chain_text_particle_effect.gd" id="1_h5q0l"]
+[ext_resource type="Theme" uid="uid://qw5wdr2jerv7" path="res://Art/text/default_font.tres" id="2_a6p8c"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_l5ohu"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="Curve" id="Curve_h2s5v"]
+_data = [Vector2(0, 1), 0.0, 0.24549, 0, 0, Vector2(1, 0.0150139), -2.65961, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_oumsc"]
+curve = SubResource("Curve_h2s5v")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_h2s5v"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(50, 50, 1)
+direction = Vector3(0, -1, 0)
+spread = 0.0
+initial_velocity_min = 56.61
+initial_velocity_max = 56.61
+gravity = Vector3(0, 0, 0)
+linear_accel_min = -2.23517e-06
+linear_accel_max = -2.23517e-06
+alpha_curve = SubResource("CurveTexture_oumsc")
+
+[node name="TextParticleEffect" type="Node2D"]
+position = Vector2(278, 407)
+script = ExtResource("1_h5q0l")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+size = Vector2i(500, 500)
+
+[node name="Label" type="RichTextLabel" parent="SubViewport"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.5
+offset_top = -25.0
+offset_right = 25.5
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_a6p8c")
+theme_override_colors/font_outline_color = Color(1, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_outline_size = 3
+theme_override_font_sizes/normal_font_size = 50
+text = "Chain 1!"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 1
+texture = SubResource("ViewportTexture_l5ohu")
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_h2s5v")
+
+[connection signal="finished" from="GPUParticles2D" to="." method="_on_gpu_particles_2d_finished"]
