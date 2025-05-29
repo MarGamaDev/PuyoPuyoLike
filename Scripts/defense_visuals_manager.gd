@@ -38,5 +38,6 @@ func remove_junk_in_queue(junk_amount : int):
 		$UIElements/JunkIndicator/JunkText.text = "x %s" % (junk_in_queue)
 
 func clear_junk_queue():
-	junk_in_queue
+	junk_in_queue = 0
 	$UIElements/JunkIndicator/JunkText.text = "x %s" % (junk_in_queue)
+	$UIElements/JunkIndicator.hide()
