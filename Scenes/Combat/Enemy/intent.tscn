@@ -24,8 +24,12 @@ size_flags_horizontal = 3
 [node name="Damage" type="RichTextLabel" parent="Container"]
 layout_mode = 2
 theme = ExtResource("2_3p7sj")
+theme_override_colors/default_color = Color(1, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 6
 text = "3 x 2"
 fit_content = true
+scroll_active = false
 autowrap_mode = 0
 
 [node name="TypeIndicator" type="TextureRect" parent="Container"]
@@ -36,8 +40,12 @@ expand_mode = 2
 [node name="Turns" type="RichTextLabel" parent="Container"]
 layout_mode = 2
 theme = ExtResource("2_3p7sj")
+theme_override_colors/default_color = Color(9.62615e-07, 0, 0.491839, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 6
 text = "2"
 fit_content = true
+scroll_active = false
 autowrap_mode = 0
 metadata/_edit_group_ = true
 
@@ -46,3 +54,10 @@ layout_mode = 2
 texture = ExtResource("4_3p7sj")
 expand_mode = 2
 stretch_mode = 5
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -61.0
+offset_top = -16.0
+offset_right = 60.0
+offset_bottom = 15.0
+color = Color(0.196078, 0.196078, 0.196078, 0.568627)

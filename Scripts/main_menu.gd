@@ -42,6 +42,7 @@ func return_to_menu():
 	tutorial_page_number = 0
 
 func open_tutorial():
+	print("Test")
 	tutorial_page_number = 0
 	$MenuPage/Buttons.hide()
 	$Tutorial.show()

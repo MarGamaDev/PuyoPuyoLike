@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dc6oe7dfg2ice"]
+[gd_scene load_steps=30 format=3 uid="uid://dc6oe7dfg2ice"]
 
 [ext_resource type="Script" uid="uid://c67v5u2go0uhq" path="res://Scripts/main_menu.gd" id="1_ce3w2"]
 [ext_resource type="Theme" uid="uid://qw5wdr2jerv7" path="res://Art/text/default_font.tres" id="1_n45e2"]
@@ -10,6 +10,9 @@
 [ext_resource type="Texture2D" uid="uid://dkpsalijf0ray" path="res://Art/puyo elements/Puyo_Yellow.png" id="8_vr1f0"]
 [ext_resource type="Texture2D" uid="uid://dehy5ghfyon84" path="res://Art/puyo elements/Puyo_Red.png" id="9_t1dhk"]
 [ext_resource type="Texture2D" uid="uid://ccfdjr3e4b7wc" path="res://Art/puyo elements/Puyo_Green.png" id="10_5egv6"]
+[ext_resource type="Texture2D" uid="uid://dask40qwra1ig" path="res://Art/puyo elements/Puyo_Junk.png" id="11_vr1f0"]
+[ext_resource type="Texture2D" uid="uid://dauopdnvad7qk" path="res://Art/spell elements/puyo-arrowSign.png" id="12_5egv6"]
+[ext_resource type="Texture2D" uid="uid://b51dmrjp1h2im" path="res://Art/spell elements/puyo-plusSign.png" id="13_vtepg"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_opfnp"]
 
@@ -313,6 +316,7 @@ grow_vertical = 2
 
 [node name="StartButton" type="Button" parent="MenuPage/Buttons"]
 modulate = Color(1, 1, 1, 0)
+top_level = true
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -372,6 +376,7 @@ expand_mode = 1
 
 [node name="CreditsButton" type="Button" parent="MenuPage/Buttons"]
 modulate = Color(1, 1, 1, 0)
+top_level = true
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -403,6 +408,7 @@ texture = ExtResource("6_opfnp")
 expand_mode = 1
 
 [node name="QuitButton" type="Button" parent="MenuPage/Buttons"]
+top_level = true
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -861,6 +867,7 @@ expand_mode = 1
 stretch_mode = 5
 
 [node name="GameTutorial" type="Control" parent="Tutorial"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -878,12 +885,13 @@ anchor_bottom = 0.5
 offset_left = -580.0
 offset_top = -412.0
 offset_right = 580.0
-offset_bottom = 412.0
+offset_bottom = 438.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.18359, 0.18359, 0.18359, 0.764706)
 
 [node name="Label" type="Label" parent="Tutorial/GameTutorial"]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -901,17 +909,17 @@ text = "This will be where a tutorial for the game specific stuff is"
 
 [node name="NextPageButton" type="Button" parent="Tutorial/GameTutorial"]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = 7
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -104.0
-offset_top = 269.0
-offset_right = 78.0
-offset_bottom = 333.0
+anchor_bottom = 1.0
+offset_left = -91.0
+offset_top = -90.0
+offset_right = 91.0
+offset_bottom = -26.0
 grow_horizontal = 2
-grow_vertical = 2
+grow_vertical = 0
 theme_override_font_sizes/font_size = 51
 text = "Next "
 
@@ -922,10 +930,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -502.0
-offset_top = 344.0
-offset_right = -325.0
-offset_bottom = 392.0
+offset_left = -552.0
+offset_top = 356.0
+offset_right = -375.0
+offset_bottom = 404.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "previous page"
@@ -940,12 +948,12 @@ anchor_bottom = 0.5
 offset_left = -541.0
 offset_top = -391.0
 offset_right = 532.0
-offset_bottom = -344.0
+offset_bottom = -309.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/normal_font_size = 40
 bbcode_enabled = true
-text = "Each of the four humours plays its own role. Activate"
+text = "Each of the four humours plays its own role. Activate their effect by crushing them in blocks, and amplify them by chaining."
 scroll_active = false
 
 [node name="TextureRect" type="TextureRect" parent="Tutorial/GameTutorial"]
@@ -956,9 +964,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -368.0
-offset_top = -16.0
+offset_top = -43.0
 offset_right = -240.0
-offset_bottom = 83.0
+offset_bottom = 56.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("7_16hvj")
@@ -973,9 +981,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = 240.0
-offset_top = -11.0
+offset_top = -38.0
 offset_right = 368.0
-offset_bottom = 88.0
+offset_bottom = 61.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("8_vr1f0")
@@ -1042,9 +1050,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -557.0
-offset_top = 95.0
+offset_top = 68.0
 offset_right = -16.0
-offset_bottom = 227.0
+offset_bottom = 200.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/normal_font_size = 40
@@ -1060,14 +1068,14 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = 17.0
-offset_top = 95.0
+offset_top = 68.0
 offset_right = 558.0
-offset_bottom = 305.0
+offset_bottom = 350.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/normal_font_size = 40
 bbcode_enabled = true
-text = "[color=yellow]Yellow Bile[/color] gives you counter, which can fully negate an attack and deal damage in response, but only if you have equal or greater counter than the attack."
+text = "[color=yellow]Yellow Bile[/color] gives you counter, which can block attacks and deal damage in response, but only if your counter is greater than the attack. You lose all of your counter every time you launch a counterattack."
 scroll_active = false
 
 [node name="Label8" type="RichTextLabel" parent="Tutorial/GameTutorial"]
@@ -1097,35 +1105,20 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ColorRect" type="ColorRect" parent="Tutorial/GameTutorial2"]
+[node name="ColorRect2" type="ColorRect" parent="Tutorial/GameTutorial2"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -323.0
-offset_top = -142.0
-offset_right = 295.0
-offset_bottom = 122.0
+offset_left = -580.0
+offset_top = -412.0
+offset_right = 580.0
+offset_bottom = 440.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="Label" type="Label" parent="Tutorial/GameTutorial2"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -11.5
-offset_right = 20.0
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "This will be where more info about the game specific stuff is"
+color = Color(0.18359, 0.18359, 0.18359, 0.764706)
 
 [node name="StartGameButton" type="Button" parent="Tutorial/GameTutorial2"]
 layout_mode = 1
@@ -1134,13 +1127,14 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 120.0
-offset_top = 64.0
-offset_right = 282.0
-offset_bottom = 112.0
+offset_left = 212.0
+offset_top = 350.0
+offset_right = 539.0
+offset_bottom = 412.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Ready 2 play!"
+theme_override_font_sizes/font_size = 40
+text = "Crush some humours!"
 
 [node name="LastPageButton" type="Button" parent="Tutorial/GameTutorial2"]
 layout_mode = 1
@@ -1149,13 +1143,238 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -298.0
-offset_top = 64.0
-offset_right = -136.0
-offset_bottom = 112.0
+offset_left = -562.0
+offset_top = 377.0
+offset_right = -385.0
+offset_bottom = 425.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "previous tutorial page"
+
+[node name="Label8" type="RichTextLabel" parent="Tutorial/GameTutorial2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -570.0
+offset_top = -405.0
+offset_right = 401.0
+offset_bottom = -202.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+text = "- Foes will display how much damage they will deal for their next attack, and how many pairs of humours you will be able to place before they do.
+- Any damage that goes through to the player is sent to the board in the form of toxins that take up space on the board.
+"
+scroll_active = false
+
+[node name="Label9" type="RichTextLabel" parent="Tutorial/GameTutorial2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -570.0
+offset_top = -182.0
+offset_right = 549.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+text = "Special Attacks:
+         Slam attacks replace the bottom rows of your board with Toxins.
+               Humour attacks turn all of one type of humour into Toxins."
+scroll_active = false
+
+[node name="Label10" type="RichTextLabel" parent="Tutorial/GameTutorial2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -568.0
+offset_top = -44.0
+offset_right = 551.0
+offset_bottom = 283.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+text = "Become more powerful by [color=lightblue]Chanelling Emotions[/color] and [color=yellow]Feeling Sensations[/color].
+[color=yellow]Sensations[/color] have varied abilities that are triggered by a wide range of conditions.
+[color=lightblue]Emotions[/color] have impactful effects, but need to be [color=lightblue]channeled[/color] by crushing certain humour types in the same chain.
+Demanding emotions have to be done in a specific order, thought not necissarily one after another.
+Forgiving emotions can be activated in any order."
+scroll_active = false
+
+[node name="Label11" type="RichTextLabel" parent="Tutorial/GameTutorial2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -293.0
+offset_top = 359.0
+offset_right = -130.0
+offset_bottom = 412.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+text = "Demanding"
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label12" type="RichTextLabel" parent="Tutorial/GameTutorial2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -43.0
+offset_top = 359.0
+offset_right = 120.0
+offset_bottom = 412.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+text = "Forgiving"
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect4" type="TextureRect" parent="Tutorial/GameTutorial2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 406.0
+offset_top = -359.0
+offset_right = 534.0
+offset_bottom = -260.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_vr1f0")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureRect6" type="TextureRect" parent="Tutorial/GameTutorial2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -251.0
+offset_top = 288.0
+offset_right = -173.0
+offset_bottom = 363.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("12_5egv6")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureRect7" type="TextureRect" parent="Tutorial/GameTutorial2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -5.0
+offset_top = 288.0
+offset_right = 73.0
+offset_bottom = 363.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("13_vtepg")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureRect" type="TextureRect" parent="Tutorial/GameTutorial2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -568.0
+offset_top = -96.0
+offset_right = -440.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.319999, 0.319999)
+texture = ExtResource("7_16hvj")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureRect2" type="TextureRect" parent="Tutorial/GameTutorial2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -522.0
+offset_top = -91.0
+offset_right = -394.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.319999, 0.319999)
+texture = ExtResource("8_vr1f0")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureRect3" type="TextureRect" parent="Tutorial/GameTutorial2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -475.0
+offset_top = -95.0
+offset_right = -347.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.319999, 0.319999)
+texture = ExtResource("9_t1dhk")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureRect5" type="TextureRect" parent="Tutorial/GameTutorial2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -431.0
+offset_top = -94.0
+offset_right = -303.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.319999, 0.319999)
+texture = ExtResource("10_5egv6")
+expand_mode = 1
+stretch_mode = 5
 
 [connection signal="pressed" from="MenuPage/Buttons/StartButton" to="." method="open_tutorial"]
 [connection signal="pressed" from="MenuPage/Buttons/OptionsButton" to="." method="_on_options_button_pressed"]
