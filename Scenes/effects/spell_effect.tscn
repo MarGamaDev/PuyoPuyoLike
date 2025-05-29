@@ -1,0 +1,34 @@
+[gd_scene load_steps=7 format=3 uid="uid://d3c6srlxby2ef"]
+
+[ext_resource type="Script" uid="uid://cm1l0vio3w5om" path="res://Scenes/effects/spell_effect.gd" id="2_7pe8g"]
+
+[sub_resource type="Gradient" id="Gradient_mhxs8"]
+colors = PackedColorArray(1, 0.988235, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_al1ni"]
+gradient = SubResource("Gradient_mhxs8")
+
+[sub_resource type="Curve" id="Curve_vq46a"]
+_limits = [0.00417829, 2.0, 0.0, 1.0]
+_data = [Vector2(0.00341297, 0.00417829), 0.0, 0.0, 0, 0, Vector2(0.174061, 2), 5.30501, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_lwrp7"]
+curve = SubResource("Curve_vq46a")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_nx52a"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_lwrp7")
+color_ramp = SubResource("GradientTexture1D_al1ni")
+
+[node name="SpellEffect" type="GPUParticles2D"]
+position = Vector2(515, 392)
+emitting = false
+amount = 1
+lifetime = 1.5
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_nx52a")
+script = ExtResource("2_7pe8g")
+
+[connection signal="finished" from="." to="." method="_on_finished"]
