@@ -29,6 +29,7 @@ signal on_taking_turn()
 var health_to_display : int = 0
 var damage_number_effect_queue : Array[int] = []
 var death_flag = false
+@export var starting_delay_amount : int = 4
 
 var health_suffix = " / 100"
 
@@ -53,6 +54,7 @@ func _ready() -> void:
 	combat_effects_manager.damage_effect_hit.connect(update_damage_visually)
 	
 	current_attack = attacks[0]
+	starting_delay()
 
 func handle_turn() -> void:
 	on_taking_turn.emit()
@@ -126,3 +128,8 @@ func update_damage_visually():
 		
 func play_entrance_animation():
 	$AnimationPlayer.play("EntranceAnimation")
+
+func starting_delay():
+	add_to_timer(starting_delay_amount)
+	$Intent.set_indicator(current_attack, current_attack.number_of_turns_till_swing - attack_countdown)
+	pass

@@ -13,13 +13,9 @@ boss_encounter_flag = true
 metadata/_custom_type_script = "uid://c086ewc7gw56k"
 
 [node name="BlueSwapEnemy" parent="." instance=ExtResource("2_soh3r")]
-position = Vector2(92, 0)
 
 [node name="GreenSwapEnemy" parent="." instance=ExtResource("3_yj5ec")]
-position = Vector2(282, 0)
 
 [node name="RedSwapEnemy" parent="." instance=ExtResource("4_3pqph")]
-position = Vector2(-93, 0)
 
 [node name="YellowSwapEnemy" parent="." instance=ExtResource("5_18qdc")]
-position = Vector2(-279, 0)

@@ -14,20 +14,11 @@ boss_encounter_flag = true
 metadata/_custom_type_script = "uid://c086ewc7gw56k"
 
 [node name="RowEnemy" parent="." instance=ExtResource("2_fbr8k")]
-position = Vector2(-115, -39)
-scale = Vector2(0.75325, 0.75325)
 
 [node name="RogueGrunt" parent="." instance=ExtResource("3_wk3qy")]
-position = Vector2(108, -36)
-scale = Vector2(0.75325, 0.75325)
 
 [node name="ImprovedGrunt" parent="." instance=ExtResource("4_wmvum")]
-position = Vector2(218, 0)
-scale = Vector2(0.75325, 0.75325)
 
 [node name="BeefyGrunt" parent="." instance=ExtResource("5_y8da6")]
-position = Vector2(-227, 0)
-scale = Vector2(0.75325, 0.75325)
 
 [node name="BasicEnemy" parent="." instance=ExtResource("6_v2xq7")]
-scale = Vector2(0.75325, 0.75325)
