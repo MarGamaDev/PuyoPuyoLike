@@ -25,6 +25,8 @@ var rest_stop_count : int = 0
 @export var rest_stops_where_difficulty_changes: Array[int] = [2,5]
 var current_difficulty : int = 0
 
+@export var test_encounter : PackedScene
+
 var first_encounter_flag = true
 
 func _ready():
@@ -47,11 +49,14 @@ func load_next_encounter(boss_flag := false):
 	if current_encounter != null:
 		current_encounter.queue_free()
 	var next_encounter 
-	if first_encounter_flag:
-		next_encounter = load("res://Scenes/Combat/Encounters/NormalEncounters/EasyEncounters/basic_single_grunt_encounter.tscn")
-		first_encounter_flag = false
+	if test_encounter != null:
+		next_encounter = test_encounter
 	else:
-		next_encounter = load(get_encounter(boss_flag))
+		if first_encounter_flag:
+			next_encounter = load("res://Scenes/Combat/Encounters/NormalEncounters/EasyEncounters/basic_single_grunt_encounter.tscn")
+			first_encounter_flag = false
+		else:
+			next_encounter = load(get_encounter(boss_flag))
 	current_encounter = next_encounter.instantiate()
 	add_child(current_encounter)
 	await current_encounter.on_encounter_initialized

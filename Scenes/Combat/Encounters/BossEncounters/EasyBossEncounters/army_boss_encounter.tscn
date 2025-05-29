@@ -1,24 +1,132 @@
-[gd_scene load_steps=7 format=3 uid="uid://d0rqqn3gno1f3"]
+[gd_scene load_steps=22 format=3 uid="uid://d0rqqn3gno1f3"]
 
 [ext_resource type="Script" uid="uid://c086ewc7gw56k" path="res://Scripts/Combat/encounter.gd" id="1_nd5st"]
 [ext_resource type="PackedScene" uid="uid://b2dsb1db70klu" path="res://Scenes/Combat/Enemy/Enemies/row_enemy.tscn" id="2_fbr8k"]
+[ext_resource type="Script" uid="uid://c27m7mkd1up2" path="res://Scripts/Combat/Enemy/enemy_data.gd" id="3_jerxu"]
 [ext_resource type="PackedScene" uid="uid://c3ht04jxirvgo" path="res://Scenes/Combat/Enemy/Enemies/rogue_grunt.tscn" id="3_wk3qy"]
+[ext_resource type="Texture2D" uid="uid://crpm2t7elwi2a" path="res://Art/Enemies/Enemy_Grunt_Kidney_Sisters.png" id="4_2jjjh"]
 [ext_resource type="PackedScene" uid="uid://4ep54kp1lpt2" path="res://Scenes/Combat/Enemy/Enemies/improved_grunt.tscn" id="4_wmvum"]
+[ext_resource type="Script" uid="uid://6v5kccermtmr" path="res://Scripts/Combat/Enemy/enemy_attack.gd" id="5_8v77b"]
 [ext_resource type="PackedScene" uid="uid://dc5a7nle7m8q7" path="res://Scenes/Combat/Enemy/Enemies/beefy_grunt.tscn" id="5_y8da6"]
-[ext_resource type="PackedScene" uid="uid://d2xn0h36inyvr" path="res://Scenes/Combat/Enemy/Enemies/basic_enemy.tscn" id="6_v2xq7"]
+
+[sub_resource type="Resource" id="Resource_l7da2"]
+script = ExtResource("3_jerxu")
+health = 60
+sprite = ExtResource("4_2jjjh")
+boss = false
+metadata/_custom_type_script = "uid://c27m7mkd1up2"
+
+[sub_resource type="Resource" id="Resource_h73qp"]
+script = ExtResource("5_8v77b")
+damage = 7
+number_of_swings = 1
+number_of_turns_till_swing = 11
+attack_type = 1
+metadata/_custom_type_script = "uid://6v5kccermtmr"
+
+[sub_resource type="Resource" id="Resource_33gkj"]
+script = ExtResource("5_8v77b")
+damage = 4
+number_of_swings = 3
+number_of_turns_till_swing = 14
+attack_type = 0
+metadata/_custom_type_script = "uid://6v5kccermtmr"
+
+[sub_resource type="Resource" id="Resource_i7r1m"]
+script = ExtResource("3_jerxu")
+health = 25
+sprite = ExtResource("4_2jjjh")
+boss = false
+metadata/_custom_type_script = "uid://c27m7mkd1up2"
+
+[sub_resource type="Resource" id="Resource_jerxu"]
+script = ExtResource("5_8v77b")
+damage = 2
+number_of_swings = 1
+number_of_turns_till_swing = 7
+attack_type = 0
+metadata/_custom_type_script = "uid://6v5kccermtmr"
+
+[sub_resource type="Resource" id="Resource_2jjjh"]
+script = ExtResource("5_8v77b")
+damage = 1
+number_of_swings = 2
+number_of_turns_till_swing = 10
+attack_type = 0
+metadata/_custom_type_script = "uid://6v5kccermtmr"
+
+[sub_resource type="Resource" id="Resource_8v77b"]
+script = ExtResource("5_8v77b")
+damage = 1
+number_of_swings = 4
+number_of_turns_till_swing = 14
+attack_type = 0
+metadata/_custom_type_script = "uid://6v5kccermtmr"
+
+[sub_resource type="Resource" id="Resource_3fppp"]
+script = ExtResource("5_8v77b")
+damage = 5
+number_of_swings = 1
+number_of_turns_till_swing = 9
+attack_type = 0
+metadata/_custom_type_script = "uid://6v5kccermtmr"
+
+[sub_resource type="Resource" id="Resource_qog4p"]
+script = ExtResource("5_8v77b")
+damage = 5
+number_of_swings = 2
+number_of_turns_till_swing = 15
+attack_type = 0
+metadata/_custom_type_script = "uid://6v5kccermtmr"
+
+[sub_resource type="Resource" id="Resource_4qxcc"]
+script = ExtResource("5_8v77b")
+damage = 2
+number_of_swings = 2
+number_of_turns_till_swing = 8
+attack_type = 0
+metadata/_custom_type_script = "uid://6v5kccermtmr"
+
+[sub_resource type="Resource" id="Resource_216ef"]
+script = ExtResource("5_8v77b")
+damage = 6
+number_of_swings = 1
+number_of_turns_till_swing = 11
+attack_type = 0
+metadata/_custom_type_script = "uid://6v5kccermtmr"
+
+[sub_resource type="Resource" id="Resource_061wd"]
+script = ExtResource("5_8v77b")
+damage = 6
+number_of_swings = 1
+number_of_turns_till_swing = 9
+attack_type = 0
+metadata/_custom_type_script = "uid://6v5kccermtmr"
+
+[sub_resource type="Resource" id="Resource_hrq06"]
+script = ExtResource("5_8v77b")
+damage = 9
+number_of_swings = 1
+number_of_turns_till_swing = 17
+attack_type = 1
+metadata/_custom_type_script = "uid://6v5kccermtmr"
 
 [node name="ArmyBossEncounter" type="Node2D"]
 script = ExtResource("1_nd5st")
-enemy_count = 5
+enemy_count = 4
 boss_encounter_flag = true
 metadata/_custom_type_script = "uid://c086ewc7gw56k"
 
 [node name="RowEnemy" parent="." instance=ExtResource("2_fbr8k")]
+enemy_data = SubResource("Resource_l7da2")
+attacks = Array[ExtResource("5_8v77b")]([SubResource("Resource_h73qp"), SubResource("Resource_33gkj")])
 
 [node name="RogueGrunt" parent="." instance=ExtResource("3_wk3qy")]
+enemy_data = SubResource("Resource_i7r1m")
+attacks = Array[ExtResource("5_8v77b")]([SubResource("Resource_jerxu"), SubResource("Resource_2jjjh"), SubResource("Resource_8v77b")])
 
 [node name="ImprovedGrunt" parent="." instance=ExtResource("4_wmvum")]
+attacks = Array[ExtResource("5_8v77b")]([SubResource("Resource_3fppp"), SubResource("Resource_qog4p"), SubResource("Resource_4qxcc")])
 
 [node name="BeefyGrunt" parent="." instance=ExtResource("5_y8da6")]
-
-[node name="BasicEnemy" parent="." instance=ExtResource("6_v2xq7")]
+attacks = Array[ExtResource("5_8v77b")]([SubResource("Resource_216ef"), SubResource("Resource_061wd"), SubResource("Resource_hrq06")])
