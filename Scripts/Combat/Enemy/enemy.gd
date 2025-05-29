@@ -30,7 +30,7 @@ signal trigger_death_effect(position : Vector2)
 var health_to_display : int = 0
 var damage_number_effect_queue : Array[int] = []
 var death_flag = false
-@export var starting_delay_amount : int = 4
+@export var starting_delay_amount : int = 2
 
 var health_suffix = " / 100"
 

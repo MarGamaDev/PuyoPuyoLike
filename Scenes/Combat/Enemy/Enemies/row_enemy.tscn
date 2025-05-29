@@ -6,17 +6,17 @@
 
 [sub_resource type="Resource" id="Resource_78f27"]
 script = ExtResource("3_ll4nd")
-damage = 12
+damage = 14
 number_of_swings = 1
-number_of_turns_till_swing = 8
+number_of_turns_till_swing = 11
 attack_type = 1
 metadata/_custom_type_script = "uid://6v5kccermtmr"
 
 [sub_resource type="Resource" id="Resource_33gkj"]
 script = ExtResource("3_ll4nd")
-damage = 6
+damage = 8
 number_of_swings = 3
-number_of_turns_till_swing = 10
+number_of_turns_till_swing = 12
 attack_type = 0
 metadata/_custom_type_script = "uid://6v5kccermtmr"
 
