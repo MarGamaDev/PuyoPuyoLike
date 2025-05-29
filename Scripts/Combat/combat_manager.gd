@@ -25,7 +25,6 @@ var selected_enemy: Enemy
 
 var current_encounter : Encounter
 
-
 func _ready() -> void:
 	start_combat()
 
