@@ -7,7 +7,7 @@ var puyos_to_add : Array = []
 var puyo_counter = 1
 
 func get_puyo_pair() -> Array:
-	var to_return : Array = PlayerData.get_puyo_pool().pick_random()
+	var to_return = [randi_range(2, 5), randi_range(2, 5)]
 	if puyo_counter == puyo_certain_interval:
 		for i in range(0, puyos_to_add.size()):
 			to_return[i] = puyos_to_add[i]
