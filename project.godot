@@ -30,6 +30,7 @@ DifficultyManager="*res://Scripts/Combat/difficulty_manager.gd"
 window/size/viewport_width=1200
 window/size/viewport_height=900
 window/stretch/mode="viewport"
+window/vsync/vsync_mode=0
 
 [global_group]
 
