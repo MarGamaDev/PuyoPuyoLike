@@ -148,7 +148,7 @@ libraries = {
 }
 
 [node name="SFXPlayer" parent="." instance=ExtResource("3_6mbex")]
-volume_db = 14.546
+volume_db = 6.0
 audio_library = ExtResource("4_0xshp")
 
 [node name="GridBackground" type="Sprite2D" parent="."]

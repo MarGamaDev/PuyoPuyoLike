@@ -33,10 +33,10 @@ func on_game_paused():
 
 func fill_spell_screen():
 	if spell_manager.equipped_spells.size() == 0:
-		$PauseMenu/PageTabs/Spells/NoSpellsLabel.show()
+		$PauseMenu/PageTabs/Emotions/NoSpellsLabel.show()
 		return
 	else:
-		$PauseMenu/PageTabs/Spells/NoSpellsLabel.hide()
+		$PauseMenu/PageTabs/Emotions/NoSpellsLabel.hide()
 		
 	var equipped_spells : Array[SpellData] = []
 	for spell in spell_manager.equipped_spells:
@@ -47,7 +47,7 @@ func fill_spell_screen():
 		spell_reward_visual.create_reward(Reward.create_spell_reward(spell_data))
 		spell_reward_visual.turn_off_button()
 		equipped_spell_containers.append(spell_reward_visual)
-		$PauseMenu/PageTabs/Spells.add_child(spell_reward_visual)
+		$PauseMenu/PageTabs/Emotions.add_child(spell_reward_visual)
 		spell_reward_visual.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	
 	var empty_slots = 3 - equipped_spells.size()
@@ -56,21 +56,21 @@ func fill_spell_screen():
 		empty_reward.create_empty_spell_reward()
 		empty_reward.turn_off_button()
 		equipped_spell_containers.append(empty_reward)
-		$PauseMenu/PageTabs/Spells.add_child(empty_reward)
+		$PauseMenu/PageTabs/Emotions.add_child(empty_reward)
 		empty_reward.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 
 func fill_relic_screen():
-	$PauseMenu/PageTabs/Items/RelicDescription.text = "Choose a sensation to reflect on"
-	$PauseMenu/PageTabs/Items/RelicFlavor.text = ""
-	$PauseMenu/PageTabs/Items/RelicName.text = ""
+	$PauseMenu/PageTabs/Sensations/RelicDescription.text = "Choose a sensation to reflect on"
+	$PauseMenu/PageTabs/Sensations/RelicFlavor.text = ""
+	$PauseMenu/PageTabs/Sensations/RelicName.text = ""
 	for relic : RelicData in relic_manager.equipped_relics:
 		equipped_relic_data.append(relic)
 	
 	if equipped_relic_data.size() <= 0:
-		$PauseMenu/PageTabs/Items/NoRelicsLabel.show()
+		$PauseMenu/PageTabs/Sensations/NoRelicsLabel.show()
 		return
 	else:
-		$PauseMenu/PageTabs/Items/NoRelicsLabel.hide()
+		$PauseMenu/PageTabs/Sensations/NoRelicsLabel.hide()
 	
 	for relic_data :RelicData in equipped_relic_data:
 		var new_button : RelicButton = relic_button_scene.instantiate()
@@ -79,7 +79,7 @@ func fill_relic_screen():
 		new_button.size_flags_stretch_ratio = TextureRect.STRETCH_KEEP
 		new_button.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
 		new_button.size_flags_vertical = Control.SIZE_SHRINK_CENTER
-		$PauseMenu/PageTabs/Items/RelicGrid.add_child(new_button)
+		$PauseMenu/PageTabs/Sensations/RelicGrid.add_child(new_button)
 		relic_buttons.append(new_button)
 
 func reset_pause_screen():
@@ -101,6 +101,6 @@ func _on_quit_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
 
 func _on_relic_selected(relic : RelicData):
-	$PauseMenu/PageTabs/Items/RelicDescription.text = relic.description
-	$PauseMenu/PageTabs/Items/RelicFlavor.text = relic.flavor_text
-	$PauseMenu/PageTabs/Items/RelicName.text = relic.name
+	$PauseMenu/PageTabs/Sensations/RelicDescription.text = relic.description
+	$PauseMenu/PageTabs/Sensations/RelicFlavor.text = relic.flavor_text
+	$PauseMenu/PageTabs/Sensations/RelicName.text = relic.name

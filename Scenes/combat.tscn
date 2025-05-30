@@ -163,6 +163,7 @@ texture = ExtResource("7_3w34b")
 expand_mode = 1
 
 [node name="Label" type="Label" parent="Frame"]
+visible = false
 offset_left = 23.0
 offset_top = 44.0
 offset_right = 260.0
@@ -189,7 +190,8 @@ text = "PLAYTEST VERSION - ASSETS MISSING AND NOT FINAL"
 position = Vector2(123, 128)
 scale = Vector2(1.09, 1.09)
 
-[node name="Player" parent="." instance=ExtResource("5_ut0kg")]
+[node name="Player" parent="." node_paths=PackedStringArray("combat_manager") instance=ExtResource("5_ut0kg")]
+combat_manager = NodePath("..")
 
 [node name="EncounterManager" type="Node2D" parent="." node_paths=PackedStringArray("encounter_label")]
 position = Vector2(835, 250)
@@ -306,7 +308,9 @@ libraries = {
 [connection signal="trigger_blocked_effect" from="Player" to="CombatEffectsManager" method="_on_player_trigger_blocked_effect"]
 [connection signal="trigger_countered_effect" from="Player" to="CombatEffectsManager" method="_on_player_trigger_countered_effect"]
 [connection signal="on_rest_stop" from="EncounterManager" to="PuyoManager" method="pause_puyo"]
+[connection signal="on_rest_stop" from="EncounterManager" to="DefenseVisualsManager" method="clear_junk_queue"]
 [connection signal="on_rest_stop" from="EncounterManager" to="RewardManager/RewardScreen" method="generate_pool"]
+[connection signal="on_rest_stop" from="EncounterManager" to="SoundManager" method="_on_rest_stop"]
 [connection signal="on_update_encounter" from="EncounterManager" to="." method="process_encounter_updated"]
 [connection signal="on_update_encounter" from="EncounterManager" to="SoundManager" method="transition_sfx"]
 [connection signal="deal_fuck_damage" from="PuyoTestUI" to="." method="damage_all_enemies"]
