@@ -4,14 +4,14 @@ class_name PuyoPoolManager
 
 var puyos_to_add : Array = []
 @export var puyo_certain_interval = 3
-var puyo_counter = 1
+var puyo_counter = 0
 
 func get_puyo_pair() -> Array:
 	var to_return = [randi_range(2, 5), randi_range(2, 5)]
 	if puyo_counter == puyo_certain_interval:
 		for i in range(0, puyos_to_add.size()):
 			to_return[i] = puyos_to_add[i]
-		puyo_counter = 1
+		puyo_counter = 0
 	else:
 		puyo_counter += 1
 	return to_return
