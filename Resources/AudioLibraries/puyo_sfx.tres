@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="AudioLibrary" load_steps=13 format=3 uid="uid://dq6q2or2pmb84"]
+[gd_resource type="Resource" script_class="AudioLibrary" load_steps=19 format=3 uid="uid://dq6q2or2pmb84"]
 
 [ext_resource type="Script" uid="uid://80p7cue2s0ca" path="res://Scripts/audio/audio_library.gd" id="1_5nucq"]
 [ext_resource type="Script" uid="uid://ccmkst5npwi3n" path="res://Scripts/audio/sound_effect.gd" id="2_1gmuk"]
@@ -7,6 +7,9 @@
 [ext_resource type="AudioStream" uid="uid://cywp2cywf3f7c" path="res://Audio/PoppingSFX/Sqielch.2.wav" id="5_gy1ca"]
 [ext_resource type="AudioStream" uid="uid://ccjhjnywssoly" path="res://Audio/PoppingSFX/Squelch.3.wav" id="6_kdqvy"]
 [ext_resource type="AudioStream" uid="uid://d3bdjw5gjerej" path="res://Audio/PoppingSFX/Squelch.4.wav" id="7_xlxxw"]
+[ext_resource type="AudioStream" uid="uid://bj0xfuy8nktb" path="res://Audio/PuyoThudSFX/Colide.1.wav" id="8_xlxxw"]
+[ext_resource type="AudioStream" uid="uid://bv7mi6v16u2m4" path="res://Audio/PuyoThudSFX/Colide.2.wav" id="9_f3n3i"]
+[ext_resource type="AudioStream" uid="uid://bxlhn5wej5a2e" path="res://Audio/PuyoThudSFX/Colide.3.wav" id="10_pvdm0"]
 
 [sub_resource type="Resource" id="Resource_wfwa5"]
 script = ExtResource("2_1gmuk")
@@ -38,7 +41,25 @@ tag = "pop_4"
 stream = ExtResource("7_xlxxw")
 metadata/_custom_type_script = "uid://ccmkst5npwi3n"
 
+[sub_resource type="Resource" id="Resource_047d5"]
+script = ExtResource("2_1gmuk")
+tag = "collide_1"
+stream = ExtResource("8_xlxxw")
+metadata/_custom_type_script = "uid://ccmkst5npwi3n"
+
+[sub_resource type="Resource" id="Resource_bwmx4"]
+script = ExtResource("2_1gmuk")
+tag = "collide_2"
+stream = ExtResource("9_f3n3i")
+metadata/_custom_type_script = "uid://ccmkst5npwi3n"
+
+[sub_resource type="Resource" id="Resource_du0og"]
+script = ExtResource("2_1gmuk")
+tag = "collide_3"
+stream = ExtResource("10_pvdm0")
+metadata/_custom_type_script = "uid://ccmkst5npwi3n"
+
 [resource]
 script = ExtResource("1_5nucq")
-sound_effects = Array[ExtResource("2_1gmuk")]([SubResource("Resource_wfwa5"), SubResource("Resource_f3n3i"), SubResource("Resource_pvdm0"), SubResource("Resource_htm8q"), SubResource("Resource_1ssxi")])
+sound_effects = Array[ExtResource("2_1gmuk")]([SubResource("Resource_wfwa5"), SubResource("Resource_f3n3i"), SubResource("Resource_pvdm0"), SubResource("Resource_htm8q"), SubResource("Resource_1ssxi"), SubResource("Resource_047d5"), SubResource("Resource_bwmx4"), SubResource("Resource_du0og")])
 metadata/_custom_type_script = "uid://80p7cue2s0ca"

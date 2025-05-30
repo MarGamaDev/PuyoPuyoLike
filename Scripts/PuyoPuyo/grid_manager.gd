@@ -481,7 +481,7 @@ func player_down_tick():
 	else:# if player shouldn't be able to move, turn it into part of the grid
 		player_input_flag = false
 		$PlayerDownTimer.stop()
-		sfx_player.play_sound_effect_from_library("player_drop")
+		play_puyo_thud()
 		for i in range(0,2):
 			var new_puyo_base = player_puyos[i]
 			var new_puyo_position = Vector2(player_grid_positions[i])
@@ -715,7 +715,13 @@ func replace_color(color_to_replace, to_replace_with):
 					node_to_check.puyo.become_junk()
 
 func play_puyo_thud():
-	sfx_player.play_sound_effect_from_library("player_drop")
+	match randi_range(1,3):
+		1:
+			sfx_player.play_sound_effect_from_library("collide_1")
+		2:
+			sfx_player.play_sound_effect_from_library("collide_2")
+		3:
+			sfx_player.play_sound_effect_from_library("collide_3")
 
 func delete_player():
 	player_input_flag = false
