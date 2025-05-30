@@ -18,6 +18,7 @@ func play_animations():
 
 
 func start_game() -> void:
+	DifficultyManager.reset_difficulty()
 	get_tree().change_scene_to_file("res://Scenes/combat.tscn")
 	
 

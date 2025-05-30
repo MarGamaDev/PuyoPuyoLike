@@ -8,6 +8,13 @@ var attack_addition = 0
 var multiplicative_scaling : float = 0.5
 @export var multiplicative_scaling_per_rest_stop : float = 1.5
 
+func reset_difficulty():
+	health_addition = 0
+	attack_addition = 0
+	health_modifier = 3
+	attack_modifier = 1
+	multiplicative_scaling = 0.5
+
 func increase_scaling_flat():
 	health_addition += int(health_modifier * multiplicative_scaling)
 	attack_addition += int(attack_modifier * multiplicative_scaling)
