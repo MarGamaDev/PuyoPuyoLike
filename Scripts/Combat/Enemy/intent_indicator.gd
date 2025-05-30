@@ -2,10 +2,10 @@ class_name EnemyIntentIndicator
 extends Node
 
 var intent_sprite_dictionary = {
-	EnemyAttack.EnemyAttackType.DROP_RANDOM : "res://Placeholder Art/attack_intent.png",
-	EnemyAttack.EnemyAttackType.DROP_ROW : "res://Placeholder Art/attack_intent.png",
+	EnemyAttack.EnemyAttackType.DROP_RANDOM : "res://Art/combat screen elements/puyo-slash.png",
+	EnemyAttack.EnemyAttackType.DROP_ROW : "res://Art/combat screen elements/puyo-slash.png",
 	EnemyAttack.EnemyAttackType.REPLACE_BOTTOM : "res://Placeholder Art/puyo_out_of_bounds.png",
-	EnemyAttack.EnemyAttackType.REPLACE_BOTTOM_ROW : "res://Placeholder Art/slam_intent.png",
+	EnemyAttack.EnemyAttackType.REPLACE_BOTTOM_ROW : "res://Art/combat screen elements/puyo-skull.png",
 	EnemyAttack.EnemyAttackType.RAISE_BOTTOM : "res://Placeholder Art/puyo_out_of_bounds.png",
 	EnemyAttack.EnemyAttackType.RAISE_ROW_BOTTOM : "res://Placeholder Art/puyo_out_of_bounds.png",
 	EnemyAttack.EnemyAttackType.REPLACE_RED : "res://Art/puyo elements/Puyo_Red.png",

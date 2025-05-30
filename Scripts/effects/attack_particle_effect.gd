@@ -32,8 +32,10 @@ var curve_point_offset : float = 0
 var curve_length : float
 var effect_type : AttackEffectData.EFFECT_TYPE
 var damage_flag = false
+var is_spell = false
 
-@onready var particle_effect : GPUParticles2D = $Path2D/PathFollow2D/EndEffect
+@onready var spell_end_effect : GPUParticles2D = $Path2D/PathFollow2D/SpellEndEffect
+@onready var normal_end_effect : GPUParticles2D = $Path2D/PathFollow2D/NormalEndEffect
 
 func _physics_process(delta: float) -> void:
 	if started:
@@ -60,6 +62,15 @@ func create_effect(start_point : Vector2, end_point : Vector2, effect_type: Atta
 	damage_flag = new_damage_flag
 	pass
 
+func create_spell_effect(start_point : Vector2, end_point : Vector2, effect_type: AttackEffectData.EFFECT_TYPE, new_damage_flag = false):
+	set_points(start_point, end_point)
+	$Path2D/PathFollow2D/ProjectileSprite.texture = load(effect_sprite_dictionary[effect_type])
+	$Path2D/PathFollow2D/EndEffect.texture = load("res://Art/spell elements/SpellRunes/puyo-spell" + str(randi_range(1,12)) + ".png")
+	started = true
+	damage_flag = new_damage_flag
+	is_spell = true
+	pass
+
 func set_points(start : Vector2, end : Vector2):
 	start_point = start
 	end_point = end
@@ -79,7 +90,10 @@ func set_points(start : Vector2, end : Vector2):
 	curve_length = $Path2D.curve.get_baked_length()
 
 func play_particle_effect():
-	particle_effect.restart()
+	if is_spell:
+		spell_end_effect.restart()
+	else:
+		normal_end_effect.restart()
 
 func _on_end_effect_finished() -> void:
 	print("effect done")

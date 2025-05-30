@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://d3naap4gnytxh"]
+[gd_scene load_steps=28 format=3 uid="uid://d3naap4gnytxh"]
 
 [ext_resource type="Script" uid="uid://b0h0tx4msve02" path="res://Scripts/Combat/combat_manager.gd" id="1_4ln8h"]
 [ext_resource type="Resource" uid="uid://b01ucdggd8ykf" path="res://Resources/puyo_value_data.tres" id="2_xisnc"]
@@ -13,14 +13,12 @@
 [ext_resource type="PackedScene" uid="uid://b3qfdcqaqmgk4" path="res://Scenes/Combat/combat_effects_manager.tscn" id="11_w6tjk"]
 [ext_resource type="PackedScene" uid="uid://b2l1xn5ovaca4" path="res://Scenes/RewardScreen/reward_screen.tscn" id="11_xisnc"]
 [ext_resource type="PackedScene" uid="uid://chmradttgb2ep" path="res://Scenes/Combat/life_counter.tscn" id="13_y8jr2"]
-[ext_resource type="Resource" uid="uid://cirwldmyumrkl" path="res://Resources/SpellData/vindication.tres" id="14_5g3cp"]
+[ext_resource type="Resource" uid="uid://bg1e6nm4v2p76" path="res://Resources/SpellData/caution.tres" id="14_umvpd"]
 [ext_resource type="PackedScene" uid="uid://dpkr5l8qrkrou" path="res://Scenes/Relics/System/relic_manager.tscn" id="15_3cqtn"]
 [ext_resource type="PackedScene" uid="uid://bif55k0mmcvqf" path="res://Scenes/Combat/defense_visuals_manager.tscn" id="15_tmuf1"]
 [ext_resource type="PackedScene" uid="uid://br4sb0wwxwr2o" path="res://Scenes/spells/spellSystem/spell_manager.tscn" id="16_50454"]
 [ext_resource type="Script" uid="uid://btkeiscf5dqtn" path="res://Scripts/reward_manager.gd" id="18_5kjvk"]
 [ext_resource type="Script" uid="uid://dvlv4xl60gxig" path="res://Scripts/audio/sound_manager.gd" id="19_5kjvk"]
-[ext_resource type="PackedScene" uid="uid://bu3friywynij8" path="res://Scenes/animations and audio stuff/polyphonic_audio_player.tscn" id="19_ley77"]
-[ext_resource type="Resource" uid="uid://bdhafmfgutg4q" path="res://Resources/AudioLibraries/music_library.tres" id="20_tmuf1"]
 [ext_resource type="PackedScene" uid="uid://c2aqaph0fpnb1" path="res://Scenes/pause_manager.tscn" id="21_5kjvk"]
 [ext_resource type="Texture2D" uid="uid://cuet3laww0w3o" path="res://Art/Main_Character.png" id="25_e8ln5"]
 [ext_resource type="AudioStream" uid="uid://dr6ge7216dayb" path="res://Audio/Music/PuyoPuyoTheme_1.mp3" id="26_2n3pb"]
@@ -150,11 +148,10 @@ texture = ExtResource("7_3w34b")
 expand_mode = 1
 
 [node name="Label" type="Label" parent="Frame"]
-visible = false
 offset_left = 23.0
-offset_top = 14.0
+offset_top = 44.0
 offset_right = 260.0
-offset_bottom = 37.0
+offset_bottom = 67.0
 text = "TEST BUTTONS ARE STILL HERE"
 
 [node name="EncounterLabel" type="Label" parent="Frame"]
@@ -215,7 +212,7 @@ position = Vector2(4.335, 24.765)
 [node name="SpellManager" parent="." instance=ExtResource("16_50454")]
 top_level = true
 position = Vector2(0, -2)
-test_spell = ExtResource("14_5g3cp")
+test_spell = ExtResource("14_umvpd")
 
 [node name="RelicManager" parent="." instance=ExtResource("15_3cqtn")]
 position = Vector2(4.62693, 907.764)
@@ -232,11 +229,7 @@ visible = false
 [node name="SoundManager" type="Node2D" parent="."]
 script = ExtResource("19_5kjvk")
 
-[node name="MusicPlayer" parent="SoundManager" instance=ExtResource("19_ley77")]
-volume_db = -5.0
-audio_library = ExtResource("20_tmuf1")
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="SoundManager"]
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="SoundManager"]
 stream = ExtResource("26_2n3pb")
 volume_db = -5.0
 

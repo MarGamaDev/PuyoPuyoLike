@@ -93,13 +93,14 @@ func on_new_player_turn_taken():
 	reset_recipe_visual()
 	#$SpellProcessor.reset_spell()
 
-func on_spell_complete() -> void:
+func on_spell_complete(spell_length, spell_name) -> void:
 	reset_recipe_visual()
 	print("test complete")
-	$TestParticleEffect.restart()
+	play_effect()
 
 func get_marker() -> Control:
 	return $EffectMarker
 
 func play_effect():
-	$TestParticleEffect.restart()
+	$SpellEffect.texture = load("res://Art/spell elements/SpellRunes/puyo-spell" + str(randi_range(1,12)) + ".png")
+	$SpellEffect.restart()

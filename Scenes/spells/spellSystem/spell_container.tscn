@@ -14,7 +14,7 @@ gradient = SubResource("Gradient_g2qhv")
 
 [sub_resource type="Curve" id="Curve_vgyca"]
 _limits = [0.0, 4.0, 0.0, 1.0]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.469945, 4), 16.2493, 0.0, 0, 0]
+_data = [Vector2(0, 1), 0.0, 9.81433, 0, 0, Vector2(0.674419, 4), -1.10053, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="CurveTexture" id="CurveTexture_b4wli"]
@@ -111,7 +111,7 @@ grow_vertical = 2
 theme_override_constants/separation = 0
 alignment = 1
 
-[node name="TestParticleEffect" type="GPUParticles2D" parent="."]
+[node name="SpellEffect" type="GPUParticles2D" parent="."]
 position = Vector2(127, 52)
 emitting = false
 amount = 1

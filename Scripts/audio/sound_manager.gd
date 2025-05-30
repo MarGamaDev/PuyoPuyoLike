@@ -1,7 +1,11 @@
 extends Node2D
 
-@onready var music_player : PolyphonicAudioPlayer = $MusicPlayer
+#@onready var music_player : PolyphonicAudioPlayer = $MusicPlayer
+
+var zen_song_1_path : String = "res://Audio/Music/zen_song_1_looping.mp3"
 
 func _ready():
 	#music_player.play_sound_effect_from_library("PuyoPuyoTheme_1")
-	$AudioStreamPlayer.play()
+	var current_song : AudioStreamMP3 = load(zen_song_1_path)
+	$MusicPlayer.set_stream(current_song)
+	$MusicPlayer.play(0)

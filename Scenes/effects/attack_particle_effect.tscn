@@ -1,28 +1,35 @@
-[gd_scene load_steps=10 format=3 uid="uid://copdt5sgr6w4o"]
+[gd_scene load_steps=12 format=3 uid="uid://copdt5sgr6w4o"]
 
 [ext_resource type="Script" uid="uid://bysr3fa2ip1ad" path="res://Scripts/effects/attack_particle_effect.gd" id="1_47cro"]
 [ext_resource type="Texture2D" uid="uid://gmla32085lxi" path="res://Placeholder Art/placeholder_twinkle.png" id="2_44lgp"]
-[ext_resource type="Texture2D" uid="uid://dqohymee1bv55" path="res://Placeholder Art/puyo_pop.png" id="3_44lgp"]
+[ext_resource type="Texture2D" uid="uid://di0541t6mjxra" path="res://Art/spell elements/SpellRunes/puyo-spell4.png" id="3_44lgp"]
+[ext_resource type="Texture2D" uid="uid://dqohymee1bv55" path="res://Placeholder Art/puyo_pop.png" id="4_y1t4w"]
 
 [sub_resource type="Curve2D" id="Curve2D_44lgp"]
 resource_local_to_scene = true
 
 [sub_resource type="Curve" id="Curve_44lgp"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.108475, 0.995953), 0.0, 0.0, 0, 0, Vector2(0.738806, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.0172249), -3.33397, 0.0, 0, 0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.108475, 0.995953), 0.0, 0.0, 0, 0, Vector2(0.288235, 1), 0.0, 0.0, 0, 0, Vector2(0.685294, 0.0162981), -0.135408, 0.0, 0, 0]
 point_count = 4
 
 [sub_resource type="CurveTexture" id="CurveTexture_y1t4w"]
 curve = SubResource("Curve_44lgp")
 
 [sub_resource type="Curve" id="Curve_6cpid"]
-_limits = [0.0, 2.0, 0.0, 1.0]
-_data = [Vector2(0, 0.228708), 0.0, 0.0, 0, 0, Vector2(1, 1.96268), 6.39012, 0.0, 0, 0]
+_limits = [0.0, 1.75, 0.0, 1.0]
+_data = [Vector2(0, 0.154249), 0.0, 0.0, 0, 0, Vector2(0.35034, 1.75), 15.7874, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="CurveTexture" id="CurveTexture_gb4dw"]
 curve = SubResource("Curve_6cpid")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1o3b0"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_gb4dw")
+alpha_curve = SubResource("CurveTexture_y1t4w")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_y1t4w"]
 particle_flag_disable_z = true
 gravity = Vector3(0, 0, 0)
 scale_curve = SubResource("CurveTexture_gb4dw")
@@ -41,15 +48,23 @@ loop = false
 modulate = Color(1, 1, 1, 0.462745)
 texture = ExtResource("2_44lgp")
 
-[node name="EndEffect" type="GPUParticles2D" parent="Path2D/PathFollow2D"]
+[node name="SpellEndEffect" type="GPUParticles2D" parent="Path2D/PathFollow2D"]
 emitting = false
 amount = 1
 texture = ExtResource("3_44lgp")
 one_shot = true
 process_material = SubResource("ParticleProcessMaterial_1o3b0")
 
+[node name="NormalEndEffect" type="GPUParticles2D" parent="Path2D/PathFollow2D"]
+emitting = false
+amount = 1
+texture = ExtResource("4_y1t4w")
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_y1t4w")
+
 [node name="testSprite" type="Sprite2D" parent="."]
 visible = false
 texture = ExtResource("2_44lgp")
 
-[connection signal="finished" from="Path2D/PathFollow2D/EndEffect" to="." method="_on_end_effect_finished"]
+[connection signal="finished" from="Path2D/PathFollow2D/SpellEndEffect" to="." method="_on_end_effect_finished"]
+[connection signal="finished" from="Path2D/PathFollow2D/NormalEndEffect" to="." method="_on_end_effect_finished"]
