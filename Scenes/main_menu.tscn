@@ -690,6 +690,7 @@ grow_vertical = 2
 theme_override_font_sizes/normal_font_size = 40
 bbcode_enabled = true
 text = "- Use the arrow keys/wasd to move the current pair of humours around the board, and press z or space to rotate them.
+- Press escape to pause or unpause the game.
 - When four or more humours are connected, they form a block, and are [color=red]crushed.[/color]
 - Any humours on top will then fall, which could lead to [color=yellow]chains[/color] being formed.
 - Creating these chains is vital to staying ahead. approach chaining with strategy and planning, not with speed.
@@ -780,9 +781,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -116.0
-offset_top = -176.0
+offset_top = -157.0
 offset_right = 116.0
-offset_bottom = -114.0
+offset_bottom = -95.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/font_size = 51
