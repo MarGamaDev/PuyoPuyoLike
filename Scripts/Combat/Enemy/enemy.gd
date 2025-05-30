@@ -41,8 +41,8 @@ func _ready() -> void:
 	instance_data = enemy_data.duplicate(true);
 	instance_data.health += DifficultyManager.get_health_addition()
 	$Sprite.texture = instance_data.sprite
-	$Sprite.scale = $Sprite.scale * instance_data.scale
-	$Sprite.set_modulate(instance_data.color_filter)
+	enemy_scale = $Sprite.scale
+	#$Sprite.set_modulate(instance_data.color_filter)
 	$Healthbar.max_value = instance_data.health
 	$Healthbar.value = instance_data.health
 	health_suffix = "/ " + str(instance_data.health)
@@ -143,5 +143,5 @@ func starting_delay():
 
 
 func reset_scale_and_position(unused : StringName):
-	$Sprite.scale = Vector2.ONE * instance_data.scale
+	$Sprite.scale = enemy_scale
 	

@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="EnemyData" load_steps=3 format=3 uid="uid://dmh6nqit7f2fl"]
 
 [ext_resource type="Script" uid="uid://c27m7mkd1up2" path="res://Scripts/Combat/Enemy/enemy_data.gd" id="1_53uqs"]
-[ext_resource type="Texture2D" uid="uid://crpm2t7elwi2a" path="res://Art/Enemies/kidney enemies/Enemy_Grunt_Kidney_Sisters.png" id="2_xi0ha"]
+[ext_resource type="Texture2D" uid="uid://da1uw7l5w5yv5" path="res://Art/Enemies/kidney enemies/Enemy_Grunt_Kidney_5.png" id="2_xi0ha"]
 
 [resource]
 script = ExtResource("1_53uqs")

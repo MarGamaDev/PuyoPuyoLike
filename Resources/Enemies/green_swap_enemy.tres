@@ -1,12 +1,12 @@
 [gd_resource type="Resource" script_class="EnemyData" load_steps=3 format=3 uid="uid://bklw3f4wufoj8"]
 
 [ext_resource type="Script" uid="uid://c27m7mkd1up2" path="res://Scripts/Combat/Enemy/enemy_data.gd" id="1_qnyxt"]
-[ext_resource type="Texture2D" uid="uid://cycswl8kjp7r7" path="res://Art/Enemies/OctoEnemy/Enemy_Trick_Skull.png" id="2_abs14"]
+[ext_resource type="Texture2D" uid="uid://dmrdswfjnjsby" path="res://Art/Enemies/BloodCellEnemy/Enemy_BloodCell_green.png" id="2_qnyxt"]
 
 [resource]
 script = ExtResource("1_qnyxt")
 health = 60
-sprite = ExtResource("2_abs14")
+sprite = ExtResource("2_qnyxt")
 boss = false
 color_filter = Color(0.279761, 1, 0.255751, 1)
 scale = 0.75

@@ -96,6 +96,8 @@ func get_encounter(boss_flag := false):
 				difficulty_chooser = 0
 			else:
 				difficulty_chooser = 1
+			if boss_flag:
+				difficulty_chooser = 1
 		2:
 			if randi_range(0, 1) == 0:
 				difficulty_chooser = 1
