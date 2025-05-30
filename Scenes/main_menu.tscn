@@ -634,7 +634,6 @@ text = "I know how to play!"
 autowrap_mode = 2
 
 [node name="PuyoTutorial" type="Control" parent="Tutorial"]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -684,7 +683,7 @@ anchor_bottom = 0.5
 offset_left = -541.0
 offset_top = -129.0
 offset_right = 532.0
-offset_bottom = 304.0
+offset_bottom = 278.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/normal_font_size = 40
@@ -694,7 +693,7 @@ text = "- Use the arrow keys/wasd to move the current pair of humours around the
 - When four or more humours are connected, they form a block, and are [color=red]crushed.[/color]
 - Any humours on top will then fall, which could lead to [color=yellow]chains[/color] being formed.
 - Creating these chains is vital to staying ahead. approach chaining with strategy and planning, not with speed.
-- filling the marked space in the top of the grid makes you lose a life,"
+- filling the marked space in the top of the grid makes you lose a life."
 scroll_active = false
 
 [node name="Label2" type="Label" parent="Tutorial/PuyoTutorial"]
