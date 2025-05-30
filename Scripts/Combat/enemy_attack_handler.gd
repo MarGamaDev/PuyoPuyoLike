@@ -18,7 +18,6 @@ class_name EnemyAttackHandler
 #REPLACE_YELLOW, REPLACE_CIRCLE_RANDOM
 #has a var called damage
 
-
 static func process_attack(attack_damage : int, attack_type : EnemyAttack.EnemyAttackType) -> PuyoQueueEvent:
 	var event_type : PuyoQueueEvent.EVENT_TYPE
 	match attack_type:

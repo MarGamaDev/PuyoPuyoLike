@@ -19,6 +19,7 @@ signal trigger_blocked_effect(enemy : Enemy)
 signal trigger_countered_effect(enemy : Enemy)
 
 @onready var combat_effects_manager : CombatEffectsManager = get_node("/root/Combat/CombatEffectsManager")
+@export var combat_manager : CombatManager
 
 var lives : int = 3
 var shield : int = 0
@@ -46,6 +47,8 @@ func receive_attack(attack: EnemyAttack, enemy: Enemy) -> void:
 		#if damage_taken > 0: #resets counter if damage is taken
 			#counter = 0
 			#if we want counter to reset between attacks no matter what, just remove condition
+		if damage_taken > combat_manager.get_free_spaces() - 1:
+			damage_taken = combat_manager.get_free_spaces() - 1
 		if damage_taken > 0 and enemy != null:
 			combat_effects_manager.create_attack_effect(enemy.global_position, combat_effects_manager.junk_indicator_marker, AttackEffectData.EFFECT_TYPE.JUNK)
 		on_player_damage_taken.emit(damage_taken, attack.attack_type)

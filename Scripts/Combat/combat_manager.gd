@@ -58,7 +58,6 @@ func end_player_turn() -> void:
 	on_player_turn_taken.emit()
 
 func process_enemy_attack(enemy_attack: EnemyAttack, enemy : Enemy) -> void:
-	##PLAY ENEMY ATTACK SFX HERE
 	on_enemy_attack.emit(enemy_attack, enemy)
 
 func register_enemy(enemy : Enemy) -> void:
@@ -117,3 +116,6 @@ func gain_counter(counter : int):
 
 func delay_enemies(delay_time : int):
 	on_delay_enemy_attack.emit(delay_time)
+
+func get_free_spaces() -> int:
+	return $PuyoManager.get_free_spaces_left()

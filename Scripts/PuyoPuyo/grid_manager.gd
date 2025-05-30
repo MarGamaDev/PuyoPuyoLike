@@ -585,8 +585,12 @@ func loss_check() -> bool:
 		down_tick()
 		await down_check_finished
 		if grid[int (grid_width / 2) - 1][0].is_holding_puyo:
-			life_loss.emit()
-			return true
+			if grid[int (grid_width / 2) - 1][0].puyo.puyo_type == Puyo.PUYO_TYPE.JUNK:
+				grid[int (grid_width / 2) - 1][0].puyo.pop()
+				grid[int (grid_width / 2) - 1][0].reset()
+			else:
+				life_loss.emit()
+				return true
 	return false
 
 func add_to_spawn_queue(new_event: PuyoQueueEvent):
@@ -730,3 +734,11 @@ func delete_player():
 		i.queue_free()
 	player_puyos.clear()
 	player_fall_flag = false
+
+func get_free_spaces_left() -> int:
+	var count = 0
+	for i in range(0,grid_height):
+		for j in range(0, grid_width):
+			if grid[j][i].is_holding_puyo == false:
+				count += 1
+	return count
