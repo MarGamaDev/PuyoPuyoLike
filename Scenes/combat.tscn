@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://d3naap4gnytxh"]
+[gd_scene load_steps=27 format=3 uid="uid://d3naap4gnytxh"]
 
 [ext_resource type="Script" uid="uid://b0h0tx4msve02" path="res://Scripts/Combat/combat_manager.gd" id="1_4ln8h"]
 [ext_resource type="Resource" uid="uid://b01ucdggd8ykf" path="res://Resources/puyo_value_data.tres" id="2_xisnc"]
@@ -18,12 +18,9 @@
 [ext_resource type="PackedScene" uid="uid://bif55k0mmcvqf" path="res://Scenes/Combat/defense_visuals_manager.tscn" id="15_tmuf1"]
 [ext_resource type="PackedScene" uid="uid://br4sb0wwxwr2o" path="res://Scenes/spells/spellSystem/spell_manager.tscn" id="16_50454"]
 [ext_resource type="Script" uid="uid://btkeiscf5dqtn" path="res://Scripts/reward_manager.gd" id="18_5kjvk"]
-[ext_resource type="Script" uid="uid://dvlv4xl60gxig" path="res://Scripts/audio/sound_manager.gd" id="19_5kjvk"]
+[ext_resource type="PackedScene" uid="uid://5y53lbvnnf04" path="res://Scenes/animations and audio stuff/sound_manager.tscn" id="19_nar6d"]
 [ext_resource type="PackedScene" uid="uid://c2aqaph0fpnb1" path="res://Scenes/pause_manager.tscn" id="21_5kjvk"]
-[ext_resource type="Script" uid="uid://cqrjphkavr3sq" path="res://Scripts/audio/polyphonic_audio_player.gd" id="21_e8ln5"]
-[ext_resource type="Resource" uid="uid://deuw1wybbfrog" path="res://Resources/AudioLibraries/SFX/game_sfx.tres" id="22_5g3cp"]
 [ext_resource type="Texture2D" uid="uid://cuet3laww0w3o" path="res://Art/Main_Character.png" id="25_e8ln5"]
-[ext_resource type="AudioStream" uid="uid://dr6ge7216dayb" path="res://Audio/Music/PuyoPuyoTheme_1.mp3" id="26_2n3pb"]
 [ext_resource type="Script" uid="uid://c6s3gimgvg7mb" path="res://Scripts/player_sprite.gd" id="26_5g3cp"]
 [ext_resource type="PackedScene" uid="uid://dmdsrn5kh1fm8" path="res://Scenes/death_manager.tscn" id="28_r5ubg"]
 
@@ -228,17 +225,7 @@ script = ExtResource("18_5kjvk")
 layer = 3
 visible = false
 
-[node name="SoundManager" type="Node2D" parent="."]
-script = ExtResource("19_5kjvk")
-
-[node name="MusicPlayer" type="AudioStreamPlayer" parent="SoundManager"]
-stream = ExtResource("26_2n3pb")
-volume_db = -5.0
-
-[node name="SFXPlayer" type="AudioStreamPlayer2D" parent="SoundManager"]
-script = ExtResource("21_e8ln5")
-audio_library = ExtResource("22_5g3cp")
-metadata/_custom_type_script = "uid://cqrjphkavr3sq"
+[node name="SoundManager" parent="." instance=ExtResource("19_nar6d")]
 
 [node name="PauseManager" parent="." node_paths=PackedStringArray("spell_manager") instance=ExtResource("21_5kjvk")]
 spell_manager = NodePath("../SpellManager")
@@ -271,6 +258,7 @@ libraries = {
 [connection signal="on_encounter_finished" from="." to="EncounterManager" method="check_for_rest_stop"]
 [connection signal="on_encounter_finished" from="." to="DeathManager" method="score_increase"]
 [connection signal="on_enemy_attack" from="." to="Player" method="receive_attack"]
+[connection signal="on_enemy_attack" from="." to="SoundManager" method="enemy_attack_sfx"]
 [connection signal="on_enemy_deregistered" from="." to="DeathManager" method="_on_enemy_killed"]
 [connection signal="on_game_paused" from="." to="PauseManager" method="on_game_paused"]
 [connection signal="on_player_turn_taken" from="." to="SpellManager" method="on_player_turn_taken_spell_reset"]
@@ -292,7 +280,6 @@ libraries = {
 [connection signal="on_life_lost" from="Player" to="PuyoManager" method="reset_game"]
 [connection signal="on_life_lost" from="Player" to="LifeCounter" method="lose_a_life"]
 [connection signal="on_life_lost" from="Player" to="DefenseVisualsManager" method="clear_junk_queue"]
-[connection signal="on_life_lost" from="Player" to="SoundManager" method="life_lost_sfx"]
 [connection signal="on_player_damage_taken" from="Player" to="PuyoManager" method="process_damage_taken"]
 [connection signal="on_player_damage_taken" from="Player" to="DefenseVisualsManager" method="add_junk_in_queue"]
 [connection signal="on_player_damage_taken" from="Player" to="PlayerSpriteMask/PlayerSprite" method="_on_player_on_player_damage_taken"]

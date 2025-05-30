@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://5y53lbvnnf04"]
+
+[ext_resource type="Script" uid="uid://dvlv4xl60gxig" path="res://Scripts/audio/sound_manager.gd" id="1_w1n0e"]
+[ext_resource type="AudioStream" uid="uid://dr6ge7216dayb" path="res://Audio/Music/PuyoPuyoTheme_1.mp3" id="2_rscxr"]
+[ext_resource type="Script" uid="uid://cqrjphkavr3sq" path="res://Scripts/audio/polyphonic_audio_player.gd" id="3_65csy"]
+[ext_resource type="Resource" uid="uid://deuw1wybbfrog" path="res://Resources/AudioLibraries/SFX/game_sfx.tres" id="4_g3a5p"]
+
+[node name="SoundManager" type="Node2D"]
+script = ExtResource("1_w1n0e")
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_rscxr")
+volume_db = -5.0
+
+[node name="SFXPlayer" type="AudioStreamPlayer2D" parent="."]
+script = ExtResource("3_65csy")
+audio_library = ExtResource("4_g3a5p")
+metadata/_custom_type_script = "uid://cqrjphkavr3sq"
+
+[node name="EnemyAudioTimer" type="Timer" parent="."]
+wait_time = 5.0
+
+[connection signal="timeout" from="EnemyAudioTimer" to="." method="_on_enemy_audio_timer_timeout"]

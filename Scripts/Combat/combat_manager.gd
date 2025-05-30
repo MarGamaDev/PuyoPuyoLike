@@ -10,7 +10,7 @@ signal on_junk_cleared(int)
 
 signal on_combat_started()
 signal on_player_turn_taken()
-signal on_enemy_attack(attack: EnemyAttack, enemy_index : int)
+signal on_enemy_attack(attack: EnemyAttack, enemy: Enemy)
 signal on_enemy_registered(enemy: Enemy)
 signal on_enemy_deregistered(enemy: Enemy)
 signal on_player_life_lost()
