@@ -7,9 +7,9 @@
 [ext_resource type="AudioStream" uid="uid://cywp2cywf3f7c" path="res://Audio/PoppingSFX/Sqielch.2.wav" id="5_gy1ca"]
 [ext_resource type="AudioStream" uid="uid://ccjhjnywssoly" path="res://Audio/PoppingSFX/Squelch.3.wav" id="6_kdqvy"]
 [ext_resource type="AudioStream" uid="uid://d3bdjw5gjerej" path="res://Audio/PoppingSFX/Squelch.4.wav" id="7_xlxxw"]
-[ext_resource type="AudioStream" uid="uid://bj0xfuy8nktb" path="res://Audio/PuyoThudSFX/Colide.1.wav" id="8_xlxxw"]
-[ext_resource type="AudioStream" uid="uid://bv7mi6v16u2m4" path="res://Audio/PuyoThudSFX/Colide.2.wav" id="9_f3n3i"]
-[ext_resource type="AudioStream" uid="uid://bxlhn5wej5a2e" path="res://Audio/PuyoThudSFX/Colide.3.wav" id="10_pvdm0"]
+[ext_resource type="AudioStream" uid="uid://ciay3rjqbe3pa" path="res://Audio/PuyoThudSFX/Colide.1.ogg" id="8_xlxxw"]
+[ext_resource type="AudioStream" uid="uid://c064mtv735oq6" path="res://Audio/PuyoThudSFX/Colide.2.ogg" id="9_f3n3i"]
+[ext_resource type="AudioStream" uid="uid://yub8u0hsrhdb" path="res://Audio/PuyoThudSFX/Colide.3.ogg" id="10_pvdm0"]
 
 [sub_resource type="Resource" id="Resource_wfwa5"]
 script = ExtResource("2_1gmuk")

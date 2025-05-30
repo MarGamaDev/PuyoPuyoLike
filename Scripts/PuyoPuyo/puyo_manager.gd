@@ -85,3 +85,7 @@ func _on_grid_manager_junk_created(amount: int) -> void:
 
 func add_certain_puyo_relic_type(type : Puyo.PUYO_TYPE):
 	$GridManager/PuyoPoolManager.add_certain_puyo(type)
+	
+
+func get_free_spaces_left()->int:
+	return $GridManager.get_free_spaces_left()
