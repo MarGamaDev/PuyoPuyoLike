@@ -11,7 +11,8 @@ func initialize():
 	print("green_buff connected: %s" % puyo_manager.player_attack.is_connected(green_pop))
 
 func green_pop(attack: PlayerAttack) -> void:
-	var enemy_count = encounter_manager.current_encounter.enemy_count
-	deal_aoe_damage.emit(extra_damage_per_enemy * enemy_count * puyo_values.green_chain_multiplier * attack.chain)
-	for enemy : Enemy in combat_manager.enemies:
-		combat_effects.create_relic_effect(self.global_position, enemy.global_position, AttackEffectData.EFFECT_TYPE.PLAYER_GREEN)
+	if attack.type == Puyo.PUYO_TYPE.GREEN:
+		var enemy_count = encounter_manager.current_encounter.enemy_count
+		deal_aoe_damage.emit(extra_damage_per_enemy * enemy_count * puyo_values.green_chain_multiplier * attack.chain)
+		for enemy : Enemy in combat_manager.enemies:
+			combat_effects.create_relic_effect(self.global_position, enemy.global_position, AttackEffectData.EFFECT_TYPE.PLAYER_GREEN)

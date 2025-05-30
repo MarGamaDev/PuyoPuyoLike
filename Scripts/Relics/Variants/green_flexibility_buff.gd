@@ -14,6 +14,7 @@ func initialize() -> void:
 	encounter_manager.on_update_encounter.connect(update_green_buff_on_start)
 	combat_manager.on_enemy_deregistered.connect(update_green_buff_on_enemy_death)
 	puyo_manager.player_attack.connect(trigger_green_attack)
+	print(puyo_manager.player_attack.is_connected(trigger_green_attack))
 	green_buff_attack.connect(combat_manager.damage_all_enemies)
 
 func update_green_buff_on_start(encounter : Encounter):
@@ -30,10 +31,11 @@ func update_green_buff_on_start(encounter : Encounter):
 func update_green_buff_on_enemy_death(unused_enemy : Enemy):
 	enemy_count -= 1
 	green_buff += 1
-	combat_effects.create_relic_effect(unused_enemy.global_position, self.global_position, AttackEffectData.EFFECT_TYPE.PLAYER_GREEN)
+	#combat_effects.create_relic_effect(unused_enemy.global_position, self.global_position, AttackEffectData.EFFECT_TYPE.PLAYER_GREEN)
 	pass
 
 func trigger_green_attack(attack : PlayerAttack):
+	print("green_buff_test")
 	if attack.type == Puyo.PUYO_TYPE.GREEN:
 		green_buff_attack.emit(green_buff * attack.chain)
 		for enemy : Enemy in combat_manager.enemies:
