@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://crpm2t7elwi2a"
-path="res://.godot/imported/Enemy_Grunt_Kidney_Sisters.png-a5191bb5b8c669db8b181f1c0e223cf2.ctex"
+path="res://.godot/imported/Enemy_Grunt_Kidney_Sisters.png-407f9c0b4e30e487123089dc0e029124.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Enemies/Enemy_Grunt_Kidney_Sisters.png"
-dest_files=["res://.godot/imported/Enemy_Grunt_Kidney_Sisters.png-a5191bb5b8c669db8b181f1c0e223cf2.ctex"]
+source_file="res://Art/Enemies/kidney enemies/Enemy_Grunt_Kidney_Sisters.png"
+dest_files=["res://.godot/imported/Enemy_Grunt_Kidney_Sisters.png-407f9c0b4e30e487123089dc0e029124.ctex"]
 
 [params]
 

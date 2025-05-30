@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cycswl8kjp7r7"
-path="res://.godot/imported/Enemy_Trick_Skull.png-b3d482d92082f26d7c618d1b74be8562.ctex"
+uid="uid://cfgtshhciqu28"
+path="res://.godot/imported/Enemy_BloodCell_white.png-3c5130a65ee1cc99ee82f89bf8ff11a2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Enemies/Enemy_Trick_Skull.png"
-dest_files=["res://.godot/imported/Enemy_Trick_Skull.png-b3d482d92082f26d7c618d1b74be8562.ctex"]
+source_file="res://Art/Enemies/BloodCellEnemy/Enemy_BloodCell_white.png"
+dest_files=["res://.godot/imported/Enemy_BloodCell_white.png-3c5130a65ee1cc99ee82f89bf8ff11a2.ctex"]
 
 [params]
 

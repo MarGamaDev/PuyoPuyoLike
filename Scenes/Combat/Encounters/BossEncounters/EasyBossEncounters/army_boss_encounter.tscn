@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://b2dsb1db70klu" path="res://Scenes/Combat/Enemy/Enemies/row_enemy.tscn" id="2_fbr8k"]
 [ext_resource type="Script" uid="uid://c27m7mkd1up2" path="res://Scripts/Combat/Enemy/enemy_data.gd" id="3_jerxu"]
 [ext_resource type="PackedScene" uid="uid://c3ht04jxirvgo" path="res://Scenes/Combat/Enemy/Enemies/rogue_grunt.tscn" id="3_wk3qy"]
-[ext_resource type="Texture2D" uid="uid://crpm2t7elwi2a" path="res://Art/Enemies/Enemy_Grunt_Kidney_Sisters.png" id="4_2jjjh"]
+[ext_resource type="Texture2D" uid="uid://crpm2t7elwi2a" path="res://Art/Enemies/kidney enemies/Enemy_Grunt_Kidney_Sisters.png" id="4_2jjjh"]
 [ext_resource type="PackedScene" uid="uid://4ep54kp1lpt2" path="res://Scenes/Combat/Enemy/Enemies/improved_grunt.tscn" id="4_wmvum"]
 [ext_resource type="Script" uid="uid://6v5kccermtmr" path="res://Scripts/Combat/Enemy/enemy_attack.gd" id="5_8v77b"]
 [ext_resource type="PackedScene" uid="uid://dc5a7nle7m8q7" path="res://Scenes/Combat/Enemy/Enemies/beefy_grunt.tscn" id="5_y8da6"]
