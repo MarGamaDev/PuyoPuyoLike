@@ -559,7 +559,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="TutorialOptions" type="Control" parent="Tutorial"]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -595,6 +594,7 @@ offset_right = 237.0
 offset_bottom = -59.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_font_sizes/font_size = 35
 text = "I've never played a Puyo-like game before"
 autowrap_mode = 2
 
@@ -611,6 +611,7 @@ offset_right = 237.0
 offset_bottom = 27.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_font_sizes/font_size = 35
 text = "I've played a Puyo-like, but not Umortis before"
 autowrap_mode = 2
 
@@ -627,6 +628,7 @@ offset_right = 237.0
 offset_bottom = 112.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_font_sizes/font_size = 35
 text = "I know how to play!"
 autowrap_mode = 2
 
