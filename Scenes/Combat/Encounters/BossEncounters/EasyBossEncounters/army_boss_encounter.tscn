@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://4ep54kp1lpt2" path="res://Scenes/Combat/Enemy/Enemies/improved_grunt.tscn" id="4_wmvum"]
 [ext_resource type="Script" uid="uid://6v5kccermtmr" path="res://Scripts/Combat/Enemy/enemy_attack.gd" id="5_8v77b"]
 [ext_resource type="PackedScene" uid="uid://dc5a7nle7m8q7" path="res://Scenes/Combat/Enemy/Enemies/beefy_grunt.tscn" id="5_y8da6"]
+[ext_resource type="Resource" uid="uid://g5otyum3hvxd" path="res://Resources/Enemies/improved_grunt.tres" id="8_jerxu"]
 
 [sub_resource type="Resource" id="Resource_l7da2"]
 script = ExtResource("3_jerxu")
@@ -33,15 +34,6 @@ number_of_swings = 3
 number_of_turns_till_swing = 14
 attack_type = 0
 metadata/_custom_type_script = "uid://6v5kccermtmr"
-
-[sub_resource type="Resource" id="Resource_i7r1m"]
-script = ExtResource("3_jerxu")
-health = 25
-sprite = ExtResource("4_2jjjh")
-boss = false
-color_filter = Color(1, 1, 1, 1)
-scale = 1.0
-metadata/_custom_type_script = "uid://c27m7mkd1up2"
 
 [sub_resource type="Resource" id="Resource_jerxu"]
 script = ExtResource("5_8v77b")
@@ -126,10 +118,10 @@ enemy_data = SubResource("Resource_l7da2")
 attacks = Array[ExtResource("5_8v77b")]([SubResource("Resource_h73qp"), SubResource("Resource_33gkj")])
 
 [node name="RogueGrunt" parent="." instance=ExtResource("3_wk3qy")]
-enemy_data = SubResource("Resource_i7r1m")
 attacks = Array[ExtResource("5_8v77b")]([SubResource("Resource_jerxu"), SubResource("Resource_2jjjh"), SubResource("Resource_8v77b")])
 
 [node name="ImprovedGrunt" parent="." instance=ExtResource("4_wmvum")]
+enemy_data = ExtResource("8_jerxu")
 attacks = Array[ExtResource("5_8v77b")]([SubResource("Resource_3fppp"), SubResource("Resource_qog4p"), SubResource("Resource_4qxcc")])
 
 [node name="BeefyGrunt" parent="." instance=ExtResource("5_y8da6")]
