@@ -14,7 +14,7 @@ config/name="Umortis"
 config/version="0.1"
 run/main_scene="uid://dc6oe7dfg2ice"
 config/features=PackedStringArray("4.4", "GL Compatibility")
-config/icon="uid://dehy5ghfyon84"
+config/icon="uid://dtinidf20r6ev"
 
 [audio]
 
