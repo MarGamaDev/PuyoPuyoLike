@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://dc6oe7dfg2ice"]
+[gd_scene load_steps=32 format=3 uid="uid://dc6oe7dfg2ice"]
 
 [ext_resource type="Script" uid="uid://c67v5u2go0uhq" path="res://Scripts/main_menu.gd" id="1_ce3w2"]
 [ext_resource type="Theme" uid="uid://qw5wdr2jerv7" path="res://Art/text/default_font.tres" id="1_n45e2"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://dauopdnvad7qk" path="res://Art/spell elements/puyo-arrowSign.png" id="12_5egv6"]
 [ext_resource type="Texture2D" uid="uid://b51dmrjp1h2im" path="res://Art/spell elements/puyo-plusSign.png" id="13_vtepg"]
 [ext_resource type="Texture2D" uid="uid://dpsv0hmy3leji" path="res://Placeholder Art/slam_intent.png" id="14_vtepg"]
+[ext_resource type="AudioStream" uid="uid://c1ncghlikbtpy" path="res://Audio/Music/menu_ambient.ogg" id="15_8dnnj"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_opfnp"]
 
@@ -1402,6 +1403,10 @@ offset_top = 11.0
 offset_right = 437.0
 offset_bottom = 31.0
 text = "PLAYTEST VERSION - ASSETS MISSING AND NOT FINAL"
+
+[node name="ambient_noise" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_8dnnj")
+autoplay = true
 
 [connection signal="pressed" from="MenuPage/Buttons/StartButton" to="." method="open_tutorial"]
 [connection signal="pressed" from="MenuPage/Buttons/OptionsButton" to="." method="_on_options_button_pressed"]
