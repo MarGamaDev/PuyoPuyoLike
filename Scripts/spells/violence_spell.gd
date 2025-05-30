@@ -1,4 +1,4 @@
-extends HardSequentialSpell
+extends FlexibleSpell
 
 @export var spell_base_damage : int = 15
 

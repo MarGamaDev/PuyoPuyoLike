@@ -1,4 +1,4 @@
-extends SequentialSpell
+extends FlexibleSpell
 
 ##after doing a chained rainbow in a specific order, at the end of the chain,
 ##trigger the effect of each puyo type (rainbow mult value * chain length) times

@@ -5,9 +5,9 @@
 [resource]
 script = ExtResource("1_64fgx")
 spell_name = "Caution"
-spell_description = "Gain 30 shield."
+spell_description = "Gain 25 shield."
 flavor_text = "Show them no openings."
 recipe_type = 1
-recipe_contents = Array[int]([2, 2])
+recipe_contents = Array[int]([2, 4])
 spell_path = "res://Scenes/spells/caution_spell.tscn"
 metadata/_custom_type_script = "uid://dnec0n0x4urar"

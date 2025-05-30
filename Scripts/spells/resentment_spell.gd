@@ -1,4 +1,4 @@
-extends SequentialSpell
+extends FlexibleSpell
 
 #deals a damage blast to every enemy
 @export var spell_damage = 45

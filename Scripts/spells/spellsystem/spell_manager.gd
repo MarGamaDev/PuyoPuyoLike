@@ -18,7 +18,7 @@ var awaiting_reward : Reward
 
 func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("TESTING_player_spawn"):
-		#test_add_spell(test_spell, )
+		#test_add_spell(test_spell)
 		pass
 
 func add_spell(spell_data: SpellData, reward: Reward):
@@ -40,6 +40,7 @@ func add_spell(spell_data: SpellData, reward: Reward):
 		spell_node.on_spell_progressed.connect(spell_container.progress_spell_visual)
 		spell_node.on_spell_progress_reset.connect(spell_container.reset_recipe_visual)
 		spell_node.on_spell_complete.connect(spell_container.on_spell_complete)
+		spell_node.on_spell_complete.connect(spell_container.play_effect)
 		spell_node.on_spell_complete.connect(spell_cast)
 		spell_node.update_enemy_damage_visuals.connect(update_enemy_visual_damage_queue)
 		spell_node.connect_to_effect_signals()

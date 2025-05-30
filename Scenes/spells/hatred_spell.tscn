@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://7iljk5dbistl"]
 
-[ext_resource type="Script" uid="uid://b70j68w3abdic" path="res://scripts/spells/hatred_spell.gd" id="1_tckra"]
+[ext_resource type="Script" uid="uid://b70j68w3abdic" path="res://Scripts/spells/hatred_spell.gd" id="1_tckra"]
 [ext_resource type="Resource" uid="uid://b01ucdggd8ykf" path="res://Resources/puyo_value_data.tres" id="2_bet10"]
 [ext_resource type="Resource" uid="uid://ndpoihfsl1kh" path="res://Resources/SpellData/hatred.tres" id="3_pnmlf"]
 

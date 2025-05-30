@@ -1,13 +1,30 @@
-[gd_scene load_steps=6 format=3 uid="uid://b82f1h5dy54rx"]
+[gd_scene load_steps=10 format=3 uid="uid://b82f1h5dy54rx"]
 
 [ext_resource type="Script" uid="uid://b7nfsk8l6n7aj" path="res://Scripts/spells/spellsystem/spell_container.gd" id="1_w1h6g"]
 [ext_resource type="Theme" uid="uid://qw5wdr2jerv7" path="res://Art/text/default_font.tres" id="2_vgyca"]
 [ext_resource type="Texture2D" uid="uid://7e64hhcudbus" path="res://Art/spell elements/puyo-spellContainer.png" id="2_w1h6g"]
-[ext_resource type="Texture2D" uid="uid://dqohymee1bv55" path="res://Placeholder Art/puyo_pop.png" id="6_n2pxk"]
+[ext_resource type="Texture2D" uid="uid://d34vwcfo21kwc" path="res://Art/spell elements/SpellRunes/puyo-spell12.png" id="4_qpsbb"]
+
+[sub_resource type="Gradient" id="Gradient_g2qhv"]
+offsets = PackedFloat32Array(0, 0.426471, 0.767647)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_w1h6g"]
+gradient = SubResource("Gradient_g2qhv")
+
+[sub_resource type="Curve" id="Curve_vgyca"]
+_limits = [0.0, 4.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.469945, 4), 16.2493, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_b4wli"]
+curve = SubResource("Curve_vgyca")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_biiyc"]
 particle_flag_disable_z = true
 gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_b4wli")
+color_ramp = SubResource("GradientTexture1D_w1h6g")
 
 [node name="SpellContainer" type="Control"]
 z_index = 3
@@ -95,10 +112,10 @@ theme_override_constants/separation = 0
 alignment = 1
 
 [node name="TestParticleEffect" type="GPUParticles2D" parent="."]
-position = Vector2(281, 52)
+position = Vector2(127, 52)
 emitting = false
 amount = 1
-texture = ExtResource("6_n2pxk")
+texture = ExtResource("4_qpsbb")
 one_shot = true
 process_material = SubResource("ParticleProcessMaterial_biiyc")
 

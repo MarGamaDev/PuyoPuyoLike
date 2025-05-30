@@ -1,4 +1,4 @@
-extends HardSequentialSpell
+extends FlexibleSpell
 
 ##gains sheild and delays the enemy's turn
 @export var spell_shield_amount : int = 25

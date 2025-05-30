@@ -532,7 +532,7 @@ grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 50
 text = "Super swaggy Credits
-will go here"
+will go here soon"
 
 [node name="ReturnButton" type="Button" parent="CreditsPage"]
 layout_mode = 1
@@ -1397,8 +1397,10 @@ stretch_mode = 5
 
 [node name="warning" type="Label" parent="."]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 20.0
+offset_left = 2.0
+offset_top = 11.0
+offset_right = 437.0
+offset_bottom = 31.0
 text = "PLAYTEST VERSION - ASSETS MISSING AND NOT FINAL"
 
 [connection signal="pressed" from="MenuPage/Buttons/StartButton" to="." method="open_tutorial"]
