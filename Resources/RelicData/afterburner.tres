@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="RelicData" load_steps=3 format=3 uid="uid://cqroghplk4shi"]
 
 [ext_resource type="Script" uid="uid://dfyomjxsahuhw" path="res://Scripts/Relics/System/relic_data.gd" id="1_4b62y"]
-[ext_resource type="Texture2D" uid="uid://dehy5ghfyon84" path="res://Art/puyo elements/Puyo_Red.png" id="2_nq2dx"]
+[ext_resource type="Texture2D" uid="uid://dhgx8wsi30i4" path="res://Art/RelicIcons/my_heart_burns_deeply.png" id="2_nq2dx"]
 
 [resource]
 script = ExtResource("1_4b62y")
@@ -10,4 +10,5 @@ name = "My Heart Burns Deeply"
 description = "Blocks of Blood are treated as if they had two extra humours."
 flavor_text = "Let the heat wash over you."
 file_path = "res://Scenes/Relics/Variants/afterburner.tscn"
+is_part_of_certain_cycle = false
 metadata/_custom_type_script = "uid://dfyomjxsahuhw"

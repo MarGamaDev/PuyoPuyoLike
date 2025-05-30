@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="RelicData" load_steps=3 format=3 uid="uid://db3hjdohmyeux"]
 
 [ext_resource type="Script" uid="uid://dfyomjxsahuhw" path="res://Scripts/Relics/System/relic_data.gd" id="1_mi1us"]
-[ext_resource type="Texture2D" uid="uid://i2cv712phqtb" path="res://Art/spell elements/puyo-yellowIcon.png" id="2_5f7cn"]
+[ext_resource type="Texture2D" uid="uid://b1bn6tv8t76n6" path="res://Art/RelicIcons/faster_than_ever_before.png" id="2_5f7cn"]
 
 [resource]
 script = ExtResource("1_mi1us")
@@ -10,4 +10,5 @@ name = "Faster Than Ever Before"
 description = "Whenever you would take damage after losing shield, reduce it by half of your current counter."
 flavor_text = "As if you were the wind."
 file_path = "res://Scenes/Relics/Variants/yellow_flexibility_buff.tscn"
+is_part_of_certain_cycle = false
 metadata/_custom_type_script = "uid://dfyomjxsahuhw"

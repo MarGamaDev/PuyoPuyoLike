@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="RelicData" load_steps=3 format=3 uid="uid://bkt3yag6anqym"]
 
 [ext_resource type="Script" uid="uid://dfyomjxsahuhw" path="res://Scripts/Relics/System/relic_data.gd" id="1_5r3hd"]
-[ext_resource type="Texture2D" uid="uid://bh56uxpmn85gw" path="res://Art/puyo elements/Puyo_Blue.png" id="2_fy2ex"]
+[ext_resource type="Texture2D" uid="uid://s55vn45gsfm5" path="res://Art/RelicIcons/a_sharp_pain.png" id="2_fy2ex"]
 
 [resource]
 script = ExtResource("1_5r3hd")
@@ -10,4 +10,5 @@ name = "A Sharp Pain"
 description = "When taking damage, deal 5 damage to each foe."
 flavor_text = "Like pins that are always out of sight."
 file_path = "res://Scenes/Relics/Variants/spiked_skin.tscn"
+is_part_of_certain_cycle = false
 metadata/_custom_type_script = "uid://dfyomjxsahuhw"

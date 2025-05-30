@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="RelicData" load_steps=3 format=3 uid="uid://cou23j3x0qknv"]
 
 [ext_resource type="Script" uid="uid://dfyomjxsahuhw" path="res://Scripts/Relics/System/relic_data.gd" id="1_txq0h"]
-[ext_resource type="Texture2D" uid="uid://mvwbn6k8vi5" path="res://Art/spell elements/puyo-redIcon_new.png" id="2_nrghx"]
+[ext_resource type="Texture2D" uid="uid://c65w4waql085g" path="res://Art/RelicIcons/fiercer_than_ever_before.png" id="2_nrghx"]
 
 [resource]
 script = ExtResource("1_txq0h")
@@ -10,4 +10,5 @@ name = "Fiercer Than Ever Before"
 description = "Chains of length 3 or higher containing blood give you shield equal to a third of the damage dealt."
 flavor_text = "As if you were aflame."
 file_path = "res://Scenes/Relics/Variants/red_flexibility_buff.tscn"
+is_part_of_certain_cycle = false
 metadata/_custom_type_script = "uid://dfyomjxsahuhw"

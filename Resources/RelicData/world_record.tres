@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="RelicData" load_steps=3 format=3 uid="uid://m44q6dbv7wbt"]
 
 [ext_resource type="Script" uid="uid://dfyomjxsahuhw" path="res://Scripts/Relics/System/relic_data.gd" id="1_18jtn"]
-[ext_resource type="Texture2D" uid="uid://b51dmrjp1h2im" path="res://Art/spell elements/puyo-plusSign.png" id="2_8crmw"]
+[ext_resource type="Texture2D" uid="uid://f5jiifb3n22s" path="res://Art/RelicIcons/a_sense_of_accomplishment.png" id="2_8crmw"]
 
 [resource]
 script = ExtResource("1_18jtn")
@@ -10,4 +10,5 @@ name = "A Sense of Accomplishment"
 description = "After each chain, trigger a random humour a number of times equal to the largest chain after picking this.."
 flavor_text = "You should be very pleased with yourself."
 file_path = "res://Scenes/Relics/Variants/world_record.tscn"
+is_part_of_certain_cycle = false
 metadata/_custom_type_script = "uid://dfyomjxsahuhw"

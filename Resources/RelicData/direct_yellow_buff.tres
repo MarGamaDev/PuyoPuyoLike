@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="RelicData" load_steps=3 format=3 uid="uid://d25fifgmqa3e1"]
 
 [ext_resource type="Script" uid="uid://dfyomjxsahuhw" path="res://Scripts/Relics/System/relic_data.gd" id="1_p1ygr"]
-[ext_resource type="Texture2D" uid="uid://p8k488huy4of" path="res://Placeholder Art/pop_effect.png" id="2_wejel"]
+[ext_resource type="Texture2D" uid="uid://fkuh0t75o5n1" path="res://Art/RelicIcons/my_mind_moves_quickly.png" id="2_wejel"]
 
 [resource]
 script = ExtResource("1_p1ygr")
@@ -10,4 +10,5 @@ name = "My Mind Moves Quickly"
 description = "Your counterattacks deal extra damage."
 flavor_text = "Find the weak points that they did not know they had."
 file_path = "res://Scenes/Relics/Variants/direct_yellow_buff.tscn"
+is_part_of_certain_cycle = false
 metadata/_custom_type_script = "uid://dfyomjxsahuhw"

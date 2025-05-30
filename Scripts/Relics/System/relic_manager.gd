@@ -7,8 +7,8 @@ signal on_relic_added
 var equipped_relics : Array[RelicData] = []
 
 func _physics_process(delta: float) -> void:
-	#if Input.is_action_just_pressed("TESTING_player_spawn"):
-	#	test_add_relic()
+	if Input.is_action_just_pressed("TESTING_player_spawn"):
+		test_add_relic()
 	pass
 
 func add_relic(relic_data: RelicData) -> void:
@@ -29,7 +29,8 @@ func add_relic(relic_data: RelicData) -> void:
 func add_relic_visual(sprite: Texture) -> TextureRect:
 	var new_visual = TextureRect.new()
 	new_visual.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-	new_visual.expand_mode = TextureRect.EXPAND_KEEP_SIZE
+	new_visual.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	new_visual.custom_minimum_size = Vector2(50,50)
 	new_visual.texture = sprite
 	$CanvasLayer/RelicContainer.add_child(new_visual)
 	return new_visual

@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://d3naap4gnytxh"]
+[gd_scene load_steps=28 format=3 uid="uid://d3naap4gnytxh"]
 
 [ext_resource type="Script" uid="uid://b0h0tx4msve02" path="res://Scripts/Combat/combat_manager.gd" id="1_4ln8h"]
 [ext_resource type="Resource" uid="uid://b01ucdggd8ykf" path="res://Resources/puyo_value_data.tres" id="2_xisnc"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://dpkr5l8qrkrou" path="res://Scenes/Relics/System/relic_manager.tscn" id="15_3cqtn"]
 [ext_resource type="PackedScene" uid="uid://bif55k0mmcvqf" path="res://Scenes/Combat/defense_visuals_manager.tscn" id="15_tmuf1"]
 [ext_resource type="PackedScene" uid="uid://br4sb0wwxwr2o" path="res://Scenes/spells/spellSystem/spell_manager.tscn" id="16_50454"]
+[ext_resource type="Resource" uid="uid://oxanirh0uyts" path="res://Resources/RelicData/green_direct_buff.tres" id="16_umvpd"]
 [ext_resource type="Script" uid="uid://btkeiscf5dqtn" path="res://Scripts/reward_manager.gd" id="18_5kjvk"]
 [ext_resource type="PackedScene" uid="uid://5y53lbvnnf04" path="res://Scenes/animations and audio stuff/sound_manager.tscn" id="19_nar6d"]
 [ext_resource type="PackedScene" uid="uid://c2aqaph0fpnb1" path="res://Scenes/pause_manager.tscn" id="21_5kjvk"]
@@ -215,6 +216,7 @@ test_spell = ExtResource("14_umvpd")
 
 [node name="RelicManager" parent="." instance=ExtResource("15_3cqtn")]
 position = Vector2(4.62693, 907.764)
+test_relic = ExtResource("16_umvpd")
 
 [node name="DefenseVisualsManager" parent="." instance=ExtResource("15_tmuf1")]
 

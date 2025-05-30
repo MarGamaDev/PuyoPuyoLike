@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="RelicData" load_steps=3 format=3 uid="uid://oxanirh0uyts"]
 
 [ext_resource type="Script" uid="uid://dfyomjxsahuhw" path="res://Scripts/Relics/System/relic_data.gd" id="1_iijg5"]
-[ext_resource type="Texture2D" uid="uid://cicm8lqfv40wv" path="res://Placeholder Art/puyo_green.png" id="2_23vqy"]
+[ext_resource type="Texture2D" uid="uid://bij76lawx0dgd" path="res://Art/RelicIcons/my_hands_reach_all.png" id="2_23vqy"]
 
 [resource]
 script = ExtResource("1_iijg5")
@@ -10,4 +10,5 @@ name = "My Hands Reach All"
 description = "whenever you crush phlegm, deal extra damage for each foe hit."
 flavor_text = "Feel all that is within your grasp."
 file_path = "res://Scenes/Relics/Variants/green_direct_buff.tscn"
+is_part_of_certain_cycle = false
 metadata/_custom_type_script = "uid://dfyomjxsahuhw"

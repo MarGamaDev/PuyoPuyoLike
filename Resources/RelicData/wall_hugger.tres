@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="RelicData" load_steps=3 format=3 uid="uid://cvrmb74hefdd6"]
 
 [ext_resource type="Script" uid="uid://dfyomjxsahuhw" path="res://Scripts/Relics/System/relic_data.gd" id="1_b3377"]
-[ext_resource type="Texture2D" uid="uid://gmla32085lxi" path="res://Placeholder Art/placeholder_twinkle.png" id="2_75ki1"]
+[ext_resource type="Texture2D" uid="uid://g3t1obl6xfj0" path="res://Art/RelicIcons/a_crawling_sensation.png" id="2_75ki1"]
 
 [resource]
 script = ExtResource("1_b3377")
@@ -10,4 +10,5 @@ name = "A Crawling Sensation"
 description = "Humours touching a wall, floor, or ceiling are counted as two humours."
 flavor_text = "Nowhere is out of their reach."
 file_path = "res://Scenes/Relics/Variants/wall_hugger.tscn"
+is_part_of_certain_cycle = false
 metadata/_custom_type_script = "uid://dfyomjxsahuhw"

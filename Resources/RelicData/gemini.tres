@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="RelicData" load_steps=3 format=3 uid="uid://c1aj5ru0lme7u"]
 
 [ext_resource type="Script" uid="uid://dfyomjxsahuhw" path="res://Scripts/Relics/System/relic_data.gd" id="1_m8h2f"]
-[ext_resource type="Texture2D" uid="uid://dqohymee1bv55" path="res://Placeholder Art/puyo_pop.png" id="2_gi606"]
+[ext_resource type="Texture2D" uid="uid://ce0ekv1bhcfih" path="res://Art/RelicIcons/an_eerie_familiarity.png" id="2_gi606"]
 
 [resource]
 script = ExtResource("1_m8h2f")
@@ -10,4 +10,5 @@ name = "An Eerie Familiarity"
 description = "Crushing multiple blocks of the same humour in a single chain boosts their power."
 flavor_text = "It must be just a coincidence."
 file_path = "res://Scenes/Relics/Variants/gemini.tscn"
+is_part_of_certain_cycle = false
 metadata/_custom_type_script = "uid://dfyomjxsahuhw"

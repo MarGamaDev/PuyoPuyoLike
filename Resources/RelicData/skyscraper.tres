@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="RelicData" load_steps=3 format=3 uid="uid://cifa18qb0t6e8"]
 
 [ext_resource type="Script" uid="uid://dfyomjxsahuhw" path="res://Scripts/Relics/System/relic_data.gd" id="1_vlb4h"]
-[ext_resource type="Texture2D" uid="uid://ce7hlakgtf0l6" path="res://Placeholder Art/shield_icon.png" id="2_u5bge"]
+[ext_resource type="Texture2D" uid="uid://bs5dpi2scby3p" path="res://Art/RelicIcons/a_strong_sense_of_vertigo.png" id="2_u5bge"]
 
 [resource]
 script = ExtResource("1_vlb4h")
@@ -10,4 +10,5 @@ name = "A Strong Sense of Vertigo"
 description = "If a block is crushed within the top 6 rows, it gains 3 more humours."
 flavor_text = "Don't look down."
 file_path = "res://Scenes/Relics/Variants/skyscraper.tscn"
+is_part_of_certain_cycle = false
 metadata/_custom_type_script = "uid://dfyomjxsahuhw"

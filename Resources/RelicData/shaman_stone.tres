@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="RelicData" load_steps=3 format=3 uid="uid://cyjp8wmea4ej2"]
 
 [ext_resource type="Script" uid="uid://dfyomjxsahuhw" path="res://Scripts/Relics/System/relic_data.gd" id="1_42ixb"]
-[ext_resource type="Texture2D" uid="uid://c4yv3sgackjej" path="res://Art/spell elements/puyo-equalSign.png" id="2_o04qn"]
+[ext_resource type="Texture2D" uid="uid://c1pj0olvmkfod" path="res://Art/RelicIcons/something_mysical.png" id="2_km13r"]
 
 [resource]
 script = ExtResource("1_42ixb")
-sprite = ExtResource("2_o04qn")
+sprite = ExtResource("2_km13r")
 name = "Something Mystical"
 description = "Channelling an emotion triggers the effect of a random humour equal to the length of the spell."
 flavor_text = "No need to describe the feeling beyond that."
