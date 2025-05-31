@@ -65,7 +65,8 @@ func reset_pool(reward_unused = null):
 
 @warning_ignore("shadowed_variable_base_class")
 func on_reward_button_pressed(reward : Reward):
-	reward.has_been_taken = true
+	if reward.reward_type != Reward.REWARD_TYPE.SPELL:
+		reward.has_been_taken = true
 	on_reward_chosen.emit(reward)
 	if reward.reward_type == Reward.REWARD_TYPE.SPELL:
 		on_spell_reward_chosen.emit(reward.spell_data, reward)

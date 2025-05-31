@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bhx6thphvfolw" path="res://Scripts/PuyoPuyo/puyo_manager.gd" id="1_sea3v"]
 [ext_resource type="PackedScene" uid="uid://cbaajsmksk4lh" path="res://Scenes/PuyoPuyo/grid_manager.tscn" id="2_ajnr3"]
-[ext_resource type="Texture2D" uid="uid://2816h6f4jels" path="res://Art/puyo elements/Death_Marker.png" id="3_4g3bt"]
+[ext_resource type="Texture2D" uid="uid://dub51x4lfi0n0" path="res://Art/combat screen elements/puyo-skull.png" id="3_4g3bt"]
 
 [node name="PuyoManager" type="Node2D"]
 script = ExtResource("1_sea3v")
@@ -10,9 +10,9 @@ script = ExtResource("1_sea3v")
 [node name="GridManager" parent="." instance=ExtResource("2_ajnr3")]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(1, 1, 1, 0.592157)
+modulate = Color(1, 1, 1, 0.707)
 position = Vector2(124, 26)
-scale = Vector2(0.76, 0.72)
+scale = Vector2(2.11111, 2)
 texture = ExtResource("3_4g3bt")
 
 [connection signal="chain_ended" from="GridManager" to="." method="_on_grid_manager_chain_ended"]
