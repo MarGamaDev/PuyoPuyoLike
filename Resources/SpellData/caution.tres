@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_64fgx")
 spell_name = "Caution"
-spell_description = "Gain 25 shield."
+spell_description = "Gain a large amount of shield."
 flavor_text = "Show them no openings."
 recipe_type = 1
 recipe_contents = Array[int]([2, 4])

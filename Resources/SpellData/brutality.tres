@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_y4qyo")
 spell_name = "Brutality"
-spell_description = "Deal 50 damage to the targeted foe."
+spell_description = "Deal large damage to the targeted foe."
 flavor_text = "Let them feel the severity of your actions."
 recipe_type = 0
 recipe_contents = Array[int]([4, 4])
