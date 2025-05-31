@@ -7,7 +7,7 @@
 script = ExtResource("1_18jtn")
 sprite = ExtResource("2_8crmw")
 name = "A Sense of Accomplishment"
-description = "After each chain, trigger a random humour a number of times equal to the largest chain after picking this.."
+description = "Based on the largest chain length since picking this sensation, trigger extra random humours after each chain you crush."
 flavor_text = "You should be very pleased with yourself."
 file_path = "res://Scenes/Relics/Variants/world_record.tscn"
 is_part_of_certain_cycle = false

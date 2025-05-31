@@ -23,6 +23,10 @@ func create_spell_reward():
 	$SpellContainer.create_spell_container(spell, true)
 	$SpellContainer.show()
 	$RewardDescriptionLabel.text = spell.spell_description
+	if spell.spell_description.length() > 80:
+		$RewardDescriptionLabel.add_theme_font_size_override("normal_font_size", 30)
+	else:
+		$RewardDescriptionLabel.add_theme_font_size_override("normal_font_size", 40)
 	$FlavorTextLabel.text = spell.flavor_text
 	
 
@@ -33,6 +37,10 @@ func create_relic_reward():
 	$RelicImage.show()
 	$RelicImage.texture = relic.sprite
 	$RewardDescriptionLabel.text = relic.description
+	if relic.description.length() > 80:
+		$RewardDescriptionLabel.add_theme_font_size_override("normal_font_size", 30)
+	else:
+		$RewardDescriptionLabel.add_theme_font_size_override("normal_font_size", 40)
 	$FlavorTextLabel.text = relic.flavor_text
 	pass
 
