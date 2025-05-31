@@ -14,8 +14,8 @@
 [ext_resource type="PackedScene" uid="uid://b3qfdcqaqmgk4" path="res://Scenes/Combat/combat_effects_manager.tscn" id="11_w6tjk"]
 [ext_resource type="PackedScene" uid="uid://b2l1xn5ovaca4" path="res://Scenes/RewardScreen/reward_screen.tscn" id="11_xisnc"]
 [ext_resource type="PackedScene" uid="uid://chmradttgb2ep" path="res://Scenes/Combat/life_counter.tscn" id="13_y8jr2"]
-[ext_resource type="Resource" uid="uid://bg1e6nm4v2p76" path="res://Resources/SpellData/caution.tres" id="14_umvpd"]
 [ext_resource type="PackedScene" uid="uid://dpkr5l8qrkrou" path="res://Scenes/Relics/System/relic_manager.tscn" id="15_3cqtn"]
+[ext_resource type="Resource" uid="uid://y8sgi72q7ip8" path="res://Resources/SpellData/brutality.tres" id="15_5g3cp"]
 [ext_resource type="PackedScene" uid="uid://bif55k0mmcvqf" path="res://Scenes/Combat/defense_visuals_manager.tscn" id="15_tmuf1"]
 [ext_resource type="PackedScene" uid="uid://br4sb0wwxwr2o" path="res://Scenes/spells/spellSystem/spell_manager.tscn" id="16_50454"]
 [ext_resource type="Resource" uid="uid://b4g7bdpiw547s" path="res://Scenes/Relics/System/damage_test_relic.tres" id="17_5g3cp"]
@@ -238,7 +238,7 @@ position = Vector2(4.335, 24.765)
 [node name="SpellManager" parent="." instance=ExtResource("16_50454")]
 top_level = true
 position = Vector2(0, -2)
-test_spell = ExtResource("14_umvpd")
+test_spell = ExtResource("15_5g3cp")
 
 [node name="RelicManager" parent="." instance=ExtResource("15_3cqtn")]
 position = Vector2(4.62693, 907.764)
