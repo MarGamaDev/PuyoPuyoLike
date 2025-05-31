@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_xg5bu")
 spell_name = "Resentment"
-spell_description = "Deal 30 damage to each foe, and 20 extra to the targeted foe."
+spell_description = "Deal good damage to each foe, and extra to the targeted foe."
 flavor_text = "Let them burn."
 recipe_type = 0
 recipe_contents = Array[int]([4, 3, 5])
