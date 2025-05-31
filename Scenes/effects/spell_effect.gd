@@ -1,4 +1,4 @@
-extends GPUParticles2D
+extends CPUParticles2D
 
 var sprite_path_prefix : String = "res://Art/spell elements/SpellRunes/puyo-spell"
 var sprite_path_suffix : String = "=.png"
