@@ -15,9 +15,9 @@ signal chain_ended(max_chain : int)
 signal junk_popped(amount : int)
 
 #loading the grid nodes to instantiate them
-@onready var grid_node_scene = load("res://Scenes/PuyoPuyo/grid_node.tscn")
-@onready var puyo_scene = load("res://Scenes/PuyoPuyo/puyo.tscn")
-@onready var puyo_pop_effect = load("res://Scenes/effects/heart_explosion_effect.tscn")
+@onready var grid_node_scene = preload("res://Scenes/PuyoPuyo/grid_node.tscn")
+@onready var puyo_scene = preload("res://Scenes/PuyoPuyo/puyo.tscn")
+@onready var puyo_pop_effect = preload("res://Scenes/effects/heart_explosion_effect.tscn")
 
 @onready var sfx_player = $SFXPlayer
 

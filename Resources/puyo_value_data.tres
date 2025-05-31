@@ -11,5 +11,5 @@ red_chain_multiplier = 2
 yellow_base_value = 1
 yellow_chain_multiplier = 2
 blue_base_value = 1
-blue_chain_multiplier = 2
+blue_chain_multiplier = 1
 metadata/_custom_type_script = "uid://ei6vtes7vhr2"

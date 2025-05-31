@@ -126,7 +126,7 @@ func _create_heart_explosion(position : Vector2) -> void:
 	heart_effect.start()
 
 func on_boss_fight():
-	var boss_effect = load("res://Scenes/effects/text_particle_effect.tscn").instantiate()
+	var boss_effect = preload("res://Scenes/effects/text_particle_effect.tscn").instantiate()
 	$PuyoAttackEffectLayer.add_child(boss_effect)
 	boss_effect.global_position = $Markers/BossMarker.global_position
 	boss_effect.create_boss_effect()
