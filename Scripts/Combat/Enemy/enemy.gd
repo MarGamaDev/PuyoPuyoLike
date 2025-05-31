@@ -61,6 +61,7 @@ func _ready() -> void:
 	trigger_death_effect.connect(combat_effects_manager._create_heart_explosion)
 	
 	current_attack = attacks[0]
+	attack_countdown = attack_countdown + randi_range(-1, 1)
 	starting_delay()
 
 func handle_turn() -> void:
