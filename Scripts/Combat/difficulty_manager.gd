@@ -4,9 +4,9 @@ var health_addition = 0
 var attack_addition = 0
 
 @export var health_modifier : int = 3
-@export var attack_modifier : int = 1
+@export var attack_modifier : int = 0.5
 var multiplicative_scaling : float = 0.5
-@export var multiplicative_scaling_per_rest_stop : float = 1.5
+@export var multiplicative_scaling_per_rest_stop : float = 1.25
 
 func reset_difficulty():
 	health_addition = 0
@@ -14,6 +14,7 @@ func reset_difficulty():
 	health_modifier = 3
 	attack_modifier = 1
 	multiplicative_scaling = 0.5
+	EncounterTrackerForRelics.reset_tracker()
 
 func increase_scaling_flat():
 	health_addition += int(health_modifier * multiplicative_scaling)

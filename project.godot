@@ -24,6 +24,7 @@ general/default_playback_type.web=0
 
 PlayerData="*res://Scripts/Data/player_data.gd"
 DifficultyManager="*res://Scripts/Combat/difficulty_manager.gd"
+EncounterTrackerForRelics="*res://Scripts/encounter_tracker_for_relics.gd"
 
 [display]
 
