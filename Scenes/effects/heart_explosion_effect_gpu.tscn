@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3 uid="uid://b40welc76in28"]
+
+[ext_resource type="Texture2D" uid="uid://cftyj8yvw00dh" path="res://Art/Meat_Particle_Effect.png" id="1_ufota"]
+[ext_resource type="Script" uid="uid://dtoxsq1860ujr" path="res://Scripts/effects/heart_explosion_effect.gd" id="2_ybuth"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_nys4l"]
+particle_flag_disable_z = true
+angle_min = -605.3
+angle_max = 668.7
+direction = Vector3(0, -1, 0)
+spread = 180.0
+initial_velocity_min = 155.93
+initial_velocity_max = 366.1
+angular_velocity_min = -1.60933e-05
+angular_velocity_max = 190.37
+radial_velocity_min = 33.9
+radial_velocity_max = 366.1
+gravity = Vector3(0, 500, 0)
+linear_accel_min = -16.95
+linear_accel_max = -16.95
+damping_min = 31.525
+damping_max = 31.525
+
+[node name="HeartExplosionFX" type="GPUParticles2D"]
+emitting = false
+amount = 12
+texture = ExtResource("1_ufota")
+lifetime = 5.0
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_nys4l")
+script = ExtResource("2_ybuth")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
