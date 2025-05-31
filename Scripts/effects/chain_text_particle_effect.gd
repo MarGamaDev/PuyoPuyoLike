@@ -12,7 +12,7 @@ func create(chain_length : int = 1):
 	text = ("Chain %s" % chain_length) + "!"
 	$SubViewport/Label.text = text
 	$SubViewport/Label.add_theme_font_size_override("normal_font_size", starting_font_size + ((chain_length - 1) * font_grow))
-	$GPUParticles2D.restart()
+	$CPUParticles2D.restart()
 	effect_active = true
 
 func _physics_process(delta: float) -> void:
