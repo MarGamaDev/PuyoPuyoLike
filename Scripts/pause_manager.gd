@@ -1,5 +1,6 @@
 extends Node2D
 
+@export var relic_holder : Node
 @export var spell_manager: SpellManager
 @export var relic_manager : RelicManager
 @onready var reward_choice_scene : PackedScene = preload("res://Scenes/RewardScreen/reward_choice.tscn")
@@ -21,6 +22,7 @@ func _physics_process(_delta: float) -> void:
 	if Input.is_action_just_pressed("toggle_pause") and pause_delay_flag:
 		pause_delay_flag = false
 		get_tree().paused = false
+		relic_holder.show_relic_holder()
 		reset_pause_screen()
 
 func on_game_paused():

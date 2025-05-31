@@ -17,7 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://dpkr5l8qrkrou" path="res://Scenes/Relics/System/relic_manager.tscn" id="15_3cqtn"]
 [ext_resource type="PackedScene" uid="uid://bif55k0mmcvqf" path="res://Scenes/Combat/defense_visuals_manager.tscn" id="15_tmuf1"]
 [ext_resource type="PackedScene" uid="uid://br4sb0wwxwr2o" path="res://Scenes/spells/spellSystem/spell_manager.tscn" id="16_50454"]
-[ext_resource type="Resource" uid="uid://oxanirh0uyts" path="res://Resources/RelicData/green_direct_buff.tres" id="16_umvpd"]
+[ext_resource type="Resource" uid="uid://bn02cthwxocgv" path="res://Resources/RelicData/blue_direct_buff.tres" id="16_e8ln5"]
 [ext_resource type="Script" uid="uid://btkeiscf5dqtn" path="res://Scripts/reward_manager.gd" id="18_5kjvk"]
 [ext_resource type="PackedScene" uid="uid://5y53lbvnnf04" path="res://Scenes/animations and audio stuff/sound_manager.tscn" id="19_nar6d"]
 [ext_resource type="PackedScene" uid="uid://c2aqaph0fpnb1" path="res://Scenes/pause_manager.tscn" id="21_5kjvk"]
@@ -163,7 +163,6 @@ texture = ExtResource("7_3w34b")
 expand_mode = 1
 
 [node name="Label" type="Label" parent="Frame"]
-visible = false
 offset_left = 23.0
 offset_top = 44.0
 offset_right = 260.0
@@ -233,7 +232,7 @@ test_spell = ExtResource("14_umvpd")
 
 [node name="RelicManager" parent="." instance=ExtResource("15_3cqtn")]
 position = Vector2(4.62693, 907.764)
-test_relic = ExtResource("16_umvpd")
+test_relic = ExtResource("16_e8ln5")
 
 [node name="DefenseVisualsManager" parent="." instance=ExtResource("15_tmuf1")]
 
@@ -246,8 +245,10 @@ visible = false
 
 [node name="SoundManager" parent="." instance=ExtResource("19_nar6d")]
 
-[node name="PauseManager" parent="." node_paths=PackedStringArray("spell_manager") instance=ExtResource("21_5kjvk")]
+[node name="PauseManager" parent="." node_paths=PackedStringArray("relic_holder", "spell_manager", "relic_manager") instance=ExtResource("21_5kjvk")]
+relic_holder = NodePath("../RelicManager")
 spell_manager = NodePath("../SpellManager")
+relic_manager = NodePath("../RelicManager")
 
 [node name="PlayerSpriteMask" type="ColorRect" parent="."]
 clip_children = 1
@@ -279,6 +280,7 @@ libraries = {
 [connection signal="on_enemy_attack" from="." to="Player" method="receive_attack"]
 [connection signal="on_enemy_attack" from="." to="SoundManager" method="enemy_attack_sfx"]
 [connection signal="on_enemy_deregistered" from="." to="DeathManager" method="_on_enemy_killed"]
+[connection signal="on_game_paused" from="." to="RelicManager" method="hide_relic_holder"]
 [connection signal="on_game_paused" from="." to="PauseManager" method="on_game_paused"]
 [connection signal="on_player_turn_taken" from="." to="SpellManager" method="on_player_turn_taken_spell_reset"]
 [connection signal="on_shield_gained" from="." to="Player" method="add_shield"]
