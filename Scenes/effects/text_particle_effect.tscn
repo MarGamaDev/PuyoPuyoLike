@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://ft133x0kc47a"]
+[gd_scene load_steps=8 format=3 uid="uid://ft133x0kc47a"]
 
 [ext_resource type="Script" uid="uid://dgp3t81bonv7l" path="res://Scripts/effects/text_particle_effect.gd" id="1_h2s5v"]
 [ext_resource type="Theme" uid="uid://qw5wdr2jerv7" path="res://Art/text/default_font.tres" id="2_oumsc"]
@@ -25,6 +25,9 @@ gravity = Vector3(0, 0, 0)
 linear_accel_min = -2.23517e-06
 linear_accel_max = -2.23517e-06
 alpha_curve = SubResource("CurveTexture_oumsc")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_oumsc"]
+viewport_path = NodePath("SubViewport")
 
 [node name="TextParticleEffect" type="Node2D"]
 script = ExtResource("1_h2s5v")
@@ -66,4 +69,20 @@ texture = SubResource("ViewportTexture_l5ohu")
 one_shot = true
 process_material = SubResource("ParticleProcessMaterial_h2s5v")
 
-[connection signal="finished" from="GPUParticles2D" to="." method="_on_gpu_particles_2d_finished"]
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 1
+texture = SubResource("ViewportTexture_oumsc")
+one_shot = true
+fixed_fps = 30
+direction = Vector2(0, -1)
+spread = 10.66
+gravity = Vector2(0, 0)
+initial_velocity_min = 57.8
+initial_velocity_max = 75.14
+linear_accel_min = -47.4
+linear_accel_max = -47.4
+damping_min = 24.855
+damping_max = 25.433
+
+[connection signal="finished" from="CPUParticles2D" to="." method="_on_cpu_particles_2d_finished"]
