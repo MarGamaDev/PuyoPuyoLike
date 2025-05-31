@@ -1,7 +1,7 @@
 extends BaseRelic
 #whenever a junk pops, deals x damage to all enemies.
 
-@export var junk_damage : int = 2
+@export var junk_damage : int = 1
 
 signal deal_junk_damage(damage:int)
 
@@ -13,7 +13,7 @@ func initialize():
 
 func junk_pop(junk_amount : int):
 	if junk_amount > 0:
-		var modifier = int((EncounterTrackerForRelics.get_count() - 1) / 2)
+		var modifier = int((EncounterTrackerForRelics.get_count() - 1))
 		deal_junk_damage.emit((junk_damage + modifier)* junk_amount)
 		##replace with effect
 		sound_manager.relic_ding_play()
