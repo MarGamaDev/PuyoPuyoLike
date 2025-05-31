@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("1_eymtl")
-health = 60
+health = 75
 sprite = ExtResource("2_7ob0u")
 boss = false
 color_filter = Color(1, 0, 0.266667, 1)

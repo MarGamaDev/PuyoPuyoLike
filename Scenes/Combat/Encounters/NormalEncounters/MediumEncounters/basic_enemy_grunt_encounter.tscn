@@ -11,9 +11,7 @@ enemy_count = 3
 metadata/_custom_type_script = "uid://c086ewc7gw56k"
 
 [node name="BasicEnemy" parent="." instance=ExtResource("2_2m8k6")]
-position = Vector2(-205, 0)
 
 [node name="BasicGrunt" parent="." instance=ExtResource("3_6534q")]
 
 [node name="FodderGrunt" parent="." instance=ExtResource("4_orpkf")]
-position = Vector2(195, 0)
