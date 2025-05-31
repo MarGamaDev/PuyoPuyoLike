@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://nuh6y6qi8xrh"]
+
+[ext_resource type="Script" uid="uid://bhqnhkm1o1a4w" path="res://Scenes/Relics/System/damage_test_relic.gd" id="1_xbecx"]
+[ext_resource type="Resource" uid="uid://b4g7bdpiw547s" path="res://Scenes/Relics/System/damage_test_relic.tres" id="2_d4gds"]
+
+[node name="DamageTestRelic" type="Node2D"]
+script = ExtResource("1_xbecx")
+relic_data = ExtResource("2_d4gds")

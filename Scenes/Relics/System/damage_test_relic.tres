@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="RelicData" load_steps=3 format=3 uid="uid://b4g7bdpiw547s"]
+
+[ext_resource type="Script" uid="uid://dfyomjxsahuhw" path="res://Scripts/Relics/System/relic_data.gd" id="1_xytix"]
+[ext_resource type="Texture2D" uid="uid://bdccfbkis3gqq" path="res://Art/combat screen elements/Heart_1.png" id="2_io88x"]
+
+[resource]
+script = ExtResource("1_xytix")
+sprite = ExtResource("2_io88x")
+name = "super damage"
+description = "if this is in game we fucked up"
+flavor_text = ""
+file_path = "res://Scenes/Relics/System/damage_test_relic.tscn"
+is_part_of_certain_cycle = false
+metadata/_custom_type_script = "uid://dfyomjxsahuhw"

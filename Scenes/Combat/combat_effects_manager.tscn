@@ -20,6 +20,8 @@ script = ExtResource("1_wg6ri")
 
 [node name="ChainMarker" type="Marker2D" parent="Markers"]
 
+[node name="BossMarker" type="Marker2D" parent="Markers"]
+
 [node name="PuyoAttackEffectLayer" type="CanvasLayer" parent="."]
 
 [node name="combat_start_effect" parent="PuyoAttackEffectLayer" instance=ExtResource("2_xkvjn")]

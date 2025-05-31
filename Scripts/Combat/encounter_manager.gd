@@ -3,6 +3,7 @@ class_name EncounterManager
 
 signal on_update_encounter(encounter: Encounter)
 signal on_rest_stop()
+signal on_boss_encounter
 
 var boss_folder_paths : Array[String] = ["res://Scenes/Combat/Encounters/BossEncounters/EasyBossEncounters/", "res://Scenes/Combat/Encounters/BossEncounters/MediumBossEncounters/", "res://Scenes/Combat/Encounters/BossEncounters/HardBossEncounters/"]
 var normal_encounter_folder_paths : Array[String] = ["res://Scenes/Combat/Encounters/NormalEncounters/EasyEncounters/", "res://Scenes/Combat/Encounters/NormalEncounters/MediumEncounters/", "res://Scenes/Combat/Encounters/NormalEncounters/HardEncounters/"]
@@ -110,6 +111,7 @@ func get_encounter(boss_flag := false):
 			else:
 				difficulty_chooser = 2
 	if boss_flag:
+		on_boss_encounter.emit()
 		return (boss_folder_paths[difficulty_chooser] + bosses[difficulty_chooser][randi_range(0, bosses[difficulty_chooser].size() - 1)])
 	else:
 		return (normal_encounter_folder_paths[difficulty_chooser] + encounters[difficulty_chooser][randi_range(0, encounters[difficulty_chooser].size() - 1)])
