@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_dke0r")
 green_base_value = 2
-green_chain_multiplier = 1
+green_chain_multiplier = 2
 red_base_value = 3
 red_chain_multiplier = 2
 yellow_base_value = 1
