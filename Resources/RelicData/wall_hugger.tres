@@ -7,7 +7,7 @@
 script = ExtResource("1_b3377")
 sprite = ExtResource("2_75ki1")
 name = "A Crawling Sensation"
-description = "Humours touching a wall, floor, or ceiling are counted as two humours."
+description = "Humours touching the wall or floor have their effect doubled when crushed."
 flavor_text = "Nowhere is out of their reach."
 file_path = "res://Scenes/Relics/Variants/wall_hugger.tscn"
 is_part_of_certain_cycle = false
