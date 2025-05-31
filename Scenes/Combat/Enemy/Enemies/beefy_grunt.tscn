@@ -8,7 +8,7 @@
 script = ExtResource("3_7w62n")
 damage = 6
 number_of_swings = 2
-number_of_turns_till_swing = 11
+number_of_turns_till_swing = 10
 attack_type = 0
 metadata/_custom_type_script = "uid://6v5kccermtmr"
 
@@ -16,7 +16,7 @@ metadata/_custom_type_script = "uid://6v5kccermtmr"
 script = ExtResource("3_7w62n")
 damage = 10
 number_of_swings = 1
-number_of_turns_till_swing = 9
+number_of_turns_till_swing = 8
 attack_type = 0
 metadata/_custom_type_script = "uid://6v5kccermtmr"
 
@@ -24,7 +24,7 @@ metadata/_custom_type_script = "uid://6v5kccermtmr"
 script = ExtResource("3_7w62n")
 damage = 15
 number_of_swings = 1
-number_of_turns_till_swing = 11
+number_of_turns_till_swing = 9
 attack_type = 1
 metadata/_custom_type_script = "uid://6v5kccermtmr"
 

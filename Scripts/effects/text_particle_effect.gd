@@ -22,7 +22,7 @@ func create_blocked_effect():
 	$SubViewport/Label.text = "Blocked!"
 	$SubViewport/Label.add_theme_font_size_override("normal_font_size", 45)
 	$SubViewport/Label.add_theme_color_override("font_outline_color", Color(0,0,255))
-	$CPUParticles2D.process_material.emission_shape = ParticleProcessMaterial.EmissionShape.EMISSION_SHAPE_POINT
+	#$CPUParticles2D.process_material.emission_shape = ParticleProcessMaterial.EmissionShape.EMISSION_SHAPE_POINT
 	$CPUParticles2D.restart()
 	effect_active = true
 
@@ -30,7 +30,7 @@ func create_counter_effect():
 	$SubViewport/Label.text = "Countered!"
 	$SubViewport/Label.add_theme_font_size_override("normal_font_size", 45)
 	$SubViewport/Label.add_theme_color_override("font_outline_color", Color(255,255,0))
-	$CPUParticles2D.process_material.emission_shape = ParticleProcessMaterial.EmissionShape.EMISSION_SHAPE_POINT
+	#$CPUParticles2D.process_material.emission_shape = ParticleProcessMaterial.EmissionShape.EMISSION_SHAPE_POINT
 	$CPUParticles2D.restart()
 	effect_active = true
 
@@ -39,7 +39,7 @@ func create_boss_effect():
 	$SubViewport/Label.text = "Boss fight!"
 	$SubViewport/Label.add_theme_color_override("font_outline_color", Color(255,0,0))
 	$SubViewport/Label.add_theme_font_size_override("normal_font_size", 45)
-	$CPUParticles2D.process_material.emission_shape = ParticleProcessMaterial.EmissionShape.EMISSION_SHAPE_POINT
+	#$CPUParticles2D.process_material.emission_shape = ParticleProcessMaterial.EmissionShape.EMISSION_SHAPE_POINT
 	$CPUParticles2D.restart()
 	effect_active = true
 
