@@ -514,7 +514,7 @@ anchor_bottom = 0.5
 offset_left = -482.0
 offset_top = -178.0
 offset_right = 482.0
-offset_bottom = 127.0
+offset_bottom = 256.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.18359, 0.18359, 0.18359, 0.764706)
@@ -565,6 +565,27 @@ Dexter"
 fit_content = true
 scroll_active = false
 
+[node name="Label4" type="RichTextLabel" parent="CreditsPage"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -451.0
+offset_top = 122.0
+offset_right = 455.0
+offset_bottom = 234.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 50
+bbcode_enabled = true
+text = "font
+alkhemikal by fontenddev.com"
+fit_content = true
+scroll_active = false
+
 [node name="Label3" type="RichTextLabel" parent="CreditsPage"]
 layout_mode = 1
 anchors_preset = 8
@@ -583,9 +604,7 @@ theme_override_font_sizes/normal_font_size = 50
 bbcode_enabled = true
 text = "[color=green]Sound[/color]
 Marshall Baker
-Puggos
-Dexter
-"
+Puggos"
 fit_content = true
 scroll_active = false
 
@@ -597,10 +616,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 198.0
-offset_top = -275.0
-offset_right = 385.0
-offset_bottom = -206.0
+offset_left = 300.0
+offset_top = -174.0
+offset_right = 487.0
+offset_bottom = -105.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "return to menu"
@@ -1561,6 +1580,7 @@ expand_mode = 1
 stretch_mode = 5
 
 [node name="warning" type="Label" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 2.0
 offset_top = 11.0

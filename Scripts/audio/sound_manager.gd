@@ -99,7 +99,35 @@ func _on_rest_stop() -> void:
 		current_player = next_player
 		selected_song = next_song
 	#pass # Replace with function body.
-	
+
+var relic_ding_flag = true
+
 func relic_ding_play():
 	print("ding")
-	#sfx_player.play_sound_effect_from_library("relic_ding")
+	if relic_ding_flag:
+		sfx_player.play_sound_effect_from_library("relic_ding")
+		relic_ding_flag = false
+		await get_tree().create_timer(0.15).timeout
+		relic_ding_flag = true
+
+func spell_build_up_play():
+	sfx_player.play_sound_effect_from_library("spell_build_up")
+
+
+func _on_player_on_attack_blocked(damage_blocked: int, shield_before_damage: int) -> void:
+	sfx_player.play_sound_effect_from_library("attack_blocked")
+
+
+func _on_player_on_counter_triggered(counter_amount: int) -> void:
+	sfx_player.play_sound_effect_from_library("attack_countered")
+
+
+var enemy_death_sound = true
+
+func _on_combat_on_enemy_deregistered(enemy: Enemy) -> void:
+	if enemy_death_sound == true:
+		enemy_death_sound = false
+		sfx_player.play_sound_effect_from_library("enemy_death")
+		await get_tree().create_timer(1.5).timeout
+		enemy_death_sound = true
+	pass # Replace with function body.

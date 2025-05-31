@@ -8,7 +8,7 @@
 script = ExtResource("3_wqrbc")
 damage = 999
 number_of_swings = 1
-number_of_turns_till_swing = 8
+number_of_turns_till_swing = 7
 attack_type = 6
 metadata/_custom_type_script = "uid://6v5kccermtmr"
 

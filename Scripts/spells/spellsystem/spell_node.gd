@@ -20,7 +20,7 @@ var container_location_marker : Control
 @onready var player : Player = get_node("/root/Combat/Player")
 @onready var encounter_manager : EncounterManager = get_node("/root/Combat/EncounterManager")
 @onready var combat_effects : CombatEffectsManager = get_node("/root/Combat/CombatEffectsManager")
-
+@onready var sound_manager : SoundManager = get_node("/root/Combat/SoundManager")
 signal update_enemy_damage_visuals
 
 ##go through the children to see what i can add super to
@@ -60,6 +60,7 @@ func trigger_spell_effect():
 
 func progress_spell(chain_stage: int):
 	on_spell_progressed.emit(chain_stage)
+	sound_manager.spell_build_up_play()
 	chain_stage_tracker += 1
 
 func complete_spell():

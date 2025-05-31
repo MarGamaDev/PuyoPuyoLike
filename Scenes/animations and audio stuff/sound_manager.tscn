@@ -7,22 +7,6 @@
 [ext_resource type="Resource" uid="uid://deuw1wybbfrog" path="res://Resources/AudioLibraries/SFX/game_sfx.tres" id="4_g3a5p"]
 [ext_resource type="AudioStream" uid="uid://cajew2iovt175" path="res://Audio/Music/zen_song_2.mp3" id="4_q4k6o"]
 
-[sub_resource type="Animation" id="Animation_65csy"]
-resource_name = "marshall_fade_out"
-length = 2.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:volume_db")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(1, 2.63902),
-"update": 0,
-"values": [-25.0, -80.0]
-}
-
 [sub_resource type="Animation" id="Animation_g3a5p"]
 length = 0.001
 tracks/0/type = "value"
@@ -54,15 +38,8 @@ tracks/0/keys = {
 "values": [-80.0, -25.0]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_q4k6o"]
-_data = {
-&"RESET": SubResource("Animation_g3a5p"),
-&"marshall_fade_in": SubResource("Animation_3mru4"),
-&"marshall_fade_out": SubResource("Animation_65csy")
-}
-
-[sub_resource type="Animation" id="Animation_q4k6o"]
-resource_name = "zen_1_fadeout"
+[sub_resource type="Animation" id="Animation_65csy"]
+resource_name = "marshall_fade_out"
 length = 2.0
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -72,9 +49,16 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(1, 2.63),
+"transitions": PackedFloat32Array(1, 2.63902),
 "update": 0,
-"values": [-19.0, -80.0]
+"values": [-25.0, -80.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_q4k6o"]
+_data = {
+&"RESET": SubResource("Animation_g3a5p"),
+&"marshall_fade_in": SubResource("Animation_3mru4"),
+&"marshall_fade_out": SubResource("Animation_65csy")
 }
 
 [sub_resource type="Animation" id="Animation_7dsxl"]
@@ -108,15 +92,8 @@ tracks/0/keys = {
 "values": [-80.0, -19.0]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_bfcgo"]
-_data = {
-&"RESET": SubResource("Animation_7dsxl"),
-&"zen_1_fadein": SubResource("Animation_ctpl2"),
-&"zen_1_fadeout": SubResource("Animation_q4k6o")
-}
-
-[sub_resource type="Animation" id="Animation_bfcgo"]
-resource_name = "zen_2_fadeout"
+[sub_resource type="Animation" id="Animation_q4k6o"]
+resource_name = "zen_1_fadeout"
 length = 2.0
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -129,6 +106,13 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 2.63),
 "update": 0,
 "values": [-19.0, -80.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bfcgo"]
+_data = {
+&"RESET": SubResource("Animation_7dsxl"),
+&"zen_1_fadein": SubResource("Animation_ctpl2"),
+&"zen_1_fadeout": SubResource("Animation_q4k6o")
 }
 
 [sub_resource type="Animation" id="Animation_1qcf2"]
@@ -160,6 +144,22 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(2.63, 1),
 "update": 0,
 "values": [-80.0, -19.0]
+}
+
+[sub_resource type="Animation" id="Animation_bfcgo"]
+resource_name = "zen_2_fadeout"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 2.63),
+"update": 0,
+"values": [-19.0, -80.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3mru4"]

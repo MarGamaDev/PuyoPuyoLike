@@ -1,6 +1,8 @@
 extends Control
 class_name SpellContainer
 
+signal play_spell_progress_noise
+
 var recipe_puyo_active_sprite_dictionary = {
 	Puyo.PUYO_TYPE.JUNK : "res://Art/puyo elements/Puyo_Junk.png",
 	Puyo.PUYO_TYPE.RED : "res://Art/spell elements/puyo-redIcon_new.png",
@@ -87,6 +89,7 @@ func reset_recipe_visual():
 
 func progress_spell_visual(component_to_activate: int):
 	#print(component_to_activate)
+	play_spell_progress_noise.emit()
 	recipe_rects[component_to_activate * 2].texture = load(recipe_puyo_active_sprite_dictionary[recipe_contents[component_to_activate]])
 
 func on_new_player_turn_taken():

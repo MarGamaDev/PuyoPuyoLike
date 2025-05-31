@@ -7,7 +7,7 @@ signal on_spell_cast(spell_length : int, spell_name : String)
 @export var test_spell : SpellData
 @export var test_spell_2 : SpellData
 @export var test_spell_3 :SpellData
-
+@export var sound_manager : SoundManager
 @onready var equipped_spells : Array[SpellNode] = []
 @onready var spell_corresponding_rewards : Array[Reward] = []
 
@@ -36,7 +36,8 @@ func add_spell(spell_data: SpellData, reward: Reward):
 		spell_node.setup_spell_node(spell_data)
 		equipped_spells.append(spell_node)
 		spell_corresponding_rewards.append(reward)
-		var spell_container = $EquippedSpellsContainer.add_spell(spell_data)
+		var spell_container  : SpellContainer = $EquippedSpellsContainer.add_spell(spell_data)
+		spell_container.play_spell_progress_noise.connect(play_spell_progress_noise)
 		spell_node.on_spell_progressed.connect(spell_container.progress_spell_visual)
 		spell_node.on_spell_progress_reset.connect(spell_container.reset_recipe_visual)
 		spell_node.on_spell_complete.connect(spell_container.on_spell_complete)
@@ -87,6 +88,7 @@ func test_add_spell(spell_data: SpellData):
 		equipped_spells.append(spell_node)
 		var spell_container = $EquippedSpellsContainer.add_spell(spell_data)
 		spell_node.on_spell_progressed.connect(spell_container.progress_spell_visual)
+		spell_node.on_spell_progressed.connect(play_spell_progress_noise)
 		spell_node.on_spell_progress_reset.connect(spell_container.reset_recipe_visual)
 		spell_node.on_spell_complete.connect(spell_container.on_spell_complete)
 		spell_node.on_spell_complete.connect(spell_cast)
@@ -100,4 +102,8 @@ func update_enemy_visual_damage_queue():
 	for enemy : Enemy in combat_manager.enemies:
 		print("damage_should_be_updating")
 		enemy.update_damage_visually()
-	
+
+func play_spell_progress_noise():
+	print("test sfx")
+	sound_manager.spell_build_up_play()
+	pass

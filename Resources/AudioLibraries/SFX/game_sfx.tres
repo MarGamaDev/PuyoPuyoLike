@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="AudioLibrary" load_steps=17 format=3 uid="uid://deuw1wybbfrog"]
+[gd_resource type="Resource" script_class="AudioLibrary" load_steps=25 format=3 uid="uid://deuw1wybbfrog"]
 
 [ext_resource type="Script" uid="uid://80p7cue2s0ca" path="res://Scripts/audio/audio_library.gd" id="1_qtexp"]
 [ext_resource type="Script" uid="uid://ccmkst5npwi3n" path="res://Scripts/audio/sound_effect.gd" id="2_qcntu"]
@@ -9,6 +9,10 @@
 [ext_resource type="AudioStream" uid="uid://dj1a8s4kx2c2c" path="res://Audio/encounter_transition.wav" id="7_pop7p"]
 [ext_resource type="AudioStream" uid="uid://bqrnm05hvv3d3" path="res://Audio/spell_activate.mp3" id="8_6iywo"]
 [ext_resource type="AudioStream" uid="uid://coyo7pw10yl0j" path="res://Audio/relic_ding.ogg" id="9_y7w64"]
+[ext_resource type="AudioStream" uid="uid://7ekoy172527" path="res://Audio/spell_condition_fufill.ogg" id="10_7njl6"]
+[ext_resource type="AudioStream" uid="uid://yf8juv0eqijc" path="res://Audio/attack_blocked.ogg" id="11_3qqbc"]
+[ext_resource type="AudioStream" uid="uid://kauy4a2oibxx" path="res://Audio/attack_countered.ogg" id="12_nilei"]
+[ext_resource type="AudioStream" uid="uid://er25l2j68gmq" path="res://Audio/enemy_death.ogg" id="13_b6vhy"]
 
 [sub_resource type="Resource" id="Resource_i1h3h"]
 script = ExtResource("2_qcntu")
@@ -52,7 +56,31 @@ tag = "relic_ding"
 stream = ExtResource("9_y7w64")
 metadata/_custom_type_script = "uid://ccmkst5npwi3n"
 
+[sub_resource type="Resource" id="Resource_p5ras"]
+script = ExtResource("2_qcntu")
+tag = "spell_build_up"
+stream = ExtResource("10_7njl6")
+metadata/_custom_type_script = "uid://ccmkst5npwi3n"
+
+[sub_resource type="Resource" id="Resource_mfedl"]
+script = ExtResource("2_qcntu")
+tag = "attack_blocked"
+stream = ExtResource("11_3qqbc")
+metadata/_custom_type_script = "uid://ccmkst5npwi3n"
+
+[sub_resource type="Resource" id="Resource_itgcj"]
+script = ExtResource("2_qcntu")
+tag = "attack_countered"
+stream = ExtResource("12_nilei")
+metadata/_custom_type_script = "uid://ccmkst5npwi3n"
+
+[sub_resource type="Resource" id="Resource_k1kl0"]
+script = ExtResource("2_qcntu")
+tag = "enemy_death"
+stream = ExtResource("13_b6vhy")
+metadata/_custom_type_script = "uid://ccmkst5npwi3n"
+
 [resource]
 script = ExtResource("1_qtexp")
-sound_effects = Array[ExtResource("2_qcntu")]([SubResource("Resource_i1h3h"), SubResource("Resource_y7w64"), SubResource("Resource_7njl6"), SubResource("Resource_3qqbc"), SubResource("Resource_6iywo"), SubResource("Resource_nilei"), SubResource("Resource_b6vhy")])
+sound_effects = Array[ExtResource("2_qcntu")]([SubResource("Resource_i1h3h"), SubResource("Resource_y7w64"), SubResource("Resource_7njl6"), SubResource("Resource_3qqbc"), SubResource("Resource_6iywo"), SubResource("Resource_nilei"), SubResource("Resource_b6vhy"), SubResource("Resource_p5ras"), SubResource("Resource_mfedl"), SubResource("Resource_itgcj"), SubResource("Resource_k1kl0")])
 metadata/_custom_type_script = "uid://80p7cue2s0ca"
