@@ -590,30 +590,13 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -237.0
-offset_top = -135.0
+offset_top = -65.0
 offset_right = 237.0
-offset_bottom = -59.0
+offset_bottom = 11.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 35
-text = "I've never played a Puyo-like game before"
-autowrap_mode = 2
-
-[node name="GameTutorialButton" type="Button" parent="Tutorial/TutorialOptions"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -237.0
-offset_top = -49.0
-offset_right = 237.0
-offset_bottom = 27.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 35
-text = "I've played a Puyo-like, but not Umortis before"
+text = "How to play"
 autowrap_mode = 2
 
 [node name="StartGameButton" type="Button" parent="Tutorial/TutorialOptions"]
@@ -630,7 +613,7 @@ offset_bottom = 112.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 35
-text = "I know how to play!"
+text = "Skip Tutorial"
 autowrap_mode = 2
 
 [node name="PuyoTutorial" type="Control" parent="Tutorial"]
@@ -1420,7 +1403,6 @@ autoplay = true
 [connection signal="pressed" from="OptionsPage/ReturnButton" to="." method="return_to_menu"]
 [connection signal="pressed" from="CreditsPage/ReturnButton" to="." method="return_to_menu"]
 [connection signal="pressed" from="Tutorial/TutorialOptions/PuyoTutorialButton" to="." method="next_page" binds= [1]]
-[connection signal="pressed" from="Tutorial/TutorialOptions/GameTutorialButton" to="." method="next_page" binds= [2]]
 [connection signal="pressed" from="Tutorial/TutorialOptions/StartGameButton" to="." method="start_game"]
 [connection signal="pressed" from="Tutorial/PuyoTutorial/NextPageButton" to="." method="next_page"]
 [connection signal="pressed" from="Tutorial/PuyoTutorial/ReturnButton" to="." method="return_to_menu"]

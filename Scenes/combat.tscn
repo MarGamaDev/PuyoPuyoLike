@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://d3naap4gnytxh"]
+[gd_scene load_steps=31 format=3 uid="uid://d3naap4gnytxh"]
 
 [ext_resource type="Script" uid="uid://b0h0tx4msve02" path="res://Scripts/Combat/combat_manager.gd" id="1_4ln8h"]
 [ext_resource type="Resource" uid="uid://b01ucdggd8ykf" path="res://Resources/puyo_value_data.tres" id="2_xisnc"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dh8e8u4ch381l" path="res://Scenes/Combat/player.tscn" id="5_ut0kg"]
 [ext_resource type="PackedScene" uid="uid://1hbj1uv66mu2" path="res://Scenes/DevTools/puyo_test_ui.tscn" id="5_yt1oa"]
 [ext_resource type="Texture2D" uid="uid://14ejxpdanarl" path="res://Art/combat screen elements/combat_frame.png" id="7_3w34b"]
+[ext_resource type="Theme" uid="uid://qw5wdr2jerv7" path="res://Art/text/default_font.tres" id="7_5g3cp"]
 [ext_resource type="Script" uid="uid://b4hbt6qjcu26g" path="res://Scripts/Combat/encounter_manager.gd" id="8_twsak"]
 [ext_resource type="PackedScene" uid="uid://b3qfdcqaqmgk4" path="res://Scenes/Combat/combat_effects_manager.tscn" id="11_w6tjk"]
 [ext_resource type="PackedScene" uid="uid://b2l1xn5ovaca4" path="res://Scenes/RewardScreen/reward_screen.tscn" id="11_xisnc"]
@@ -169,14 +170,20 @@ offset_right = 260.0
 offset_bottom = 67.0
 text = "TEST BUTTONS ARE STILL HERE"
 
-[node name="EncounterLabel" type="Label" parent="Frame"]
-visible = false
+[node name="EncounterLabel" type="RichTextLabel" parent="Frame"]
 top_level = true
 offset_left = 703.0
 offset_top = 11.0
 offset_right = 933.0
 offset_bottom = 63.0
-text = "Next Encounter: "
+theme = ExtResource("7_5g3cp")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 11
+theme_override_font_sizes/normal_font_size = 35
+text = "Next reward in"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="warning" type="Label" parent="Frame"]
 offset_left = 10.0
@@ -195,7 +202,7 @@ combat_manager = NodePath("..")
 [node name="EncounterManager" type="Node2D" parent="." node_paths=PackedStringArray("encounter_label")]
 position = Vector2(835, 250)
 script = ExtResource("8_twsak")
-encounter_label = NodePath("../Frame/EncounterLabel")
+encounter_label = NodePath("")
 
 [node name="CombatEffectsManager" parent="." instance=ExtResource("11_w6tjk")]
 

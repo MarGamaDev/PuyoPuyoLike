@@ -61,6 +61,11 @@ func load_next_encounter(boss_flag := false):
 	add_child(current_encounter)
 	await current_encounter.on_encounter_initialized
 	on_update_encounter.emit(current_encounter)
+	encounter_label.show()
+	if rest_stop_check == 1:
+		encounter_label.text = "Next reward after this boss!"
+	else:
+		encounter_label.text = "Next reward in " + str(rest_stop_check) + " waves!"
 
 func check_for_rest_stop():
 	rest_stop_check -= 1
@@ -70,17 +75,18 @@ func check_for_rest_stop():
 		DifficultyManager.increase_scaling_multiplier()
 		rest_stop_count += 1
 		encounter_label.hide()
-		encounter_label.text = "Next up: grunts"
+		#encounter_label.text = "Next up: grunts"
 	elif rest_stop_check == 1:
 		print("boss time!")
-		encounter_label.text == "Next up: reward"
+		#encounter_label.text == "Next up: reward"
 		load_next_encounter(true)
 		DifficultyManager.increase_scaling_flat()
 	else:
 		load_next_encounter()
 		DifficultyManager.increase_scaling_flat()
 	if rest_stop_check == 2:
-		encounter_label.text = "Next up: Boss!"
+		#encounter_label.text = "Next up: Boss!"
+		pass
 
 func get_encounter(boss_flag := false):
 	if current_difficulty < rest_stops_where_difficulty_changes.size():
