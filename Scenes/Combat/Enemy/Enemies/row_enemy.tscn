@@ -8,7 +8,7 @@
 script = ExtResource("3_ll4nd")
 damage = 14
 number_of_swings = 1
-number_of_turns_till_swing = 11
+number_of_turns_till_swing = 12
 attack_type = 1
 metadata/_custom_type_script = "uid://6v5kccermtmr"
 
@@ -16,7 +16,7 @@ metadata/_custom_type_script = "uid://6v5kccermtmr"
 script = ExtResource("3_ll4nd")
 damage = 8
 number_of_swings = 3
-number_of_turns_till_swing = 12
+number_of_turns_till_swing = 14
 attack_type = 0
 metadata/_custom_type_script = "uid://6v5kccermtmr"
 
