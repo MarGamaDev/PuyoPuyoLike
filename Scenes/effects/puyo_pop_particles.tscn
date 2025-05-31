@@ -3,13 +3,13 @@
 [ext_resource type="Texture2D" uid="uid://hvooavpam6hd" path="res://Placeholder Art/puyo_out_of_bounds.png" id="1_kkms8"]
 [ext_resource type="Script" uid="uid://d30hnw5751f41" path="res://Scripts/effects/puyo_pop_particles.gd" id="2_skgoy"]
 
-[node name="PuyoPopParticles" type="GPUParticles2D"]
+[node name="PuyoPopParticles" type="CPUParticles2D"]
 emitting = false
 texture = ExtResource("1_kkms8")
 one_shot = true
+fixed_fps = 30
+gravity = Vector2(0, 0)
 script = ExtResource("2_skgoy")
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true
-
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
