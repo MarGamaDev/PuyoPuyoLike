@@ -6,9 +6,10 @@ class_name SoundManager
 @export var song_volume : float = 0
 @export var non_puyo_sfx_volume : float = 0
 var rest_count = 0
-@export var song_change_rest_count : int = 1
+@export var song_change_rest_count : int = 3
 
 var zen_song_1_path : String = "res://Audio/Music/zen_song_1_looping.mp3"
+var zen_song_2_path : String = "res://Audio/Music/zen_song_2.mp3"
 var marshall_song_1_path : String = "res://Audio/Music/marshall_song_1_looping.mp3"
 
 var current_path : String
@@ -17,19 +18,25 @@ var enemy_attack_sound_flag : bool = true
 
 var fadein_flag = false
 
+var current_player : AudioStreamPlayer
+var selected_song = 0
+
 func _ready():
+	$MarshallSong.set_volume_db(-25)
+	$ZenSong1.set_volume_db(-19)
+	$ZenSong2.set_volume_db(-25)
 	#music_player.play_sound_effect_from_library("PuyoPuyoTheme_1")
-	var current_song : AudioStreamMP3 
-	match randi_range(0,1):
+	match randi_range(2,2):
 		0:
-			current_path = marshall_song_1_path
-			$MusicPlayer.set_volume_db(linear_to_db(song_volume - 0.07))
+			current_player = $MarshallSong
+			selected_song = 0
 		1:
-			current_path = zen_song_1_path
-			$MusicPlayer.set_volume_db(linear_to_db(song_volume + 0.04))
-	current_song = load(current_path)
-	$MusicPlayer.set_stream(current_song)
-	$MusicPlayer.play(0)
+			current_player = $ZenSong1
+			selected_song = 1
+		2:
+			current_player = $ZenSong2
+			selected_song = 2
+	current_player.play(0)
 	$SFXPlayer.set_volume_db(linear_to_db(non_puyo_sfx_volume))
 
 func life_lost_sfx():
@@ -58,26 +65,41 @@ func _on_enemy_audio_timer_timeout() -> void:
 	enemy_attack_sound_flag = true
 
 
+var next_song : int
+
 func _on_rest_stop() -> void:
 	rest_count += 1
-	#if rest_count == song_change_rest_count:
-		#$fader.play("fadeout")
-		#rest_count = 0
-		#if current_path == marshall_song_1_path:
-			#current_path = zen_song_1_path
-		#elif current_path == zen_song_1_path:
-			#current_path == marshall_song_1_path
-		#$MusicPlayer.set_stream(load(current_path))
-		#fadein_flag = true
+	if rest_count == song_change_rest_count:
+		rest_count = 0
+		next_song = randi_range(0, 2)
+		if next_song == selected_song:
+			return
+		var next_player
+		match selected_song:
+			0:
+				$MarshallSong/AnimationPlayer.play("marshall_fade_out")
+			1:
+				$ZenSong1/AnimationPlayer.play("zen_1_fadeout")
+			2:
+				$ZenSong2/AnimationPlayer.play("zen_2_fadeout")
+		selected_song = next_song
+		match next_song:
+			0:
+				next_player = $MarshallSong
+				$MarshallSong/AnimationPlayer.play("marshall_fade_in")
+			1:
+				next_player = $ZenSong1
+				$ZenSong1/AnimationPlayer.play("zen_1_fadein")
+			2:
+				next_player = $ZenSong2
+				$ZenSong2/AnimationPlayer.play("zen_2_fadeout")
+		next_player.play(0)
+		await get_tree().create_timer(2).timeout
+		current_player.stop()
+		current_player = next_player
+		selected_song = next_song
 	#pass # Replace with function body.
-
-func _on_fader_animation_finished(anim_name: StringName) -> void:
-	#if fadein_flag:
-		#$MusicPlayer.play(0)
-		#$fader.play("fadein")
-		#fadein_flag = false
-	pass
-
+	
 func relic_ding_play():
 	print("ding")
 	#sfx_player.play_sound_effect_from_library("relic_ding")
