@@ -8,8 +8,8 @@ var equipped_relics : Array[RelicData] = []
 var relic_index = 0
 
 func _physics_process(delta: float) -> void:
-	#if Input.is_action_just_pressed("TESTING_player_spawn"):
-		#test_add_relic()
+	if Input.is_action_just_pressed("TESTING_player_spawn"):
+		test_add_relic()
 	pass
 
 func add_relic(relic_data: RelicData) -> void:
@@ -55,6 +55,7 @@ func test_add_relic():
 	await get_tree().create_timer(0.1).timeout
 	new_relic.global_position = relic_visual_rect.position + (relic_visual_rect.size)
 	new_relic.global_position.x = new_relic.global_position.x + (equipped_relics.size() * 50)
+	
 
 func hide_relic_holder():
 	$CanvasLayer/RelicContainer.hide()

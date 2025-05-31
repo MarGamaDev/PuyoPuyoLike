@@ -4,7 +4,7 @@ var health_addition = 0
 var attack_addition = 0
 
 @export var health_modifier : int = 3
-@export var attack_modifier : int = 0.5
+@export var attack_modifier : int = 1
 var multiplicative_scaling : float = 1
 @export var multiplicative_scaling_per_rest_stop : float = 1.25
 

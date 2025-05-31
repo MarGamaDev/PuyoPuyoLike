@@ -14,7 +14,8 @@ signal on_junk_created(amount: int)
 @onready var grid_manager : GridManager = $GridManager
 
 func _ready():
-	add_certain_puyo_relic_type(Puyo.PUYO_TYPE.GREEN)
+	#add_certain_puyo_relic_type(Puyo.PUYO_TYPE.GREEN)
+	pass
 
 func end_player_turn() -> void:
 	await $GridManager.down_tick()
