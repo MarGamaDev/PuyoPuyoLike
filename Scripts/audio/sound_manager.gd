@@ -1,4 +1,5 @@
 extends Node2D
+class_name SoundManager
 
 @onready var sfx_player : PolyphonicAudioPlayer = $SFXPlayer
 
@@ -76,3 +77,7 @@ func _on_fader_animation_finished(anim_name: StringName) -> void:
 		#$fader.play("fadein")
 		#fadein_flag = false
 	pass
+
+func relic_ding_play():
+	print("ding")
+	#sfx_player.play_sound_effect_from_library("relic_ding")

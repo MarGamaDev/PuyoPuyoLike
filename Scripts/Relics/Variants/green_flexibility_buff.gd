@@ -37,6 +37,7 @@ func update_green_buff_on_enemy_death(unused_enemy : Enemy):
 func trigger_green_attack(attack : PlayerAttack):
 	print("green_buff_test")
 	if attack.type == Puyo.PUYO_TYPE.GREEN:
+		sound_manager.relic_ding_play()
 		green_buff_attack.emit(green_buff * attack.chain)
 		for enemy : Enemy in combat_manager.enemies:
 			combat_effects.create_relic_effect(self.global_position, enemy.global_position, AttackEffectData.EFFECT_TYPE.PLAYER_GREEN)

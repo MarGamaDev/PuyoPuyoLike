@@ -30,6 +30,7 @@ func check_block_type(attack: PlayerAttack) -> void:
 
 func trigger_red_defense(max_chain : int):
 	if red_flag and max_chain >= chain_requirement:
+		sound_manager.relic_ding_play()
 		print("red defense triggered, for shield %s" % (int(damage_tracker * shield_gain_reducer)))
 		gain_relic_shield.emit(int(damage_tracker * shield_gain_reducer))
 		combat_effects.create_relic_effect(self.global_position, combat_effects.shield_location_marker, AttackEffectData.EFFECT_TYPE.PLAYER_RED, false)

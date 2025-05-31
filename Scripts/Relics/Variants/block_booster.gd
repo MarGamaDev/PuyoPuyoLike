@@ -19,6 +19,7 @@ func block_boost(popped_puyos : Array, chain_value : int):
 	var puyo_value_data : PuyoValueData = combat_manager.puyo_values
 	var puyo_block_size = popped_puyos.size()
 	if puyo_block_size > 4:
+		sound_manager.relic_ding_play()
 		for i in range(0, puyo_block_size - 4):
 			match (randi_range(0,3)):
 				0:
@@ -38,4 +39,5 @@ func block_boost(popped_puyos : Array, chain_value : int):
 					deal_aoe_damage.emit(puyo_value_data.get_base_value(Puyo.PUYO_TYPE.GREEN) * puyo_value_data.get_multiplier(Puyo.PUYO_TYPE.GREEN) * chain_value)
 					for enemy : Enemy in combat_manager.enemies:
 						combat_effects.create_relic_effect(self.global_position, enemy.global_position, AttackEffectData.EFFECT_TYPE.PLAYER_GREEN)
+			
 	##eventually add effects here instead

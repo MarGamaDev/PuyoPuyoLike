@@ -13,4 +13,5 @@ func enhance_red_damage(attack: PlayerAttack) -> void:
 		print("proc afterburner")
 		(get_node("/root/Combat") as CombatManager).damage_targeted_enemy(damage_enhancement * attack.chain * combat_manager.puyo_values.red_chain_multiplier)
 		combat_effects.create_relic_effect(self.global_position, combat_manager.selected_enemy.global_position, AttackEffectData.EFFECT_TYPE.PLAYER_RED)
+		sound_manager.relic_ding_play()
 		#update_enemy_damage_visuals.emit()

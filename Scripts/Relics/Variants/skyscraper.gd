@@ -20,6 +20,7 @@ func skyscraper_trigger(block : Array, chain_length):
 		if grid_node.grid_index.y < highest_point:
 			highest_point = grid_node.grid_index.y
 	if highest_point < height_threshold:
+		sound_manager.relic_ding_play()
 		print("skyscraper procced")
 		skyscraper_attack.emit(PlayerAttack.create_manually(extra_puyos_on_success, block[0].puyo.puyo_type, chain_length))
 		match block[0].puyo.puyo_type:

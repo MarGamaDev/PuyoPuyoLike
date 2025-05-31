@@ -17,6 +17,7 @@ func initialize():
 #gets an array of gridnodes
 func wall_pop(block : Array, chain_length : int):
 	var wall_nodes : Array[GridNode] = []
+	
 	for grid_node : GridNode in block:
 		if grid_node.neighbours.size() < 4:
 			wall_nodes.append(grid_node)
@@ -25,7 +26,8 @@ func wall_pop(block : Array, chain_length : int):
 	var yellow_count = 0
 	var red_count = 0
 	var green_count = 0
-	
+	if wall_nodes.size() > 0:
+		sound_manager.relic_ding_play()
 	for node_to_pop : GridNode in wall_nodes:
 		match node_to_pop.puyo.puyo_type:
 			Puyo.PUYO_TYPE.BLUE:

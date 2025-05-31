@@ -12,6 +12,7 @@ func initialize():
 
 func green_pop(attack: PlayerAttack) -> void:
 	if attack.type == Puyo.PUYO_TYPE.GREEN:
+		sound_manager.relic_ding_play()
 		var enemy_count = encounter_manager.current_encounter.enemy_count
 		deal_aoe_damage.emit(extra_damage_per_enemy * enemy_count * puyo_values.green_chain_multiplier * attack.chain)
 		for enemy : Enemy in combat_manager.enemies:
