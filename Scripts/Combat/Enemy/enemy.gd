@@ -68,8 +68,11 @@ func handle_turn() -> void:
 	on_taking_turn.emit()
 	
 	attack_countdown += 1
+	if current_attack.number_of_turns_till_swing - attack_countdown == 4:
+		start_attack_signalling()
 	if attack_countdown >= current_attack.number_of_turns_till_swing:
 		unleash_attack()
+		stop_attack_signalling()
 	$Intent.set_indicator(current_attack, current_attack.number_of_turns_till_swing - attack_countdown)
 
 func determine_next_attack() -> void:
@@ -146,3 +149,9 @@ func starting_delay():
 func reset_scale_and_position(unused : StringName):
 	$Sprite.scale = enemy_scale
 	
+
+func start_attack_signalling():
+	$AttackSignal.play("ready_to_attack")
+
+func stop_attack_signalling():
+	$AttackSignal.stop()
