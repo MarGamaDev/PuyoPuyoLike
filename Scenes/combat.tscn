@@ -280,7 +280,6 @@ libraries = {
 [node name="DeathManager" parent="." instance=ExtResource("28_r5ubg")]
 
 [connection signal="on_combat_started" from="." to="PuyoManager" method="reset_game"]
-[connection signal="on_combat_started" from="." to="Player" method="reset_counter_and_shield"]
 [connection signal="on_combat_started" from="." to="EncounterManager" method="load_next_encounter"]
 [connection signal="on_combat_started" from="." to="CombatEffectsManager" method="_on_combat_started"]
 [connection signal="on_counter_gained" from="." to="Player" method="add_counter"]
