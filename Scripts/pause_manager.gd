@@ -32,6 +32,7 @@ func on_game_paused():
 	pause_delay_flag = true
 	fill_spell_screen()
 	fill_relic_screen()
+	$PauseMenu/VolumeSlider.set_audio_value()
 
 func fill_spell_screen():
 	if spell_manager.equipped_spells.size() == 0:

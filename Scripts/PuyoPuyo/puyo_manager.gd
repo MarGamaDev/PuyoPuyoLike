@@ -38,6 +38,7 @@ func lose_life():
 #chain_stage is an array of arrays of gridnodes
 func chain_stage_popped(chain_stage : Array, chain_value: int):
 	if chain_stage.size() > 0:
+		$GridManager/SFXPlayer.set_volume_db(linear_to_db(0.8))
 		match(randi_range(0, 3)):
 			0:
 				$GridManager.sfx_player.play_sound_effect_from_library("pop_1")

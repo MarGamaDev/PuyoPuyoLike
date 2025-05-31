@@ -202,7 +202,7 @@ combat_manager = NodePath("..")
 [node name="EncounterManager" type="Node2D" parent="." node_paths=PackedStringArray("encounter_label")]
 position = Vector2(835, 250)
 script = ExtResource("8_twsak")
-encounter_label = NodePath("")
+encounter_label = NodePath("../Frame/EncounterLabel")
 
 [node name="CombatEffectsManager" parent="." instance=ExtResource("11_w6tjk")]
 
@@ -251,6 +251,8 @@ layer = 3
 visible = false
 
 [node name="SoundManager" parent="." instance=ExtResource("19_nar6d")]
+song_volume = 0.16
+non_puyo_sfx_volume = 0.5
 
 [node name="PauseManager" parent="." node_paths=PackedStringArray("relic_holder", "spell_manager", "relic_manager") instance=ExtResource("21_5kjvk")]
 relic_holder = NodePath("../RelicManager")
@@ -308,6 +310,7 @@ libraries = {
 [connection signal="on_life_lost" from="Player" to="PuyoManager" method="reset_game"]
 [connection signal="on_life_lost" from="Player" to="LifeCounter" method="lose_a_life"]
 [connection signal="on_life_lost" from="Player" to="DefenseVisualsManager" method="clear_junk_queue"]
+[connection signal="on_life_lost" from="Player" to="SoundManager" method="life_lost_sfx"]
 [connection signal="on_player_damage_taken" from="Player" to="PuyoManager" method="process_damage_taken"]
 [connection signal="on_player_damage_taken" from="Player" to="DefenseVisualsManager" method="add_junk_in_queue"]
 [connection signal="on_player_damage_taken" from="Player" to="PlayerSpriteMask/PlayerSprite" method="_on_player_on_player_damage_taken"]

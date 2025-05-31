@@ -26,6 +26,8 @@ var selected_enemy: Enemy
 var current_encounter : Encounter
 
 func _ready() -> void:
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), linear_to_db(0.5))
+	print(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Master")))
 	start_combat()
 
 func _physics_process(_delta: float) -> void:

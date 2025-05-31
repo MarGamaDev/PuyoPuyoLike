@@ -2,6 +2,8 @@ extends Node2D
 
 @onready var sfx_player : PolyphonicAudioPlayer = $SFXPlayer
 
+@export var song_volume : float = 0
+@export var non_puyo_sfx_volume : float = 0
 var rest_count = 0
 @export var song_change_rest_count : int = 1
 
@@ -20,13 +22,17 @@ func _ready():
 	match randi_range(0,1):
 		0:
 			current_path = marshall_song_1_path
+			$MusicPlayer.set_volume_db(linear_to_db(song_volume - 0.07))
 		1:
 			current_path = zen_song_1_path
+			$MusicPlayer.set_volume_db(linear_to_db(song_volume + 0.04))
 	current_song = load(current_path)
 	$MusicPlayer.set_stream(current_song)
 	$MusicPlayer.play(0)
+	$SFXPlayer.set_volume_db(linear_to_db(non_puyo_sfx_volume))
 
 func life_lost_sfx():
+	print("life lost sfx")
 	sfx_player.play_sound_effect_from_library("life_loss")
 
 func enemy_attack_sfx(unused_attack, unused_enemy):

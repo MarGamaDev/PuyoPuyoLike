@@ -7,7 +7,7 @@ signal on_rest_stop()
 var boss_folder_paths : Array[String] = ["res://Scenes/Combat/Encounters/BossEncounters/EasyBossEncounters/", "res://Scenes/Combat/Encounters/BossEncounters/MediumBossEncounters/", "res://Scenes/Combat/Encounters/BossEncounters/HardBossEncounters/"]
 var normal_encounter_folder_paths : Array[String] = ["res://Scenes/Combat/Encounters/NormalEncounters/EasyEncounters/", "res://Scenes/Combat/Encounters/NormalEncounters/MediumEncounters/", "res://Scenes/Combat/Encounters/NormalEncounters/HardEncounters/"]
 
-@export var encounter_label : Label
+@export var encounter_label : RichTextLabel
 var easy_encounters : PackedStringArray
 var medium_encounters: PackedStringArray
 var hard_encounters: PackedStringArray

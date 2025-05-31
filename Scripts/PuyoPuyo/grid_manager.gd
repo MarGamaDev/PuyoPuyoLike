@@ -68,6 +68,7 @@ var event_queue : Array = []
 var player_test_create_flag = false
 @export var test_fill_height = 0
 func _ready():
+	$SFXPlayer.set_volume_db(linear_to_db(0.55))
 	start_flag = false
 	initialize_grid()
 	 
@@ -719,6 +720,7 @@ func replace_color(color_to_replace, to_replace_with):
 					node_to_check.puyo.become_junk()
 
 func play_puyo_thud():
+	$SFXPlayer.set_volume_db(5)
 	match randi_range(1,3):
 		1:
 			sfx_player.play_sound_effect_from_library("collide_1")
@@ -726,6 +728,7 @@ func play_puyo_thud():
 			sfx_player.play_sound_effect_from_library("collide_2")
 		3:
 			sfx_player.play_sound_effect_from_library("collide_3")
+	#$SFXPlayer.set_volume_db(linear_to_db(0.9))
 
 func delete_player():
 	player_input_flag = false
