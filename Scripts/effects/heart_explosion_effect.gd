@@ -1,4 +1,4 @@
-extends GPUParticles2D
+extends CPUParticles2D
 
 func start(type : Puyo.PUYO_TYPE = Puyo.PUYO_TYPE.UNDEFINED):
 	match type:

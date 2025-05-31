@@ -1,39 +1,31 @@
-[gd_scene load_steps=6 format=3 uid="uid://5dko0ko2pqtv"]
+[gd_scene load_steps=4 format=3 uid="uid://5dko0ko2pqtv"]
 
 [ext_resource type="Texture2D" uid="uid://cftyj8yvw00dh" path="res://Art/Meat_Particle_Effect.png" id="1_sx7v1"]
 [ext_resource type="Script" uid="uid://dtoxsq1860ujr" path="res://Scripts/effects/heart_explosion_effect.gd" id="2_yf4dm"]
 
 [sub_resource type="Gradient" id="Gradient_sx7v1"]
-offsets = PackedFloat32Array(0, 0.661074, 1)
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+interpolation_color_space = 1
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_yf4dm"]
-gradient = SubResource("Gradient_sx7v1")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pmgub"]
-particle_flag_disable_z = true
-angle_min = -605.3
-angle_max = 668.7
-direction = Vector3(0, -1, 0)
-spread = 180.0
-initial_velocity_min = 233.28
-initial_velocity_max = 443.45
-gravity = Vector3(0, 0, 0)
-color_ramp = SubResource("GradientTexture1D_yf4dm")
-
-[node name="puyo_meaty_pop" type="GPUParticles2D"]
+[node name="puyo_meaty_pop" type="CPUParticles2D"]
 emitting = false
 amount = 5
 texture = ExtResource("1_sx7v1")
-lifetime = 0.25
+lifetime = 0.38
 one_shot = true
 explosiveness = 1.0
-process_material = SubResource("ParticleProcessMaterial_pmgub")
+emission_shape = 1
+emission_sphere_radius = 4.7
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 91.78
+initial_velocity_max = 335.26
+angular_velocity_min = -657.57
+angular_velocity_max = 690.86
+color_ramp = SubResource("Gradient_sx7v1")
 script = ExtResource("2_yf4dm")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.3
 one_shot = true
 autostart = true
-
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
