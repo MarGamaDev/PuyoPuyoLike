@@ -1,7 +1,7 @@
 extends Control
 
 var tutorial_page_number : int = 0
-@onready var tutorial_pages : Array = [$Tutorial/TutorialOptions, $Tutorial/PuyoTutorial, $Tutorial/GameTutorial, $Tutorial/GameTutorial2]
+@onready var tutorial_pages : Array = [$Tutorial/TutorialOptions, $Tutorial/PuyoTutorial, $Tutorial/GameTutorial, $Tutorial/GameTutorial2, $Tutorial/TipsTutorial]
 
 func _ready() -> void:
 	print("menu ready")

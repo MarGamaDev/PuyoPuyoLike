@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://dc6oe7dfg2ice"]
+[gd_scene load_steps=33 format=3 uid="uid://dc6oe7dfg2ice"]
 
 [ext_resource type="Script" uid="uid://c67v5u2go0uhq" path="res://Scripts/main_menu.gd" id="1_ce3w2"]
 [ext_resource type="Theme" uid="uid://qw5wdr2jerv7" path="res://Art/text/default_font.tres" id="1_n45e2"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://7e64hhcudbus" path="res://Art/spell elements/puyo-spellContainer.png" id="6_opfnp"]
 [ext_resource type="Texture2D" uid="uid://bh56uxpmn85gw" path="res://Art/puyo elements/Puyo_Blue.png" id="7_16hvj"]
 [ext_resource type="Texture2D" uid="uid://dkpsalijf0ray" path="res://Art/puyo elements/Puyo_Yellow.png" id="8_vr1f0"]
+[ext_resource type="Texture2D" uid="uid://dub51x4lfi0n0" path="res://Art/combat screen elements/puyo-skull.png" id="9_m3bi6"]
 [ext_resource type="Texture2D" uid="uid://dehy5ghfyon84" path="res://Art/puyo elements/Puyo_Red.png" id="9_t1dhk"]
 [ext_resource type="Texture2D" uid="uid://ccfdjr3e4b7wc" path="res://Art/puyo elements/Puyo_Green.png" id="10_5egv6"]
 [ext_resource type="Texture2D" uid="uid://dask40qwra1ig" path="res://Art/puyo elements/Puyo_Junk.png" id="11_vr1f0"]
@@ -640,7 +641,7 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -584.0
-offset_top = -347.0
+offset_top = -404.0
 offset_right = 579.0
 offset_bottom = 368.0
 grow_horizontal = 2
@@ -655,9 +656,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -531.0
-offset_top = -234.0
+offset_top = -309.0
 offset_right = -77.0
-offset_bottom = -182.0
+offset_bottom = -257.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
@@ -672,7 +673,7 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -541.0
-offset_top = -129.0
+offset_top = -209.0
 offset_right = 532.0
 offset_bottom = 278.0
 grow_horizontal = 2
@@ -681,10 +682,10 @@ theme_override_font_sizes/normal_font_size = 40
 bbcode_enabled = true
 text = "- Use the arrow keys/wasd to move the current pair of humours around the board, and press z or space to rotate them.
 - Press escape to pause or unpause the game.
+- Press shift to swap which foe you are currently targeting.
 - When four or more humours are connected, they form a block, and are [color=red]crushed.[/color]
 - Any humours on top will then fall, which could lead to [color=yellow]chains[/color] being formed.
-- Creating these chains is vital to staying ahead. approach chaining with strategy and planning, not with speed.
-- filling the marked space in the top of the grid makes you lose a life."
+- You will lose a life if you cannot place a horizontal pair of humours, or if the space marked by        becomes filled."
 scroll_active = false
 
 [node name="Label2" type="Label" parent="Tutorial/PuyoTutorial"]
@@ -695,9 +696,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -47.0
-offset_top = -191.0
+offset_top = -266.0
 offset_right = 79.0
-offset_bottom = -139.0
+offset_bottom = -214.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.517647, 0.705882, 0.0352941, 1)
@@ -714,9 +715,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = 98.0
-offset_top = -191.0
+offset_top = -266.0
 offset_right = 224.0
-offset_bottom = -139.0
+offset_bottom = -214.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.999739, 0.21079, 0.182064, 1)
@@ -733,9 +734,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = 249.0
-offset_top = -191.0
+offset_top = -266.0
 offset_right = 375.0
-offset_bottom = -139.0
+offset_bottom = -214.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.532637, 0.565754, 0.906978, 1)
@@ -752,9 +753,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = 394.0
-offset_top = -191.0
+offset_top = -266.0
 offset_right = 520.0
-offset_bottom = -139.0
+offset_bottom = -214.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(1, 0.819608, 0.243137, 1)
@@ -771,9 +772,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -116.0
-offset_top = -157.0
+offset_top = -200.0
 offset_right = 116.0
-offset_bottom = -95.0
+offset_bottom = -138.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/font_size = 51
@@ -802,9 +803,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = 243.0
-offset_top = -293.0
+offset_top = -368.0
 offset_right = 371.0
-offset_bottom = -194.0
+offset_bottom = -269.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("7_16hvj")
@@ -819,12 +820,29 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = 389.0
-offset_top = -297.0
+offset_top = -372.0
 offset_right = 517.0
-offset_bottom = -198.0
+offset_bottom = -273.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("8_vr1f0")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureRect5" type="TextureRect" parent="Tutorial/PuyoTutorial"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 9.0
+offset_top = 146.0
+offset_right = 89.0
+offset_bottom = 208.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("9_m3bi6")
 expand_mode = 1
 stretch_mode = 5
 
@@ -836,9 +854,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = 95.0
-offset_top = -293.0
+offset_top = -368.0
 offset_right = 223.0
-offset_bottom = -194.0
+offset_bottom = -269.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("9_t1dhk")
@@ -853,9 +871,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -53.0
-offset_top = -293.0
+offset_top = -368.0
 offset_right = 75.0
-offset_bottom = -194.0
+offset_bottom = -269.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("10_5egv6")
@@ -1116,22 +1134,6 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.18359, 0.18359, 0.18359, 0.764706)
 
-[node name="StartGameButton" type="Button" parent="Tutorial/GameTutorial2"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 212.0
-offset_top = 350.0
-offset_right = 539.0
-offset_bottom = 412.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 40
-text = "Crush some humours!"
-
 [node name="LastPageButton" type="Button" parent="Tutorial/GameTutorial2"]
 layout_mode = 1
 anchors_preset = 8
@@ -1157,13 +1159,13 @@ anchor_bottom = 0.5
 offset_left = -570.0
 offset_top = -405.0
 offset_right = 401.0
-offset_bottom = -202.0
+offset_bottom = -152.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/normal_font_size = 40
 bbcode_enabled = true
 text = "- Foes will display how much damage they will deal for their next attack, and how many pairs of humours you will be able to place before they do.
-- Any damage that goes through to the player is sent to the board in the form of toxins that take up space on the board.
+- Any damage that goes through to the player is sent to the board in the form of toxins that take up space on the board, but can be cleared by crushing humours next to.
 "
 scroll_active = false
 
@@ -1175,9 +1177,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -570.0
-offset_top = -182.0
+offset_top = -150.0
 offset_right = 549.0
-offset_bottom = -50.0
+offset_bottom = -18.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/normal_font_size = 40
@@ -1195,9 +1197,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -568.0
-offset_top = -44.0
+offset_top = -12.0
 offset_right = 551.0
-offset_bottom = 283.0
+offset_bottom = 315.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/normal_font_size = 40
@@ -1217,11 +1219,12 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -293.0
-offset_top = 359.0
+offset_top = 386.0
 offset_right = -130.0
-offset_bottom = 412.0
+offset_bottom = 439.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.74014, 0.730871)
 theme_override_font_sizes/normal_font_size = 40
 bbcode_enabled = true
 text = "Demanding"
@@ -1237,11 +1240,12 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -43.0
-offset_top = 359.0
+offset_top = 386.0
 offset_right = 120.0
-offset_bottom = 412.0
+offset_bottom = 439.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.74014, 0.730871)
 theme_override_font_sizes/normal_font_size = 40
 bbcode_enabled = true
 text = "Forgiving"
@@ -1274,11 +1278,12 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -251.0
-offset_top = 288.0
+offset_top = 328.0
 offset_right = -173.0
-offset_bottom = 363.0
+offset_bottom = 403.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.74014, 0.730871)
 texture = ExtResource("12_5egv6")
 expand_mode = 1
 stretch_mode = 5
@@ -1291,11 +1296,12 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -5.0
-offset_top = 288.0
+offset_top = 328.0
 offset_right = 73.0
-offset_bottom = 363.0
+offset_bottom = 403.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.74014, 0.730871)
 texture = ExtResource("13_vtepg")
 expand_mode = 1
 stretch_mode = 5
@@ -1308,9 +1314,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -568.0
-offset_top = -96.0
+offset_top = -64.0
 offset_right = -440.0
-offset_bottom = 3.0
+offset_bottom = 35.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.319999, 0.319999)
@@ -1326,9 +1332,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -522.0
-offset_top = -91.0
+offset_top = -59.0
 offset_right = -394.0
-offset_bottom = 8.0
+offset_bottom = 40.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.319999, 0.319999)
@@ -1344,9 +1350,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -519.0
-offset_top = -136.0
+offset_top = -104.0
 offset_right = -391.0
-offset_bottom = -37.0
+offset_bottom = -5.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.319999, 0.319999)
@@ -1362,9 +1368,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -475.0
-offset_top = -95.0
+offset_top = -63.0
 offset_right = -347.0
-offset_bottom = 4.0
+offset_bottom = 36.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.319999, 0.319999)
@@ -1380,13 +1386,129 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -431.0
-offset_top = -94.0
+offset_top = -62.0
 offset_right = -303.0
-offset_bottom = 5.0
+offset_bottom = 37.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.319999, 0.319999)
 texture = ExtResource("10_5egv6")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="NextPageButton" type="Button" parent="Tutorial/GameTutorial2"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 317.0
+offset_top = -116.0
+offset_right = 499.0
+offset_bottom = -52.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 51
+text = "Next "
+
+[node name="TipsTutorial" type="Control" parent="Tutorial"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect2" type="ColorRect" parent="Tutorial/TipsTutorial"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -580.0
+offset_top = -333.0
+offset_right = 580.0
+offset_bottom = 440.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.18359, 0.18359, 0.18359, 0.764706)
+
+[node name="StartGameButton" type="Button" parent="Tutorial/TipsTutorial"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -163.5
+offset_top = 306.0
+offset_right = 163.5
+offset_bottom = 368.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 40
+text = "Crush some humours!"
+
+[node name="LastPageButton" type="Button" parent="Tutorial/TipsTutorial"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -562.0
+offset_top = 377.0
+offset_right = -385.0
+offset_bottom = 425.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "previous tutorial page"
+
+[node name="Label8" type="RichTextLabel" parent="Tutorial/TipsTutorial"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -567.0
+offset_top = -311.0
+offset_right = 557.0
+offset_bottom = 270.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+text = "Tips:
+
+- Creating chains, not only for channelling emtions but also for making the most out of your humours is vital. Your foes will only advance as fast as you do, so take your time and plan what your next move will be.
+
+- Chains will continue to go through multiple waves if they are defeated in the middle of the chain, excpet for when they kill bosses.
+
+- Your shield and counter won't reset between encounters.
+
+- Emotions don't require you to chain colors right after another, they only care that they are in the chain at all, even if there are other types in between the stages of channelling an emotion."
+scroll_active = false
+
+[node name="TextureRect2" type="TextureRect" parent="Tutorial/TipsTutorial"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -230.0
+offset_top = 348.0
+offset_right = -102.0
+offset_bottom = 447.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.319999, 0.319999)
+texture = ExtResource("8_vr1f0")
 expand_mode = 1
 stretch_mode = 5
 
@@ -1415,5 +1537,7 @@ autoplay = true
 [connection signal="pressed" from="Tutorial/PuyoTutorial/ReturnButton" to="." method="return_to_menu"]
 [connection signal="pressed" from="Tutorial/GameTutorial/NextPageButton" to="." method="next_page"]
 [connection signal="pressed" from="Tutorial/GameTutorial/LastPageButton" to="." method="last_page"]
-[connection signal="pressed" from="Tutorial/GameTutorial2/StartGameButton" to="." method="start_game"]
 [connection signal="pressed" from="Tutorial/GameTutorial2/LastPageButton" to="." method="last_page"]
+[connection signal="pressed" from="Tutorial/GameTutorial2/NextPageButton" to="." method="next_page"]
+[connection signal="pressed" from="Tutorial/TipsTutorial/StartGameButton" to="." method="start_game"]
+[connection signal="pressed" from="Tutorial/TipsTutorial/LastPageButton" to="." method="last_page"]
