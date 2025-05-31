@@ -29,8 +29,9 @@ func update_green_buff_on_start(encounter : Encounter):
 		print("error")
 
 func update_green_buff_on_enemy_death(unused_enemy : Enemy):
+	var modifier = int((EncounterTrackerForRelics.get_count() - 1) / 3)
 	enemy_count -= 1
-	green_buff += 1
+	green_buff += (1 + modifier)
 	#combat_effects.create_relic_effect(unused_enemy.global_position, self.global_position, AttackEffectData.EFFECT_TYPE.PLAYER_GREEN)
 	pass
 

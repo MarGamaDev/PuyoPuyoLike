@@ -30,6 +30,8 @@ func gemini_trigger(block : Array, chain_length : int):
 			bonus_counter += 1
 	types_in_chain.append(block_type)
 	if bonus_counter > 0:
+		var modifier = int((EncounterTrackerForRelics.get_count() - 1) / 3)
+		bonus_counter += modifier
 		print("gemini procced")
 		sound_manager.relic_ding_play()
 		symmetry_strike.emit(PlayerAttack.create_manually(bonus_counter * puyo_boost_per_match, block_type, chain_length))

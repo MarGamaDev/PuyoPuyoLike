@@ -13,8 +13,9 @@ func connect_to_effect_signals():
 
 func trigger_spell_effect():
 	print("Resentment cast")
-	deal_spell_damage.emit(spell_aoe_damage)
+	var modifier = (EncounterTrackerForRelics.get_count() - 1)* 5
+	deal_spell_damage.emit(spell_aoe_damage + modifier)
 	for i in combat_manager.enemies:
 		combat_effects.create_spell_effect(container_location_marker.global_position, i.global_position, AttackEffectData.EFFECT_TYPE.PLAYER_GREEN)
-	deal_target_damage.emit(spell_target_damage)
+	deal_target_damage.emit(spell_target_damage + modifier)
 	combat_effects.create_spell_effect(container_location_marker.global_position, combat_manager.selected_enemy.global_position, AttackEffectData.EFFECT_TYPE.PLAYER_RED)

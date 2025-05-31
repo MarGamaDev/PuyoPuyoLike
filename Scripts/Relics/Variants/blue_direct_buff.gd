@@ -14,6 +14,7 @@ func initialize():
 
 func blue_pop(attack : PlayerAttack):
 	if attack.type == Puyo.PUYO_TYPE.BLUE:
+		var modifier = int((EncounterTrackerForRelics.get_count() - 1) / 2)
 		sound_manager.relic_ding_play()
-		add_blue_buff.emit(shield_increase_amount)
+		add_blue_buff.emit(shield_increase_amount + modifier)
 		combat_effects.create_relic_effect(self.global_position, combat_effects.shield_location_marker, AttackEffectData.EFFECT_TYPE.PLAYER_BLUE, false)

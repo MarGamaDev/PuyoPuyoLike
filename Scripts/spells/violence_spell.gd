@@ -8,8 +8,9 @@ func connect_to_effect_signals():
 	deal_spell_damage.connect(combat_manager.damage_all_enemies)
 
 func trigger_spell_effect():
+	var modifier = (EncounterTrackerForRelics.get_count() - 1)* 5
 	var enemy_count = encounter_manager.current_encounter.enemy_count
-	deal_spell_damage.emit(spell_base_damage * enemy_count)
+	deal_spell_damage.emit((spell_base_damage * enemy_count) + modifier )
 	for i in combat_manager.enemies:
 		combat_effects.create_spell_effect(container_location_marker.global_position, i.global_position, AttackEffectData.EFFECT_TYPE.PLAYER_GREEN)
 	print("Violence cast for: %s" % (enemy_count * spell_base_damage))

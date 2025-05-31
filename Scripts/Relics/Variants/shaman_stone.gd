@@ -16,7 +16,8 @@ func shaman_stone_trigger(spell_length : int):
 	print("shaman_stone_trigger %s times" % spell_length)
 	if spell_length > 0:
 		sound_manager.relic_ding_play()
-	for i in range(0, spell_length):
+	var modifier = int((EncounterTrackerForRelics.get_count() - 1) / 3)
+	for i in range(0, spell_length + modifier):
 		var type : Puyo.PUYO_TYPE
 		match (randi_range(0,3)):
 			0:

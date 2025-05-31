@@ -1,6 +1,6 @@
 extends SequentialSpell
 
-##triples the damage dealt the next time you counter
+##doubles the damage dealt the next time you counter
 
 signal setup_counter_buff(multiplier : int)
 

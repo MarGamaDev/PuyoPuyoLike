@@ -10,5 +10,6 @@ func reset_tracker():
 
 func on_rest_encounter():
 	rest_encounter_counter += 1
-	mult_scaler = 1 + (0.5 * rest_encounter_counter)
-	
+
+func get_count() -> int:
+	return rest_encounter_counter

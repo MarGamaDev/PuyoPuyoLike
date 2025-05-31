@@ -12,8 +12,9 @@ func connect_to_effect_signals():
 	delay_enemies.connect(combat_manager.delay_enemies)
 
 func trigger_spell_effect():
-	gain_spell_shield.emit(spell_shield_amount)
-	delay_enemies.emit(enemy_delay_amount)
+	var modifier = (EncounterTrackerForRelics.get_count() - 1)* 5
+	gain_spell_shield.emit(spell_shield_amount + modifier)
+	delay_enemies.emit(enemy_delay_amount + EncounterTrackerForRelics.get_count())
 	combat_effects.create_spell_effect(container_location_marker.global_position, combat_effects.shield_location_marker, AttackEffectData.EFFECT_TYPE.PLAYER_BLUE, false)
 	for enemy : Enemy in combat_manager.enemies:
 		combat_effects.create_spell_effect(container_location_marker.global_position, enemy.global_position , AttackEffectData.EFFECT_TYPE.PLAYER_BLUE, false)

@@ -3,8 +3,9 @@ extends FlexibleSpell
 ##after doing a chained rainbow in a specific order, at the end of the chain,
 ##trigger the effect of each puyo type (rainbow mult value * chain length) times
 
-@export var rainbow_mult_value : int = 5
+@export var rainbow_mult_value_base : int = 4
 
+var rainbow_mult_value : int = rainbow_mult_value_base
 signal deal_aoe_damage(damage : int)
 signal deal_target_damage(damage : int)
 signal gain_shield(shield : int)
@@ -26,6 +27,7 @@ func trigger_spell_effect():
 		puyo_manager.on_chain_ending.connect(rainbow_attack)
 
 func rainbow_attack(chain_length : int):
+	rainbow_mult_value = rainbow_mult_value_base + EncounterTrackerForRelics.get_count()
 	if spell_trigger_flag == false:
 		return
 	spell_trigger_flag = false
