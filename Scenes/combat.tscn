@@ -194,6 +194,25 @@ offset_right = 423.0
 offset_bottom = 36.0
 text = "PLAYTEST VERSION - ASSETS MISSING AND NOT FINAL"
 
+[node name="PlayerSpriteMask" type="ColorRect" parent="Frame"]
+top_level = true
+clip_children = 1
+offset_left = 598.0
+offset_top = 446.0
+offset_right = 829.0
+offset_bottom = 726.0
+
+[node name="PlayerSprite" type="AnimatedSprite2D" parent="Frame/PlayerSpriteMask"]
+position = Vector2(118, 155)
+scale = Vector2(1.36709, 1.36709)
+sprite_frames = SubResource("SpriteFrames_5g3cp")
+script = ExtResource("26_5g3cp")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Frame/PlayerSpriteMask/PlayerSprite"]
+libraries = {
+&"": SubResource("AnimationLibrary_ycqky")
+}
+
 [node name="PuyoManager" parent="." instance=ExtResource("4_ubpar")]
 position = Vector2(123, 128)
 scale = Vector2(1.09, 1.09)
@@ -212,10 +231,10 @@ encounter_label = NodePath("../Frame/EncounterLabel")
 position = Vector2(820, 244)
 
 [node name="PlayerShieldLocation" parent="CombatEffectsManager/Markers" index="2"]
-position = Vector2(727, 412)
+position = Vector2(490, 395)
 
 [node name="PlayerCounterLocation" parent="CombatEffectsManager/Markers" index="3"]
-position = Vector2(926, 414)
+position = Vector2(493, 455)
 
 [node name="JunkIndicatorLocation" parent="CombatEffectsManager/Markers" index="4"]
 position = Vector2(276, 64)
@@ -265,14 +284,16 @@ spell_manager = NodePath("../SpellManager")
 relic_manager = NodePath("../RelicManager")
 
 [node name="PlayerSpriteMask" type="ColorRect" parent="."]
+visible = false
+top_level = true
 clip_children = 1
-offset_left = 603.0
-offset_top = 451.0
+offset_left = 598.0
+offset_top = 446.0
 offset_right = 794.0
 offset_bottom = 747.0
 
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="PlayerSpriteMask"]
-position = Vector2(101, 129)
+position = Vector2(112, 151)
 scale = Vector2(1.36709, 1.36709)
 sprite_frames = SubResource("SpriteFrames_5g3cp")
 script = ExtResource("26_5g3cp")
@@ -329,6 +350,7 @@ libraries = {
 [connection signal="on_boss_encounter" from="EncounterManager" to="CombatEffectsManager" method="on_boss_fight"]
 [connection signal="on_rest_stop" from="EncounterManager" to="PuyoManager" method="pause_puyo"]
 [connection signal="on_rest_stop" from="EncounterManager" to="Player" method="reset_minimum_shield"]
+[connection signal="on_rest_stop" from="EncounterManager" to="Player" method="reset_counter_and_shield"]
 [connection signal="on_rest_stop" from="EncounterManager" to="DefenseVisualsManager" method="clear_junk_queue"]
 [connection signal="on_rest_stop" from="EncounterManager" to="RewardManager/RewardScreen" method="generate_pool"]
 [connection signal="on_rest_stop" from="EncounterManager" to="SoundManager" method="_on_rest_stop"]

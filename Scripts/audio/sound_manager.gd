@@ -26,7 +26,7 @@ func _ready():
 	$ZenSong1.set_volume_db(-19)
 	$ZenSong2.set_volume_db(-25)
 	#music_player.play_sound_effect_from_library("PuyoPuyoTheme_1")
-	match randi_range(2,2):
+	match randi_range(0,1):
 		0:
 			current_player = $MarshallSong
 			selected_song = 0
@@ -71,7 +71,10 @@ func _on_rest_stop() -> void:
 	rest_count += 1
 	if rest_count == song_change_rest_count:
 		rest_count = 0
-		next_song = randi_range(0, 2)
+		if selected_song == 0:
+			next_song = 1
+		else:
+			next_song = 0
 		if next_song == selected_song:
 			return
 		var next_player

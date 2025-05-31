@@ -6,7 +6,7 @@ var attack_addition = 0
 @export var health_modifier : int = 3
 @export var attack_modifier : int = 0.5
 var multiplicative_scaling : float = 0.5
-@export var multiplicative_scaling_per_rest_stop : float = 1.25
+@export var multiplicative_scaling_per_rest_stop : float = 1.1
 
 func reset_difficulty():
 	health_addition = 0
