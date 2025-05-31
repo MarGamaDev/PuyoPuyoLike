@@ -122,6 +122,9 @@ func reset_counter_and_shield(reset_minimum := true) -> void:
 	if reset_minimum:
 		minimum_shield = 0
 
+func reset_minimum_shield():
+	minimum_shield = 0
+
 func gain_yellow_shield_relic_buff():
 	yellow_shield_buff_flag = true
 	print("yellow shielf buff gained")
