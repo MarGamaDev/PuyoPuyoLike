@@ -34,8 +34,8 @@ var effect_type : AttackEffectData.EFFECT_TYPE
 var damage_flag = false
 var is_spell = false
 
-@onready var spell_end_effect : GPUParticles2D = $Path2D/PathFollow2D/SpellEndEffect
-@onready var normal_end_effect : GPUParticles2D = $Path2D/PathFollow2D/NormalEndEffect
+@onready var spell_end_effect : CPUParticles2D = $Path2D/PathFollow2D/SpellEndEffect
+@onready var normal_end_effect : CPUParticles2D = $Path2D/PathFollow2D/NormalEndEffect
 
 func _physics_process(delta: float) -> void:
 	if started:

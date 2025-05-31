@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://copdt5sgr6w4o"]
+[gd_scene load_steps=10 format=3 uid="uid://copdt5sgr6w4o"]
 
 [ext_resource type="Script" uid="uid://bysr3fa2ip1ad" path="res://Scripts/effects/attack_particle_effect.gd" id="1_47cro"]
 [ext_resource type="Texture2D" uid="uid://gmla32085lxi" path="res://Placeholder Art/placeholder_twinkle.png" id="2_44lgp"]
@@ -8,32 +8,23 @@
 [sub_resource type="Curve2D" id="Curve2D_44lgp"]
 resource_local_to_scene = true
 
-[sub_resource type="Curve" id="Curve_44lgp"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.108475, 0.995953), 0.0, 0.0, 0, 0, Vector2(0.288235, 1), 0.0, 0.0, 0, 0, Vector2(0.685294, 0.0162981), -0.135408, 0.0, 0, 0]
-point_count = 4
-
-[sub_resource type="CurveTexture" id="CurveTexture_y1t4w"]
-curve = SubResource("Curve_44lgp")
-
-[sub_resource type="Curve" id="Curve_6cpid"]
-_limits = [0.0, 1.75, 0.0, 1.0]
-_data = [Vector2(0, 0.154249), 0.0, 0.0, 0, 0, Vector2(0.35034, 1.75), 15.7874, 0.0, 0, 0]
+[sub_resource type="Curve" id="Curve_y1t4w"]
+_limits = [0.0, 1.7, 0.0, 1.0]
+_data = [Vector2(0, 0.141292), 0.0, -1.41589, 0, 0, Vector2(0.256732, 1.7), 16.3042, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_gb4dw"]
-curve = SubResource("Curve_6cpid")
+[sub_resource type="Gradient" id="Gradient_6cpid"]
+offsets = PackedFloat32Array(0, 0.186441, 0.527307, 0.734463, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0.947761, 1, 1, 1, 0, 1, 1, 1, 0)
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1o3b0"]
-particle_flag_disable_z = true
-gravity = Vector3(0, 0, 0)
-scale_curve = SubResource("CurveTexture_gb4dw")
-alpha_curve = SubResource("CurveTexture_y1t4w")
+[sub_resource type="Curve" id="Curve_gb4dw"]
+_limits = [0.0, 1.75, 0.0, 1.0]
+_data = [Vector2(0, 0.269069), 0.0, 0.0, 0, 0, Vector2(0.322718, 1.75), 12.8378, 0.0, 0, 0]
+point_count = 2
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_y1t4w"]
-particle_flag_disable_z = true
-gravity = Vector3(0, 0, 0)
-scale_curve = SubResource("CurveTexture_gb4dw")
-alpha_curve = SubResource("CurveTexture_y1t4w")
+[sub_resource type="Gradient" id="Gradient_1o3b0"]
+offsets = PackedFloat32Array(0, 0.206742, 0.516854, 0.867416)
+colors = PackedColorArray(1, 1, 1, 0.31, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 
 [node name="AttackParticleEffect" type="Node2D"]
 script = ExtResource("1_47cro")
@@ -48,19 +39,23 @@ loop = false
 modulate = Color(1, 1, 1, 0.462745)
 texture = ExtResource("2_44lgp")
 
-[node name="SpellEndEffect" type="GPUParticles2D" parent="Path2D/PathFollow2D"]
+[node name="SpellEndEffect" type="CPUParticles2D" parent="Path2D/PathFollow2D"]
 emitting = false
 amount = 1
 texture = ExtResource("3_44lgp")
 one_shot = true
-process_material = SubResource("ParticleProcessMaterial_1o3b0")
+gravity = Vector2(0, 0)
+scale_amount_curve = SubResource("Curve_y1t4w")
+color_ramp = SubResource("Gradient_6cpid")
 
-[node name="NormalEndEffect" type="GPUParticles2D" parent="Path2D/PathFollow2D"]
+[node name="NormalEndEffect" type="CPUParticles2D" parent="Path2D/PathFollow2D"]
 emitting = false
 amount = 1
 texture = ExtResource("4_y1t4w")
 one_shot = true
-process_material = SubResource("ParticleProcessMaterial_y1t4w")
+gravity = Vector2(0, 0)
+scale_amount_curve = SubResource("Curve_gb4dw")
+color_ramp = SubResource("Gradient_1o3b0")
 
 [node name="testSprite" type="Sprite2D" parent="."]
 visible = false

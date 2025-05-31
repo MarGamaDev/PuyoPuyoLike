@@ -256,10 +256,11 @@ puyo_manager = NodePath("../PuyoManager")
 [node name="LifeCounter" parent="." instance=ExtResource("13_y8jr2")]
 position = Vector2(4.335, 24.765)
 
-[node name="SpellManager" parent="." instance=ExtResource("16_50454")]
+[node name="SpellManager" parent="." node_paths=PackedStringArray("sound_manager") instance=ExtResource("16_50454")]
 top_level = true
 position = Vector2(0, -2)
 test_spell = ExtResource("15_5g3cp")
+sound_manager = NodePath("../SoundManager")
 
 [node name="RelicManager" parent="." instance=ExtResource("15_3cqtn")]
 position = Vector2(4.62693, 907.764)
