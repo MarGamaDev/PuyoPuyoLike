@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_ev1xr")
 spell_name = "Adamance"
-spell_description = "Trigger all humours touching the walls as if they had been crushed during the final chain."
+spell_description = "Trigger all humours touching the walls as if they had been crushed at end of chain (without crushing them)"
 flavor_text = "Show them that you will not falter."
 recipe_type = 1
 recipe_contents = Array[int]([3, 5])
