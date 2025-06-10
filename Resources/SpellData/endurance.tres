@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_vry50")
 spell_name = "Endurance"
-spell_description = "Gain a llarge amount of shield, and delay all enemy's attacks by 4 turns."
+spell_description = "Gain a large amount of shield, and delay all enemy's attacks by 4 turns."
 flavor_text = "show them no weakness."
 recipe_type = 0
 recipe_contents = Array[int]([2, 5, 2])

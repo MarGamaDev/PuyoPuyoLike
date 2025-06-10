@@ -39,7 +39,7 @@ metadata/_custom_type_script = "uid://6v5kccermtmr"
 [sub_resource type="Resource" id="Resource_i416t"]
 script = ExtResource("3_xl5el")
 damage = 12
-number_of_swings = 1
+number_of_swings = 2
 number_of_turns_till_swing = 8
 attack_type = 1
 metadata/_custom_type_script = "uid://6v5kccermtmr"
@@ -47,7 +47,7 @@ metadata/_custom_type_script = "uid://6v5kccermtmr"
 [sub_resource type="Resource" id="Resource_xl5el"]
 script = ExtResource("3_xl5el")
 damage = 12
-number_of_swings = 1
+number_of_swings = 2
 number_of_turns_till_swing = 8
 attack_type = 1
 metadata/_custom_type_script = "uid://6v5kccermtmr"
