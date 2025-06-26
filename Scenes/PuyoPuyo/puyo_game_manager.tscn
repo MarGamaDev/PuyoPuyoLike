@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://j1dwvidyapp4"]
+[gd_scene load_steps=13 format=3 uid="uid://j1dwvidyapp4"]
 
 [ext_resource type="Script" uid="uid://d1k0t4vdgflfv" path="res://Scripts/PuyoPuyo/puyo_game_manager.gd" id="1_gnht4"]
 [ext_resource type="PackedScene" uid="uid://cqw1jv0baovrt" path="res://Scenes/PuyoPuyo/puyo.tscn" id="2_fuix5"]
 [ext_resource type="PackedScene" uid="uid://bu3friywynij8" path="res://Scenes/animations and audio stuff/polyphonic_audio_player.tscn" id="3_twdsd"]
 [ext_resource type="Resource" uid="uid://dq6q2or2pmb84" path="res://Resources/AudioLibraries/puyo_sfx.tres" id="4_25m6n"]
 [ext_resource type="Script" uid="uid://vpw412pfdf2h" path="res://Scripts/PuyoPuyo/junk_creator.gd" id="4_twdsd"]
+[ext_resource type="Script" uid="uid://87acped4jncv" path="res://Scripts/PuyoPuyo/event_queue_manager.gd" id="4_wquyg"]
 [ext_resource type="Script" uid="uid://b6pvd1io06ifj" path="res://Scripts/PuyoPuyo/puyo_sound_manager.gd" id="5_fuix5"]
 [ext_resource type="Texture2D" uid="uid://csoroeu2gqsl0" path="res://Art/puyo elements/puyo_grid.jpeg" id="5_wquyg"]
 [ext_resource type="Script" uid="uid://i5oo8rr7v3h7" path="res://Scenes/PuyoPuyo/puyo_pool_manager.gd" id="6_uc8fw"]
@@ -138,6 +139,7 @@ script = ExtResource("6_uc8fw")
 [node name="PlayerPuyoManager" type="Node2D" parent="."]
 
 [node name="EventQueueManager" type="Node2D" parent="."]
+script = ExtResource("4_wquyg")
 
 [node name="JunkCreator" type="Node2D" parent="."]
 script = ExtResource("4_twdsd")
@@ -174,5 +176,13 @@ libraries = {
 &"": SubResource("AnimationLibrary_n4ny7")
 }
 
+[connection signal="event_create_junk_random" from="EventQueueManager" to="JunkCreator" method="create_junk_random"]
+[connection signal="event_create_junk_row" from="EventQueueManager" to="JunkCreator" method="create_junk_row"]
+[connection signal="event_create_junk_specific" from="EventQueueManager" to="JunkCreator" method="create_junk_specific"]
+[connection signal="event_create_player" from="EventQueueManager" to="." method="create_player_puyo"]
+[connection signal="event_end_game" from="EventQueueManager" to="." method="_on_event_end_game"]
+[connection signal="event_junk_slam" from="EventQueueManager" to="JunkCreator" method="junk_slam"]
+[connection signal="event_replace_color" from="EventQueueManager" to="JunkCreator" method="replace_color"]
+[connection signal="event_replace_junk_specific" from="EventQueueManager" to="JunkCreator" method="replace_junk_specific"]
 [connection signal="junk_created" from="JunkCreator" to="." method="_on_junk_creator_junk_created"]
 [connection signal="timeout" from="PlayerDownTimer" to="." method="player_down_tick"]

@@ -39,16 +39,7 @@ func lose_life():
 #chain_stage is an array of arrays of gridnodes
 func chain_stage_popped(chain_stage : Array, chain_value: int):
 	if chain_stage.size() > 0:
-		game_manager.set_volume(0.8)
-		match(randi_range(0, 3)):
-			0:
-				game_manager.sfx_player.play_sound_effect_from_library("pop_1")
-			1:
-				game_manager.sfx_player.play_sound_effect_from_library("pop_2")
-			2:
-				game_manager.sfx_player.play_sound_effect_from_library("pop_3")
-			3:
-				game_manager.sfx_player.play_sound_effect_from_library("pop_4")
+		game_manager.sound_manager.play_puyo_pop()
 	for puyo_block : Array in chain_stage:
 		#emits an array og gridnodes
 		block_popped.emit(puyo_block, chain_value)

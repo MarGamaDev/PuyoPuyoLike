@@ -17,13 +17,12 @@ signal junk_popped(amount : int)
 #making easy references for subnodes
 @onready var sound_manager : PuyoSoundManager = $PuyoSoundManager
 @onready var junk_creator : JunkCreator = $JunkCreator
+@onready var event_queue_manager : EventQueueManager = $EventQueueManager
 
 #loading the grid nodes to instantiate them
 @onready var grid_node_scene = preload("res://Scenes/PuyoPuyo/grid_node.tscn")
 @onready var puyo_scene = preload("res://Scenes/PuyoPuyo/puyo.tscn")
 @onready var puyo_pop_effect = preload("res://Scenes/effects/puyo_meaty_pop.tscn")
-
-@onready var sfx_player = $SFXPlayer
 
 #number of items in each column and row. 
 @export var grid_height : int = 12
@@ -37,7 +36,6 @@ signal junk_popped(amount : int)
 var grid : Array = Array()
 var puyos_to_pop : Array = Array()
 
-var start_flag
 var max_chain : int = 0
 #the first puyo in the player array is the 'pivot'
 var player_puyos: Array = Array()
@@ -65,24 +63,22 @@ var player_fall_flag : bool = false
 var next_input_move : Vector2i = Vector2i.ZERO
 var next_grid_positions : Array[Vector2i]
 
-#queue for if a player should be spawned or some other effect
-var event_queue : Array = []
-
 ##used for testing and debugging
 var player_test_create_flag = false
 @export var test_fill_height = 0
 func _ready():
 	sound_manager.set_volume(0.55)
-	start_flag = false
+	event_queue_manager.start_flag = false
 	initialize_grid()
 	
-	initialize_junk_creator()
+	#initializing new subnodes
+	junk_creator.junk_initialize(puyo_scene, grid)
 	 
 	#event_queue.append(PuyoQueueEvent.create(PuyoQueueEvent.EVENT_TYPE.JUNKRANDOM, 3))
 	#start_game()
 
 func start_game():
-	start_flag = true
+	event_queue_manager.start_flag = true
 	fill_grid(test_fill_height) ##remove when finishing with testing
 	fill_puyo_queue()
 	await get_tree().create_timer(0.7).timeout
@@ -91,7 +87,7 @@ func start_game():
 	#player_test_create_flag = true
 
 func end_game():
-	start_flag = false
+	event_queue_manager.start_flag = false
 	$PlayerDownTimer.stop()
 	#resetting grid
 	for i in range(0, grid_width):
@@ -113,7 +109,8 @@ func end_game():
 	player_input_flag = false
 	chain_length = 0
 	next_input_move = Vector2i.ZERO
-	event_queue = []
+	
+	event_queue_manager.reset_queue()
 
 func _physics_process(delta: float) -> void:
 	if player_input_flag:
@@ -223,31 +220,9 @@ func grid_state_check():
 		chain_length = 0
 	else:
 		#this next part should be done by the queue manager
-		if event_queue.size() == 0 and start_flag:
-			event_queue.append(PuyoQueueEvent.create(PuyoQueueEvent.EVENT_TYPE.PLAYER))
-		var next_event : PuyoQueueEvent = event_queue.pop_front()
-		if next_event == null:
-			return
-		elif next_event.event_type == PuyoQueueEvent.EVENT_TYPE.PLAYER:
-			create_player_puyo()
-		else:
-			if next_event.event_type == PuyoQueueEvent.EVENT_TYPE.JUNK_ROW:
-				create_junk_row(next_event.junk_number)
-			elif next_event.event_type == PuyoQueueEvent.EVENT_TYPE.JUNK_SPECIFIC:
-				create_junk_specific(next_event.junk_positions)
-			elif next_event.event_type == PuyoQueueEvent.EVENT_TYPE.JUNK_RANDOM:
-				create_junk_random(next_event.junk_number)
-			elif next_event.event_type == PuyoQueueEvent.EVENT_TYPE.JUNK_REPLACE:
-				replace_junk_specific(next_event.junk_positions)
-			elif next_event.event_type == PuyoQueueEvent.EVENT_TYPE.JUNK_SLAM:
-				junk_slam(next_event.junk_number)
-			elif next_event.event_type == PuyoQueueEvent.EVENT_TYPE.COLOR_REPLACE:
-				replace_color(next_event.color_to_change, next_event.color_target)
-			elif next_event.event_type == PuyoQueueEvent.EVENT_TYPE.END_GAME:
-				down_tick()
-				await down_check_finished
-				end_game()
+		if (event_queue_manager.process_queue()):
 			grid_state_check()
+		
 
 #move a puyo from one node to another. overwrites node_to's puyo. used only for resting puyos
 func move_puyo(node_from : GridNode, node_to : GridNode):
@@ -604,7 +579,7 @@ func loss_check() -> bool:
 
 func add_to_spawn_queue(new_event: PuyoQueueEvent):
 	queue_event_added.emit(new_event)
-	event_queue.append(new_event)
+	event_queue_manager.add_event(new_event)
 
 #used for specific junk patterns that fall from the top
 func create_junk_specific(junk_positions : Array[Vector2i]):
@@ -651,12 +626,13 @@ func add_certain_puyo(type : Puyo.PUYO_TYPE):
 func set_volume(num : float):
 	sound_manager.set_volume(num)
 
-
-## new initializers
-
-func initialize_junk_creator():
-	junk_creator.junk_initialize(puyo_scene, grid)
-
+##TEMPORARY SIGNAL CONNECTIONS
 
 func _on_junk_creator_junk_created(amount: int) -> void:
 	junk_created.emit(amount)
+
+func _on_event_end_game() -> void:
+	down_tick()
+	await down_check_finished
+	end_game()
+	pass # Replace with function body.
