@@ -224,7 +224,6 @@ combat_manager = NodePath("..")
 position = Vector2(835, 250)
 script = ExtResource("8_twsak")
 encounter_label = NodePath("../Frame/EncounterLabel")
-encounters_between_rest_stops = 1
 
 [node name="CombatEffectsManager" parent="." instance=ExtResource("11_w6tjk")]
 

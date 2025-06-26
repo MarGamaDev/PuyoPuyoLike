@@ -11,44 +11,44 @@ signal on_chain_ending(max_chain : int)
 signal on_junk_popped(amount: int)
 signal on_junk_created(amount: int)
 
-@onready var grid_manager : GridManager = $GridManager
+@export var game_manager : PuyoGameManager
 
 func _ready():
 	#add_certain_puyo_relic_type(Puyo.PUYO_TYPE.GREEN)
 	pass
 
 func end_player_turn() -> void:
-	await $GridManager.down_tick()
+	await game_manager.down_tick()
 	on_end_player_turn.emit()
 
 func reset_game():
-	$GridManager.show()
-	$GridManager.end_game()
-	$GridManager.start_game()
+	game_manager.show()
+	game_manager.end_game()
+	game_manager.start_game()
 
 func pause_puyo():
 	add_to_spawn_queue(PuyoQueueEvent.create(PuyoQueueEvent.EVENT_TYPE.END_GAME))
-	$GridManager.delete_player()
+	game_manager.delete_player()
 
 func lose_life():
 	print("life lost")
-	$GridManager.end_game()
-	$GridManager.hide()
+	game_manager.end_game()
+	game_manager.hide()
 	life_lost.emit()
 
 #chain_stage is an array of arrays of gridnodes
 func chain_stage_popped(chain_stage : Array, chain_value: int):
 	if chain_stage.size() > 0:
-		$GridManager/SFXPlayer.set_volume_db(linear_to_db(0.8))
+		game_manager.set_volume(0.8)
 		match(randi_range(0, 3)):
 			0:
-				$GridManager.sfx_player.play_sound_effect_from_library("pop_1")
+				game_manager.sfx_player.play_sound_effect_from_library("pop_1")
 			1:
-				$GridManager.sfx_player.play_sound_effect_from_library("pop_2")
+				game_manager.sfx_player.play_sound_effect_from_library("pop_2")
 			2:
-				$GridManager.sfx_player.play_sound_effect_from_library("pop_3")
+				game_manager.sfx_player.play_sound_effect_from_library("pop_3")
 			3:
-				$GridManager.sfx_player.play_sound_effect_from_library("pop_4")
+				game_manager.sfx_player.play_sound_effect_from_library("pop_4")
 	for puyo_block : Array in chain_stage:
 		#emits an array og gridnodes
 		block_popped.emit(puyo_block, chain_value)
@@ -57,7 +57,7 @@ func chain_stage_popped(chain_stage : Array, chain_value: int):
 		player_attack.emit(PlayerAttack.create(puyo_block, chain_value))
 
 func add_to_spawn_queue(new_event: PuyoQueueEvent):
-	$GridManager.add_to_spawn_queue(new_event)	
+	game_manager.add_to_spawn_queue(new_event)	
 
 func process_damage_taken(damage_taken: int, attack_type: EnemyAttack.EnemyAttackType):
 	add_to_spawn_queue(EnemyAttackHandler.process_attack(damage_taken, attack_type))
@@ -86,8 +86,8 @@ func _on_grid_manager_junk_created(amount: int) -> void:
 	pass # Replace with function body.
 
 func add_certain_puyo_relic_type(type : Puyo.PUYO_TYPE):
-	$GridManager/PuyoPoolManager.add_certain_puyo(type)
+	game_manager.add_certain_puyo(type)
 	
 
 func get_free_spaces_left()->int:
-	return $GridManager.get_free_spaces_left()
+	return game_manager.get_free_spaces_left()

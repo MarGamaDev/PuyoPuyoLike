@@ -1,0 +1,178 @@
+[gd_scene load_steps=12 format=3 uid="uid://j1dwvidyapp4"]
+
+[ext_resource type="Script" uid="uid://d1k0t4vdgflfv" path="res://Scripts/PuyoPuyo/puyo_game_manager.gd" id="1_gnht4"]
+[ext_resource type="PackedScene" uid="uid://cqw1jv0baovrt" path="res://Scenes/PuyoPuyo/puyo.tscn" id="2_fuix5"]
+[ext_resource type="PackedScene" uid="uid://bu3friywynij8" path="res://Scenes/animations and audio stuff/polyphonic_audio_player.tscn" id="3_twdsd"]
+[ext_resource type="Resource" uid="uid://dq6q2or2pmb84" path="res://Resources/AudioLibraries/puyo_sfx.tres" id="4_25m6n"]
+[ext_resource type="Script" uid="uid://vpw412pfdf2h" path="res://Scripts/PuyoPuyo/junk_creator.gd" id="4_twdsd"]
+[ext_resource type="Script" uid="uid://b6pvd1io06ifj" path="res://Scripts/PuyoPuyo/puyo_sound_manager.gd" id="5_fuix5"]
+[ext_resource type="Texture2D" uid="uid://csoroeu2gqsl0" path="res://Art/puyo elements/puyo_grid.jpeg" id="5_wquyg"]
+[ext_resource type="Script" uid="uid://i5oo8rr7v3h7" path="res://Scenes/PuyoPuyo/puyo_pool_manager.gd" id="6_uc8fw"]
+
+[sub_resource type="Animation" id="Animation_87frd"]
+resource_name = "Queue_rotating"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FirstPair1:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0523599, -0.0523599, 0.0523599]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FirstPair2:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0523599, -0.0523599, 0.0523599]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SecondPair1:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0523599, -0.0523599, 0.0523599]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SecondPair2:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0523599, -0.0523599, 0.0523599]
+}
+
+[sub_resource type="Animation" id="Animation_8soxh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FirstPair1:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FirstPair2:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SecondPair1:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SecondPair2:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_n4ny7"]
+_data = {
+&"Queue_rotating": SubResource("Animation_87frd"),
+&"RESET": SubResource("Animation_8soxh")
+}
+
+[node name="PuyoGameManager" type="Node2D"]
+script = ExtResource("1_gnht4")
+
+[node name="GridBackground" type="Sprite2D" parent="."]
+texture = ExtResource("5_wquyg")
+centered = false
+
+[node name="PuyoPoolManager" type="Node2D" parent="."]
+script = ExtResource("6_uc8fw")
+
+[node name="GridContainer" type="Node2D" parent="."]
+
+[node name="GridUpdater" type="Node2D" parent="."]
+
+[node name="GridChecker" type="Node2D" parent="."]
+
+[node name="PlayerPuyoManager" type="Node2D" parent="."]
+
+[node name="EventQueueManager" type="Node2D" parent="."]
+
+[node name="JunkCreator" type="Node2D" parent="."]
+script = ExtResource("4_twdsd")
+
+[node name="PuyoSoundManager" type="Node2D" parent="."]
+script = ExtResource("5_fuix5")
+
+[node name="SFXPlayer" parent="PuyoSoundManager" instance=ExtResource("3_twdsd")]
+volume_db = 22.322
+audio_library = ExtResource("4_25m6n")
+
+[node name="PlayerDownTimer" type="Timer" parent="."]
+
+[node name="QueuedPuyos" type="Node2D" parent="."]
+
+[node name="FirstPair1" parent="QueuedPuyos" instance=ExtResource("2_fuix5")]
+position = Vector2(356, 13)
+scale = Vector2(0.65, 0.65)
+
+[node name="FirstPair2" parent="QueuedPuyos" instance=ExtResource("2_fuix5")]
+position = Vector2(356, 53)
+scale = Vector2(0.65, 0.65)
+
+[node name="SecondPair1" parent="QueuedPuyos" instance=ExtResource("2_fuix5")]
+position = Vector2(373, 99)
+scale = Vector2(0.65, 0.65)
+
+[node name="SecondPair2" parent="QueuedPuyos" instance=ExtResource("2_fuix5")]
+position = Vector2(373, 141)
+scale = Vector2(0.65, 0.65)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="QueuedPuyos"]
+libraries = {
+&"": SubResource("AnimationLibrary_n4ny7")
+}
+
+[connection signal="junk_created" from="JunkCreator" to="." method="_on_junk_creator_junk_created"]
+[connection signal="timeout" from="PlayerDownTimer" to="." method="player_down_tick"]
