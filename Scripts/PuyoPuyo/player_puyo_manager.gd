@@ -9,7 +9,8 @@ signal turn_tick
 signal update_queue(new_queue : Array)
 
 ##TODO change this
-@export var grid_checker : PuyoGameManager
+@export var grid_manager : PuyoGameManager
+@export var grid_checker : GridChecker
 
 #the first puyo in the player array is the 'pivot'
 var player_puyos: Array = Array()
@@ -169,7 +170,7 @@ func player_down_tick():
 			player_puyos[i].queue_free()
 		player_puyos.clear()
 		#player_fall_flag = false
-		grid_checker.grid_state_check()
+		grid_manager.grid_state_check()
 		turn_tick.emit()
 		for i in to_play_drop_anims:
 			i.play_drop_animation()

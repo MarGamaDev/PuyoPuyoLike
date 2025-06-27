@@ -19,6 +19,7 @@ signal junk_popped(amount : int)
 @onready var junk_creator : JunkCreator = $JunkCreator
 @onready var event_queue_manager : EventQueueManager = $EventQueueManager
 @onready var player_manager : PlayerPuyoManager = $PlayerPuyoManager
+@onready var grid_checker : GridChecker = $GridChecker
 
 #loading the grid nodes to instantiate them
 @onready var grid_node_scene = preload("res://Scenes/PuyoPuyo/grid_node.tscn")
@@ -54,6 +55,7 @@ func _ready():
 	#initializing new subnodes
 	junk_creator.junk_initialize(puyo_scene, grid)
 	player_manager.player_puyo_initialize(grid, square_size, puyo_scene)
+	grid_checker.grid_check_initialize(grid, chain_length)
 	 
 	#event_queue.append(PuyoQueueEvent.create(PuyoQueueEvent.EVENT_TYPE.JUNKRANDOM, 3))
 	#start_game()
@@ -161,9 +163,9 @@ func grid_state_check():
 	down_tick()
 	await down_check_finished
 	#player_fall_flag = false
-	var puyo_groups = get_grouped_puyos()
+	var puyo_groups = grid_checker.get_grouped_puyos()
 	if puyo_groups.size() > 0:
-		await check_board(puyo_groups)
+		await grid_checker.check_board(puyo_groups)
 		await grid_state_check()
 		chain_ended.emit(max_chain)
 		max_chain = 0
@@ -185,40 +187,7 @@ func move_puyo(node_from : GridNode, node_to : GridNode):
 	#node_to.puyo.puyo_lerp(node_to.position)
 	pass
 
-#called whenever we need to check the board. will return an array of groups of nodes (for now)
-func get_grouped_puyos() -> Array:
-	#down tick should always be called first to make sure board is in a valid state
-	#down_tick()
-	#await down_check_finished
-	#any groups of 4+ blocks get 
-	var groups : Array = Array()
-	#go through every node in the grid
-	for i in range(0, grid_width):
-		for j in range(0, grid_height):
-			var node_to_check : GridNode = grid[i][j]
-			
-			#skip iteration if node has already been checked
-			if (node_to_check.is_checked):
-				continue
-			
-			#check node recursively
-			var node_group : Array = Array()
-			node_group = check_node(node_to_check, node_group)
-			
-			#if the group is large enough, save it to the groups
-			if (node_group.size() >= 4):
-				groups.append(node_group)
-			
-			#set all nodes in the group as checked
-			for n in range(node_group.size()):
-				node_group[n].is_checked = true
-			
-	#set all nodes in the group as unchecked
-	for i in range(0, grid_width):
-		for j in range(0, grid_height):
-			grid[i][j].is_checked = false
-	#down_tick()
-	return groups
+
 
 #called when a tick for gravity needs to be checked, callls itself if it changed anything
 func down_tick() -> bool:
@@ -251,33 +220,6 @@ func down_tick() -> bool:
 		down_check_finished.emit()
 	return check
 
-func check_node(node_to_check: GridNode, node_group: Array, puyo_type:= Puyo.PUYO_TYPE.UNDEFINED) -> Array:
-	#if node is already checked, or doesn't have a puyo, exit iteration
-	if (node_group.has(node_to_check)) or (!node_to_check.is_holding_puyo):
-		return node_group
-	
-	#if node is junk, exit iteration
-	if (node_to_check.get_type() == Puyo.PUYO_TYPE.JUNK):
-		return node_group
-	
-	#if puyo_type is undefined, this is the first iteration and we should set puyo_type
-	if (puyo_type == Puyo.PUYO_TYPE.UNDEFINED):
-		puyo_type = node_to_check.get_type()
-	
-	#if the node's puyo type doesn't match, exit iteration
-	if (node_to_check.get_type() != puyo_type):
-		return node_group
-	
-	#add the node to the group, then recursively check neighbours
-	node_group.append(node_to_check)
-	for i in range(0, node_to_check.neighbours.size()):
-		var neighbour_to_check = node_to_check.neighbours[i]
-		var updated_group: Array = check_node(neighbour_to_check, node_group, puyo_type)
-		node_group = updated_group
-	
-	#send the accumulated list back up the recursion
-	return node_group
-
 func pop_puyos(puyo_groups:Array = puyos_to_pop):
 	var junk_popped_now = 0
 	if puyo_groups.is_empty():
@@ -306,39 +248,9 @@ func pop_puyos(puyo_groups:Array = puyos_to_pop):
 	junk_popped.emit(junk_popped_now)
 	puyos_to_pop = Array()
 
-#starts a board check loop. puyo groups is an array of arrays of gridnodes
-func check_board(puyo_groups : Array) -> bool:
-	if puyo_groups.is_empty():
-		#chain_length = 0
-		board_check_delay.emit()
-		return false
-	else:
-		chain_length += 1
-		max_chain += 1
-		for i in puyo_groups:
-			for j in i:
-				j.puyo.play_blink()
-		await get_tree().create_timer(0.5).timeout
-		chain_stage_pop.emit(puyo_groups, chain_length)
-		down_tick()
-		await down_check_finished
-		pop_puyos(puyo_groups)
-		#down_tick()
-		#await down_check_finished
-		await get_tree().create_timer(0.2).timeout
-		check_board(get_grouped_puyos())
-		return true
-
 #creates player puyo
 
-#returns true if next move is valid
-func check_next_move(potential_next_grid_positions: Array) -> bool:
-	for pos in potential_next_grid_positions:
-		if (pos.x > grid_width - 1) or (pos.x < 0) or (pos.y > grid_height - 1) or (pos.y < 0):
-			return false
-		if grid[pos.x][pos.y].is_holding_puyo:
-			return false
-	return true
+
 
 #update visual puyos in queue
 func update_puyo_queue_visuals(puyo_queue : Array):
@@ -346,20 +258,6 @@ func update_puyo_queue_visuals(puyo_queue : Array):
 	$QueuedPuyos/FirstPair2.set_type(puyo_queue[0][1].puyo_type)
 	$QueuedPuyos/SecondPair1.set_type(puyo_queue[1][0].puyo_type)
 	$QueuedPuyos/SecondPair2.set_type(puyo_queue[1][1].puyo_type)
-
-#called whenever a player would be created. if they can't be created, lose the game
-func loss_check() -> bool:
-	if grid[int (grid_width / 2) - 1][0].is_holding_puyo:
-		down_tick()
-		await down_check_finished
-		if grid[int (grid_width / 2) - 1][0].is_holding_puyo:
-			if grid[int (grid_width / 2) - 1][0].puyo.puyo_type == Puyo.PUYO_TYPE.JUNK:
-				grid[int (grid_width / 2) - 1][0].puyo.pop()
-				grid[int (grid_width / 2) - 1][0].reset()
-			else:
-				life_loss.emit()
-				return true
-	return false
 
 func add_to_spawn_queue(new_event: PuyoQueueEvent):
 	queue_event_added.emit(new_event)
@@ -388,14 +286,6 @@ func play_puyo_thud():
 	sound_manager.play_puyo_thud()
 	#$SFXPlayer.set_volume_db(linear_to_db(0.9))
 
-func get_free_spaces_left() -> int:
-	var count = 0
-	for i in range(0,grid_height):
-		for j in range(0, grid_width):
-			if grid[j][i].is_holding_puyo == false:
-				count += 1
-	return count
-
 func add_certain_puyo(type : Puyo.PUYO_TYPE):
 	$PlayerPuyoManager/PuyoPoolManager.add_certain_puyo(type)
 
@@ -404,6 +294,9 @@ func set_volume(num : float):
 
 func delete_player():
 	player_manager.delete_player()
+
+func get_free_spaces_left() -> int:
+	return grid_checker.get_free_spaces_left()
 
 ##TEMPORARY SIGNAL CONNECTIONS
 
@@ -424,3 +317,12 @@ func _on_player_created() -> void:
 
 func _on_player_turn_tick() -> void:
 	turn_tick.emit()
+
+func on_max_chain_increase(difference: int) -> void:
+	max_chain += difference
+
+func _on_board_check_delay() -> void:
+	board_check_delay.emit()
+
+func _on_chain_stage_pop(type: Array, chain_length: Variant) -> void:
+	chain_stage_pop.emit(type, chain_length)
