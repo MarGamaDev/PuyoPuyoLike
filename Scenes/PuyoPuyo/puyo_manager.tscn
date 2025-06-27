@@ -20,6 +20,10 @@ scale = Vector2(2.11111, 2)
 texture = ExtResource("3_4g3bt")
 
 [node name="PuyoGameManager" parent="." instance=ExtResource("4_qdif2")]
+grid_height = 12
+grid_width = 6
+down_tick_speed = 0.5
+test_fill_height = 0
 
 [connection signal="chain_ended" from="GridManager" to="." method="_on_grid_manager_chain_ended"]
 [connection signal="chain_stage_pop" from="GridManager" to="." method="chain_stage_popped"]

@@ -18,6 +18,7 @@ signal junk_popped(amount : int)
 @onready var sound_manager : PuyoSoundManager = $PuyoSoundManager
 @onready var junk_creator : JunkCreator = $JunkCreator
 @onready var event_queue_manager : EventQueueManager = $EventQueueManager
+@onready var player_manager : PlayerPuyoManager = $PlayerPuyoManager
 
 #loading the grid nodes to instantiate them
 @onready var grid_node_scene = preload("res://Scenes/PuyoPuyo/grid_node.tscn")
@@ -36,36 +37,15 @@ signal junk_popped(amount : int)
 var grid : Array = Array()
 var puyos_to_pop : Array = Array()
 
+var chain_length : int = 0
 var max_chain : int = 0
-#the first puyo in the player array is the 'pivot'
-var player_puyos: Array = Array()
-var player_grid_positions: Array = Array()
-#player rotation is right:0 down:1 left:2 up:3 
-var player_rotation : int = 0
-var puyo_queue : Array[Array] = []
-#helps with delaying creating a player
-var player_create_flag = false
-#if the player shoudl be able to input
-var player_input_flag = false
 
 @export var down_tick_speed : float = 0.5
-@export var player_down_speed : float = 1
-#how short the player tick timer should be changed to while down is being held
-@export var player_hold_down_speed : float = 0.05
-var chain_length : int = 0
-@export var player_slide_speed : float = 50.0
-var player_next_positions : Array[Vector2] = [Vector2.ZERO, Vector2.ZERO]
-var player_move_flag : bool = false
-
-var player_fall_flag : bool = false
-
-#this is a translation vector, not the position
-var next_input_move : Vector2i = Vector2i.ZERO
-var next_grid_positions : Array[Vector2i]
 
 ##used for testing and debugging
 var player_test_create_flag = false
 @export var test_fill_height = 0
+
 func _ready():
 	sound_manager.set_volume(0.55)
 	event_queue_manager.start_flag = false
@@ -73,6 +53,7 @@ func _ready():
 	
 	#initializing new subnodes
 	junk_creator.junk_initialize(puyo_scene, grid)
+	player_manager.player_puyo_initialize(grid, square_size, puyo_scene)
 	 
 	#event_queue.append(PuyoQueueEvent.create(PuyoQueueEvent.EVENT_TYPE.JUNKRANDOM, 3))
 	#start_game()
@@ -80,7 +61,7 @@ func _ready():
 func start_game():
 	event_queue_manager.start_flag = true
 	fill_grid(test_fill_height) ##remove when finishing with testing
-	fill_puyo_queue()
+	player_manager.fill_puyo_queue()
 	await get_tree().create_timer(0.7).timeout
 	grid_state_check()
 	#await board_check_delay
@@ -88,7 +69,8 @@ func start_game():
 
 func end_game():
 	event_queue_manager.start_flag = false
-	$PlayerDownTimer.stop()
+	player_manager.player_down_timer.stop()
+	player_manager.reset_player()
 	#resetting grid
 	for i in range(0, grid_width):
 		for j in range(0, grid_height):
@@ -96,52 +78,20 @@ func end_game():
 				grid[i][j].puyo.queue_free()
 			grid[i][j].reset()
 	puyos_to_pop = Array()
-	for i in player_puyos:
-		i.queue_free()
-	player_puyos = Array()
-	player_grid_positions = Array()
-	player_rotation = 0
-	for i in puyo_queue:
-		for j in i:
-			j.queue_free()
-	puyo_queue = []
-	player_create_flag = false
-	player_input_flag = false
 	chain_length = 0
-	next_input_move = Vector2i.ZERO
-	
 	event_queue_manager.reset_queue()
-
-func _physics_process(delta: float) -> void:
-	if player_input_flag:
-		if Input.is_action_just_pressed("puyo_left"):
-			next_input_move = Vector2i.LEFT
-			next_grid_positions = [(player_grid_positions[0] + next_input_move), (player_grid_positions[1] + next_input_move)]
-			if check_next_move(next_grid_positions):
-				player_snap_move(next_grid_positions)
-		elif Input.is_action_just_pressed("puyo_right"):
-			next_input_move = Vector2i.RIGHT
-			next_grid_positions = [(player_grid_positions[0] + next_input_move), (player_grid_positions[1] + next_input_move)]
-			if check_next_move(next_grid_positions):
-				player_snap_move(next_grid_positions)
-		elif Input.is_action_just_pressed("puyo_rotate"):
-			player_rotate()
-		elif Input.is_action_just_pressed("puyo_down"):
-			$PlayerDownTimer.start(player_hold_down_speed)
-		elif Input.is_action_just_released("puyo_down"):
-			$PlayerDownTimer.set_wait_time(player_down_speed)
 	
-	if player_test_create_flag:
-		if Input.is_action_just_pressed("TESTING_player_spawn"):
-			create_player_puyo()
-			player_test_create_flag = false
+	#if player_test_create_flag:
+		#if Input.is_action_just_pressed("TESTING_player_spawn"):
+			#create_player_puyo()
+			#player_test_create_flag = false
 	
 	#this doesn't look super awesome so its not used atm
-	if player_move_flag and player_puyos != null and player_puyos.size() > 0:
-		for i in range(0, 2):
-			player_puyos[i].position = player_puyos[i].position.lerp(player_next_positions[i], delta * player_slide_speed)
-			if player_puyos[i].position == player_next_positions[i]:
-				player_move_flag  = false
+	#if player_move_flag and player_puyos != null and player_puyos.size() > 0:
+		#for i in range(0, 2):
+			#player_puyos[i].position = player_puyos[i].position.lerp(player_next_positions[i], delta * player_slide_speed)
+			#if player_puyos[i].position == player_next_positions[i]:
+				#player_move_flag  = false
 
 func fill_grid(how_full : int):
 	for i in range(0, grid_width):
@@ -210,7 +160,7 @@ func set_node_neighbours(grid_node : GridNode):
 func grid_state_check():
 	down_tick()
 	await down_check_finished
-	player_fall_flag = false
+	#player_fall_flag = false
 	var puyo_groups = get_grouped_puyos()
 	if puyo_groups.size() > 0:
 		await check_board(puyo_groups)
@@ -275,8 +225,8 @@ func down_tick() -> bool:
 	var to_move : Array = []
 	#sets a check to see if anything changed, if it hasn't changed it should stay false
 	var check = false
-	if player_fall_flag == false:
-		await get_tree().create_timer(0.2).timeout
+	#if player_fall_flag == false:
+	await get_tree().create_timer(0.2).timeout
 	#loops through all puyos, but from bottom up
 	for i in range(grid_height - 2, -1, -1):
 		#starts with one above bottom
@@ -297,7 +247,7 @@ func down_tick() -> bool:
 		#await get_tree().create_timer(down_tick_speed).timeout
 		down_tick()
 	else:
-		player_create_flag = true
+		player_manager.player_create_flag = true
 		down_check_finished.emit()
 	return check
 
@@ -380,42 +330,6 @@ func check_board(puyo_groups : Array) -> bool:
 		return true
 
 #creates player puyo
-func create_player_puyo():
-	if !(await loss_check()):
-		player_puyos = puyo_queue.pop_front()
-		fill_puyo_queue()
-		add_child(player_puyos[0])
-		add_child(player_puyos[1])
-		player_puyos[0].add_to_group("Puyos")
-		player_puyos[1].add_to_group("Puyos")
-		
-		player_puyos[0].connect("reached_bottom", play_puyo_thud)
-		
-		player_rotation = 0
-		
-		player_grid_positions = [Vector2i((round(grid_width -1)/ 2),0), Vector2i((round(grid_width -1)/ 2) + 1,0)]
-		player_puyos[0].position.x = grid[round(grid_width / 2)][0].position.x + round(square_size / 2)
-		player_puyos[1].position.x  = grid[(round(grid_width / 2)) + 1][0].position.x + square_size
-		player_next_positions[0] = player_puyos[0].position
-		player_next_positions[1] = player_puyos[1].position
-		
-		var position_check = player_grid_positions
-		var end_flag = false
-		if !(check_next_move(player_grid_positions)):
-			for i in range(0, grid_width - 1):
-				position_check = [Vector2i(i, 0), Vector2i(i + 1, 0)]
-				if (check_next_move(position_check)):
-					end_flag = true
-					break
-			if end_flag == false:
-				life_loss.emit()
-				#return
-		player_snap_move(position_check)
-		
-		$PlayerDownTimer.set_wait_time(player_down_speed)
-		$PlayerDownTimer.start()
-		player_created.emit()
-		player_input_flag = true
 
 #returns true if next move is valid
 func check_next_move(potential_next_grid_positions: Array) -> bool:
@@ -426,138 +340,8 @@ func check_next_move(potential_next_grid_positions: Array) -> bool:
 			return false
 	return true
 
-#assumes move being given to it is valid
-func player_move(new_grid_positions: Array):
-	for i in range (0, 2):
-		var moving_puyo : Puyo = player_puyos[i]
-		var translation_difference = new_grid_positions[i] - player_grid_positions[i]
-		translation_difference *= square_size
-		player_next_positions[i].x = moving_puyo.position.x + (translation_difference.x * 2)
-		player_next_positions[i].y = moving_puyo.position.y + (translation_difference.y * 2)
-		#moving_puyo.position.x += translation_difference.x * 2
-		#moving_puyo.position.y += translation_difference.y * 2
-	player_grid_positions = new_grid_positions
-	player_move_flag = true
-
-func player_snap_move(new_grid_positions: Array):
-	if new_grid_positions.size() < 1 or player_puyos.size() < 1:
-		return
-	else:
-		for i in range (0, 2):
-			var moving_puyo : Puyo = player_puyos[i]
-			var translation_difference = new_grid_positions[i] - player_grid_positions[i]
-			translation_difference *= (square_size / 2)
-			player_next_positions[i].x = moving_puyo.position.x + (translation_difference.x * 2)
-			player_next_positions[i].y = moving_puyo.position.y + (translation_difference.y * 2)
-			moving_puyo.position = player_next_positions[i]
-		player_grid_positions = new_grid_positions
-		player_move_flag = false
-
-#connected to the timer via signal
-func player_down_tick():
-	var next_moves : Array[Vector2i] = []
-	var to_play_drop_anims : Array[Puyo] = []
-	for player_position in player_grid_positions:
-		next_moves.append(Vector2i(player_position.x, player_position.y + 1))
-	if check_next_move(next_moves):
-		player_snap_move(next_moves)
-	else:# if player shouldn't be able to move, turn it into part of the grid
-		#this should probably be part of grid_updater
-		player_input_flag = false
-		$PlayerDownTimer.stop()
-		play_puyo_thud()
-		for i in range(0,2):
-			var new_puyo_base = player_puyos[i]
-			var new_puyo_position = Vector2(player_grid_positions[i])
-			var node_to_fill = grid[new_puyo_position.x][new_puyo_position.y]
-			var new_puyo : Puyo = puyo_scene.instantiate()
-			new_puyo.set_type(new_puyo_base.get_type())
-			new_puyo.add_to_group("Puyos")
-			node_to_fill.add_child(new_puyo)
-			node_to_fill.set_puyo(new_puyo)
-			if (!(check_next_move([next_moves[i]]))) or player_rotation == 1 or player_rotation == 3:
-				to_play_drop_anims.append(node_to_fill.puyo)
-			player_puyos[i].queue_free()
-		player_puyos.clear()
-		player_fall_flag = false
-		grid_state_check()
-		turn_tick.emit()
-		for i in to_play_drop_anims:
-			i.play_drop_animation()
-
-func player_rotate():
-	if player_grid_positions.size() < 1:
-		return
-	var rotation_check : int = (player_rotation + 1) % 4
-	#find wehre the rotated puyo would be
-	var position_check : Vector2i
-	if rotation_check == 0: #now pointing right
-		position_check = player_grid_positions[0] + Vector2i(1,0)
-	elif rotation_check == 1: #now pointing down
-		position_check = player_grid_positions[0] +Vector2i(0,1)
-	elif rotation_check == 2: #now pointing left
-		position_check = player_grid_positions[0] +Vector2i(-1,0)
-	else: # now pointing up
-		position_check = player_grid_positions[0] +Vector2i(0,-1)
-	
-	var move_check : Array[Vector2i] = [player_grid_positions[0], position_check]
-	var rotate_flag = true
-	#now we check if we need to move the puyo pivot based on other things
-	if rotation_check == 0: #now pointing right
-		if !(check_next_move(move_check)): #if the new rotated vector would be invalid
-			for i in range(0, move_check.size()):
-				move_check[i].x -= 1
-			if (check_next_move(move_check)): #if moving both puyos one to the left would be valid
-				player_rotation = rotation_check
-			else:
-				rotate_flag = false
-		else:
-			player_rotation = rotation_check
-	elif rotation_check == 1: #now pointing down
-		if !(check_next_move(move_check)):
-			for i in range(0, move_check.size()):
-				move_check[i].y -= 1
-			if (check_next_move(move_check)):
-				player_rotation = rotation_check
-				$PlayerDownTimer.start()
-			else:
-				rotate_flag = false
-		else:
-			player_rotation = rotation_check
-	elif rotation_check == 2: #now pointing left
-		if !(check_next_move(move_check)):
-			for i in range(0, move_check.size()):
-				move_check[i].x += 1
-			if (check_next_move(move_check)):
-				player_rotation = rotation_check
-			else:
-				rotate_flag = false
-		else:
-			player_rotation = rotation_check
-	else: # now pointing up
-		if !(check_next_move(move_check)):
-			for i in range(0, move_check.size()):
-				move_check[i].y += 1
-			if (check_next_move(move_check)):
-				player_rotation = rotation_check
-			else:
-				rotate_flag = false
-		else:
-			player_rotation = rotation_check
-	if rotate_flag:
-		player_snap_move(move_check)
-	else:
-		print("cant rotate")
-
-func fill_puyo_queue():
-	while puyo_queue.size() <= 2:
-		var new_puyos = [puyo_scene.instantiate(), puyo_scene.instantiate()]
-		#grab a random item from the puyopool
-		var puyo_types = $PuyoPoolManager.get_puyo_pair()
-		new_puyos[0].set_type(puyo_types[0])
-		new_puyos[1].set_type(puyo_types[1])
-		puyo_queue.append(new_puyos)
-	#update visual puyos
+#update visual puyos in queue
+func update_puyo_queue_visuals(puyo_queue : Array):
 	$QueuedPuyos/FirstPair1.set_type(puyo_queue[0][0].puyo_type)
 	$QueuedPuyos/FirstPair2.set_type(puyo_queue[0][1].puyo_type)
 	$QueuedPuyos/SecondPair1.set_type(puyo_queue[1][0].puyo_type)
@@ -604,14 +388,6 @@ func play_puyo_thud():
 	sound_manager.play_puyo_thud()
 	#$SFXPlayer.set_volume_db(linear_to_db(0.9))
 
-func delete_player():
-	player_input_flag = false
-	$PlayerDownTimer.stop()
-	for i in player_puyos:
-		i.queue_free()
-	player_puyos.clear()
-	player_fall_flag = false
-
 func get_free_spaces_left() -> int:
 	var count = 0
 	for i in range(0,grid_height):
@@ -621,10 +397,13 @@ func get_free_spaces_left() -> int:
 	return count
 
 func add_certain_puyo(type : Puyo.PUYO_TYPE):
-	$PuyoPoolManager.add_certain_puyo(type)
+	$PlayerPuyoManager/PuyoPoolManager.add_certain_puyo(type)
 
 func set_volume(num : float):
 	sound_manager.set_volume(num)
+
+func delete_player():
+	player_manager.delete_player()
 
 ##TEMPORARY SIGNAL CONNECTIONS
 
@@ -636,3 +415,12 @@ func _on_event_end_game() -> void:
 	await down_check_finished
 	end_game()
 	pass # Replace with function body.
+
+func _on_player_life_loss() -> void:
+	life_loss.emit()
+
+func _on_player_created() -> void:
+	player_created.emit()
+
+func _on_player_turn_tick() -> void:
+	turn_tick.emit()

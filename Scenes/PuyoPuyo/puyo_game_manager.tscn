@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://j1dwvidyapp4"]
+[gd_scene load_steps=14 format=3 uid="uid://j1dwvidyapp4"]
 
 [ext_resource type="Script" uid="uid://d1k0t4vdgflfv" path="res://Scripts/PuyoPuyo/puyo_game_manager.gd" id="1_gnht4"]
 [ext_resource type="PackedScene" uid="uid://cqw1jv0baovrt" path="res://Scenes/PuyoPuyo/puyo.tscn" id="2_fuix5"]
 [ext_resource type="PackedScene" uid="uid://bu3friywynij8" path="res://Scenes/animations and audio stuff/polyphonic_audio_player.tscn" id="3_twdsd"]
 [ext_resource type="Resource" uid="uid://dq6q2or2pmb84" path="res://Resources/AudioLibraries/puyo_sfx.tres" id="4_25m6n"]
 [ext_resource type="Script" uid="uid://vpw412pfdf2h" path="res://Scripts/PuyoPuyo/junk_creator.gd" id="4_twdsd"]
+[ext_resource type="Script" uid="uid://vfg43y61iub2" path="res://Scripts/PuyoPuyo/player_puyo_manager.gd" id="4_uc8fw"]
 [ext_resource type="Script" uid="uid://87acped4jncv" path="res://Scripts/PuyoPuyo/event_queue_manager.gd" id="4_wquyg"]
 [ext_resource type="Script" uid="uid://b6pvd1io06ifj" path="res://Scripts/PuyoPuyo/puyo_sound_manager.gd" id="5_fuix5"]
 [ext_resource type="Texture2D" uid="uid://csoroeu2gqsl0" path="res://Art/puyo elements/puyo_grid.jpeg" id="5_wquyg"]
@@ -127,16 +128,20 @@ script = ExtResource("1_gnht4")
 texture = ExtResource("5_wquyg")
 centered = false
 
-[node name="PuyoPoolManager" type="Node2D" parent="."]
-script = ExtResource("6_uc8fw")
-
 [node name="GridContainer" type="Node2D" parent="."]
 
 [node name="GridUpdater" type="Node2D" parent="."]
 
 [node name="GridChecker" type="Node2D" parent="."]
 
-[node name="PlayerPuyoManager" type="Node2D" parent="."]
+[node name="PlayerPuyoManager" type="Node2D" parent="." node_paths=PackedStringArray("grid_checker")]
+script = ExtResource("4_uc8fw")
+grid_checker = NodePath("..")
+
+[node name="PlayerDownTimer" type="Timer" parent="PlayerPuyoManager"]
+
+[node name="PuyoPoolManager" type="Node2D" parent="PlayerPuyoManager"]
+script = ExtResource("6_uc8fw")
 
 [node name="EventQueueManager" type="Node2D" parent="."]
 script = ExtResource("4_wquyg")
@@ -150,8 +155,6 @@ script = ExtResource("5_fuix5")
 [node name="SFXPlayer" parent="PuyoSoundManager" instance=ExtResource("3_twdsd")]
 volume_db = 22.322
 audio_library = ExtResource("4_25m6n")
-
-[node name="PlayerDownTimer" type="Timer" parent="."]
 
 [node name="QueuedPuyos" type="Node2D" parent="."]
 
@@ -176,13 +179,18 @@ libraries = {
 &"": SubResource("AnimationLibrary_n4ny7")
 }
 
+[connection signal="life_loss" from="PlayerPuyoManager" to="." method="_on_player_life_loss"]
+[connection signal="play_thud_sfx" from="PlayerPuyoManager" to="PuyoSoundManager" method="play_puyo_thud"]
+[connection signal="player_created" from="PlayerPuyoManager" to="." method="_on_player_created"]
+[connection signal="turn_tick" from="PlayerPuyoManager" to="." method="_on_player_turn_tick"]
+[connection signal="update_queue" from="PlayerPuyoManager" to="." method="update_puyo_queue_visuals"]
+[connection signal="timeout" from="PlayerPuyoManager/PlayerDownTimer" to="PlayerPuyoManager" method="player_down_tick"]
 [connection signal="event_create_junk_random" from="EventQueueManager" to="JunkCreator" method="create_junk_random"]
 [connection signal="event_create_junk_row" from="EventQueueManager" to="JunkCreator" method="create_junk_row"]
 [connection signal="event_create_junk_specific" from="EventQueueManager" to="JunkCreator" method="create_junk_specific"]
-[connection signal="event_create_player" from="EventQueueManager" to="." method="create_player_puyo"]
+[connection signal="event_create_player" from="EventQueueManager" to="PlayerPuyoManager" method="create_player_puyo"]
 [connection signal="event_end_game" from="EventQueueManager" to="." method="_on_event_end_game"]
 [connection signal="event_junk_slam" from="EventQueueManager" to="JunkCreator" method="junk_slam"]
 [connection signal="event_replace_color" from="EventQueueManager" to="JunkCreator" method="replace_color"]
 [connection signal="event_replace_junk_specific" from="EventQueueManager" to="JunkCreator" method="replace_junk_specific"]
 [connection signal="junk_created" from="JunkCreator" to="." method="_on_junk_creator_junk_created"]
-[connection signal="timeout" from="PlayerDownTimer" to="." method="player_down_tick"]
