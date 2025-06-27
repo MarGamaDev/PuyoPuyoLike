@@ -1,9 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://j1dwvidyapp4"]
+[gd_scene load_steps=14 format=3 uid="uid://j1dwvidyapp4"]
 
 [ext_resource type="Script" uid="uid://d1k0t4vdgflfv" path="res://Scripts/PuyoPuyo/puyo_game_manager.gd" id="1_gnht4"]
 [ext_resource type="PackedScene" uid="uid://cqw1jv0baovrt" path="res://Scenes/PuyoPuyo/puyo.tscn" id="2_fuix5"]
 [ext_resource type="PackedScene" uid="uid://bu3friywynij8" path="res://Scenes/animations and audio stuff/polyphonic_audio_player.tscn" id="3_twdsd"]
-[ext_resource type="Script" uid="uid://dc3p4koaj64ha" path="res://Scenes/PuyoPuyo/grid_checker.gd" id="3_uc8fw"]
 [ext_resource type="Resource" uid="uid://dq6q2or2pmb84" path="res://Resources/AudioLibraries/puyo_sfx.tres" id="4_25m6n"]
 [ext_resource type="Script" uid="uid://vpw412pfdf2h" path="res://Scripts/PuyoPuyo/junk_creator.gd" id="4_twdsd"]
 [ext_resource type="Script" uid="uid://vfg43y61iub2" path="res://Scripts/PuyoPuyo/player_puyo_manager.gd" id="4_uc8fw"]
@@ -133,14 +132,11 @@ centered = false
 
 [node name="GridUpdater" type="Node2D" parent="."]
 
-[node name="GridChecker" type="Node2D" parent="." node_paths=PackedStringArray("grid_updater")]
-script = ExtResource("3_uc8fw")
-grid_updater = NodePath("..")
+[node name="GridChecker" type="Node2D" parent="."]
 
-[node name="PlayerPuyoManager" type="Node2D" parent="." node_paths=PackedStringArray("grid_manager", "grid_checker")]
+[node name="PlayerPuyoManager" type="Node2D" parent="." node_paths=PackedStringArray("grid_checker")]
 script = ExtResource("4_uc8fw")
-grid_manager = NodePath("..")
-grid_checker = NodePath("../GridChecker")
+grid_checker = NodePath("..")
 
 [node name="PlayerDownTimer" type="Timer" parent="PlayerPuyoManager"]
 
@@ -183,10 +179,6 @@ libraries = {
 &"": SubResource("AnimationLibrary_n4ny7")
 }
 
-[connection signal="board_check_delay" from="GridChecker" to="." method="_on_board_check_delay"]
-[connection signal="chain_stage_pop" from="GridChecker" to="." method="_on_chain_stage_pop"]
-[connection signal="life_loss" from="GridChecker" to="." method="_on_player_life_loss"]
-[connection signal="on_max_chain_increase" from="GridChecker" to="." method="on_max_chain_increase"]
 [connection signal="life_loss" from="PlayerPuyoManager" to="." method="_on_player_life_loss"]
 [connection signal="play_thud_sfx" from="PlayerPuyoManager" to="PuyoSoundManager" method="play_puyo_thud"]
 [connection signal="player_created" from="PlayerPuyoManager" to="." method="_on_player_created"]
