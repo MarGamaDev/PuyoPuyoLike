@@ -2,8 +2,6 @@ extends Node2D
 
 class_name JunkCreator
 
-##TODO connect these signals that needed to be emitted
-
 signal junk_created(amount : int)
 
 var puyo_scene : PackedScene

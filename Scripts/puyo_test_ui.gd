@@ -4,7 +4,7 @@ signal start_game
 signal deal_fuck_damage(damage)
 
 @export var puyo_manager : Node2D
-@onready var grid_manager : Node2D = puyo_manager.find_child("GridManager")
+@onready var grid_manager : Node2D = puyo_manager.find_child("PuyoGameManager")
 
 var last_chain_length : int = 0
 var last_chain_contents : String = "Last chain contents: "

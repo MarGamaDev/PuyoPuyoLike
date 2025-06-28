@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://buetvmo3m42v5"]
+[gd_scene load_steps=4 format=3 uid="uid://buetvmo3m42v5"]
 
 [ext_resource type="Script" uid="uid://bhx6thphvfolw" path="res://Scripts/PuyoPuyo/puyo_manager.gd" id="1_sea3v"]
-[ext_resource type="PackedScene" uid="uid://cbaajsmksk4lh" path="res://Scenes/PuyoPuyo/grid_manager.tscn" id="2_ajnr3"]
 [ext_resource type="Texture2D" uid="uid://dub51x4lfi0n0" path="res://Art/combat screen elements/puyo-skull.png" id="3_4g3bt"]
 [ext_resource type="PackedScene" uid="uid://j1dwvidyapp4" path="res://Scenes/PuyoPuyo/puyo_game_manager.tscn" id="4_qdif2"]
 
@@ -9,9 +8,7 @@
 script = ExtResource("1_sea3v")
 game_manager = NodePath("PuyoGameManager")
 
-[node name="GridManager" parent="." instance=ExtResource("2_ajnr3")]
-visible = false
-player_down_speed = 1.75
+[node name="PuyoGameManager" parent="." instance=ExtResource("4_qdif2")]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.707)
@@ -19,19 +16,6 @@ position = Vector2(124, 26)
 scale = Vector2(2.11111, 2)
 texture = ExtResource("3_4g3bt")
 
-[node name="PuyoGameManager" parent="." instance=ExtResource("4_qdif2")]
-grid_height = 12
-grid_width = 6
-down_tick_speed = 0.5
-test_fill_height = 0
-
-[connection signal="chain_ended" from="GridManager" to="." method="_on_grid_manager_chain_ended"]
-[connection signal="chain_stage_pop" from="GridManager" to="." method="chain_stage_popped"]
-[connection signal="junk_created" from="GridManager" to="." method="_on_grid_manager_junk_created"]
-[connection signal="junk_popped" from="GridManager" to="." method="_on_grid_manager_junk_popped"]
-[connection signal="life_loss" from="GridManager" to="." method="lose_life"]
-[connection signal="player_created" from="GridManager" to="." method="_on_player_created"]
-[connection signal="turn_tick" from="GridManager" to="." method="end_player_turn"]
 [connection signal="chain_ended" from="PuyoGameManager" to="." method="_on_grid_manager_chain_ended"]
 [connection signal="chain_stage_pop" from="PuyoGameManager" to="." method="chain_stage_popped"]
 [connection signal="junk_created" from="PuyoGameManager" to="." method="_on_grid_manager_junk_created"]

@@ -54,9 +54,6 @@ func _ready():
 	#initializing new subnodes
 	junk_creator.junk_initialize(puyo_scene, grid)
 	player_manager.player_puyo_initialize(grid, square_size, puyo_scene)
-	 
-	#event_queue.append(PuyoQueueEvent.create(PuyoQueueEvent.EVENT_TYPE.JUNKRANDOM, 3))
-	#start_game()
 
 func start_game():
 	event_queue_manager.start_flag = true
@@ -81,11 +78,6 @@ func end_game():
 	chain_length = 0
 	event_queue_manager.reset_queue()
 	
-	#if player_test_create_flag:
-		#if Input.is_action_just_pressed("TESTING_player_spawn"):
-			#create_player_puyo()
-			#player_test_create_flag = false
-	
 	#this doesn't look super awesome so its not used atm
 	#if player_move_flag and player_puyos != null and player_puyos.size() > 0:
 		#for i in range(0, 2):
@@ -101,14 +93,6 @@ func fill_grid(how_full : int):
 			node_to_fill.add_child(puyo)
 			node_to_fill.set_puyo(puyo)
 			node_to_fill.set_type(randi_range(2,5))
-			
-	#comment this out when not testing junk
-	#for i in range(0, grid_width):
-		#var puyo : Puyo = puyo_scene.instantiate()
-		#var node_to_fill : GridNode = grid[i][1]
-		#node_to_fill.add_child(puyo)
-		#node_to_fill.set_puyo(puyo)
-		#node_to_fill.set_type(Puyo.PUYO_TYPE.JUNK)
 
 #initialises the grid and gives all of the nodes their neighbours
 func initialize_grid():
@@ -127,13 +111,6 @@ func initialize_grid():
 			new_node.position = Vector2(i * (square_size / 2), j * (square_size / 2))
 			add_child(new_node)
 		#add a full column 
-	
-	#set the top two rows to out of bounds
-	#for i in range(0, grid_width):
-		#for j in range(0, 2):
-			#grid[i][j].is_out_of_play = true
-			##this is just for testing for visual aid
-			#grid[i][j].set_test_sprite(true)
 	
 	#setting all the neighbours for each GridNode
 	for i in range(0, grid_width):
@@ -187,9 +164,6 @@ func move_puyo(node_from : GridNode, node_to : GridNode):
 
 #called whenever we need to check the board. will return an array of groups of nodes (for now)
 func get_grouped_puyos() -> Array:
-	#down tick should always be called first to make sure board is in a valid state
-	#down_tick()
-	#await down_check_finished
 	#any groups of 4+ blocks get 
 	var groups : Array = Array()
 	#go through every node in the grid
@@ -365,29 +339,6 @@ func add_to_spawn_queue(new_event: PuyoQueueEvent):
 	queue_event_added.emit(new_event)
 	event_queue_manager.add_event(new_event)
 
-#used for specific junk patterns that fall from the top
-func create_junk_specific(junk_positions : Array[Vector2i]):
-	junk_creator.create_junk_specific(junk_positions)
-
-func create_junk_row(junk_amount: int):
-	junk_creator.create_junk_row(junk_amount)
-
-func create_junk_random(junk_num: int):
-	junk_creator.create_junk_random(junk_num)
-
-func replace_junk_specific(junk_positions : Array[Vector2i]):
-	junk_creator.replace_junk_specific(junk_positions)
-
-func junk_slam(junk_amount : int):
-	junk_creator.junk_slam(junk_amount)
-
-func replace_color(color_to_replace, to_replace_with):
-	junk_creator.replace_color(color_to_replace, to_replace_with)
-
-func play_puyo_thud():
-	sound_manager.play_puyo_thud()
-	#$SFXPlayer.set_volume_db(linear_to_db(0.9))
-
 func get_free_spaces_left() -> int:
 	var count = 0
 	for i in range(0,grid_height):
@@ -399,13 +350,10 @@ func get_free_spaces_left() -> int:
 func add_certain_puyo(type : Puyo.PUYO_TYPE):
 	$PlayerPuyoManager/PuyoPoolManager.add_certain_puyo(type)
 
-func set_volume(num : float):
-	sound_manager.set_volume(num)
-
 func delete_player():
 	player_manager.delete_player()
 
-##TEMPORARY SIGNAL CONNECTIONS
+##signal relays
 
 func _on_junk_creator_junk_created(amount: int) -> void:
 	junk_created.emit(amount)

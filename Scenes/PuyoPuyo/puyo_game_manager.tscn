@@ -128,15 +128,10 @@ script = ExtResource("1_gnht4")
 texture = ExtResource("5_wquyg")
 centered = false
 
-[node name="GridContainer" type="Node2D" parent="."]
-
-[node name="GridUpdater" type="Node2D" parent="."]
-
-[node name="GridChecker" type="Node2D" parent="."]
-
-[node name="PlayerPuyoManager" type="Node2D" parent="." node_paths=PackedStringArray("grid_checker")]
+[node name="PlayerPuyoManager" type="Node2D" parent="." node_paths=PackedStringArray("grid_manager", "sfx_manager")]
 script = ExtResource("4_uc8fw")
-grid_checker = NodePath("..")
+grid_manager = NodePath("..")
+sfx_manager = NodePath("../PuyoSoundManager")
 
 [node name="PlayerDownTimer" type="Timer" parent="PlayerPuyoManager"]
 
@@ -180,7 +175,6 @@ libraries = {
 }
 
 [connection signal="life_loss" from="PlayerPuyoManager" to="." method="_on_player_life_loss"]
-[connection signal="play_thud_sfx" from="PlayerPuyoManager" to="PuyoSoundManager" method="play_puyo_thud"]
 [connection signal="player_created" from="PlayerPuyoManager" to="." method="_on_player_created"]
 [connection signal="turn_tick" from="PlayerPuyoManager" to="." method="_on_player_turn_tick"]
 [connection signal="update_queue" from="PlayerPuyoManager" to="." method="update_puyo_queue_visuals"]
