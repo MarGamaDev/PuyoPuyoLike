@@ -28,7 +28,7 @@ func get_pool() -> Array[Reward]:
 
 func remove_from_pool(to_remove: Reward):
 	if to_remove == null:
-		print("reward skipped")
+		#print("reward skipped")
 		return
 	if to_remove.reward_type == Reward.REWARD_TYPE.RELIC:
 		if to_remove.relic_data.is_part_of_certain_cycle == true:

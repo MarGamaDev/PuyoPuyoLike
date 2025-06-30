@@ -19,6 +19,7 @@ signal on_delay_enemy_attack(delay_turns : int)
 signal on_game_paused()
 
 @export var puyo_values: PuyoValueData
+@export var debug_mode : bool = false
 
 var enemies: Array = Array()
 var selected_enemy: Enemy
@@ -26,8 +27,11 @@ var selected_enemy: Enemy
 var current_encounter : Encounter
 
 func _ready() -> void:
+	if debug_mode:
+		puyo_values.green_base_value = 100
+		puyo_values.red_base_value = 100
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), linear_to_db(0.5))
-	print(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Master")))
+	#print(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Master")))
 	start_combat()
 
 func _physics_process(_delta: float) -> void:
@@ -63,14 +67,14 @@ func process_enemy_attack(enemy_attack: EnemyAttack, enemy : Enemy) -> void:
 	on_enemy_attack.emit(enemy_attack, enemy)
 
 func register_enemy(enemy : Enemy) -> void:
-	#print("enemy registered")
+	##print("enemy registered")
 	on_enemy_registered.emit(enemy)
 	enemies.push_back(enemy)
 	enemy.connect("on_attacking_player", process_enemy_attack)
 	enemy.play_entrance_animation()
 
 func deregister_enemy(enemy : Enemy) -> void:
-	#print("enemy deregistered")
+	##print("enemy deregistered")
 	on_enemy_deregistered.emit(enemy)
 	enemies.erase(enemy)
 	enemy.set_as_selected(false)
@@ -79,7 +83,7 @@ func deregister_enemy(enemy : Enemy) -> void:
 		select_enemy(0)
 	
 	if enemies.size() == 0:
-		print("encounter over")
+		#print("encounter over")
 		on_encounter_finished.emit()
 
 func trigger_counter(counter_amount: int) -> void:

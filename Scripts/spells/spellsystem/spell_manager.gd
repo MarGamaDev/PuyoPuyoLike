@@ -23,7 +23,7 @@ func _physics_process(delta: float) -> void:
 
 func add_spell(spell_data: SpellData, reward: Reward):
 	if equipped_spells.size() >= 3 or spell_data == null:
-		print("too many spells!")
+		#print("too many spells!")
 		$SpellChoiceMenu.show()
 		awaiting_spell_data_holder = spell_data
 		awaiting_reward = reward
@@ -76,7 +76,7 @@ func spell_to_remove_selected(index: int):
 	pass
 
 func spell_cast(spell_length : int, spell_name : String):
-	print("spell cast")
+	#print("spell cast")
 	on_spell_cast.emit(spell_length, spell_name)
 
 func test_add_spell(spell_data: SpellData):
@@ -100,10 +100,10 @@ func test_add_spell(spell_data: SpellData):
 func update_enemy_visual_damage_queue():
 	var combat_manager : CombatManager = get_node("/root/Combat")
 	for enemy : Enemy in combat_manager.enemies:
-		print("damage_should_be_updating")
+		#print("damage_should_be_updating")
 		enemy.update_damage_visually()
 
 func play_spell_progress_noise():
-	print("test sfx")
+	#print("test sfx")
 	sound_manager.spell_build_up_play()
 	pass

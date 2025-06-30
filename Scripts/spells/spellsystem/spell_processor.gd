@@ -35,5 +35,5 @@ func reset_spell():
 func complete_spell():
 	#on_spell_complete.emit()
 	#reset_spell()
-	#print("spell complete")
+	##print("spell complete")
 	pass

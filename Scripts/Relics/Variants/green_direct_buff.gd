@@ -8,7 +8,7 @@ func initialize():
 	super()
 	deal_aoe_damage.connect(combat_manager.damage_all_enemies)
 	puyo_manager.player_attack.connect(green_pop)
-	print("green_buff connected: %s" % puyo_manager.player_attack.is_connected(green_pop))
+	#print("green_buff connected: %s" % puyo_manager.player_attack.is_connected(green_pop))
 
 func green_pop(attack: PlayerAttack) -> void:
 	if attack.type == Puyo.PUYO_TYPE.GREEN:

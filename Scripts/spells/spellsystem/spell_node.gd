@@ -38,7 +38,7 @@ func setup_spell_node(data : SpellData):
 func process_block(grid_node_array : Array, new_chain_length : int):
 	chain_length = new_chain_length
 	if chain_length < chain_stage_tracker - 1:
-		print("test")
+		#print("test")
 		chain_stage_tracker = 0
 		spell_reset()
 	
@@ -70,7 +70,7 @@ func complete_spell():
 	##remember to override without the reset for spells that care about how much
 	##you chain after casting
 	spell_reset()
-	print("spell complete")
+	#print("spell complete")
 
 func link_to_contianer(new_container_marker : Control):
 	container_location_marker = new_container_marker

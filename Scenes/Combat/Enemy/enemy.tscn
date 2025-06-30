@@ -232,6 +232,21 @@ _data = {
 &"RESET": SubResource("Animation_lovkh")
 }
 
+[sub_resource type="Animation" id="Animation_5k5rb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_dudsm"]
 resource_name = "ready_to_attack"
 loop_mode = 1
@@ -246,21 +261,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 3.73213),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(5, 5, 5, 1), Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_5k5rb"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:self_modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ikn0u"]

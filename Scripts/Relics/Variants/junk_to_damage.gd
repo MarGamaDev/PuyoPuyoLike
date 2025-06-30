@@ -9,7 +9,7 @@ func initialize():
 	super()
 	puyo_manager.on_junk_popped.connect(junk_pop)
 	deal_junk_damage.connect(combat_manager.damage_all_enemies)
-	print("junk 2 damage connected: %s" % puyo_manager.on_junk_popped.is_connected(junk_pop))
+	#print("junk 2 damage connected: %s" % puyo_manager.on_junk_popped.is_connected(junk_pop))
 
 func junk_pop(junk_amount : int):
 	if junk_amount > 0:

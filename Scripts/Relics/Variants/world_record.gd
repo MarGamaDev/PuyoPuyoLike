@@ -22,7 +22,7 @@ func record_check(grid_node_array : Array, chain_value : int):
 func trigger_record_effect(chain : int):
 	if chain > 0:
 		sound_manager.relic_ding_play()
-		print("record procced with highest_chain : %s" % highest_chain)
+		#print("record procced with highest_chain : %s" % highest_chain)
 		var type : Puyo.PUYO_TYPE
 		match (randi_range(0,3)):
 			0:

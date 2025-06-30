@@ -40,7 +40,7 @@ func _ready():
 	$SFXPlayer.set_volume_db(linear_to_db(non_puyo_sfx_volume))
 
 func life_lost_sfx():
-	print("life lost sfx")
+	#print("life lost sfx")
 	sfx_player.play_sound_effect_from_library("life_loss")
 
 func enemy_attack_sfx(unused_attack, unused_enemy):
@@ -106,7 +106,7 @@ func _on_rest_stop() -> void:
 var relic_ding_flag = true
 
 func relic_ding_play():
-	print("ding")
+	#print("ding")
 	if relic_ding_flag:
 		sfx_player.play_sound_effect_from_library("relic_ding")
 		relic_ding_flag = false

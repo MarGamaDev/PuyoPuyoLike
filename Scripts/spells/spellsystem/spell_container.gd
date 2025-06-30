@@ -88,7 +88,7 @@ func reset_recipe_visual():
 		recipe_rects[i].texture = default_sprites[i]
 
 func progress_spell_visual(component_to_activate: int):
-	#print(component_to_activate)
+	##print(component_to_activate)
 	play_spell_progress_noise.emit()
 	recipe_rects[component_to_activate * 2].texture = load(recipe_puyo_active_sprite_dictionary[recipe_contents[component_to_activate]])
 
@@ -98,7 +98,7 @@ func on_new_player_turn_taken():
 
 func on_spell_complete(spell_length, spell_name) -> void:
 	reset_recipe_visual()
-	print("test complete")
+	#print("test complete")
 	play_effect()
 
 func get_marker() -> Control:

@@ -6,4 +6,4 @@ class_name Inventory
 
 func add_to_inventory(reward: Reward):
 	temporary_test_inventory.append(reward.reward_name)
-	print(temporary_test_inventory)
+	#print(temporary_test_inventory)

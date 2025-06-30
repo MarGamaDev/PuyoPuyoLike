@@ -22,11 +22,11 @@ func spell_reset():
 	hatred_flag = false
 
 func trigger_spell_effect():
-	print("hatred cast")
+	#print("hatred cast")
 	hatred_flag = true
 
 func launch_hatred_attack(grid_node_array : Array, new_chain_length : int):
-	#print(grid_node_array.size())
+	##print(grid_node_array.size())
 	var value: int = puyo_values.get_base_value(Puyo.PUYO_TYPE.GREEN) * grid_node_array.size()
 	var mult: int = puyo_values.get_multiplier(Puyo.PUYO_TYPE.GREEN) * new_chain_length
 	deal_phlegm_spell_damage.emit(value * mult)
@@ -36,4 +36,4 @@ func launch_hatred_attack(grid_node_array : Array, new_chain_length : int):
 func complete_spell():
 	on_spell_complete.emit(recipe_length)
 	trigger_spell_effect()
-	print("spell complete")
+	#print("spell complete")

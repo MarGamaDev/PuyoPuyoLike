@@ -21,5 +21,5 @@ func get_puyo_pair() -> Array:
 func add_certain_puyo(type : Puyo.PUYO_TYPE):
 	if puyos_to_add.size() < 2:
 		puyos_to_add.append(type)
-	print(puyos_to_add)
+	#print(puyos_to_add)
 	

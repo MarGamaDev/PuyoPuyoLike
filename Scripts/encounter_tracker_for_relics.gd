@@ -6,7 +6,7 @@ var mult_scaler : int = 1
 func reset_tracker():
 	rest_encounter_counter = 0
 	mult_scaler = 1
-	print("tracker reset")
+	#print("tracker reset")
 
 func on_rest_encounter():
 	rest_encounter_counter += 1

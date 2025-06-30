@@ -86,7 +86,7 @@ func handle_damage(damage: int, enemy : Enemy) -> int:
 		if yellow_shield_buff_flag and counter > 0:
 			var shield_counter_buff = int(0.5 * counter)
 			shield += shield_counter_buff
-			print("yellow shield buff blocked : %s" %shield_counter_buff)
+			#print("yellow shield buff blocked : %s" %shield_counter_buff)
 		on_shield_lost.emit(shield)
 		damage -= shield
 		shield = 0 + minimum_shield
@@ -99,7 +99,7 @@ func lose_life() -> void:
 	shield = 0 + minimum_shield
 	counter = 0
 	if lives <= 0:
-		print("game_over")
+		#print("game_over")
 		on_player_death.emit()
 	else:
 		on_life_lost.emit()
@@ -112,7 +112,7 @@ func add_relic_counter_buff(new_buff : float) -> void:
 
 func add_minimum_shield(amount : int) -> void:
 	minimum_shield += amount
-	print("min shield : %s" % minimum_shield)
+	#print("min shield : %s" % minimum_shield)
 
 func reset_counter_and_shield(reset_minimum := true) -> void:
 	counter = 0
@@ -127,4 +127,4 @@ func reset_minimum_shield():
 
 func gain_yellow_shield_relic_buff():
 	yellow_shield_buff_flag = true
-	print("yellow shielf buff gained")
+	#print("yellow shielf buff gained")

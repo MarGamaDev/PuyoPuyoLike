@@ -18,4 +18,4 @@ func trigger_spell_effect():
 	combat_effects.create_spell_effect(container_location_marker.global_position, combat_effects.shield_location_marker, AttackEffectData.EFFECT_TYPE.PLAYER_BLUE, false)
 	for enemy : Enemy in combat_manager.enemies:
 		combat_effects.create_spell_effect(container_location_marker.global_position, enemy.global_position , AttackEffectData.EFFECT_TYPE.PLAYER_BLUE, false)
-	print("endurance cast")
+	#print("endurance cast")

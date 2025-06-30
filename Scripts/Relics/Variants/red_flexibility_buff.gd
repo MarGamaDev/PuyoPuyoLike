@@ -15,7 +15,7 @@ func initialize() -> void:
 	puyo_manager.player_attack.connect(check_block_type)
 	puyo_manager.on_chain_ending.connect(trigger_red_defense)
 	gain_relic_shield.connect(combat_manager.gain_shield)
-	#print("red defense connected: %s" % puyo_manager.player_attack.is_connected(trigger_red_defense))
+	##print("red defense connected: %s" % puyo_manager.player_attack.is_connected(trigger_red_defense))
 
 
 func check_block_type(attack: PlayerAttack) -> void:
@@ -26,12 +26,12 @@ func check_block_type(attack: PlayerAttack) -> void:
 		var value: int = puyo_values.get_base_value(attack.type) * attack.size
 		var mult: int = puyo_values.get_multiplier(attack.type) * attack.chain
 		damage_tracker += value * mult
-		#print("damage added")
+		##print("damage added")
 
 func trigger_red_defense(max_chain : int):
 	if red_flag and max_chain >= chain_requirement:
 		sound_manager.relic_ding_play()
-		print("red defense triggered, for shield %s" % (int(damage_tracker * shield_gain_reducer)))
+		#print("red defense triggered, for shield %s" % (int(damage_tracker * shield_gain_reducer)))
 		gain_relic_shield.emit(int(damage_tracker * shield_gain_reducer))
 		combat_effects.create_relic_effect(self.global_position, combat_effects.shield_location_marker, AttackEffectData.EFFECT_TYPE.PLAYER_RED, false)
 	red_flag = false

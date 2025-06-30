@@ -4,7 +4,7 @@ var tutorial_page_number : int = 0
 @onready var tutorial_pages : Array = [$Tutorial/TutorialOptions, $Tutorial/PuyoTutorial, $Tutorial/GameTutorial, $Tutorial/GameTutorial2, $Tutorial/TipsTutorial]
 
 func _ready() -> void:
-	print("menu ready")
+	#print("menu ready")
 	$MenuPage/AnimationPlayer2.play("buttons")
 	#$MenuPage/AnimationPlayer.play("logo")
 	#$MenuPage/AnimationPlayer.seek(2)
@@ -12,7 +12,7 @@ func _ready() -> void:
 	#$MenuAnimationTimer.start(0.3)
 
 func play_animations():
-	print("anims starting")
+	#print("anims starting")
 	$MenuPage/AnimationPlayer.play("logo")
 	$MenuPage/AnimationPlayer2.play("buttons")
 
@@ -43,7 +43,7 @@ func return_to_menu():
 	tutorial_page_number = 0
 
 func open_tutorial():
-	print("Test")
+	#print("Test")
 	tutorial_page_number = 0
 	$MenuPage/Buttons.hide()
 	$Tutorial.show()

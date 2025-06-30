@@ -13,4 +13,4 @@ func trigger_spell_effect():
 	var modifier = (EncounterTrackerForRelics.get_count() - 1)* 5
 	deal_spell_damage.emit(spell_damage + modifier)
 	combat_effects.create_spell_effect(container_location_marker.global_position, combat_manager.selected_enemy.global_position, AttackEffectData.EFFECT_TYPE.PLAYER_RED)
-	print("Brutality cast")
+	#print("Brutality cast")

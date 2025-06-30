@@ -8,7 +8,7 @@ signal gain_counter(counter : int)
 func initialize():
 	super()
 	puyo_manager.block_popped.connect(wall_pop)
-	print("wall_pop connected: %s" % puyo_manager.block_popped.is_connected(wall_pop))
+	#print("wall_pop connected: %s" % puyo_manager.block_popped.is_connected(wall_pop))
 	deal_aoe_damage.connect(combat_manager.damage_all_enemies)
 	deal_target_damage.connect(combat_manager.damage_targeted_enemy)
 	gain_shield.connect(combat_manager.gain_shield)

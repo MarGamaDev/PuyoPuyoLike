@@ -13,4 +13,4 @@ func trigger_spell_effect():
 	deal_spell_damage.emit((spell_base_damage * enemy_count) + modifier )
 	for i in combat_manager.enemies:
 		combat_effects.create_spell_effect(container_location_marker.global_position, i.global_position, AttackEffectData.EFFECT_TYPE.PLAYER_GREEN)
-	print("Violence cast for: %s" % (enemy_count * spell_base_damage))
+	#print("Violence cast for: %s" % (enemy_count * spell_base_damage))

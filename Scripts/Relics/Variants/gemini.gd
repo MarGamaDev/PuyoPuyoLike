@@ -16,8 +16,8 @@ func initialize():
 	symmetry_strike.connect(combat_manager.process_player_attack)
 
 func reset_relic(max_chain_unused : int):
-	print("gemini reset")
-	print(types_in_chain)
+	#print("gemini reset")
+	#print(types_in_chain)
 	types_in_chain = []
 	pass
 
@@ -32,7 +32,7 @@ func gemini_trigger(block : Array, chain_length : int):
 	if bonus_counter > 0:
 		var modifier = int((EncounterTrackerForRelics.get_count() - 1) / 3)
 		bonus_counter += modifier
-		print("gemini procced")
+		#print("gemini procced")
 		sound_manager.relic_ding_play()
 		symmetry_strike.emit(PlayerAttack.create_manually(bonus_counter * puyo_boost_per_match, block_type, chain_length))
 		match block_type:

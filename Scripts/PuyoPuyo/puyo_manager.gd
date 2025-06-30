@@ -31,7 +31,7 @@ func pause_puyo():
 	game_manager.delete_player()
 
 func lose_life():
-	print("life lost")
+	#print("life lost")
 	game_manager.end_game()
 	game_manager.hide()
 	life_lost.emit()
@@ -43,7 +43,7 @@ func chain_stage_popped(chain_stage : Array, chain_value: int):
 	for puyo_block : Array in chain_stage:
 		#emits an array og gridnodes
 		block_popped.emit(puyo_block, chain_value)
-		#print("chain type: ", puyo_block[0].get_type(), " with ", puyo_block.size(), " puyos, chain length ", chain_value)
+		##print("chain type: ", puyo_block[0].get_type(), " with ", puyo_block.size(), " puyos, chain length ", chain_value)
 		#send attack to the combat manager
 		player_attack.emit(PlayerAttack.create(puyo_block, chain_value))
 

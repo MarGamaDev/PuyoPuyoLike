@@ -21,14 +21,14 @@ func trigger_spell_effect():
 	spell_trigger_flag = true
 	if !(puyo_manager.on_chain_ending.is_connected(wall_pop)):
 		puyo_manager.on_chain_ending.connect(wall_pop)
-	print("adamance test")
+	#print("adamance test")
 
 func wall_pop(chain_length : int):
 	if spell_trigger_flag == false:
 		return
 	spell_trigger_flag = false
 	puyo_manager.on_chain_ending.disconnect(wall_pop)
-	print("wall pop test")
+	#print("wall pop test")
 	var blue_count = 0
 	var yellow_count = 0
 	var red_count = 0

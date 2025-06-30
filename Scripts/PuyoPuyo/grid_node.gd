@@ -35,7 +35,7 @@ var y: int:
 func _ready():
 	#for testing
 	#puyo.create_puyo(2, true)
-	#print(puyo.is_junk)
+	##print(puyo.is_junk)
 	pass
 
 

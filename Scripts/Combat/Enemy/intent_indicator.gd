@@ -25,5 +25,5 @@ func set_indicator(attack: EnemyAttack, attack_timer: int) -> void:
 			$Container/Damage.text = str(attack.damage + DifficultyManager.get_attack_addition())
 	
 	$Container/TypeIndicator.texture = load(intent_sprite_dictionary[attack.attack_type])
-	print($Container/TypeIndicator)
+	#print($Container/TypeIndicator)
 	$Container/Turns.text = str(attack_timer)

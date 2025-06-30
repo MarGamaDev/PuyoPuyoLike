@@ -12,4 +12,4 @@ func connect_to_effect_signals():
 func trigger_spell_effect():
 	setup_counter_buff.emit(counter_buff)
 	combat_effects.create_spell_effect(container_location_marker.global_position, combat_effects.counter_location_marker, AttackEffectData.EFFECT_TYPE.PLAYER_YELLOW, false)
-	print("cunning triggered")
+	#print("cunning triggered")

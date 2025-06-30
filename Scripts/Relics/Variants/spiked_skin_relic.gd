@@ -6,7 +6,7 @@ func initialize() -> void:
 	
 
 func return_damage(damage_taken, attack_type) -> void:
-	print("proc spikeskin")
+	#print("proc spikeskin")
 	sound_manager.relic_ding_play()
 	var modifier = int((EncounterTrackerForRelics.get_count() - 1) / 2)
 	(get_node("/root/Combat") as CombatManager).damage_all_enemies(5 + modifier) 

@@ -21,7 +21,7 @@ func connect_to_effect_signals():
 	puyo_manager.on_chain_ending.connect(rainbow_attack)
 
 func trigger_spell_effect():
-	print("ambition trigger")
+	#print("ambition trigger")
 	spell_trigger_flag = true
 	if !(puyo_manager.on_chain_ending.is_connected(rainbow_attack)):
 		puyo_manager.on_chain_ending.connect(rainbow_attack)
@@ -31,7 +31,7 @@ func rainbow_attack(chain_length : int):
 	if spell_trigger_flag == false:
 		return
 	spell_trigger_flag = false
-	print("ambition rainbow attack!")
+	#print("ambition rainbow attack!")
 	puyo_manager.on_chain_ending.disconnect(rainbow_attack)
 	
 	deal_aoe_damage.emit(rainbow_mult_value * chain_length)

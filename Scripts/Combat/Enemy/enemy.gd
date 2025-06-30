@@ -125,7 +125,7 @@ func add_to_timer(amount_to_add : int) -> void:
 	attack_countdown = attack_countdown - amount_to_add
 
 func update_damage_visually():
-	print(damage_number_effect_queue.size())
+	#print(damage_number_effect_queue.size())
 	if damage_number_effect_queue.size() == 0:
 		return
 	else:

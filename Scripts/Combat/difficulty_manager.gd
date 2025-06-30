@@ -19,11 +19,11 @@ func reset_difficulty():
 func increase_scaling_flat():
 	health_addition += int(health_modifier * multiplicative_scaling)
 	attack_addition += int(attack_modifier * multiplicative_scaling)
-	print("attack modifier : %s" %attack_addition)
+	#print("attack modifier : %s" %attack_addition)
 
 func increase_scaling_multiplier():
 	multiplicative_scaling = multiplicative_scaling * multiplicative_scaling_per_rest_stop
-	print("mult scaler : %s" %multiplicative_scaling)
+	#print("mult scaler : %s" %multiplicative_scaling)
 
 
 func get_health_addition() -> int:

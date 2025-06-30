@@ -10,7 +10,7 @@ func initialize():
 	super()
 	puyo_manager.player_attack.connect(blue_pop)
 	add_blue_buff.connect(player.add_minimum_shield)
-	print("blue_pop connected: %s" % puyo_manager.player_attack.is_connected(blue_pop))
+	#print("blue_pop connected: %s" % puyo_manager.player_attack.is_connected(blue_pop))
 
 func blue_pop(attack : PlayerAttack):
 	if attack.type == Puyo.PUYO_TYPE.BLUE:

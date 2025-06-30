@@ -29,7 +29,7 @@ func process_queue() -> bool:
 		event_create_player.emit()
 		#create_player_puyo()
 	else:
-		print("EVENT QUEUE TEST")
+		#print("EVENT QUEUE TEST")
 		process_check = true
 		if next_event.event_type == PuyoQueueEvent.EVENT_TYPE.JUNK_ROW:
 			event_create_junk_row.emit(next_event.junk_number)

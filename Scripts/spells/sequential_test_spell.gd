@@ -7,5 +7,5 @@ func connect_to_effect_signals():
 	fireball_damage.connect(combat_manager.damage_targeted_enemy)
 
 func trigger_spell_effect():
-	print("sequential test")
+	#print("sequential test")
 	fireball_damage.emit(10)

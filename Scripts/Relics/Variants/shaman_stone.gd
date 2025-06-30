@@ -13,7 +13,7 @@ func initialize():
 	shaman_stone_attack.connect(combat_manager.process_player_attack)
 
 func shaman_stone_trigger(spell_length : int):
-	print("shaman_stone_trigger %s times" % spell_length)
+	#print("shaman_stone_trigger %s times" % spell_length)
 	if spell_length > 0:
 		sound_manager.relic_ding_play()
 	var modifier = int((EncounterTrackerForRelics.get_count() - 1) / 3)

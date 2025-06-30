@@ -96,6 +96,6 @@ func play_particle_effect():
 		normal_end_effect.restart()
 
 func _on_end_effect_finished() -> void:
-	#print("effect done")
+	##print("effect done")
 	await get_tree().create_timer(0.3).timeout
 	queue_free()

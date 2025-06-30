@@ -14,4 +14,4 @@ func counter_deal_damage(chain_mult_unused: int):
 	var counter_damage = player.counter
 	deal_spell_damage.emit(counter_damage)
 	combat_effects.create_spell_effect(container_location_marker.global_position, combat_manager.selected_enemy.global_position, AttackEffectData.EFFECT_TYPE.PLAYER_YELLOW)
-	print("foresight cast for %s" % counter_damage)
+	#print("foresight cast for %s" % counter_damage)
