@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://b5ro25mbipu8r"]
+
+[ext_resource type="Script" uid="uid://o7pghoal2a2p" path="res://Scripts/Map Scripts/map_manager.gd" id="1_hlkt8"]
+[ext_resource type="Script" uid="uid://bpj7cqyi7y4ln" path="res://Scripts/Map Scripts/map_segment.gd" id="2_05dyb"]
+[ext_resource type="Resource" uid="uid://dhehe06k4fq3m" path="res://Resources/Map Segments/test_segment.tres" id="2_yya7n"]
+
+[node name="MapManager" type="Node2D"]
+script = ExtResource("1_hlkt8")
+test_segment = ExtResource("2_yya7n")
+
+[node name="MapSegment" type="Node2D" parent="."]
+script = ExtResource("2_05dyb")
+metadata/_custom_type_script = "uid://bpj7cqyi7y4ln"

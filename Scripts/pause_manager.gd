@@ -14,7 +14,7 @@ var equipped_relic_data : Array[RelicData] = []
 var relic_buttons : Array[RelicButton] = []
 
 func _ready() -> void:
-	spell_manager = get_node("/root/Combat/SpellManager")
+	#spell_manager = get_node("/root/Combat/SpellManager")
 	relic_manager = get_node("/root/Combat/RelicManager")
 
 func _physics_process(_delta: float) -> void:

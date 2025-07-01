@@ -4,6 +4,7 @@ class_name EncounterManager
 signal on_update_encounter(encounter: Encounter)
 signal on_rest_stop()
 signal on_boss_encounter
+signal advance_to_next_map_node()
 
 var boss_folder_paths : Array[String] = ["res://Scenes/Combat/Encounters/BossEncounters/EasyBossEncounters/", "res://Scenes/Combat/Encounters/BossEncounters/MediumBossEncounters/", "res://Scenes/Combat/Encounters/BossEncounters/HardBossEncounters/"]
 var battle_folder_paths : Array[String] = ["res://Resources/battles/Easy/", "res://Resources/battles/Medium/", "res://Resources/battles/Hard/"]
@@ -78,14 +79,19 @@ func load_encounter(next_encounter, boss_flag):
 	#else:
 		#encounter_label.text = "Next reward in " + str(rest_stop_check) + " waves!"
 
-func _on_wave_beat():
+func _on_wave_beat(boss_flag := false):
 	current_battle_encounter_tracker += 1
 	if current_battle_encounter_tracker >= current_battle.enemy_waves.size():
 		current_battle_encounter_tracker = 0
 		print("current battle complete")
-		current_difficulty += 1
-		current_battle.initialize_from_battle_data(load(get_battle(false)))
-	load_next_encounter(false)
+		#current_difficulty += 1
+		advance_to_next_map_node.emit()
+	else:
+		load_next_encounter(boss_flag)
+
+func update_battle_data(boss_flag := false):
+	current_battle.initialize_from_battle_data(load(get_battle(boss_flag)))
+	load_next_encounter(boss_flag)
 
 #func check_for_rest_stop():
 	#rest_stop_check -= 1

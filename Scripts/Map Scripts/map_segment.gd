@@ -1,0 +1,28 @@
+extends Node2D
+
+class_name MapSegment
+
+var map_nodes : Array[MapNode] = []
+var map_segment_data : MapNodeSegmentData
+var segment_counter : int = 0
+
+func _ready() -> void:
+	pass
+
+func initialize_segment_from_data(new_data : MapNodeSegmentData):
+	map_segment_data = new_data
+	for node_type : MapNode.MAP_NODE_TYPE in map_segment_data.map_nodes:
+		var new_map_node = MapNode.new()
+		add_child(new_map_node)
+		new_map_node.initialize(node_type)
+		map_nodes.append(new_map_node)
+
+func get_next_encounter_type() -> MapNode.MAP_NODE_TYPE:
+	if segment_counter >= map_nodes.size():
+		print("move to next map segment")
+		##TODO change
+		return MapNode.MAP_NODE_TYPE.HEAL
+	else:
+		var node_type_to_return = map_nodes[segment_counter].map_node_type
+		segment_counter += 1
+		return node_type_to_return

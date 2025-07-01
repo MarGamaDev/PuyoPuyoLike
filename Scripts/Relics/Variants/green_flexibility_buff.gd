@@ -26,7 +26,7 @@ func update_green_buff_on_start(encounter : Encounter):
 	elif enemy_count == 1:
 		green_buff = 3
 	else:
-		#print("error")
+		print("error")
 
 func update_green_buff_on_enemy_death(unused_enemy : Enemy):
 	var modifier = int((EncounterTrackerForRelics.get_count() - 1) / 3)

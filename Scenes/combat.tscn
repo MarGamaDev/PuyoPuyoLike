@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://d3naap4gnytxh"]
+[gd_scene load_steps=32 format=3 uid="uid://d3naap4gnytxh"]
 
 [ext_resource type="Script" uid="uid://b0h0tx4msve02" path="res://Scripts/Combat/combat_manager.gd" id="1_4ln8h"]
 [ext_resource type="Resource" uid="uid://b01ucdggd8ykf" path="res://Resources/puyo_value_data.tres" id="2_xisnc"]
@@ -25,6 +25,7 @@
 [ext_resource type="Texture2D" uid="uid://c3b30a3ttv8wy" path="res://Art/Main_Character_Hurt.png" id="23_e8ln5"]
 [ext_resource type="Texture2D" uid="uid://cuet3laww0w3o" path="res://Art/Main_Character.png" id="25_e8ln5"]
 [ext_resource type="Script" uid="uid://c6s3gimgvg7mb" path="res://Scripts/player_sprite.gd" id="26_5g3cp"]
+[ext_resource type="PackedScene" uid="uid://b5ro25mbipu8r" path="res://Scenes/Map/map_manager.tscn" id="27_2n3pb"]
 [ext_resource type="PackedScene" uid="uid://dmdsrn5kh1fm8" path="res://Scenes/death_manager.tscn" id="28_r5ubg"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5g3cp"]
@@ -231,6 +232,10 @@ test_battle = ExtResource("14_2n3pb")
 [node name="CurrentBattle" type="Node2D" parent="EncounterManager"]
 position = Vector2(-835, -250)
 script = ExtResource("15_r5ubg")
+enemy_waves = null
+difficulty_level = null
+boss_flag = null
+enemy_amount = null
 metadata/_custom_type_script = "uid://dpy387k1iegic"
 
 [node name="CombatEffectsManager" parent="." instance=ExtResource("11_w6tjk")]
@@ -307,9 +312,11 @@ libraries = {
 
 [node name="DeathManager" parent="." instance=ExtResource("28_r5ubg")]
 
+[node name="MapManager" parent="." instance=ExtResource("27_2n3pb")]
+
 [connection signal="on_combat_started" from="." to="PuyoManager" method="reset_game"]
-[connection signal="on_combat_started" from="." to="EncounterManager" method="load_next_encounter"]
 [connection signal="on_combat_started" from="." to="CombatEffectsManager" method="_on_combat_started"]
+[connection signal="on_combat_started" from="." to="MapManager" method="_on_attempt_to_move_to_next_node"]
 [connection signal="on_counter_gained" from="." to="Player" method="add_counter"]
 [connection signal="on_encounter_finished" from="." to="EncounterManager" method="_on_wave_beat"]
 [connection signal="on_encounter_finished" from="." to="DeathManager" method="score_increase"]
@@ -346,6 +353,7 @@ libraries = {
 [connection signal="on_shield_change" from="Player" to="DefenseVisualsManager" method="update_shield_visuals"]
 [connection signal="trigger_blocked_effect" from="Player" to="CombatEffectsManager" method="_on_player_trigger_blocked_effect"]
 [connection signal="trigger_countered_effect" from="Player" to="CombatEffectsManager" method="_on_player_trigger_countered_effect"]
+[connection signal="advance_to_next_map_node" from="EncounterManager" to="MapManager" method="_on_attempt_to_move_to_next_node"]
 [connection signal="on_boss_encounter" from="EncounterManager" to="CombatEffectsManager" method="on_boss_fight"]
 [connection signal="on_rest_stop" from="EncounterManager" to="PuyoManager" method="pause_puyo"]
 [connection signal="on_rest_stop" from="EncounterManager" to="Player" method="reset_counter_and_shield"]
@@ -364,5 +372,7 @@ libraries = {
 [connection signal="on_relic_reward_chosen" from="RewardManager/RewardScreen" to="RelicManager" method="add_relic"]
 [connection signal="on_reward_chosen" from="RewardManager/RewardScreen" to="RewardManager" method="remove_from_pool"]
 [connection signal="on_reward_skipped" from="RewardManager/RewardScreen" to="." method="start_combat"]
+[connection signal="load_first_battle" from="MapManager" to="EncounterManager" method="load_next_encounter"]
+[connection signal="load_next_encounter" from="MapManager" to="EncounterManager" method="update_battle_data"]
 
 [editable path="CombatEffectsManager"]

@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="MapNodeSegmentData" load_steps=2 format=3 uid="uid://jgyxfso7mr70"]
+
+[ext_resource type="Script" uid="uid://ec3smkftjhjp" path="res://Scripts/Map Scripts/map_segment_data.gd" id="1_pp4mf"]
+
+[resource]
+script = ExtResource("1_pp4mf")
+map_nodes = Array[int]([0])
+metadata/_custom_type_script = "uid://ec3smkftjhjp"
