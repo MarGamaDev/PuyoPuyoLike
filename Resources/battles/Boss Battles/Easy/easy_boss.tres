@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="BattleData" load_steps=2 format=3 uid="uid://dwmfa2waur8u5"]
+
+[ext_resource type="Script" uid="uid://04fw8jq16vli" path="res://Scripts/Combat/battle_data.gd" id="1_8ftuu"]
+
+[resource]
+script = ExtResource("1_8ftuu")
+difficulty_level = 0
+is_boss = true
+wave_paths = Array[String]([""])
+metadata/_custom_type_script = "uid://04fw8jq16vli"

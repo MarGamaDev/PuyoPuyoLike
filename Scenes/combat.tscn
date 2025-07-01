@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://b3qfdcqaqmgk4" path="res://Scenes/Combat/combat_effects_manager.tscn" id="11_w6tjk"]
 [ext_resource type="PackedScene" uid="uid://b2l1xn5ovaca4" path="res://Scenes/RewardScreen/reward_screen.tscn" id="11_xisnc"]
 [ext_resource type="PackedScene" uid="uid://chmradttgb2ep" path="res://Scenes/Combat/life_counter.tscn" id="13_y8jr2"]
-[ext_resource type="Resource" uid="uid://b8usw6lyeao50" path="res://Resources/battles/test_battle_easy.tres" id="14_2n3pb"]
+[ext_resource type="Resource" uid="uid://b8usw6lyeao50" path="res://Resources/battles/Easy/test_battle_easy.tres" id="14_2n3pb"]
 [ext_resource type="PackedScene" uid="uid://dpkr5l8qrkrou" path="res://Scenes/Relics/System/relic_manager.tscn" id="15_3cqtn"]
 [ext_resource type="Script" uid="uid://dpy387k1iegic" path="res://Scripts/Combat/battle.gd" id="15_r5ubg"]
 [ext_resource type="PackedScene" uid="uid://bif55k0mmcvqf" path="res://Scenes/Combat/defense_visuals_manager.tscn" id="15_tmuf1"]
@@ -173,6 +173,7 @@ offset_bottom = 67.0
 text = "TEST BUTTONS ARE STILL HERE"
 
 [node name="EncounterLabel" type="RichTextLabel" parent="Frame"]
+visible = false
 top_level = true
 offset_left = 703.0
 offset_top = 11.0
@@ -279,11 +280,9 @@ visible = false
 [node name="SoundManager" parent="." instance=ExtResource("19_nar6d")]
 song_volume = 0.16
 non_puyo_sfx_volume = 0.5
-song_change_rest_count = null
 
-[node name="PauseManager" parent="." node_paths=PackedStringArray("relic_holder", "spell_manager", "relic_manager") instance=ExtResource("21_5kjvk")]
+[node name="PauseManager" parent="." node_paths=PackedStringArray("relic_holder", "relic_manager") instance=ExtResource("21_5kjvk")]
 relic_holder = NodePath("../RelicManager")
-spell_manager = NodePath("")
 relic_manager = NodePath("../RelicManager")
 
 [node name="PlayerSpriteMask" type="ColorRect" parent="."]

@@ -1,10 +1,11 @@
 [gd_resource type="Resource" script_class="BattleData" load_steps=2 format=3 uid="uid://b8usw6lyeao50"]
 
-[ext_resource type="Script" uid="uid://04fw8jq16vli" path="res://Scripts/Combat/battle_data.gd" id="1_r0f6b"]
+[ext_resource type="Script" uid="uid://04fw8jq16vli" path="res://Scripts/Combat/battle_data.gd" id="1_u1uql"]
 
 [resource]
-script = ExtResource("1_r0f6b")
-difficulty_level = 0
+script = ExtResource("1_u1uql")
+difficulty_level = 1
 is_boss = false
 wave_paths = Array[String](["res://Scenes/Combat/Encounters/NormalEncounters/EasyEncounters/basic_single_grunt_encounter.tscn", "res://Scenes/Combat/Encounters/NormalEncounters/EasyEncounters/beefy_grunt_encounter.tscn"])
+enemy_amount = 2
 metadata/_custom_type_script = "uid://04fw8jq16vli"

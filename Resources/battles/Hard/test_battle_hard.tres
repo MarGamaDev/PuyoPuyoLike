@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="BattleData" load_steps=2 format=3 uid="uid://bjh8vs0d6xqto"]
+
+[ext_resource type="Script" uid="uid://04fw8jq16vli" path="res://Scripts/Combat/battle_data.gd" id="1_3npl8"]
+
+[resource]
+script = ExtResource("1_3npl8")
+difficulty_level = 3
+is_boss = false
+wave_paths = Array[String](["res://Scenes/Combat/Encounters/NormalEncounters/HardEncounters/red_swap_support_encounter.tscn", "res://Scenes/Combat/Encounters/NormalEncounters/HardEncounters/red_swap_support_encounter.tscn", "res://Scenes/Combat/Encounters/NormalEncounters/HardEncounters/red_swap_support_encounter.tscn", "res://Scenes/Combat/Encounters/NormalEncounters/HardEncounters/red_swap_support_encounter.tscn"])
+enemy_amount = 8
+metadata/_custom_type_script = "uid://04fw8jq16vli"

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="BattleData" load_steps=2 format=3 uid="uid://o30rx4fdjs5i"]
+
+[ext_resource type="Script" uid="uid://04fw8jq16vli" path="res://Scripts/Combat/battle_data.gd" id="1_jl4mg"]
+
+[resource]
+script = ExtResource("1_jl4mg")
+difficulty_level = 2
+is_boss = false
+wave_paths = Array[String](["res://Scenes/Combat/Encounters/NormalEncounters/MediumEncounters/row_enemy_encounter.tscn", "res://Scenes/Combat/Encounters/NormalEncounters/MediumEncounters/row_enemy_encounter.tscn"])
+metadata/_custom_type_script = "uid://04fw8jq16vli"
