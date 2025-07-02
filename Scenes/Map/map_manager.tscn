@@ -13,24 +13,94 @@ test_segment = ExtResource("2_yya7n")
 script = ExtResource("2_05dyb")
 metadata/_custom_type_script = "uid://bpj7cqyi7y4ln"
 
-[node name="MapScreen" type="CanvasLayer" parent="."]
+[node name="MapScreen" type="CanvasLayer" parent="." node_paths=PackedStringArray("option_buttons")]
 layer = 3
-visible = false
 script = ExtResource("4_vxlaf")
+option_buttons = [NodePath("NormalOptions/MapOption1"), NodePath("NormalOptions/MapOption2"), NodePath("NormalOptions/MapOption3")]
 
-[node name="Button" type="Button" parent="MapScreen"]
-anchors_preset = -1
-anchor_left = 0.409
-anchor_top = 0.431
-anchor_right = 0.591
-anchor_bottom = 0.569
-offset_left = 0.199982
-offset_top = 0.0999756
-offset_right = -0.200012
-offset_bottom = -0.0999756
+[node name="NormalOptions" type="Control" parent="MapScreen"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="MapOption1" type="Button" parent="MapScreen/NormalOptions"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -475.0
+offset_top = -138.0
+offset_right = -218.0
+offset_bottom = -52.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 3
+text = "test button"
+
+[node name="MapOption2" type="Button" parent="MapScreen/NormalOptions"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -128.5
+offset_top = -138.0
+offset_right = 128.5
+offset_bottom = -52.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 3
+text = "test button"
+
+[node name="MapOption3" type="Button" parent="MapScreen/NormalOptions"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 226.0
+offset_top = -138.0
+offset_right = 483.0
+offset_bottom = -52.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 3
+text = "test button"
+
+[node name="BossOption" type="Control" parent="MapScreen"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BossOptionButton" type="Button" parent="MapScreen/BossOption"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -128.5
+offset_top = -265.0
+offset_right = 128.5
+offset_bottom = -179.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 3
 text = "test button"
 
 [connection signal="option_chosen" from="MapScreen" to="." method="_on_map_screen_option_chosen"]
-[connection signal="pressed" from="MapScreen/Button" to="MapScreen" method="_on_option_chosen"]
+[connection signal="pressed" from="MapScreen/NormalOptions/MapOption1" to="MapScreen" method="_on_map_option_1_pressed"]
+[connection signal="pressed" from="MapScreen/NormalOptions/MapOption2" to="MapScreen" method="_on_map_option_2_pressed"]
+[connection signal="pressed" from="MapScreen/NormalOptions/MapOption3" to="MapScreen" method="_on_map_option_3_pressed"]
+[connection signal="pressed" from="MapScreen/BossOption/BossOptionButton" to="MapScreen" method="_on_boss_option_button_pressed"]

@@ -4,6 +4,6 @@
 
 [resource]
 script = ExtResource("1_3hjqr")
-segment_name = "test segment 2 battles"
-map_nodes = Array[int]([0, 0])
+segment_name = "test 2 [b, r]"
+map_nodes = Array[int]([0, 2])
 metadata/_custom_type_script = "uid://ec3smkftjhjp"

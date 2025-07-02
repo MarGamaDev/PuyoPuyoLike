@@ -4,5 +4,21 @@ class_name MapScreen
 
 signal option_chosen(option : int)
 
-func _on_option_chosen():
+@export var option_buttons : Array[Button]
+
+func _on_map_option_1_pressed() -> void:
 	option_chosen.emit(0)
+
+func _on_map_option_2_pressed() -> void:
+	option_chosen.emit(1)
+
+func _on_map_option_3_pressed() -> void:
+	option_chosen.emit(2)
+
+func _on_boss_option_button_pressed() -> void:
+	pass # Replace with function body.
+
+func generate_options(new_options : Array[MapNodeSegmentData]):
+	for i in range(0,3):
+		option_buttons[i].text = new_options[i].segment_name
+		pass
