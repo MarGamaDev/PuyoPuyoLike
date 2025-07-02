@@ -105,6 +105,9 @@ func start_combat() -> void:
 func select_enemy(enemy_index: int) -> void:
 	if selected_enemy:
 		selected_enemy.set_as_selected(false)
+	if enemies[enemy_index] == null:
+		enemies.remove_at(enemy_index)
+		enemy_index -= 1
 	selected_enemy = enemies[enemy_index]
 	selected_enemy.set_as_selected(true)
 

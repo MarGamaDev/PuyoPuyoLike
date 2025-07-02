@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="BattleData" load_steps=2 format=3 uid="uid://cpflh8lkvmwsu"]
+
+[ext_resource type="Script" uid="uid://04fw8jq16vli" path="res://Scripts/Combat/battle_data.gd" id="1_tq1c1"]
+
+[resource]
+script = ExtResource("1_tq1c1")
+battle_name = "first battle"
+difficulty_level = 0
+is_boss = false
+wave_paths = Array[String](["res://Scenes/Combat/Encounters/NormalEncounters/EasyEncounters/basic_single_grunt_encounter.tscn"])
+enemy_amount = 0
+metadata/_custom_type_script = "uid://04fw8jq16vli"

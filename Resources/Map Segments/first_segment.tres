@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="MapNodeSegmentData" load_steps=2 format=3 uid="uid://jgyxfso7mr70"]
 
-[ext_resource type="Script" uid="uid://ec3smkftjhjp" path="res://Scripts/Map Scripts/map_segment_data.gd" id="1_pp4mf"]
+[ext_resource type="Script" uid="uid://ec3smkftjhjp" path="res://Scripts/Map Scripts/map_segment_data.gd" id="1_ihkuk"]
 
 [resource]
-script = ExtResource("1_pp4mf")
+script = ExtResource("1_ihkuk")
 segment_name = "First Battle"
-map_nodes = Array[int]([0])
+map_nodes = Array[int]([])
 metadata/_custom_type_script = "uid://ec3smkftjhjp"

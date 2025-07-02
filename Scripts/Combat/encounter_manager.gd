@@ -35,6 +35,9 @@ var first_encounter_flag = true
 @onready var current_battle : Battle = $CurrentBattle
 var current_battle_encounter_tracker : int = 0
 
+@onready var first_battle: String =  "res://Resources/battles/first_battle.tres"
+var first_battle_flag : bool = true
+
 func preload_battle_lists():
 	easy_battles = ResourceLoader.list_directory(battle_folder_paths[0])
 	medium_battles = ResourceLoader.list_directory(battle_folder_paths[1])
@@ -50,6 +53,7 @@ func preload_battle_lists():
 func _ready():
 	#rest_stop_check = encounters_between_rest_stops
 	preload_battle_lists()
+	first_battle_flag = true
 	current_battle.initialize_from_battle_data(load(get_battle(false)))
 
 func load_next_encounter(boss_flag := false):
@@ -79,24 +83,30 @@ func load_encounter(next_encounter, boss_flag):
 	#else:
 		#encounter_label.text = "Next reward in " + str(rest_stop_check) + " waves!"
 
+func start_first_encounter(boss_flag:= false):
+	print("first encounter called")
+	#first_battle_flag = true
+	load_next_encounter(boss_flag)
+
 func _on_wave_beat(boss_flag := false):
 	current_battle_encounter_tracker += 1
-	print("current battle wave size: %s" % current_battle.enemy_waves.size())
+	#print("current battle wave size: %s" % current_battle.enemy_waves.size())
 	if current_battle_encounter_tracker >= current_battle.enemy_waves.size():
 		current_battle_encounter_tracker = 0
-		print("current battle complete")
-		print("")
+		#print("current battle complete")
+		#print("")
 		#current_difficulty += 1
 		advance_to_next_map_node.emit()
 	else:
 		load_next_encounter(boss_flag)
-		print(current_battle.battle_data.battle_name)
+		#print(current_battle.battle_data.battle_name)
 
 func update_battle_data(boss_flag := false):
+	print("update battle data called")
 	current_battle.initialize_from_battle_data(load(get_battle(boss_flag)))
 	load_next_encounter(boss_flag)
 	current_battle_encounter_tracker = 0
-	print(current_battle.battle_data.battle_name)
+	#print(current_battle.battle_data.battle_name)
 
 #func check_for_rest_stop():
 	#rest_stop_check -= 1
@@ -124,6 +134,9 @@ func get_battle(boss_flag := false):
 		#if rest_stop_count >= rest_stops_where_difficulty_changes[current_difficulty]:
 			#current_difficulty += 1
 			##print("difficulty up")
+	if first_battle_flag:
+		first_battle_flag = false
+		return first_battle
 	var difficulty_chooser = current_difficulty
 	if boss_flag:
 		on_boss_encounter.emit()
