@@ -5,6 +5,7 @@ class_name MapManager
 signal load_next_encounter(boss_flag : bool)
 signal load_first_battle(boss_flag : bool)
 signal open_reward_menu()
+signal open_deckuilding_menu()
 signal end_combat()
 signal start_combat()
 
@@ -56,7 +57,7 @@ func _on_attempt_to_move_to_next_node():
 				open_reward_menu.emit()
 				print(current_segment.map_segment_data.segment_name)
 			MapNode.MAP_NODE_TYPE.PUYO_POOL_CHANGE:
-				print("give puyo_change")
+				open_deckuilding_menu.emit()
 				print(current_segment.map_segment_data.segment_name)
 			MapNode.MAP_NODE_TYPE.HEAL:
 				print("gain life")
