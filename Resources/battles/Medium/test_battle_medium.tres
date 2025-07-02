@@ -4,7 +4,9 @@
 
 [resource]
 script = ExtResource("1_jl4mg")
+battle_name = "test medium battle (row enemy)"
 difficulty_level = 2
 is_boss = false
-wave_paths = Array[String](["res://Scenes/Combat/Encounters/NormalEncounters/MediumEncounters/row_enemy_encounter.tscn", "res://Scenes/Combat/Encounters/NormalEncounters/MediumEncounters/row_enemy_encounter.tscn"])
+wave_paths = Array[String](["res://Scenes/Combat/Encounters/NormalEncounters/MediumEncounters/row_enemy_encounter.tscn"])
+enemy_amount = 0
 metadata/_custom_type_script = "uid://04fw8jq16vli"

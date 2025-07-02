@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="MapNodeSegmentData" load_steps=2 format=3 uid="uid://dltej2yjvt0an"]
+
+[ext_resource type="Script" uid="uid://ec3smkftjhjp" path="res://Scripts/Map Scripts/map_segment_data.gd" id="1_6lrvc"]
+
+[resource]
+script = ExtResource("1_6lrvc")
+segment_name = "test segment 3 battles"
+map_nodes = Array[int]([0, 0, 0])
+metadata/_custom_type_script = "uid://ec3smkftjhjp"

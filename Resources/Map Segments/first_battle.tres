@@ -4,5 +4,6 @@
 
 [resource]
 script = ExtResource("1_pp4mf")
+segment_name = "First Battle"
 map_nodes = Array[int]([0])
 metadata/_custom_type_script = "uid://ec3smkftjhjp"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://d3naap4gnytxh"]
+[gd_scene load_steps=31 format=3 uid="uid://d3naap4gnytxh"]
 
 [ext_resource type="Script" uid="uid://b0h0tx4msve02" path="res://Scripts/Combat/combat_manager.gd" id="1_4ln8h"]
 [ext_resource type="Resource" uid="uid://b01ucdggd8ykf" path="res://Resources/puyo_value_data.tres" id="2_xisnc"]
@@ -14,7 +14,6 @@
 [ext_resource type="PackedScene" uid="uid://b3qfdcqaqmgk4" path="res://Scenes/Combat/combat_effects_manager.tscn" id="11_w6tjk"]
 [ext_resource type="PackedScene" uid="uid://b2l1xn5ovaca4" path="res://Scenes/RewardScreen/reward_screen.tscn" id="11_xisnc"]
 [ext_resource type="PackedScene" uid="uid://chmradttgb2ep" path="res://Scenes/Combat/life_counter.tscn" id="13_y8jr2"]
-[ext_resource type="Resource" uid="uid://b8usw6lyeao50" path="res://Resources/battles/Easy/test_battle_easy.tres" id="14_2n3pb"]
 [ext_resource type="PackedScene" uid="uid://dpkr5l8qrkrou" path="res://Scenes/Relics/System/relic_manager.tscn" id="15_3cqtn"]
 [ext_resource type="Script" uid="uid://dpy387k1iegic" path="res://Scripts/Combat/battle.gd" id="15_r5ubg"]
 [ext_resource type="PackedScene" uid="uid://bif55k0mmcvqf" path="res://Scenes/Combat/defense_visuals_manager.tscn" id="15_tmuf1"]
@@ -227,15 +226,10 @@ combat_manager = NodePath("..")
 position = Vector2(835, 250)
 script = ExtResource("8_twsak")
 encounter_label = NodePath("../Frame/EncounterLabel")
-test_battle = ExtResource("14_2n3pb")
 
 [node name="CurrentBattle" type="Node2D" parent="EncounterManager"]
 position = Vector2(-835, -250)
 script = ExtResource("15_r5ubg")
-enemy_waves = null
-difficulty_level = null
-boss_flag = null
-enemy_amount = null
 metadata/_custom_type_script = "uid://dpy387k1iegic"
 
 [node name="CombatEffectsManager" parent="." instance=ExtResource("11_w6tjk")]

@@ -10,6 +10,10 @@ func _ready() -> void:
 	pass
 
 func initialize_segment_from_data(new_data : MapNodeSegmentData):
+	map_segment_data = null
+	map_nodes = []
+	segment_counter = 0
+	
 	map_segment_data = new_data
 	for node_type : MapNode.MAP_NODE_TYPE in map_segment_data.map_nodes:
 		var new_map_node = MapNode.new()
@@ -19,9 +23,9 @@ func initialize_segment_from_data(new_data : MapNodeSegmentData):
 
 func get_next_encounter_type() -> MapNode.MAP_NODE_TYPE:
 	if segment_counter >= map_nodes.size():
-		print("move to next map segment")
+		#print("move to next map segment")
 		##TODO change
-		return MapNode.MAP_NODE_TYPE.HEAL
+		return MapNode.MAP_NODE_TYPE.ADVANCE_NODE
 	else:
 		var node_type_to_return = map_nodes[segment_counter].map_node_type
 		segment_counter += 1

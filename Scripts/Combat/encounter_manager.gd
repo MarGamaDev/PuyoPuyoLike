@@ -81,17 +81,22 @@ func load_encounter(next_encounter, boss_flag):
 
 func _on_wave_beat(boss_flag := false):
 	current_battle_encounter_tracker += 1
+	print("current battle wave size: %s" % current_battle.enemy_waves.size())
 	if current_battle_encounter_tracker >= current_battle.enemy_waves.size():
 		current_battle_encounter_tracker = 0
 		print("current battle complete")
+		print("")
 		#current_difficulty += 1
 		advance_to_next_map_node.emit()
 	else:
 		load_next_encounter(boss_flag)
+		print(current_battle.battle_data.battle_name)
 
 func update_battle_data(boss_flag := false):
 	current_battle.initialize_from_battle_data(load(get_battle(boss_flag)))
 	load_next_encounter(boss_flag)
+	current_battle_encounter_tracker = 0
+	print(current_battle.battle_data.battle_name)
 
 #func check_for_rest_stop():
 	#rest_stop_check -= 1
