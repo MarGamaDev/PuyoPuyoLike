@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="MapNodeSegmentData" load_steps=2 format=3 uid="uid://deewuyesb8aq3"]
+
+[ext_resource type="Script" uid="uid://ec3smkftjhjp" path="res://Scripts/Map Scripts/map_segment_data.gd" id="1_tokso"]
+
+[resource]
+script = ExtResource("1_tokso")
+segment_name = "Boss reward Segment"
+map_nodes = Array[int]([4, 2, 3])
+metadata/_custom_type_script = "uid://ec3smkftjhjp"

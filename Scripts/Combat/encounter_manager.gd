@@ -93,8 +93,8 @@ func _on_wave_beat(boss_flag := false):
 	#print("current battle wave size: %s" % current_battle.enemy_waves.size())
 	if current_battle_encounter_tracker >= current_battle.enemy_waves.size():
 		current_battle_encounter_tracker = 0
-		#print("current battle complete")
-		#print("")
+		print("current battle complete")
+		print("")
 		#current_difficulty += 1
 		advance_to_next_map_node.emit()
 	else:

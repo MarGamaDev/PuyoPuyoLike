@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://b5ro25mbipu8r"]
+[gd_scene load_steps=5 format=3 uid="uid://b5ro25mbipu8r"]
 
 [ext_resource type="Script" uid="uid://o7pghoal2a2p" path="res://Scripts/Map Scripts/map_manager.gd" id="1_hlkt8"]
 [ext_resource type="Script" uid="uid://bpj7cqyi7y4ln" path="res://Scripts/Map Scripts/map_segment.gd" id="2_05dyb"]
 [ext_resource type="Resource" uid="uid://dhehe06k4fq3m" path="res://Resources/Map Segments/Possible Segments/test_segment.tres" id="2_yya7n"]
+[ext_resource type="Script" uid="uid://ese8neyyh2jw" path="res://Scenes/Map/map_screen.gd" id="4_vxlaf"]
 
 [node name="MapManager" type="Node2D"]
 script = ExtResource("1_hlkt8")
@@ -11,3 +12,25 @@ test_segment = ExtResource("2_yya7n")
 [node name="MapSegment" type="Node2D" parent="."]
 script = ExtResource("2_05dyb")
 metadata/_custom_type_script = "uid://bpj7cqyi7y4ln"
+
+[node name="MapScreen" type="CanvasLayer" parent="."]
+layer = 3
+visible = false
+script = ExtResource("4_vxlaf")
+
+[node name="Button" type="Button" parent="MapScreen"]
+anchors_preset = -1
+anchor_left = 0.409
+anchor_top = 0.431
+anchor_right = 0.591
+anchor_bottom = 0.569
+offset_left = 0.199982
+offset_top = 0.0999756
+offset_right = -0.200012
+offset_bottom = -0.0999756
+grow_horizontal = 2
+grow_vertical = 2
+text = "test button"
+
+[connection signal="option_chosen" from="MapScreen" to="." method="_on_map_screen_option_chosen"]
+[connection signal="pressed" from="MapScreen/Button" to="MapScreen" method="_on_option_chosen"]
