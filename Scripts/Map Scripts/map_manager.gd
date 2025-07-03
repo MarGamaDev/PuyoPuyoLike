@@ -33,6 +33,14 @@ var current_segment_selected_from_map_flag : bool = false
 
 var node_queue : Array[MapNode.MAP_NODE_TYPE] = []
 
+@export var segments_between_boss_fights : int = 2
+var boss_fight_counter = 0
+
+var goal_type : MapNode.MAP_NODE_TYPE = MapNode.MAP_NODE_TYPE.PUYO_POOL_CHANGE
+var end_of_segment_flag : bool = false
+
+@onready var boss_segment : MapNodeSegmentData = preload("res://Resources/Map Segments/Goal Segments/boss_segment.tres")
+
 func _ready() -> void:
 	segment_paths = ResourceLoader.list_directory(segment_folder_path)
 	
@@ -54,7 +62,6 @@ func _on_attempt_to_move_to_next_node():
 		match next_node_type:
 			MapNode.MAP_NODE_TYPE.BOSS_BATTLE:
 				load_next_encounter.emit(true)
-				print(current_segment.map_segment_data.segment_name)
 			MapNode.MAP_NODE_TYPE.BATTLE:
 				#pause_flag = false
 				if first_battle_flag:
@@ -75,7 +82,19 @@ func _on_attempt_to_move_to_next_node():
 				print("gain life")
 				open_deckuilding_menu.emit()
 			MapNode.MAP_NODE_TYPE.ADVANCE_NODE:
-				open_map_screen()
+				if end_of_segment_flag:
+					end_of_segment_flag = false
+					match goal_type:
+						MapNode.MAP_NODE_TYPE.BOSS_BATTLE:
+							node_queue.append(MapNode.MAP_NODE_TYPE.BOSS_BATTLE)
+						MapNode.MAP_NODE_TYPE.SENSATION_REWARD:
+							node_queue.append(MapNode.MAP_NODE_TYPE.SENSATION_REWARD)
+						MapNode.MAP_NODE_TYPE.PUYO_POOL_CHANGE:
+							node_queue.append(MapNode.MAP_NODE_TYPE.PUYO_POOL_CHANGE)
+					node_queue.append(MapNode.MAP_NODE_TYPE.ADVANCE_NODE)
+					_on_attempt_to_move_to_next_node()
+				else:
+					open_map_screen()
 			_:
 				print("map type error")
 
@@ -111,12 +130,21 @@ func _on_reward_chosen_or_skipped():
 
 func generate_map_options():
 	map_options = []
+	end_of_segment_flag = true
+	boss_fight_counter += 1
+	if boss_fight_counter >= segments_between_boss_fights:
+		goal_type = MapNode.MAP_NODE_TYPE.BOSS_BATTLE
+	else:
+		if randi_range(0,1) == 0:
+			goal_type = MapNode.MAP_NODE_TYPE.SENSATION_REWARD
+		else:
+			goal_type = MapNode.MAP_NODE_TYPE.PUYO_POOL_CHANGE
 	for i in range(0, 3):
 		var new_option = load(segment_folder_path + segment_paths[randi_range(0, segment_paths.size() - 1)])
 		while (map_options.has(new_option)):
 			new_option = load(segment_folder_path + segment_paths[randi_range(0, segment_paths.size() - 1)])
 		map_options.append(new_option)
-	map_screen.generate_options(map_options)
+	map_screen.generate_options(map_options, goal_type)
 	pass
 
 func open_map_screen():
