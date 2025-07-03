@@ -1,9 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://b5ro25mbipu8r"]
+[gd_scene load_steps=9 format=3 uid="uid://b5ro25mbipu8r"]
 
 [ext_resource type="Script" uid="uid://o7pghoal2a2p" path="res://Scripts/Map Scripts/map_manager.gd" id="1_hlkt8"]
 [ext_resource type="Script" uid="uid://bpj7cqyi7y4ln" path="res://Scripts/Map Scripts/map_segment.gd" id="2_05dyb"]
 [ext_resource type="Resource" uid="uid://dhehe06k4fq3m" path="res://Resources/Map Segments/Possible Segments/test_segment.tres" id="2_yya7n"]
-[ext_resource type="Script" uid="uid://ese8neyyh2jw" path="res://Scenes/Map/map_screen.gd" id="4_vxlaf"]
+[ext_resource type="Script" uid="uid://ese8neyyh2jw" path="res://Scripts/Map Scripts/map_screen.gd" id="4_vxlaf"]
+[ext_resource type="PackedScene" uid="uid://c7kwut7b0em2i" path="res://Scenes/Map/map_icon_container.tscn" id="5_ffk7y"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jd55d"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ffk7y"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7y4fd"]
 
 [node name="MapManager" type="Node2D"]
 script = ExtResource("1_hlkt8")
@@ -34,13 +41,16 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -475.0
-offset_top = -138.0
+offset_top = -682.0
 offset_right = -218.0
-offset_bottom = -52.0
+offset_bottom = -148.0
 grow_horizontal = 2
 grow_vertical = 0
 size_flags_horizontal = 3
-text = "test button"
+theme_override_styles/normal = SubResource("StyleBoxEmpty_jd55d")
+
+[node name="MapIconContainer" parent="MapScreen/NormalOptions/MapOption1" instance=ExtResource("5_ffk7y")]
+layout_mode = 1
 
 [node name="MapOption2" type="Button" parent="MapScreen/NormalOptions"]
 layout_mode = 1
@@ -50,13 +60,16 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -128.5
-offset_top = -138.0
+offset_top = -682.0
 offset_right = 128.5
-offset_bottom = -52.0
+offset_bottom = -148.0
 grow_horizontal = 2
 grow_vertical = 0
 size_flags_horizontal = 3
-text = "test button"
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ffk7y")
+
+[node name="MapIconContainer" parent="MapScreen/NormalOptions/MapOption2" instance=ExtResource("5_ffk7y")]
+layout_mode = 1
 
 [node name="MapOption3" type="Button" parent="MapScreen/NormalOptions"]
 layout_mode = 1
@@ -66,13 +79,16 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = 226.0
-offset_top = -138.0
+offset_top = -682.0
 offset_right = 483.0
-offset_bottom = -52.0
+offset_bottom = -148.0
 grow_horizontal = 2
 grow_vertical = 0
 size_flags_horizontal = 3
-text = "test button"
+theme_override_styles/normal = SubResource("StyleBoxEmpty_7y4fd")
+
+[node name="MapIconContainer" parent="MapScreen/NormalOptions/MapOption3" instance=ExtResource("5_ffk7y")]
+layout_mode = 1
 
 [node name="BossOption" type="Control" parent="MapScreen"]
 visible = false

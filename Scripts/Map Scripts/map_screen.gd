@@ -19,6 +19,8 @@ func _on_boss_option_button_pressed() -> void:
 	pass # Replace with function body.
 
 func generate_options(new_options : Array[MapNodeSegmentData]):
+	option_buttons[0].get_children()[0].create_node_sprites(new_options[0])
 	for i in range(0,3):
-		option_buttons[i].text = new_options[i].segment_name
+		#option_buttons[i].text = new_options[i].segment_name
+		option_buttons[i].get_children()[0].create_node_sprites(new_options[i])
 		pass

@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://c7kwut7b0em2i"]
+
+[ext_resource type="Script" uid="uid://ctohmvdglx4x5" path="res://Scripts/Map Scripts/map_icon_container.gd" id="1_vjivn"]
+
+[node name="MapIconContainer" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+script = ExtResource("1_vjivn")

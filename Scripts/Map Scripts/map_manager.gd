@@ -14,7 +14,6 @@ var current_segment : MapSegment
 var map_segments : Array[MapSegment]
 
 var first_battle_flag : bool = true
-var first_battle_over_flag : bool = false
 
 @export var test_segment : MapNodeSegmentData
 
@@ -32,11 +31,6 @@ var map_finished_picking_flag = false
 
 var current_segment_selected_from_map_flag : bool = false
 
-var pause_flag = false
-var reward_flag = false
-var swap_flag = false
-var heal_flag = false
-
 var node_queue : Array[MapNode.MAP_NODE_TYPE] = []
 
 func _ready() -> void:
@@ -51,7 +45,6 @@ func _ready() -> void:
 func _on_attempt_to_move_to_next_node():
 	if first_battle_flag:
 		first_battle_flag = false
-		first_battle_over_flag = true
 		load_first_battle.emit(false)
 		print("first battle started")
 		node_queue = [MapNode.MAP_NODE_TYPE.ADVANCE_NODE]
@@ -65,7 +58,6 @@ func _on_attempt_to_move_to_next_node():
 			MapNode.MAP_NODE_TYPE.BATTLE:
 				#pause_flag = false
 				if first_battle_flag:
-					pause_flag = false
 					load_first_battle.emit(false)
 					print("first battle started")
 				else:
@@ -76,22 +68,13 @@ func _on_attempt_to_move_to_next_node():
 					start_combat.emit()
 			MapNode.MAP_NODE_TYPE.SENSATION_REWARD:
 				print("when is reward opened")
-				pause_flag = true
-				reward_flag = true
 				open_reward_menu.emit()
 			MapNode.MAP_NODE_TYPE.PUYO_POOL_CHANGE:
-				pause_flag = true
-				swap_flag = true
 				open_deckuilding_menu.emit()
 			MapNode.MAP_NODE_TYPE.HEAL:
-				pause_flag = true
 				print("gain life")
 				open_deckuilding_menu.emit()
 			MapNode.MAP_NODE_TYPE.ADVANCE_NODE:
-				#map_open_flag = true
-				#if first_battle_over_flag:
-					#first_battle_over_flag = false
-					#open_map_screen()
 				open_map_screen()
 			_:
 				print("map type error")
@@ -117,6 +100,7 @@ func generate_next_segment(map_flag := false):
 	combat_start_flag = true
 	if map_finished_picking_flag:
 		map_finished_picking_flag = false
+		current_segment.reset_nodes()
 		_on_attempt_to_move_to_next_node()
 
 func _on_reward_chosen_or_skipped():
