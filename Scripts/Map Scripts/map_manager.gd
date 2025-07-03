@@ -97,6 +97,9 @@ func _on_attempt_to_move_to_next_node():
 					match goal_type:
 						MapNode.MAP_NODE_TYPE.BOSS_BATTLE:
 							node_queue.append(MapNode.MAP_NODE_TYPE.BOSS_BATTLE)
+							node_queue.append(MapNode.MAP_NODE_TYPE.HEAL)
+							node_queue.append(MapNode.MAP_NODE_TYPE.SENSATION_REWARD)
+							node_queue.append(MapNode.MAP_NODE_TYPE.PUYO_POOL_CHANGE)
 						MapNode.MAP_NODE_TYPE.SENSATION_REWARD:
 							node_queue.append(MapNode.MAP_NODE_TYPE.SENSATION_REWARD)
 						MapNode.MAP_NODE_TYPE.PUYO_POOL_CHANGE:
