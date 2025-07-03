@@ -4,7 +4,9 @@
 
 [resource]
 script = ExtResource("1_8ftuu")
+battle_name = "easy boss"
 difficulty_level = 0
 is_boss = true
-wave_paths = Array[String]([""])
+wave_paths = Array[String](["res://Scenes/Combat/Encounters/BossEncounters/EasyBossEncounters/army_boss_encounter.tscn"])
+enemy_amount = 0
 metadata/_custom_type_script = "uid://04fw8jq16vli"

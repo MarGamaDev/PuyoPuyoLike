@@ -6,7 +6,7 @@ signal on_rest_stop()
 signal on_boss_encounter
 signal advance_to_next_map_node()
 
-var boss_folder_paths : Array[String] = ["res://Scenes/Combat/Encounters/BossEncounters/EasyBossEncounters/", "res://Scenes/Combat/Encounters/BossEncounters/MediumBossEncounters/", "res://Scenes/Combat/Encounters/BossEncounters/HardBossEncounters/"]
+var boss_folder_paths : Array[String] = ["res://Resources/battles/Boss Battles/Easy/", "res://Resources/battles/Boss Battles/Medium/", "res://Resources/battles/Boss Battles/Hard/"]
 var battle_folder_paths : Array[String] = ["res://Resources/battles/Easy/", "res://Resources/battles/Medium/", "res://Resources/battles/Hard/"]
 
 @export var encounter_label : RichTextLabel
@@ -103,7 +103,8 @@ func _on_wave_beat(boss_flag := false):
 
 func update_battle_data(boss_flag := false):
 	#print("update battle data called")
-	current_battle.initialize_from_battle_data(load(get_battle(boss_flag)))
+	var battle_data : BattleData = load(get_battle(boss_flag))
+	current_battle.initialize_from_battle_data(battle_data)
 	load_next_encounter(boss_flag)
 	current_battle_encounter_tracker = 0
 	#print(current_battle.battle_data.battle_name)

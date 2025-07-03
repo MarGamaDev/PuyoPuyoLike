@@ -308,6 +308,7 @@ libraries = {
 [node name="DeathManager" parent="." instance=ExtResource("28_r5ubg")]
 
 [node name="MapManager" parent="." instance=ExtResource("27_2n3pb")]
+segments_between_boss_fights = 1
 
 [node name="PuyoDeckManager" parent="." instance=ExtResource("27_r5ubg")]
 
@@ -372,6 +373,7 @@ libraries = {
 [connection signal="end_combat" from="MapManager" to="Player" method="reset_counter_and_shield"]
 [connection signal="end_combat" from="MapManager" to="Player" method="reset_minimum_shield"]
 [connection signal="end_combat" from="MapManager" to="DefenseVisualsManager" method="clear_junk_queue"]
+[connection signal="hide_combat" from="MapManager" to="EncounterManager" method="hide"]
 [connection signal="load_first_battle" from="MapManager" to="EncounterManager" method="start_first_encounter"]
 [connection signal="load_next_encounter" from="MapManager" to="EncounterManager" method="update_battle_data"]
 [connection signal="map_screen_open" from="MapManager" to="PuyoManager" method="pause_puyo"]
@@ -380,6 +382,7 @@ libraries = {
 [connection signal="open_reward_menu" from="MapManager" to="PuyoManager" method="pause_puyo"]
 [connection signal="open_reward_menu" from="MapManager" to="RewardManager/RewardScreen" method="generate_pool"]
 [connection signal="open_reward_menu" from="MapManager" to="SoundManager" method="_on_rest_stop"]
+[connection signal="show_combat" from="MapManager" to="EncounterManager" method="show"]
 [connection signal="start_combat" from="MapManager" to="." method="start_combat"]
 [connection signal="on_puyo_deckbuiling_over" from="PuyoDeckManager" to="MapManager" method="_on_reward_chosen_or_skipped"]
 

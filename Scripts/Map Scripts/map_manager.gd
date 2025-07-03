@@ -10,6 +10,9 @@ signal map_screen_open()
 signal end_combat()
 signal start_combat()
 
+signal hide_combat()
+signal show_combat()
+
 var current_segment : MapSegment
 var map_segments : Array[MapSegment]
 
@@ -51,7 +54,9 @@ func _ready() -> void:
 	current_segment.initialize_segment_from_data(load("res://Resources/Map Segments/first_segment.tres"))
 
 func _on_attempt_to_move_to_next_node():
+	hide_combat.emit()
 	if first_battle_flag:
+		show_combat.emit()
 		first_battle_flag = false
 		load_first_battle.emit(false)
 		print("first battle started")
@@ -62,7 +67,12 @@ func _on_attempt_to_move_to_next_node():
 		match next_node_type:
 			MapNode.MAP_NODE_TYPE.BOSS_BATTLE:
 				load_next_encounter.emit(true)
+				show_combat.emit()
+				if combat_start_flag:
+					combat_start_flag = false
+					start_combat.emit()
 			MapNode.MAP_NODE_TYPE.BATTLE:
+				show_combat.emit()
 				#pause_flag = false
 				if first_battle_flag:
 					load_first_battle.emit(false)
@@ -125,10 +135,12 @@ func generate_next_segment(map_flag := false):
 func _on_reward_chosen_or_skipped():
 	print("reward chosen or skipped")
 	combat_start_flag = true
+	hide_combat.emit()
 	_on_attempt_to_move_to_next_node()
 	#start_combat.emit()
 
 func generate_map_options():
+	hide_combat.emit()
 	map_options = []
 	end_of_segment_flag = true
 	boss_fight_counter += 1
@@ -148,6 +160,7 @@ func generate_map_options():
 	pass
 
 func open_map_screen():
+	hide_combat.emit()
 	print("map screen opened")
 	generate_map_options()
 	end_combat.emit()
@@ -165,6 +178,7 @@ func _on_map_screen_option_chosen(option: int) -> void:
 	pass # Replace with function body.
 
 func on_wave_complete():
+	hide_combat.emit()
 	if map_open_flag:
 		open_map_screen()
 	else:
