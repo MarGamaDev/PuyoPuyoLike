@@ -24,10 +24,10 @@ func initialize_segment_from_data(new_data : MapNodeSegmentData):
 func get_next_encounter_type() -> MapNode.MAP_NODE_TYPE:
 	if segment_counter >= map_nodes.size():
 		##TODO change
-		print("advance, segment counter: %s" % segment_counter)
+		#print("advance, segment counter: %s" % segment_counter)
 		return MapNode.MAP_NODE_TYPE.ADVANCE_NODE
 	else:
 		var node_type_to_return = map_nodes[segment_counter].map_node_type
 		segment_counter += 1
-		print("segment counter: %s" % segment_counter)
+		#\print("segment counter: %s" % segment_counter)
 		return node_type_to_return

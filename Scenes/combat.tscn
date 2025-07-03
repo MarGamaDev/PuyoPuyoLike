@@ -311,9 +311,9 @@ libraries = {
 
 [node name="PuyoDeckManager" parent="." instance=ExtResource("27_r5ubg")]
 
+[connection signal="first_battle_started" from="." to="MapManager" method="_on_attempt_to_move_to_next_node"]
 [connection signal="on_combat_started" from="." to="PuyoManager" method="reset_game"]
 [connection signal="on_combat_started" from="." to="CombatEffectsManager" method="_on_combat_started"]
-[connection signal="on_combat_started" from="." to="MapManager" method="_on_attempt_to_move_to_next_node"]
 [connection signal="on_counter_gained" from="." to="Player" method="add_counter"]
 [connection signal="on_encounter_finished" from="." to="EncounterManager" method="_on_wave_beat"]
 [connection signal="on_encounter_finished" from="." to="DeathManager" method="score_increase"]

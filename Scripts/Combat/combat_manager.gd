@@ -17,6 +17,7 @@ signal on_player_life_lost()
 signal on_encounter_finished()
 signal on_delay_enemy_attack(delay_turns : int)
 signal on_game_paused()
+signal first_battle_started()
 
 @export var puyo_values: PuyoValueData
 @export var debug_mode : bool = false
@@ -25,6 +26,8 @@ var enemies: Array = Array()
 var selected_enemy: Enemy
 
 var current_encounter : Encounter
+
+var first_battle_flag : bool = true
 
 func _ready() -> void:
 	if debug_mode:
@@ -97,7 +100,9 @@ func process_encounter_updated(_encounter: Encounter) -> void:
 
 func start_combat() -> void:
 	on_combat_started.emit()
-	
+	if  first_battle_flag:
+		first_battle_flag = false
+		first_battle_started.emit()
 	#$SpellManager.add_spell($SpellManager.test_spell)
 	#$SpellManager.add_spell($SpellManager.test_spell_2)
 	#$SpellManager.add_spell($SpellManager.test_spell_3)

@@ -84,7 +84,7 @@ func load_encounter(next_encounter, boss_flag):
 		#encounter_label.text = "Next reward in " + str(rest_stop_check) + " waves!"
 
 func start_first_encounter(boss_flag:= false):
-	print("first encounter called")
+	#print("first encounter called")
 	#first_battle_flag = true
 	load_next_encounter(boss_flag)
 
@@ -102,7 +102,7 @@ func _on_wave_beat(boss_flag := false):
 		#print(current_battle.battle_data.battle_name)
 
 func update_battle_data(boss_flag := false):
-	print("update battle data called")
+	#print("update battle data called")
 	current_battle.initialize_from_battle_data(load(get_battle(boss_flag)))
 	load_next_encounter(boss_flag)
 	current_battle_encounter_tracker = 0
