@@ -8,11 +8,11 @@ signal on_encounter_initialized
 var enemies : Array
 
 func _ready() -> void:
-	await get_tree().create_timer(0.3).timeout
-	on_encounter_initialized.emit()
 	enemies = get_children()
 	enemy_count = enemies.size()
 	lay_out_enemies()
+	await get_tree().create_timer(0.3).timeout
+	on_encounter_initialized.emit()
 
 func lay_out_enemies():
 	match enemies.size():
