@@ -9,6 +9,7 @@ signal open_deckuilding_menu()
 signal map_screen_open()
 signal end_combat()
 signal start_combat()
+signal increase_difficulty_level()
 
 signal hide_combat()
 signal show_combat()
@@ -37,7 +38,10 @@ var current_segment_selected_from_map_flag : bool = false
 var node_queue : Array[MapNode.MAP_NODE_TYPE] = []
 
 @export var segments_between_boss_fights : int = 2
+var boss_fight_interval_counter = 0
 var boss_fight_counter = 0
+@export var difficulty_thresholds : Array[int] = [2, 3]
+var endless_flag = false
 
 var goal_type : MapNode.MAP_NODE_TYPE = MapNode.MAP_NODE_TYPE.PUYO_POOL_CHANGE
 var end_of_segment_flag : bool = false
@@ -59,11 +63,10 @@ func _on_attempt_to_move_to_next_node():
 		show_combat.emit()
 		first_battle_flag = false
 		load_first_battle.emit(false)
-		print("first battle started")
+		#print("first battle started")
 		node_queue = [MapNode.MAP_NODE_TYPE.ADVANCE_NODE]
 	else:
 		var next_node_type : MapNode.MAP_NODE_TYPE = node_queue.pop_front()
-		print(node_queue)
 		match next_node_type:
 			MapNode.MAP_NODE_TYPE.BOSS_BATTLE:
 				load_next_encounter.emit(true)
@@ -71,25 +74,31 @@ func _on_attempt_to_move_to_next_node():
 				if combat_start_flag:
 					combat_start_flag = false
 					start_combat.emit()
+				boss_fight_counter += 1
+				if endless_flag == false:
+					if boss_fight_counter >= difficulty_thresholds[0]:
+						increase_difficulty_level.emit()
+						#print("difficulty increased")
+						difficulty_thresholds.pop_front()
+					if difficulty_thresholds.is_empty():
+						endless_flag = true
 			MapNode.MAP_NODE_TYPE.BATTLE:
 				show_combat.emit()
 				#pause_flag = false
 				if first_battle_flag:
 					load_first_battle.emit(false)
-					print("first battle started")
 				else:
 					load_next_encounter.emit(false)
-					print("moved to next battle")
 				if combat_start_flag:
 					combat_start_flag = false
 					start_combat.emit()
 			MapNode.MAP_NODE_TYPE.SENSATION_REWARD:
-				print("when is reward opened")
 				open_reward_menu.emit()
 			MapNode.MAP_NODE_TYPE.PUYO_POOL_CHANGE:
 				open_deckuilding_menu.emit()
 			MapNode.MAP_NODE_TYPE.HEAL:
 				print("gain life")
+				##CHANGE
 				open_deckuilding_menu.emit()
 			MapNode.MAP_NODE_TYPE.ADVANCE_NODE:
 				if end_of_segment_flag:
@@ -107,6 +116,7 @@ func _on_attempt_to_move_to_next_node():
 					node_queue.append(MapNode.MAP_NODE_TYPE.ADVANCE_NODE)
 					_on_attempt_to_move_to_next_node()
 				else:
+					DifficultyManager.increase_scaling_flat()
 					open_map_screen()
 			_:
 				print("map type error")
@@ -136,7 +146,6 @@ func generate_next_segment(map_flag := false):
 		_on_attempt_to_move_to_next_node()
 
 func _on_reward_chosen_or_skipped():
-	print("reward chosen or skipped")
 	combat_start_flag = true
 	hide_combat.emit()
 	_on_attempt_to_move_to_next_node()
@@ -146,8 +155,8 @@ func generate_map_options():
 	hide_combat.emit()
 	map_options = []
 	end_of_segment_flag = true
-	boss_fight_counter += 1
-	if boss_fight_counter >= segments_between_boss_fights:
+	boss_fight_interval_counter += 1
+	if boss_fight_interval_counter >= segments_between_boss_fights:
 		goal_type = MapNode.MAP_NODE_TYPE.BOSS_BATTLE
 	else:
 		if randi_range(0,1) == 0:
@@ -164,7 +173,6 @@ func generate_map_options():
 
 func open_map_screen():
 	hide_combat.emit()
-	print("map screen opened")
 	generate_map_options()
 	end_combat.emit()
 	map_screen_open.emit()

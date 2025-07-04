@@ -374,6 +374,7 @@ segments_between_boss_fights = 1
 [connection signal="end_combat" from="MapManager" to="Player" method="reset_counter_and_shield"]
 [connection signal="end_combat" from="MapManager" to="DefenseVisualsManager" method="clear_junk_queue"]
 [connection signal="hide_combat" from="MapManager" to="EncounterManager" method="hide"]
+[connection signal="increase_difficulty_level" from="MapManager" to="EncounterManager" method="_on_map_manager_increase_difficulty_level"]
 [connection signal="load_first_battle" from="MapManager" to="EncounterManager" method="start_first_encounter"]
 [connection signal="load_next_encounter" from="MapManager" to="EncounterManager" method="update_battle_data"]
 [connection signal="map_screen_open" from="MapManager" to="PuyoManager" method="pause_puyo"]

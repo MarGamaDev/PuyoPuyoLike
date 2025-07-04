@@ -34,7 +34,6 @@ func _ready() -> void:
 		puyo_values.green_base_value = 100
 		puyo_values.red_base_value = 100
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), linear_to_db(0.5))
-	#print(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Master")))
 	start_combat()
 
 func _physics_process(_delta: float) -> void:

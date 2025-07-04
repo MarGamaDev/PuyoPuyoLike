@@ -84,57 +84,29 @@ func load_encounter(next_encounter, boss_flag):
 		#encounter_label.text = "Next reward in " + str(rest_stop_check) + " waves!"
 
 func start_first_encounter(boss_flag:= false):
-	#print("first encounter called")
 	#first_battle_flag = true
 	load_next_encounter(boss_flag)
 
 func _on_wave_beat(boss_flag := false):
 	current_battle_encounter_tracker += 1
-	#print("current battle wave size: %s" % current_battle.enemy_waves.size())
 	if current_battle_encounter_tracker >= current_battle.enemy_waves.size():
 		current_battle_encounter_tracker = 0
-		print("current battle complete")
-		print("")
 		#current_difficulty += 1
 		advance_to_next_map_node.emit()
 	else:
 		load_next_encounter(boss_flag)
-		#print(current_battle.battle_data.battle_name)
 
 func update_battle_data(boss_flag := false):
-	#print("update battle data called")
 	var battle_data : BattleData = load(get_battle(boss_flag))
 	current_battle.initialize_from_battle_data(battle_data)
 	load_next_encounter(boss_flag)
 	current_battle_encounter_tracker = 0
-	#print(current_battle.battle_data.battle_name)
-
-#func check_for_rest_stop():
-	#rest_stop_check -= 1
-	#if rest_stop_check == 0:
-		#rest_stop_check = encounters_between_rest_stops
-		#on_rest_stop.emit()
-		#DifficultyManager.increase_scaling_multiplier()
-		#rest_stop_count += 1
-		#encounter_label.hide()
-		##encounter_label.text = "Next up: grunts"
-	#elif rest_stop_check == 1:
-		##print("boss time!")
-		##encounter_label.text == "Next up: reward"
-		#load_next_encounter(true)
-		#DifficultyManager.increase_scaling_flat()
-	#else:
-		#load_next_encounter()
-		#DifficultyManager.increase_scaling_flat()
-	#if rest_stop_check == 2:
-		##encounter_label.text = "Next up: Boss!"
-		#pass
+	DifficultyManager.increase_scaling_multiplier()
 
 func get_battle(boss_flag := false):
 	#if current_difficulty < rest_stops_where_difficulty_changes.size():
 		#if rest_stop_count >= rest_stops_where_difficulty_changes[current_difficulty]:
 			#current_difficulty += 1
-			##print("difficulty up")
 	if first_battle_flag:
 		first_battle_flag = false
 		return first_battle
@@ -144,3 +116,7 @@ func get_battle(boss_flag := false):
 		return (boss_folder_paths[difficulty_chooser] + bosses[difficulty_chooser][randi_range(0, bosses[difficulty_chooser].size() - 1)])
 	else:
 		return (battle_folder_paths[difficulty_chooser] + battles[difficulty_chooser][randi_range(0, battles[difficulty_chooser].size() - 1)])
+
+
+func _on_map_manager_increase_difficulty_level() -> void:
+	current_difficulty += 1
