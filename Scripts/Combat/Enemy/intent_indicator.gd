@@ -12,7 +12,8 @@ var intent_sprite_dictionary = {
 	EnemyAttack.EnemyAttackType.REPLACE_BLUE : "res://Art/puyo elements/Puyo_Blue.png",
 	EnemyAttack.EnemyAttackType.REPLACE_GREEN : "res://Art/puyo elements/Puyo_Green.png",
 	EnemyAttack.EnemyAttackType.REPLACE_YELLOW : "res://Art/puyo elements/Puyo_Yellow.png",
-	EnemyAttack.EnemyAttackType.REPLACE_CIRCLE_RANDOM : "res://Placeholder Art/puyo_out_of_bounds.png"
+	EnemyAttack.EnemyAttackType.REPLACE_CIRCLE_RANDOM : "res://Placeholder Art/puyo_out_of_bounds.png",
+	EnemyAttack.EnemyAttackType.REPLACE_RANDOM:  "res://Placeholder Art/puyo_out_of_bounds.png"
 }
 
 func set_indicator(attack: EnemyAttack, attack_timer: int) -> void:

@@ -38,6 +38,9 @@ var current_battle_encounter_tracker : int = 0
 @onready var first_battle: String =  "res://Resources/battles/first_battle.tres"
 var first_battle_flag : bool = true
 
+@export var attack_test_flag : bool = false
+@onready var attack_test_encounter_path : String = "res://Scenes/Combat/Encounters/TestEncounters/attack_test_encounter.tscn"
+
 func preload_battle_lists():
 	easy_battles = ResourceLoader.list_directory(battle_folder_paths[0])
 	medium_battles = ResourceLoader.list_directory(battle_folder_paths[1])
@@ -73,7 +76,10 @@ func load_encounter(next_encounter, boss_flag):
 			#first_encounter_flag = false
 		#else:
 			#next_encounter = load(get_encounter(boss_flag))
-	current_encounter = next_encounter.instantiate()
+	if attack_test_flag:
+		current_encounter = load(attack_test_encounter_path).instantiate()
+	else:
+		current_encounter = next_encounter.instantiate()
 	add_child(current_encounter)
 	await current_encounter.on_encounter_initialized
 	on_update_encounter.emit(current_encounter)

@@ -4,6 +4,7 @@ extends Resource
 @export var number_of_swings: int
 @export var number_of_turns_till_swing: int
 @export var attack_type: EnemyAttackType
+var circle_target : Vector2i
 
 enum EnemyAttackType {
 	DROP_RANDOM,

@@ -35,32 +35,33 @@ func on_game_paused():
 	$PauseMenu/VolumeSlider.set_audio_value()
 
 func fill_spell_screen():
-	if spell_manager.equipped_spells.size() == 0:
-		$PauseMenu/PageTabs/Emotions/NoSpellsLabel.show()
-		return
-	else:
-		$PauseMenu/PageTabs/Emotions/NoSpellsLabel.hide()
-		
-	var equipped_spells : Array[SpellData] = []
-	for spell in spell_manager.equipped_spells:
-		equipped_spells.append(spell.spell_data)
+	pass
+	#if spell_manager.equipped_spells.size() == 0:
+		#$PauseMenu/PageTabs/Emotions/NoSpellsLabel.show()
+		#return
+	#else:
+		#$PauseMenu/PageTabs/Emotions/NoSpellsLabel.hide()
+		#
+	#var equipped_spells : Array[SpellData] = []
+	#for spell in spell_manager.equipped_spells:
+		#equipped_spells.append(spell.spell_data)
+	#
+	#for spell_data in equipped_spells:
+		#var spell_reward_visual : RewardChoice = reward_choice_scene.instantiate()
+		#spell_reward_visual.create_reward(Reward.create_spell_reward(spell_data))
+		#spell_reward_visual.turn_off_button()
+		#equipped_spell_containers.append(spell_reward_visual)
+		#$PauseMenu/PageTabs/Emotions.add_child(spell_reward_visual)
+		#spell_reward_visual.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	
-	for spell_data in equipped_spells:
-		var spell_reward_visual : RewardChoice = reward_choice_scene.instantiate()
-		spell_reward_visual.create_reward(Reward.create_spell_reward(spell_data))
-		spell_reward_visual.turn_off_button()
-		equipped_spell_containers.append(spell_reward_visual)
-		$PauseMenu/PageTabs/Emotions.add_child(spell_reward_visual)
-		spell_reward_visual.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	
-	var empty_slots = 3 - equipped_spells.size()
-	for i in range(0, empty_slots):
-		var empty_reward : RewardChoice = reward_choice_scene.instantiate()
-		empty_reward.create_empty_spell_reward()
-		empty_reward.turn_off_button()
-		equipped_spell_containers.append(empty_reward)
-		$PauseMenu/PageTabs/Emotions.add_child(empty_reward)
-		empty_reward.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	#var empty_slots = 3 - equipped_spells.size()
+	#for i in range(0, empty_slots):
+		#var empty_reward : RewardChoice = reward_choice_scene.instantiate()
+		#empty_reward.create_empty_spell_reward()
+		#empty_reward.turn_off_button()
+		#equipped_spell_containers.append(empty_reward)
+		#$PauseMenu/PageTabs/Emotions.add_child(empty_reward)
+		#empty_reward.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 
 func fill_relic_screen():
 	$PauseMenu/PageTabs/Sensations/RelicDescription.text = "Choose a sensation to reflect on"

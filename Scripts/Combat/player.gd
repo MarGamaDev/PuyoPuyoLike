@@ -51,7 +51,7 @@ func receive_attack(attack: EnemyAttack, enemy: Enemy) -> void:
 			damage_taken = combat_manager.get_free_spaces() - 1
 		if damage_taken > 0 and enemy != null:
 			combat_effects_manager.create_attack_effect(enemy.global_position, combat_effects_manager.junk_indicator_marker, AttackEffectData.EFFECT_TYPE.JUNK)
-		on_player_damage_taken.emit(damage_taken, attack.attack_type)
+		on_player_damage_taken.emit(damage_taken, attack)
 
 func add_counter(counter_gained: int) -> void:
 	on_counter_gain.emit(counter_gained)

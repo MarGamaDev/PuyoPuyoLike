@@ -7,6 +7,6 @@ script = ExtResource("1_3npl8")
 battle_name = "test hard battle (red swap)"
 difficulty_level = 3
 is_boss = false
-wave_paths = Array[String](["res://Scenes/Combat/Encounters/NormalEncounters/HardEncounters/red_swap_support_encounter.tscn"])
+wave_paths = Array[String](["res://Scenes/Combat/Encounters/NormalEncounters/HardEncounters/red_swap_support_encounter.tscn", "res://Scenes/Combat/Encounters/NormalEncounters/HardEncounters/red_swap_support_encounter.tscn"])
 enemy_amount = 8
 metadata/_custom_type_script = "uid://04fw8jq16vli"

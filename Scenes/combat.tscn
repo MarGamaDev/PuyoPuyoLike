@@ -227,6 +227,7 @@ combat_manager = NodePath("..")
 position = Vector2(835, 250)
 script = ExtResource("8_twsak")
 encounter_label = NodePath("../Frame/EncounterLabel")
+attack_test_flag = true
 
 [node name="CurrentBattle" type="Node2D" parent="EncounterManager"]
 position = Vector2(-835, -250)
@@ -308,7 +309,6 @@ libraries = {
 [node name="DeathManager" parent="." instance=ExtResource("28_r5ubg")]
 
 [node name="MapManager" parent="." instance=ExtResource("27_2n3pb")]
-segments_between_boss_fights = 1
 
 [node name="PuyoDeckManager" parent="." instance=ExtResource("27_r5ubg")]
 
@@ -354,8 +354,8 @@ segments_between_boss_fights = 1
 [connection signal="advance_to_next_map_node" from="EncounterManager" to="MapManager" method="on_wave_complete"]
 [connection signal="on_boss_encounter" from="EncounterManager" to="CombatEffectsManager" method="on_boss_fight"]
 [connection signal="on_rest_stop" from="EncounterManager" to="PuyoManager" method="pause_puyo"]
-[connection signal="on_rest_stop" from="EncounterManager" to="Player" method="reset_minimum_shield"]
 [connection signal="on_rest_stop" from="EncounterManager" to="Player" method="reset_counter_and_shield"]
+[connection signal="on_rest_stop" from="EncounterManager" to="Player" method="reset_minimum_shield"]
 [connection signal="on_rest_stop" from="EncounterManager" to="DefenseVisualsManager" method="clear_junk_queue"]
 [connection signal="on_rest_stop" from="EncounterManager" to="RewardManager/RewardScreen" method="generate_pool"]
 [connection signal="on_rest_stop" from="EncounterManager" to="SoundManager" method="_on_rest_stop"]
@@ -370,8 +370,8 @@ segments_between_boss_fights = 1
 [connection signal="on_relic_reward_chosen" from="RewardManager/RewardScreen" to="RelicManager" method="add_relic"]
 [connection signal="on_reward_chosen" from="RewardManager/RewardScreen" to="RewardManager" method="remove_from_pool"]
 [connection signal="on_reward_skipped" from="RewardManager/RewardScreen" to="MapManager" method="_on_reward_chosen_or_skipped"]
-[connection signal="end_combat" from="MapManager" to="Player" method="reset_minimum_shield"]
 [connection signal="end_combat" from="MapManager" to="Player" method="reset_counter_and_shield"]
+[connection signal="end_combat" from="MapManager" to="Player" method="reset_minimum_shield"]
 [connection signal="end_combat" from="MapManager" to="DefenseVisualsManager" method="clear_junk_queue"]
 [connection signal="hide_combat" from="MapManager" to="EncounterManager" method="hide"]
 [connection signal="increase_difficulty_level" from="MapManager" to="EncounterManager" method="_on_map_manager_increase_difficulty_level"]

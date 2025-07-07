@@ -1,47 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://carcnx12jkm8f"]
+[gd_scene load_steps=3 format=3 uid="uid://carcnx12jkm8f"]
 
 [ext_resource type="Script" uid="uid://c086ewc7gw56k" path="res://Scripts/Combat/encounter.gd" id="1_oe6c0"]
-[ext_resource type="PackedScene" uid="uid://bx5kscp85ypry" path="res://Scenes/Combat/Enemy/enemy.tscn" id="2_o2g0m"]
-[ext_resource type="Script" uid="uid://c27m7mkd1up2" path="res://Scripts/Combat/Enemy/enemy_data.gd" id="3_cnxer"]
-[ext_resource type="Texture2D" uid="uid://crpm2t7elwi2a" path="res://Art/Enemies/kidney enemies/Enemy_Grunt_Kidney_Sisters.png" id="4_o2g0m"]
-[ext_resource type="Script" uid="uid://6v5kccermtmr" path="res://Scripts/Combat/Enemy/enemy_attack.gd" id="5_o2g0m"]
-
-[sub_resource type="Resource" id="Resource_o2g0m"]
-script = ExtResource("3_cnxer")
-health = 10
-sprite = ExtResource("4_o2g0m")
-boss = false
-metadata/_custom_type_script = "uid://c27m7mkd1up2"
-
-[sub_resource type="Resource" id="Resource_l06n0"]
-script = ExtResource("5_o2g0m")
-damage = 2
-number_of_swings = 1
-number_of_turns_till_swing = 3
-attack_type = 0
-metadata/_custom_type_script = "uid://6v5kccermtmr"
-
-[sub_resource type="Resource" id="Resource_cnxer"]
-script = ExtResource("5_o2g0m")
-damage = 2
-number_of_swings = 1
-number_of_turns_till_swing = 10000
-attack_type = 0
-metadata/_custom_type_script = "uid://6v5kccermtmr"
+[ext_resource type="PackedScene" uid="uid://bq245u2hmahhe" path="res://Scenes/Combat/Enemy/attack_test_enemy.tscn" id="2_11csg"]
 
 [node name="AttackTestEncounter" type="Node2D"]
 script = ExtResource("1_oe6c0")
-enemy_count = 2
 metadata/_custom_type_script = "uid://c086ewc7gw56k"
 
-[node name="SingleGrunt" parent="." instance=ExtResource("2_o2g0m")]
-position = Vector2(160, 0)
-attack_behaviour = 1
-enemy_data = SubResource("Resource_o2g0m")
-attacks = Array[ExtResource("5_o2g0m")]([SubResource("Resource_l06n0")])
-
-[node name="SingleGrunt2" parent="." instance=ExtResource("2_o2g0m")]
-position = Vector2(-89, 0)
-attack_behaviour = 1
-enemy_data = SubResource("Resource_o2g0m")
-attacks = Array[ExtResource("5_o2g0m")]([SubResource("Resource_cnxer")])
+[node name="AttackTestEnemy" parent="." instance=ExtResource("2_11csg")]

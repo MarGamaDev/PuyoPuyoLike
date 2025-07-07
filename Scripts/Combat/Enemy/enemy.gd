@@ -37,6 +37,8 @@ var health_suffix = " / 100"
 var enemy_scale : Vector2
 var enemy_position : Vector2
 
+var circle_next_attack_target : Vector2
+
 func _ready() -> void:
 	instance_data = enemy_data.duplicate(true);
 	instance_data.health += DifficultyManager.get_health_addition()
@@ -63,6 +65,7 @@ func _ready() -> void:
 	current_attack = attacks[0]
 	attack_countdown = attack_countdown + randi_range(-1, 1)
 	starting_delay()
+	determine_next_attack()
 
 func handle_turn() -> void:
 	on_taking_turn.emit()
@@ -83,8 +86,13 @@ func determine_next_attack() -> void:
 		AttackBehaviour.RANDOM:
 			attack_index = randi_range(0, attacks.size() - 1)
 	current_attack = attacks[attack_index]
+	if current_attack.attack_type == EnemyAttack.EnemyAttackType.REPLACE_CIRCLE_RANDOM:
+		circle_next_attack_target = Vector2i(randi_range(0,5), randi_range(0,11))
+		current_attack.circle_target = circle_next_attack_target
+		print("next circle target: %s" % circle_next_attack_target)
 
 func unleash_attack() ->void:
+	print(current_attack.circle_target)
 	on_attacking_player.emit(current_attack, self)
 	$AttackAnimation.play("attack")
 	attack_countdown = 0

@@ -2,6 +2,11 @@ extends Node
 
 class_name EnemyAttackHandler
 
+static var grid_width = 6
+static var grid_height = 12
+
+static var nodes_to_check : Array[Vector2i] = []
+
 #event creator
 #create(type: EVENT_TYPE = EVENT_TYPE.JUNK_RANDOM, junk_num: int = 0,
 #specific_positions: Array[Vector2i] = [],
@@ -15,10 +20,11 @@ class_name EnemyAttackHandler
 #attack types
 #EnemyAttackType {DROP_RANDOM, DROP_ROW, REPLACE_BOTTOM, REPLACE_BOTTOM_ROW, RAISE_BOTTOM,
 #RAISE_ROW_BOTTOM, REPLACE_RED,REPLACE_BLUE, REPLACE_GREEN,
-#REPLACE_YELLOW, REPLACE_CIRCLE_RANDOM
+#REPLACE_YELLOW, REPLACE_CIRCLE_RANDOM, REPLACE_RANDOM
 #has a var called damage
 
-static func process_attack(attack_damage : int, attack_type : EnemyAttack.EnemyAttackType) -> PuyoQueueEvent:
+static func process_attack(attack_damage : int, enemy_attack : EnemyAttack) -> PuyoQueueEvent:
+	var attack_type : EnemyAttack.EnemyAttackType = enemy_attack.attack_type
 	var event_type : PuyoQueueEvent.EVENT_TYPE
 	match attack_type:
 		EnemyAttack.EnemyAttackType.DROP_RANDOM:
@@ -42,7 +48,64 @@ static func process_attack(attack_damage : int, attack_type : EnemyAttack.EnemyA
 		EnemyAttack.EnemyAttackType.REPLACE_YELLOW:
 			return PuyoQueueEvent.create(PuyoQueueEvent.EVENT_TYPE.COLOR_REPLACE, 0,[], Puyo.PUYO_TYPE.YELLOW, Puyo.PUYO_TYPE.JUNK)
 		EnemyAttack.EnemyAttackType.REPLACE_CIRCLE_RANDOM:
-			print("REPLACE_CIRCLE_RANDOM doesn't exist yet/isn't used")
+			print("circle target")
+			var new_positions : Array[Vector2i] = create_circle_positions(enemy_attack.circle_target, attack_damage)
+			return PuyoQueueEvent.create(PuyoQueueEvent.EVENT_TYPE.JUNK_REPLACE, 1, new_positions)
+		EnemyAttack.EnemyAttackType.REPLACE_RANDOM:
+			print("replace random")
+			return PuyoQueueEvent.create(PuyoQueueEvent.EVENT_TYPE.JUNK_RANDOM, 3)
+			#return PuyoQueueEvent.create()
 		_:
 			print("no enemy attack type defined?")
 	return PuyoQueueEvent.create()
+
+static func create_circle_positions(circle_center : Vector2i, junk_amount : int) -> Array[Vector2i]:
+	var positions_to_fill : Array[Vector2i] = []
+	nodes_to_check = []
+	##FIRST: get the depth of the recrusion
+	var t_calc : float
+	t_calc = (2.0 + sqrt(-4.0 + ( 8.0 * float(junk_amount) ))) / 4.0
+	var traversal_count : int
+	if is_equal_approx(t_calc, roundf(t_calc)):
+		traversal_count = int(t_calc)
+	else:
+		print("its a little off")
+		traversal_count = int(t_calc) + 1
+	print("traversal count %s" % traversal_count)
+	
+	##SECOND: find possible positions
+	find_nodes_around_center(circle_center, traversal_count)
+	positions_to_fill = nodes_to_check
+	##THIRD: reduce damage amount accosrdingly
+	var damage_modifier : int = positions_to_fill.size() - junk_amount
+	if (damage_modifier > 0):
+		for i in range(0, damage_modifier):
+			print("remove a junk")
+	return positions_to_fill
+
+static func find_nodes_around_center(node_check : Vector2i, traversal_count):
+	var grid_x = node_check.x
+	var grid_y = node_check.y
+	nodes_to_check.append(node_check)
+	if traversal_count <= 1:
+		return 
+	else:
+		if check_node_validity(node_check.x + 1, node_check.y):
+			find_nodes_around_center(Vector2i(node_check.x + 1, node_check.y), traversal_count - 1)
+		if check_node_validity(node_check.x - 1, node_check.y):
+			find_nodes_around_center(Vector2i(node_check.x - 1, node_check.y), traversal_count - 1)
+		if check_node_validity(node_check.x, node_check.y + 1):
+			find_nodes_around_center(Vector2i(node_check.x, node_check.y + 1), traversal_count - 1)
+		if check_node_validity(node_check.x, node_check.y - 1):
+			find_nodes_around_center(Vector2i(node_check.x, node_check.y - 1), traversal_count - 1)
+	pass
+
+static func check_node_validity(width_check : int, height_check : int) -> bool:
+	var flag = true
+	if (width_check < 0) or (width_check >= grid_width):
+		flag = false
+	if (height_check < 0) or (height_check >= grid_height):
+		flag = false
+	if nodes_to_check.has(Vector2i(width_check, height_check)):
+		flag = false
+	return flag
