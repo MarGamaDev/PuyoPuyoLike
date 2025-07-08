@@ -90,6 +90,8 @@ func determine_next_attack() -> void:
 		circle_next_attack_target = Vector2i(randi_range(0,5), randi_range(0,11))
 		current_attack.circle_target = circle_next_attack_target
 		print("next circle target: %s" % circle_next_attack_target)
+		var screen_circle_target_position = combat_manager.get_grid_node_global_position(circle_next_attack_target)
+		print("global position: %s" % screen_circle_target_position)
 
 func unleash_attack() ->void:
 	print(current_attack.circle_target)

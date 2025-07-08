@@ -347,6 +347,11 @@ func get_free_spaces_left() -> int:
 				count += 1
 	return count
 
+func get_global_position_from_grid(pos : Vector2i) -> Vector2:
+	var selected_node : GridNode = grid[pos.x][pos.y]
+	var node_position = selected_node.global_position
+	return Vector2(node_position.x + (square_size / 2), node_position.y + (square_size / 2))
+
 func add_certain_puyo(type : Puyo.PUYO_TYPE):
 	$PlayerPuyoManager/PuyoPoolManager.add_certain_puyo(type)
 

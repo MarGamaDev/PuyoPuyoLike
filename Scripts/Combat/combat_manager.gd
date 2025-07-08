@@ -132,3 +132,6 @@ func delay_enemies(delay_time : int):
 
 func get_free_spaces() -> int:
 	return $PuyoManager.get_free_spaces_left()
+
+func get_grid_node_global_position(pos: Vector2i) -> Vector2:
+	return $PuyoManager.get_global_grid_position(pos)

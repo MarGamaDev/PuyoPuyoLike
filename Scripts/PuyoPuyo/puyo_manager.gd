@@ -82,3 +82,6 @@ func add_certain_puyo_relic_type(type : Puyo.PUYO_TYPE):
 
 func get_free_spaces_left()->int:
 	return game_manager.get_free_spaces_left()
+
+func get_global_grid_position(pos : Vector2i) -> Vector2:
+	return game_manager.get_global_position_from_grid(pos)
