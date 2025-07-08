@@ -6,6 +6,7 @@ static var grid_width = 6
 static var grid_height = 12
 
 static var nodes_to_check : Array[Vector2i] = []
+static var center_for_sort : Vector2i = Vector2i.ZERO
 
 #event creator
 #create(type: EVENT_TYPE = EVENT_TYPE.JUNK_RANDOM, junk_num: int = 0,
@@ -77,10 +78,15 @@ static func create_circle_positions(circle_center : Vector2i, junk_amount : int)
 	find_nodes_around_center(circle_center, traversal_count)
 	positions_to_fill = nodes_to_check
 	##THIRD: reduce damage amount accosrdingly
-	var damage_modifier : int = positions_to_fill.size() - junk_amount
-	if (damage_modifier > 0):
-		for i in range(0, damage_modifier):
-			print("remove a junk")
+	var damage_reduction : int = positions_to_fill.size() - junk_amount
+	if (damage_reduction > 0):
+		if  damage_reduction > positions_to_fill.size():
+			damage_reduction = positions_to_fill.size()
+		center_for_sort = circle_center
+		positions_to_fill.sort_custom(farthest_from_center_sort)
+		for i in range(0, damage_reduction):
+			positions_to_fill.pop_back()
+	center_for_sort = Vector2i.ZERO
 	return positions_to_fill
 
 static func find_nodes_around_center(node_check : Vector2i, traversal_count):
@@ -109,3 +115,11 @@ static func check_node_validity(width_check : int, height_check : int) -> bool:
 	if nodes_to_check.has(Vector2i(width_check, height_check)):
 		flag = false
 	return flag
+
+static func farthest_from_center_sort(vector_a : Vector2i, vector_b : Vector2i) -> bool:
+	var a_distance = absf(center_for_sort.distance_to(vector_a))
+	var b_distance = absf(center_for_sort.distance_to(vector_b))
+	if a_distance <= b_distance:
+		return true
+	else:
+		return false
