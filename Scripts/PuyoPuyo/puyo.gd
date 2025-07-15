@@ -5,7 +5,7 @@ class_name Puyo
 signal reached_bottom
 signal pop_trigger(popped_type : PUYO_TYPE)
 
-##types are junk: 0, blue : 1, green : 2, red : 3, yellow : 4
+
 enum PUYO_TYPE {UNDEFINED, JUNK, BLUE, GREEN, RED, YELLOW}
 var puyo_type : PUYO_TYPE = PUYO_TYPE.UNDEFINED
 #junk status (i.e. is a junk or not)

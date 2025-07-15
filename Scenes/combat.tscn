@@ -332,6 +332,7 @@ libraries = {
 [connection signal="on_end_player_turn" from="PuyoManager" to="." method="end_player_turn"]
 [connection signal="on_junk_created" from="PuyoManager" to="DefenseVisualsManager" method="remove_junk_in_queue"]
 [connection signal="player_attack" from="PuyoManager" to="." method="process_player_attack"]
+[connection signal="update_puyo_pool" from="PuyoManager" to="PuyoDeckManager" method="_on_puyo_pool_updated"]
 [connection signal="on_attack_blocked" from="Player" to="SoundManager" method="_on_player_on_attack_blocked"]
 [connection signal="on_counter_change" from="Player" to="DefenseVisualsManager" method="update_counter_visuals"]
 [connection signal="on_counter_triggered" from="Player" to="." method="trigger_counter"]

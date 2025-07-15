@@ -23,3 +23,4 @@ texture = ExtResource("3_4g3bt")
 [connection signal="life_loss" from="PuyoGameManager" to="." method="lose_life"]
 [connection signal="player_created" from="PuyoGameManager" to="." method="_on_player_created"]
 [connection signal="turn_tick" from="PuyoGameManager" to="." method="end_player_turn"]
+[connection signal="update_puyo_pool" from="PuyoGameManager" to="." method="_on_puyo_game_manager_update_puyo_pool"]

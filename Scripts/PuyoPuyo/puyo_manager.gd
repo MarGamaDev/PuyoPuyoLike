@@ -11,6 +11,8 @@ signal on_chain_ending(max_chain : int)
 signal on_junk_popped(amount: int)
 signal on_junk_created(amount: int)
 
+signal update_puyo_pool(puyos : Array[Array])
+
 @export var game_manager : PuyoGameManager
 
 func _ready():
@@ -84,3 +86,7 @@ func get_free_spaces_left()->int:
 
 func get_global_grid_position(pos : Vector2i) -> Vector2:
 	return game_manager.get_global_position_from_grid(pos)
+
+
+func _on_puyo_game_manager_update_puyo_pool(puyos: Array[Array]) -> void:
+	update_puyo_pool.emit(puyos)

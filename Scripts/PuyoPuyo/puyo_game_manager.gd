@@ -13,6 +13,7 @@ signal queue_event_added(event_type : PuyoQueueEvent)
 signal junk_created(amount : int)
 signal chain_ended(max_chain : int)
 signal junk_popped(amount : int)
+signal update_puyo_pool(puyos : Array[Array])
 
 #making easy references for subnodes
 @onready var sound_manager : PuyoSoundManager = $PuyoSoundManager
@@ -56,6 +57,9 @@ func _ready():
 	#initializing new subnodes
 	junk_creator.junk_initialize(puyo_scene, grid)
 	player_manager.player_puyo_initialize(grid, square_size, puyo_scene)
+	
+	print("remove this line from puyo_game_manager later")
+	get_puyo_pool()
 
 func start_game():
 	event_queue_manager.start_flag = true
@@ -357,6 +361,9 @@ func add_certain_puyo(type : Puyo.PUYO_TYPE):
 
 func delete_player():
 	player_manager.delete_player()
+
+func get_puyo_pool():
+	update_puyo_pool.emit($PlayerPuyoManager/PuyoPoolManager.puyo_pool)
 
 ##signal relays
 
