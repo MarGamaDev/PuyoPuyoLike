@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://diuwqc1xy3nhi"]
+[gd_scene load_steps=7 format=3 uid="uid://diuwqc1xy3nhi"]
 
 [ext_resource type="Script" uid="uid://bvevltp5fgulx" path="res://Scripts/puyo_deck_editor_manager.gd" id="1_bbdny"]
 [ext_resource type="Texture2D" uid="uid://dehy5ghfyon84" path="res://Art/puyo elements/Puyo_Red.png" id="2_2w0y5"]
+[ext_resource type="PackedScene" uid="uid://c5p65h8j22ixm" path="res://Scenes/PuyoDeckEditing/puyo_option_button.tscn" id="2_3eemi"]
 [ext_resource type="Texture2D" uid="uid://dkpsalijf0ray" path="res://Art/puyo elements/Puyo_Yellow.png" id="3_habd2"]
+[ext_resource type="Texture2D" uid="uid://bh56uxpmn85gw" path="res://Art/puyo elements/Puyo_Blue.png" id="5_qwv13"]
+[ext_resource type="Texture2D" uid="uid://ccfdjr3e4b7wc" path="res://Art/puyo elements/Puyo_Green.png" id="6_ffg4p"]
 
 [node name="PuyoDeckManager" type="Node2D"]
 script = ExtResource("1_bbdny")
@@ -26,6 +29,7 @@ grow_vertical = 2
 text = "swap your thang"
 
 [node name="PuyoChoicesFrame" type="Control" parent="PuyoDeckEditorInterface"]
+visible = false
 layout_mode = 3
 anchor_left = 0.047
 anchor_top = 0.077
@@ -62,374 +66,229 @@ theme_override_constants/h_separation = 30
 theme_override_constants/v_separation = 20
 columns = 5
 
-[node name="PuyoOption" type="Button" parent="PuyoDeckEditorInterface/PuyoChoicesFrame/PuyoChoices"]
+[node name="PuyoOption" parent="PuyoDeckEditorInterface/PuyoChoicesFrame/PuyoChoices" instance=ExtResource("2_3eemi")]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
 
-[node name="Puyo1" type="TextureRect" parent="PuyoDeckEditorInterface/PuyoChoicesFrame/PuyoChoices/PuyoOption"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -68.5
-offset_top = -150.5
-offset_right = 70.5
-offset_bottom = -11.5
+[node name="PuyoOption2" parent="PuyoDeckEditorInterface/PuyoChoicesFrame/PuyoChoices" instance=ExtResource("2_3eemi")]
+layout_mode = 2
+
+[node name="PuyoOption3" parent="PuyoDeckEditorInterface/PuyoChoicesFrame/PuyoChoices" instance=ExtResource("2_3eemi")]
+layout_mode = 2
+
+[node name="PuyoOption4" parent="PuyoDeckEditorInterface/PuyoChoicesFrame/PuyoChoices" instance=ExtResource("2_3eemi")]
+layout_mode = 2
+
+[node name="PuyoOption5" parent="PuyoDeckEditorInterface/PuyoChoicesFrame/PuyoChoices" instance=ExtResource("2_3eemi")]
+layout_mode = 2
+
+[node name="PuyoOption6" parent="PuyoDeckEditorInterface/PuyoChoicesFrame/PuyoChoices" instance=ExtResource("2_3eemi")]
+layout_mode = 2
+
+[node name="PuyoOption7" parent="PuyoDeckEditorInterface/PuyoChoicesFrame/PuyoChoices" instance=ExtResource("2_3eemi")]
+layout_mode = 2
+
+[node name="PuyoOption8" parent="PuyoDeckEditorInterface/PuyoChoicesFrame/PuyoChoices" instance=ExtResource("2_3eemi")]
+layout_mode = 2
+
+[node name="PuyoOption9" parent="PuyoDeckEditorInterface/PuyoChoicesFrame/PuyoChoices" instance=ExtResource("2_3eemi")]
+layout_mode = 2
+
+[node name="PuyoOption10" parent="PuyoDeckEditorInterface/PuyoChoicesFrame/PuyoChoices" instance=ExtResource("2_3eemi")]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PuyoDeckEditorInterface/PuyoChoicesFrame"]
+layout_mode = 0
+offset_left = 396.6
+offset_top = -51.0
+offset_right = 624.6
+offset_bottom = -11.0
+text = "Choose a pair to edit"
+
+[node name="SelectedPuyoFrame" type="Control" parent="PuyoDeckEditorInterface"]
+layout_mode = 3
+anchor_left = 0.076
+anchor_top = 0.101
+anchor_right = 0.924
+anchor_bottom = 0.899
+offset_left = -0.200005
+offset_top = 0.0999985
+offset_right = 0.199951
+offset_bottom = -0.100037
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_2w0y5")
-stretch_mode = 5
 
-[node name="Puyo2" type="TextureRect" parent="PuyoDeckEditorInterface/PuyoChoicesFrame/PuyoChoices/PuyoOption"]
+[node name="Background2" type="ColorRect" parent="PuyoDeckEditorInterface/SelectedPuyoFrame"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.45098, 0.345098, 0.34902)
+
+[node name="PuyoButton1" type="Button" parent="PuyoDeckEditorInterface/SelectedPuyoFrame"]
+layout_mode = 1
+anchors_preset = 4
 anchor_top = 0.5
-anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -68.5
-offset_top = 12.5
-offset_right = 70.5
-offset_bottom = 151.5
+offset_left = 113.0
+offset_top = -230.0
+offset_right = 297.0
+offset_bottom = 1.0
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="PuyoDeckEditorInterface/SelectedPuyoFrame/PuyoButton1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_habd2")
 stretch_mode = 5
 
-[node name="PuyoOption2" type="Button" parent="PuyoDeckEditorInterface/PuyoChoicesFrame/PuyoChoices"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="Puyo1" type="TextureRect" parent="PuyoDeckEditorInterface/PuyoChoicesFrame/PuyoChoices/PuyoOption2"]
+[node name="PuyoButton2" type="Button" parent="PuyoDeckEditorInterface/SelectedPuyoFrame"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
+anchors_preset = 4
 anchor_top = 0.5
-anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -68.5
-offset_top = -150.5
-offset_right = 70.5
-offset_bottom = -11.5
+offset_left = 113.0
+offset_top = 14.0
+offset_right = 297.0
+offset_bottom = 245.0
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="PuyoDeckEditorInterface/SelectedPuyoFrame/PuyoButton2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_2w0y5")
 stretch_mode = 5
 
-[node name="Puyo2" type="TextureRect" parent="PuyoDeckEditorInterface/PuyoChoicesFrame/PuyoChoices/PuyoOption2"]
+[node name="RichTextLabel" type="RichTextLabel" parent="PuyoDeckEditorInterface/SelectedPuyoFrame"]
+layout_mode = 0
+offset_left = 52.0
+offset_top = 51.0
+offset_right = 319.0
+offset_bottom = 91.0
+text = "choose a puyo to edit"
+
+[node name="SelectedTestLabel" type="RichTextLabel" parent="PuyoDeckEditorInterface/SelectedPuyoFrame"]
+visible = false
+layout_mode = 0
+offset_left = 329.0
+offset_top = 226.0
+offset_right = 491.0
+offset_bottom = 266.0
+text = "selected"
+
+[node name="SelectedTestLabel2" type="RichTextLabel" parent="PuyoDeckEditorInterface/SelectedPuyoFrame"]
+visible = false
+layout_mode = 0
+offset_left = 329.0
+offset_top = 476.0
+offset_right = 491.0
+offset_bottom = 516.0
+text = "selected"
+
+[node name="PuyoSwapButtons" type="GridContainer" parent="PuyoDeckEditorInterface/SelectedPuyoFrame"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -68.5
-offset_top = 12.5
-offset_right = 70.5
-offset_bottom = 151.5
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 469.0
+offset_top = 76.0
+offset_right = -65.0
+offset_bottom = -76.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("3_habd2")
-stretch_mode = 5
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+columns = 2
 
-[node name="PuyoOption3" type="Button" parent="PuyoDeckEditorInterface/PuyoChoicesFrame/PuyoChoices"]
+[node name="BlueSwapButton" type="Button" parent="PuyoDeckEditorInterface/SelectedPuyoFrame/PuyoSwapButtons"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Puyo1" type="TextureRect" parent="PuyoDeckEditorInterface/PuyoChoicesFrame/PuyoChoices/PuyoOption3"]
+[node name="TextureRect" type="TextureRect" parent="PuyoDeckEditorInterface/SelectedPuyoFrame/PuyoSwapButtons/BlueSwapButton"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -68.5
-offset_top = -150.5
-offset_right = 70.5
-offset_bottom = -11.5
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_qwv13")
+stretch_mode = 5
+
+[node name="GreenSwapButton" type="Button" parent="PuyoDeckEditorInterface/SelectedPuyoFrame/PuyoSwapButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="PuyoDeckEditorInterface/SelectedPuyoFrame/PuyoSwapButtons/GreenSwapButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_ffg4p")
+stretch_mode = 5
+
+[node name="RedSwapButton" type="Button" parent="PuyoDeckEditorInterface/SelectedPuyoFrame/PuyoSwapButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="PuyoDeckEditorInterface/SelectedPuyoFrame/PuyoSwapButtons/RedSwapButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_2w0y5")
 stretch_mode = 5
 
-[node name="Puyo2" type="TextureRect" parent="PuyoDeckEditorInterface/PuyoChoicesFrame/PuyoChoices/PuyoOption3"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -68.5
-offset_top = 12.5
-offset_right = 70.5
-offset_bottom = 151.5
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("3_habd2")
-stretch_mode = 5
-
-[node name="PuyoOption4" type="Button" parent="PuyoDeckEditorInterface/PuyoChoicesFrame/PuyoChoices"]
+[node name="YellowSwapButton" type="Button" parent="PuyoDeckEditorInterface/SelectedPuyoFrame/PuyoSwapButtons"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Puyo1" type="TextureRect" parent="PuyoDeckEditorInterface/PuyoChoicesFrame/PuyoChoices/PuyoOption4"]
+[node name="TextureRect" type="TextureRect" parent="PuyoDeckEditorInterface/SelectedPuyoFrame/PuyoSwapButtons/YellowSwapButton"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -68.5
-offset_top = -150.5
-offset_right = 70.5
-offset_bottom = -11.5
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("2_2w0y5")
-stretch_mode = 5
-
-[node name="Puyo2" type="TextureRect" parent="PuyoDeckEditorInterface/PuyoChoicesFrame/PuyoChoices/PuyoOption4"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -68.5
-offset_top = 12.5
-offset_right = 70.5
-offset_bottom = 151.5
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_habd2")
 stretch_mode = 5
 
-[node name="PuyoOption5" type="Button" parent="PuyoDeckEditorInterface/PuyoChoicesFrame/PuyoChoices"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="Puyo1" type="TextureRect" parent="PuyoDeckEditorInterface/PuyoChoicesFrame/PuyoChoices/PuyoOption5"]
+[node name="FinishedButton" type="Button" parent="PuyoDeckEditorInterface/SelectedPuyoFrame"]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = 7
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -68.5
-offset_top = -150.5
-offset_right = 70.5
-offset_bottom = -11.5
+anchor_bottom = 1.0
+offset_left = -93.0
+offset_top = -43.0
+offset_right = 111.0
+offset_bottom = -11.0
 grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("2_2w0y5")
-stretch_mode = 5
-
-[node name="Puyo2" type="TextureRect" parent="PuyoDeckEditorInterface/PuyoChoicesFrame/PuyoChoices/PuyoOption5"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -68.5
-offset_top = 12.5
-offset_right = 70.5
-offset_bottom = 151.5
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("3_habd2")
-stretch_mode = 5
-
-[node name="PuyoOption6" type="Button" parent="PuyoDeckEditorInterface/PuyoChoicesFrame/PuyoChoices"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="Puyo1" type="TextureRect" parent="PuyoDeckEditorInterface/PuyoChoicesFrame/PuyoChoices/PuyoOption6"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -68.5
-offset_top = -150.5
-offset_right = 70.5
-offset_bottom = -11.5
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("2_2w0y5")
-stretch_mode = 5
-
-[node name="Puyo2" type="TextureRect" parent="PuyoDeckEditorInterface/PuyoChoicesFrame/PuyoChoices/PuyoOption6"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -68.5
-offset_top = 12.5
-offset_right = 70.5
-offset_bottom = 151.5
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("3_habd2")
-stretch_mode = 5
-
-[node name="PuyoOption7" type="Button" parent="PuyoDeckEditorInterface/PuyoChoicesFrame/PuyoChoices"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="Puyo1" type="TextureRect" parent="PuyoDeckEditorInterface/PuyoChoicesFrame/PuyoChoices/PuyoOption7"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -68.5
-offset_top = -150.5
-offset_right = 70.5
-offset_bottom = -11.5
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("2_2w0y5")
-stretch_mode = 5
-
-[node name="Puyo2" type="TextureRect" parent="PuyoDeckEditorInterface/PuyoChoicesFrame/PuyoChoices/PuyoOption7"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -68.5
-offset_top = 12.5
-offset_right = 70.5
-offset_bottom = 151.5
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("3_habd2")
-stretch_mode = 5
-
-[node name="PuyoOption8" type="Button" parent="PuyoDeckEditorInterface/PuyoChoicesFrame/PuyoChoices"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="Puyo1" type="TextureRect" parent="PuyoDeckEditorInterface/PuyoChoicesFrame/PuyoChoices/PuyoOption8"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -68.5
-offset_top = -150.5
-offset_right = 70.5
-offset_bottom = -11.5
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("2_2w0y5")
-stretch_mode = 5
-
-[node name="Puyo2" type="TextureRect" parent="PuyoDeckEditorInterface/PuyoChoicesFrame/PuyoChoices/PuyoOption8"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -68.5
-offset_top = 12.5
-offset_right = 70.5
-offset_bottom = 151.5
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("3_habd2")
-stretch_mode = 5
-
-[node name="PuyoOption9" type="Button" parent="PuyoDeckEditorInterface/PuyoChoicesFrame/PuyoChoices"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="Puyo1" type="TextureRect" parent="PuyoDeckEditorInterface/PuyoChoicesFrame/PuyoChoices/PuyoOption9"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -68.5
-offset_top = -150.5
-offset_right = 70.5
-offset_bottom = -11.5
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("2_2w0y5")
-stretch_mode = 5
-
-[node name="Puyo2" type="TextureRect" parent="PuyoDeckEditorInterface/PuyoChoicesFrame/PuyoChoices/PuyoOption9"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -68.5
-offset_top = 12.5
-offset_right = 70.5
-offset_bottom = 151.5
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("3_habd2")
-stretch_mode = 5
-
-[node name="PuyoOption10" type="Button" parent="PuyoDeckEditorInterface/PuyoChoicesFrame/PuyoChoices"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="Puyo1" type="TextureRect" parent="PuyoDeckEditorInterface/PuyoChoicesFrame/PuyoChoices/PuyoOption10"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -68.5
-offset_top = -150.5
-offset_right = 70.5
-offset_bottom = -11.5
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("2_2w0y5")
-stretch_mode = 5
-
-[node name="Puyo2" type="TextureRect" parent="PuyoDeckEditorInterface/PuyoChoicesFrame/PuyoChoices/PuyoOption10"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -68.5
-offset_top = 12.5
-offset_right = 70.5
-offset_bottom = 151.5
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("3_habd2")
-stretch_mode = 5
+grow_vertical = 0
+text = "finished"
 
 [connection signal="pressed" from="PuyoDeckEditorInterface/Button" to="." method="_on_test_button_pressed"]
+[connection signal="pressed" from="PuyoDeckEditorInterface/SelectedPuyoFrame/PuyoButton1" to="." method="_on_puyo_button_1_pressed"]
+[connection signal="pressed" from="PuyoDeckEditorInterface/SelectedPuyoFrame/PuyoButton2" to="." method="_on_puyo_button_2_pressed"]
+[connection signal="pressed" from="PuyoDeckEditorInterface/SelectedPuyoFrame/PuyoSwapButtons/BlueSwapButton" to="." method="_on_blue_swap_button_pressed"]
+[connection signal="pressed" from="PuyoDeckEditorInterface/SelectedPuyoFrame/PuyoSwapButtons/GreenSwapButton" to="." method="_on_green_swap_button_pressed"]
+[connection signal="pressed" from="PuyoDeckEditorInterface/SelectedPuyoFrame/PuyoSwapButtons/RedSwapButton" to="." method="_on_red_swap_button_pressed"]
+[connection signal="pressed" from="PuyoDeckEditorInterface/SelectedPuyoFrame/PuyoSwapButtons/YellowSwapButton" to="." method="_on_yellow_swap_button_pressed"]
+[connection signal="pressed" from="PuyoDeckEditorInterface/SelectedPuyoFrame/FinishedButton" to="." method="_on_finished_button_pressed"]

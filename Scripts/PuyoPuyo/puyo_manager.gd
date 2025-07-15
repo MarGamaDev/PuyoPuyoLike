@@ -90,3 +90,6 @@ func get_global_grid_position(pos : Vector2i) -> Vector2:
 
 func _on_puyo_game_manager_update_puyo_pool(puyos: Array[Array]) -> void:
 	update_puyo_pool.emit(puyos)
+
+func _on_map_manager_open_deckuilding_menu() -> void:
+	game_manager.get_puyo_pool()

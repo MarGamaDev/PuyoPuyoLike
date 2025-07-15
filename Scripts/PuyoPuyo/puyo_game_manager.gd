@@ -59,7 +59,7 @@ func _ready():
 	player_manager.player_puyo_initialize(grid, square_size, puyo_scene)
 	
 	print("remove this line from puyo_game_manager later")
-	get_puyo_pool()
+	#get_puyo_pool()
 
 func start_game():
 	event_queue_manager.start_flag = true
@@ -363,6 +363,7 @@ func delete_player():
 	player_manager.delete_player()
 
 func get_puyo_pool():
+	print("puyo pool updated")
 	update_puyo_pool.emit($PlayerPuyoManager/PuyoPoolManager.puyo_pool)
 
 ##signal relays

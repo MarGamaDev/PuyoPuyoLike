@@ -5,5 +5,5 @@
 [resource]
 script = ExtResource("1_dlwbg")
 segment_name = "test 4 [bsrb]"
-map_nodes = Array[int]([0, 2, 3, 0])
+map_nodes = Array[int]([3, 2, 3, 0])
 metadata/_custom_type_script = "uid://ec3smkftjhjp"
