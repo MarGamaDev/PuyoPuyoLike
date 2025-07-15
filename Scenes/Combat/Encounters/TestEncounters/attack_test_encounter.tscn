@@ -8,3 +8,4 @@ script = ExtResource("1_oe6c0")
 metadata/_custom_type_script = "uid://c086ewc7gw56k"
 
 [node name="AttackTestEnemy" parent="." instance=ExtResource("2_11csg")]
+position = Vector2(-2, -2)

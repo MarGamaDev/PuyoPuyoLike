@@ -16,10 +16,10 @@ metadata/_custom_type_script = "uid://c27m7mkd1up2"
 
 [sub_resource type="Resource" id="Resource_r7q76"]
 script = ExtResource("4_kene6")
-damage = 10
+damage = 5
 number_of_swings = 1
-number_of_turns_till_swing = 10
-attack_type = 11
+number_of_turns_till_swing = 3
+attack_type = 10
 metadata/_custom_type_script = "uid://6v5kccermtmr"
 
 [node name="AttackTestEnemy" instance=ExtResource("1_5pjuc")]

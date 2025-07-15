@@ -89,15 +89,13 @@ func determine_next_attack() -> void:
 			attack_index = randi_range(0, attacks.size() - 1)
 	current_attack = attacks[attack_index]
 	if current_attack.attack_type == EnemyAttack.EnemyAttackType.REPLACE_CIRCLE_RANDOM:
-		circle_next_attack_target = Vector2i(randi_range(0,5), randi_range(0,11))
+		circle_next_attack_target = Vector2i(randi_range(1,4), randi_range(2,9))
 		current_attack.circle_target = circle_next_attack_target
-		print("next circle target: %s" % circle_next_attack_target)
 		var screen_circle_target_position = combat_manager.get_grid_node_global_position(circle_next_attack_target)
 		#var aiming_reticle_scene : PackedScene = load("res://Scenes/Combat/Enemy/enemy_single_target_attack_reticle.tscn")
 		#var aiming_reticle : EnemySingleTargetAttackReticle = aiming_reticle_scene.instantiate()
 		#add_child(aiming_reticle)
 		#aiming_reticle.create_reticle(screen_circle_target_position)
-		print("global position: %s" % screen_circle_target_position)
 
 func unleash_attack() ->void:
 	print(current_attack.circle_target)
@@ -141,7 +139,6 @@ func add_to_timer(amount_to_add : int) -> void:
 	attack_countdown = attack_countdown - amount_to_add
 
 func update_damage_visually():
-	#print(damage_number_effect_queue.size())
 	if damage_number_effect_queue.size() == 0:
 		return
 	else:

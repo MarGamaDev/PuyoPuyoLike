@@ -28,7 +28,6 @@ func _physics_process(_delta: float) -> void:
 func on_game_paused():
 	$PauseMenu.show()
 	await get_tree().create_timer(0.05).timeout
-	#print("game paused")
 	pause_delay_flag = true
 	fill_spell_screen()
 	fill_relic_screen()

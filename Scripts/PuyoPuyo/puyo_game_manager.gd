@@ -137,7 +137,6 @@ func set_node_neighbours(grid_node : GridNode):
 
 #state machine for grid updating.  called whenever a puyo is placed
 func grid_state_check():
-#	print("down tick 1 called")
 	down_tick()
 	await down_check_finished
 	#player_fall_flag = false
@@ -221,7 +220,6 @@ func down_tick() -> bool:
 		for i : Array in to_move:
 			move_puyo(i[0], i[1])
 		#await get_tree().create_timer(down_tick_speed).timeout
-		#print("down_tick 3 called")
 		down_tick()
 	else:
 		player_manager.player_create_flag = true
@@ -297,7 +295,6 @@ func check_board(puyo_groups : Array) -> bool:
 				j.puyo.play_blink()
 		await get_tree().create_timer(0.5).timeout
 		chain_stage_pop.emit(puyo_groups, chain_length)
-		#print("down_tick 4 called")
 		down_tick()
 		await down_check_finished
 		pop_puyos(puyo_groups)
@@ -327,7 +324,6 @@ func update_puyo_queue_visuals(puyo_queue : Array):
 #called whenever a player would be created. if they can't be created, lose the game
 func loss_check() -> bool:
 	if grid[int (grid_width / 2) - 1][0].is_holding_puyo:
-		#print("down_tick 5 called")
 		down_tick()
 		await down_check_finished
 		if grid[int (grid_width / 2) - 1][0].is_holding_puyo:
@@ -369,11 +365,9 @@ func _on_junk_creator_junk_created(amount: int) -> void:
 	junk_wait_flag = true
 
 func _on_event_end_game() -> void:
-	#print("down_tick 6 called")
 	down_tick()
 	await down_check_finished
 	end_game()
-	pass # Replace with function body.
 
 func _on_player_life_loss() -> void:
 	life_loss.emit()

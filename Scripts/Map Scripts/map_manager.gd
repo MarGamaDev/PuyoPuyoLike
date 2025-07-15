@@ -63,7 +63,6 @@ func _on_attempt_to_move_to_next_node():
 		show_combat.emit()
 		first_battle_flag = false
 		load_first_battle.emit(false)
-		#print("first battle started")
 		node_queue = [MapNode.MAP_NODE_TYPE.ADVANCE_NODE]
 	else:
 		var next_node_type : MapNode.MAP_NODE_TYPE = node_queue.pop_front()
@@ -78,7 +77,6 @@ func _on_attempt_to_move_to_next_node():
 				if endless_flag == false:
 					if boss_fight_counter >= difficulty_thresholds[0]:
 						increase_difficulty_level.emit()
-						#print("difficulty increased")
 						difficulty_thresholds.pop_front()
 					if difficulty_thresholds.is_empty():
 						endless_flag = true

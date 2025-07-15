@@ -49,13 +49,10 @@ static func process_attack(attack_damage : int, enemy_attack : EnemyAttack) -> P
 		EnemyAttack.EnemyAttackType.REPLACE_YELLOW:
 			return PuyoQueueEvent.create(PuyoQueueEvent.EVENT_TYPE.COLOR_REPLACE, 0,[], Puyo.PUYO_TYPE.YELLOW, Puyo.PUYO_TYPE.JUNK)
 		EnemyAttack.EnemyAttackType.REPLACE_CIRCLE_RANDOM:
-			print("circle target")
 			var new_positions : Array[Vector2i] = create_circle_positions(enemy_attack.circle_target, attack_damage)
 			return PuyoQueueEvent.create(PuyoQueueEvent.EVENT_TYPE.JUNK_REPLACE, 1, new_positions)
 		EnemyAttack.EnemyAttackType.REPLACE_RANDOM:
-			print("replace random")
 			var new_positions : Array[Vector2i] = generate_random_replace_attack_positions(attack_damage)
-			print(new_positions)
 			return PuyoQueueEvent.create(PuyoQueueEvent.EVENT_TYPE.JUNK_REPLACE, 1, new_positions)
 			#return PuyoQueueEvent.create()
 		_:
@@ -72,9 +69,7 @@ static func create_circle_positions(circle_center : Vector2i, junk_amount : int)
 	if is_equal_approx(t_calc, roundf(t_calc)):
 		traversal_count = int(t_calc)
 	else:
-		print("its a little off")
 		traversal_count = int(t_calc) + 1
-	print("traversal count %s" % traversal_count)
 	
 	##SECOND: find possible positions
 	find_nodes_around_center(circle_center, traversal_count)

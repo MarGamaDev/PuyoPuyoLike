@@ -31,7 +31,6 @@ func pause_puyo():
 	game_manager.delete_player()
 
 func lose_life():
-	#print("life lost")
 	game_manager.end_game()
 	game_manager.hide()
 	life_lost.emit()

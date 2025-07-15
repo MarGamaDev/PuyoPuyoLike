@@ -235,7 +235,7 @@ func player_rotate():
 		player_snap_move(move_check)
 	else:
 		pass
-		#print("cant rotate")
+		#can't rotate
 
 func fill_puyo_queue():
 	while puyo_queue.size() <= 2:
