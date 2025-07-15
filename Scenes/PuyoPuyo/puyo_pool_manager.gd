@@ -43,5 +43,9 @@ func get_pool() -> Array[Array]:
 	return new_array
 
 func change_puyo_pool(pair_to_change : Array, to_change_to : Array):
+	#print("puyo pool before: ")
+	#print(puyo_pool)
 	var pair_index = puyo_pool.find(pair_to_change)
 	puyo_pool[pair_index] = to_change_to
+	#print("puyo pool changed: ")
+	#print(puyo_pool)

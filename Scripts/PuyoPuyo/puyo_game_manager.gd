@@ -57,9 +57,6 @@ func _ready():
 	#initializing new subnodes
 	junk_creator.junk_initialize(puyo_scene, grid)
 	player_manager.player_puyo_initialize(grid, square_size, puyo_scene)
-	
-	print("remove this line from puyo_game_manager later")
-	#get_puyo_pool()
 
 func start_game():
 	event_queue_manager.start_flag = true
@@ -363,7 +360,6 @@ func delete_player():
 	player_manager.delete_player()
 
 func get_puyo_pool():
-	print("puyo pool updated")
 	update_puyo_pool.emit($PlayerPuyoManager/PuyoPoolManager.get_pool())
 
 func change_puyo_pool(pair_to_change : Array, to_change_to : Array):

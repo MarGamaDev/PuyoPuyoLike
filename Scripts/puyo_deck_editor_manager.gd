@@ -63,6 +63,24 @@ func initialize_puyo_choices():
 		puyo_texture_rects[1].texture = puyo_sprites[current_pair[1]]
 		button_counter += 1
 		puyo_option.initialize_button(current_pair)
+	
+	var blue_count = 0
+	var yellow_count = 0
+	var red_count = 0
+	var green_count = 0
+	for i in puyo_pool:
+		for j in i:
+			match j:
+				2:
+					blue_count += 1
+				3: 
+					green_count += 1
+				4:
+					red_count += 1
+				5:
+					yellow_count +=1
+					
+	$PuyoDeckEditorInterface/PuyoStatLabel.text = "black bile: " + str(blue_count) +", phlegm: " + str(green_count) + ", blood: " + str(red_count) + ", yellow bile: " + str(yellow_count)
 
 func _on_puyo_pool_updated(puyos: Array[Array]) -> void:
 	puyo_pool = puyos
@@ -105,11 +123,30 @@ func _on_yellow_swap_button_pressed() -> void:
 	swap_colors(5)
 
 func _on_finished_button_pressed() -> void:
-	print(pre_change_pair)
-	print(current_selected_pair)
 	deckbuilding_interface.hide()
 	$PuyoDeckEditorInterface/SelectedPuyoFrame/SelectedTestLabel.hide()
 	$PuyoDeckEditorInterface/SelectedPuyoFrame/SelectedTestLabel2.hide()
 	on_change_puyo_pool.emit(pre_change_pair, current_selected_pair)
 	on_puyo_deckbuiling_over.emit()
 	
+
+
+func _on_puyo_back_button_pressed() -> void:
+	$PuyoDeckEditorInterface/SelectedPuyoFrame/SelectedTestLabel.hide()
+	$PuyoDeckEditorInterface/SelectedPuyoFrame/SelectedTestLabel2.hide()
+	current_selected_pair[1] = pre_change_pair[1]
+	selected_puyo_button_textures[1].texture = puyo_sprites[pre_change_pair[1]]
+	current_selected_pair[0] = pre_change_pair[0]
+	selected_puyo_button_textures[0].texture = puyo_sprites[pre_change_pair[0]]
+	current_selected_pair = []
+	puyo_selected_flag = false
+	deckbuilding_interface.show()
+	pair_selection_window.show()
+	puyo_selection_window.hide()
+
+
+func _on_skip_button_pressed() -> void:
+	deckbuilding_interface.hide()
+	$PuyoDeckEditorInterface/SelectedPuyoFrame/SelectedTestLabel.hide()
+	$PuyoDeckEditorInterface/SelectedPuyoFrame/SelectedTestLabel2.hide()
+	on_puyo_deckbuiling_over.emit()
