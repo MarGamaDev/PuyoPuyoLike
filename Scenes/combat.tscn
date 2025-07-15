@@ -387,6 +387,7 @@ libraries = {
 [connection signal="open_reward_menu" from="MapManager" to="SoundManager" method="_on_rest_stop"]
 [connection signal="show_combat" from="MapManager" to="EncounterManager" method="show"]
 [connection signal="start_combat" from="MapManager" to="." method="start_combat"]
+[connection signal="on_change_puyo_pool" from="PuyoDeckManager" to="PuyoManager" method="on_change_puyo_pool"]
 [connection signal="on_puyo_deckbuiling_over" from="PuyoDeckManager" to="MapManager" method="_on_reward_chosen_or_skipped"]
 
 [editable path="CombatEffectsManager"]

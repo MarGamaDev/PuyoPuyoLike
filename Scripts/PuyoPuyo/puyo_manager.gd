@@ -93,3 +93,7 @@ func _on_puyo_game_manager_update_puyo_pool(puyos: Array[Array]) -> void:
 
 func _on_map_manager_open_deckuilding_menu() -> void:
 	game_manager.get_puyo_pool()
+
+
+func on_change_puyo_pool(pair_to_change: Array, to_change_to: Array) -> void:
+	game_manager.change_puyo_pool(pair_to_change, to_change_to)

@@ -3,6 +3,7 @@ extends Node2D
 class_name PuyoDeckManager
 
 signal on_puyo_deckbuiling_over
+signal on_change_puyo_pool(pair_to_change : Array, to_change_to : Array)
 
 @onready var deckbuilding_interface : CanvasLayer = $PuyoDeckEditorInterface
 @onready var pair_selection_window : Control = $PuyoDeckEditorInterface/PuyoChoicesFrame
@@ -13,6 +14,9 @@ var puyo_pool : Array[Array] = []
 var current_selected_pair : Array = []
 var current_selected_button_index = 0 #can be 0 or 1
 var puyo_selected_flag = false
+var pre_change_pair = [0,0]
+
+@export var single_swap_flag = true
 
 var puyo_sprites = {
 	2 : preload("res://Art/puyo elements/Puyo_Blue.png"),
@@ -47,6 +51,8 @@ func _on_pair_chosen(pair : Array) -> void:
 	selected_puyo_button_textures[0].texture = puyo_sprites[pair[0]]
 	selected_puyo_button_textures[1].texture = puyo_sprites[pair[1]]
 	current_selected_pair = pair
+	pre_change_pair[0] = pair[0]
+	pre_change_pair[1] = pair[1]
 	
 func initialize_puyo_choices():
 	var button_counter = 0
@@ -68,12 +74,18 @@ func _on_puyo_button_1_pressed() -> void:
 	current_selected_button_index = 0
 	$PuyoDeckEditorInterface/SelectedPuyoFrame/SelectedTestLabel.show()
 	$PuyoDeckEditorInterface/SelectedPuyoFrame/SelectedTestLabel2.hide()
+	if single_swap_flag:
+		current_selected_pair[1] = pre_change_pair[1]
+		selected_puyo_button_textures[1].texture = puyo_sprites[pre_change_pair[1]]
 
 func _on_puyo_button_2_pressed() -> void:
 	puyo_selected_flag = true
 	current_selected_button_index = 1
 	$PuyoDeckEditorInterface/SelectedPuyoFrame/SelectedTestLabel.hide()
 	$PuyoDeckEditorInterface/SelectedPuyoFrame/SelectedTestLabel2.show()
+	if single_swap_flag:
+		current_selected_pair[0] = pre_change_pair[0]
+		selected_puyo_button_textures[0].texture = puyo_sprites[pre_change_pair[0]]
 
 func swap_colors(new_color : int):
 	if puyo_selected_flag:
@@ -93,9 +105,11 @@ func _on_yellow_swap_button_pressed() -> void:
 	swap_colors(5)
 
 func _on_finished_button_pressed() -> void:
+	print(pre_change_pair)
 	print(current_selected_pair)
 	deckbuilding_interface.hide()
 	$PuyoDeckEditorInterface/SelectedPuyoFrame/SelectedTestLabel.hide()
 	$PuyoDeckEditorInterface/SelectedPuyoFrame/SelectedTestLabel2.hide()
+	on_change_puyo_pool.emit(pre_change_pair, current_selected_pair)
 	on_puyo_deckbuiling_over.emit()
 	

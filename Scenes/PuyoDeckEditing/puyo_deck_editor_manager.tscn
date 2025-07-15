@@ -173,8 +173,8 @@ layout_mode = 0
 offset_left = 52.0
 offset_top = 51.0
 offset_right = 319.0
-offset_bottom = 91.0
-text = "choose a puyo to edit"
+offset_bottom = 105.0
+text = "choose a puyo to edit (currently only able to edit one)"
 
 [node name="SelectedTestLabel" type="RichTextLabel" parent="PuyoDeckEditorInterface/SelectedPuyoFrame"]
 visible = false
