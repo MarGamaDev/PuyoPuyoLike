@@ -41,7 +41,6 @@ func process_queue() -> bool:
 			event_create_junk_random.emit(next_event.junk_number)
 			#create_junk_random(next_event.junk_number)
 		elif next_event.event_type == PuyoQueueEvent.EVENT_TYPE.JUNK_REPLACE:
-			print(next_event.junk_positions)
 			event_replace_junk_specific.emit(next_event.junk_positions)
 			#replace_junk_specific(next_event.junk_positions)
 		elif next_event.event_type == PuyoQueueEvent.EVENT_TYPE.JUNK_SLAM:

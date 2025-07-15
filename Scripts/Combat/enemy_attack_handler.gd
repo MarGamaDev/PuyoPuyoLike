@@ -54,7 +54,9 @@ static func process_attack(attack_damage : int, enemy_attack : EnemyAttack) -> P
 			return PuyoQueueEvent.create(PuyoQueueEvent.EVENT_TYPE.JUNK_REPLACE, 1, new_positions)
 		EnemyAttack.EnemyAttackType.REPLACE_RANDOM:
 			print("replace random")
-			return PuyoQueueEvent.create(PuyoQueueEvent.EVENT_TYPE.JUNK_RANDOM, 3)
+			var new_positions : Array[Vector2i] = generate_random_replace_attack_positions(attack_damage)
+			print(new_positions)
+			return PuyoQueueEvent.create(PuyoQueueEvent.EVENT_TYPE.JUNK_REPLACE, 1, new_positions)
 			#return PuyoQueueEvent.create()
 		_:
 			print("no enemy attack type defined?")
@@ -123,3 +125,15 @@ static func farthest_from_center_sort(vector_a : Vector2i, vector_b : Vector2i) 
 		return true
 	else:
 		return false
+
+static func generate_random_replace_attack_positions(junk_amount : int) -> Array[Vector2i]:
+	var positions_to_fill : Array[Vector2i] = []
+	for i in range(0, junk_amount):
+		var new_position_check_flag = true
+		var new_position : Vector2i
+		while new_position_check_flag:
+			new_position = Vector2i(randi_range(0, grid_width - 1), randi_range(0, grid_height - 1))
+			if positions_to_fill.has(new_position) == false:
+				positions_to_fill.append(new_position)
+				new_position_check_flag = false
+	return positions_to_fill

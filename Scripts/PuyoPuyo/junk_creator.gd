@@ -15,7 +15,6 @@ func junk_initialize(new_puyo_scene : PackedScene, new_grid : Array):
 
 #used for specific junk patterns that fall from the top
 func create_junk_specific(junk_positions : Array[Vector2i]):
-	junk_created.emit(junk_positions.size())
 	#junk positions will be from left to right top to bottom
 	for i in junk_positions:
 		var junk_puyo : Puyo = puyo_scene.instantiate()
@@ -24,6 +23,8 @@ func create_junk_specific(junk_positions : Array[Vector2i]):
 			node_to_fill.add_child(junk_puyo)
 			node_to_fill.set_puyo(junk_puyo)
 			node_to_fill.set_type(Puyo.PUYO_TYPE.JUNK)
+	#await get_tree().create_timer(0,2)
+	junk_created.emit(junk_positions.size())
 
 func create_junk_row(junk_amount: int):
 	junk_created.emit(junk_amount)

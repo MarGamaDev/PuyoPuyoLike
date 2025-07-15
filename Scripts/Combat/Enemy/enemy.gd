@@ -39,6 +39,8 @@ var enemy_position : Vector2
 
 var circle_next_attack_target : Vector2
 
+var square_size = 50.0
+
 func _ready() -> void:
 	instance_data = enemy_data.duplicate(true);
 	instance_data.health += DifficultyManager.get_health_addition()
@@ -91,6 +93,10 @@ func determine_next_attack() -> void:
 		current_attack.circle_target = circle_next_attack_target
 		print("next circle target: %s" % circle_next_attack_target)
 		var screen_circle_target_position = combat_manager.get_grid_node_global_position(circle_next_attack_target)
+		#var aiming_reticle_scene : PackedScene = load("res://Scenes/Combat/Enemy/enemy_single_target_attack_reticle.tscn")
+		#var aiming_reticle : EnemySingleTargetAttackReticle = aiming_reticle_scene.instantiate()
+		#add_child(aiming_reticle)
+		#aiming_reticle.create_reticle(screen_circle_target_position)
 		print("global position: %s" % screen_circle_target_position)
 
 func unleash_attack() ->void:
