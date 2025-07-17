@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://3orwgby4xlkg" path="res://Placeholder Art/map_node_images/boss_location.png" id="7_jhiry"]
 
 [node name="MapManager" type="Node2D"]
+visible = false
 script = ExtResource("1_hlkt8")
 test_segment = ExtResource("2_yya7n")
 
@@ -18,6 +19,7 @@ metadata/_custom_type_script = "uid://bpj7cqyi7y4ln"
 
 [node name="MapScreen" type="CanvasLayer" parent="." node_paths=PackedStringArray("option_buttons")]
 layer = 3
+visible = false
 script = ExtResource("4_vxlaf")
 option_buttons = [NodePath("NormalOptions/MapOption1"), NodePath("NormalOptions/MapOption2"), NodePath("NormalOptions/MapOption3")]
 

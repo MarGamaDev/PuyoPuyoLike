@@ -29,6 +29,7 @@ grow_vertical = 2
 text = "swap your thang"
 
 [node name="PuyoChoicesFrame" type="Control" parent="PuyoDeckEditorInterface"]
+visible = false
 layout_mode = 3
 anchor_left = 0.047
 anchor_top = 0.077
@@ -101,6 +102,7 @@ offset_left = 732.6
 offset_top = -1.0
 offset_right = 960.6
 offset_bottom = 39.0
+bbcode_enabled = true
 text = "Choose a pair to edit"
 
 [node name="SkipButton" type="Button" parent="PuyoDeckEditorInterface/PuyoChoicesFrame"]
@@ -188,6 +190,7 @@ offset_left = 52.0
 offset_top = 51.0
 offset_right = 319.0
 offset_bottom = 105.0
+bbcode_enabled = true
 text = "choose a puyo to edit (currently only able to edit one)"
 
 [node name="SelectedTestLabel" type="RichTextLabel" parent="PuyoDeckEditorInterface/SelectedPuyoFrame"]
@@ -197,6 +200,7 @@ offset_left = 329.0
 offset_top = 226.0
 offset_right = 491.0
 offset_bottom = 266.0
+bbcode_enabled = true
 text = "selected"
 
 [node name="SelectedTestLabel2" type="RichTextLabel" parent="PuyoDeckEditorInterface/SelectedPuyoFrame"]
@@ -206,6 +210,7 @@ offset_left = 329.0
 offset_top = 476.0
 offset_right = 491.0
 offset_bottom = 516.0
+bbcode_enabled = true
 text = "selected"
 
 [node name="PuyoSwapButtons" type="GridContainer" parent="PuyoDeckEditorInterface/SelectedPuyoFrame"]
@@ -312,6 +317,7 @@ offset_left = 79.0
 offset_top = 72.0
 offset_right = 518.0
 offset_bottom = 112.0
+bbcode_enabled = true
 text = "black bile: 0, phlegm: 0, blood: 0, yellow bile: 0"
 
 [connection signal="pressed" from="PuyoDeckEditorInterface/Button" to="." method="_on_test_button_pressed"]

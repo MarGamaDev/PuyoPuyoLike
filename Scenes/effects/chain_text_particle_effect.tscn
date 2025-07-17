@@ -38,6 +38,7 @@ theme_override_constants/shadow_offset_y = 3
 theme_override_constants/shadow_offset_x = 3
 theme_override_constants/shadow_outline_size = 3
 theme_override_font_sizes/normal_font_size = 50
+bbcode_enabled = true
 text = "Chain 1!"
 fit_content = true
 autowrap_mode = 0
