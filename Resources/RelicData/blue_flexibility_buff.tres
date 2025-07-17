@@ -7,7 +7,7 @@
 script = ExtResource("1_oii6r")
 sprite = ExtResource("2_7xgwu")
 name = "Tougher Than Ever Before"
-description = "Whenever you fully block an attack, deal half of your shield as damage."
+description = "Whenever you fully [puyo type=bbile]block[/puyo] an attack, deal half of your [puyo type=bbile]shield[/puyo] as [puyo type=blood]damage[/puyo]."
 flavor_text = "As if you were made of lead."
 file_path = "res://Scenes/Relics/Variants/blue_flexibility_buff.tscn"
 is_part_of_certain_cycle = false

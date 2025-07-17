@@ -7,7 +7,7 @@
 script = ExtResource("1_iijg5")
 sprite = ExtResource("2_23vqy")
 name = "My Hands Reach All"
-description = "whenever you crush phlegm, deal extra damage for each foe hit."
+description = "whenever you crush [puyo type=phlegm]phlegm[/puyo], deal extra damage for each foe hit."
 flavor_text = "Feel all that is within your grasp."
 file_path = "res://Scenes/Relics/Variants/green_direct_buff.tscn"
 is_part_of_certain_cycle = false

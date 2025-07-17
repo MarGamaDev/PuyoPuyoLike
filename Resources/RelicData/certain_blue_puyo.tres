@@ -7,7 +7,7 @@
 script = ExtResource("1_jogsj")
 sprite = ExtResource("2_jogsj")
 name = "A Sense of Security"
-description = "every third pair of humours will always contain Black Bile."
+description = "every third pair of humours will always contain [puyo type=bbile]Black Bile."
 flavor_text = "This, at least, you can be sure of."
 file_path = "res://Scenes/Relics/Variants/certain_blue_puyo.tscn"
 is_part_of_certain_cycle = true

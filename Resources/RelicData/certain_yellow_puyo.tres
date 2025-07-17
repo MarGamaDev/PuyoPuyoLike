@@ -7,7 +7,7 @@
 script = ExtResource("1_42rcl")
 sprite = ExtResource("2_42rcl")
 name = "A Sense of Familiarity"
-description = "Every third pair of humours will always contain Yellow Bile."
+description = "Every third pair of humours will always contain [puyo type=ybile]Yellow Bile."
 flavor_text = "This, at least, you can be sure of."
 file_path = "res://Scenes/Relics/Variants/certain_yellow_puyo.tscn"
 is_part_of_certain_cycle = true

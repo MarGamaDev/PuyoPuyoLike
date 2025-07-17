@@ -18,8 +18,8 @@ func create_reward(new_reward: Reward):
 func create_spell_reward():
 	var spell : SpellData = reward.spell_data
 	$RewardNameLabel.text = spell.spell_name
-	$RewardTypeLabel.show()
-	$RewardTypeLabel.text = "Spell - %s" % spell.type_text[spell.recipe_type]
+	#$RewardTypeLabel.show()
+	#$RewardTypeLabel.text = "Spell - %s" % spell.type_text[spell.recipe_type]
 	$SpellContainer.create_spell_container(spell, true)
 	$SpellContainer.show()
 	$RewardDescriptionLabel.text = spell.spell_description
@@ -33,10 +33,11 @@ func create_spell_reward():
 func create_relic_reward():
 	var relic : RelicData = reward.relic_data
 	$RewardNameLabel.text = relic.name
-	$RewardTypeLabel.hide()
+	#$RewardTypeLabel.hide()
 	$RelicImage.show()
 	$RelicImage.texture = relic.sprite
 	$RewardDescriptionLabel.text = relic.description
+	
 	if relic.description.length() > 80:
 		$RewardDescriptionLabel.add_theme_font_size_override("normal_font_size", 30)
 	else:
@@ -46,14 +47,14 @@ func create_relic_reward():
 
 func create_empty_spell_reward():
 	$RewardNameLabel.text = "Emotion slot empty"
-	$RewardTypeLabel.hide()
+	#$RewardTypeLabel.hide()
 	$RelicImage.hide()
 	$RewardDescriptionLabel.text = ""
 	$FlavorTextLabel.text = ""
 
 func create_empty_relic_reward():
 	$RewardNameLabel.text = "Click a Sensation"
-	$RewardTypeLabel.hide()
+	#$RewardTypeLabel.hide()
 	$RelicImage.hide()
 	$SpellContainer.hide()
 	$RelicImage.hide()

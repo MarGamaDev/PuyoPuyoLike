@@ -7,7 +7,7 @@
 script = ExtResource("1_0jj4u")
 sprite = ExtResource("2_v17nv")
 name = "My Body Protects Me"
-description = "Whenever you crush Black Bile,  increase your minimum shield by 2 for the rest of this fight."
+description = "Whenever you crush [puyo type=bbile]Black Bile,  increase your minimum [puyo type=bbile]shield[/puyo] by 2 for the rest of this fight."
 flavor_text = "Grow a shell so tough that they cannot pass through."
 file_path = "res://Scenes/Relics/Variants/blue_direct_buff.tscn"
 is_part_of_certain_cycle = false

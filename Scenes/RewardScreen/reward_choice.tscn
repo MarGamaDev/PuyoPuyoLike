@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://brvve6vrgtcnh"]
+[gd_scene load_steps=11 format=3 uid="uid://brvve6vrgtcnh"]
 
 [ext_resource type="Theme" uid="uid://qw5wdr2jerv7" path="res://Art/text/default_font.tres" id="1_h6lxd"]
 [ext_resource type="Script" uid="uid://b8lcat8ap5x50" path="res://Scripts/reward_choice.gd" id="2_m3q4d"]
 [ext_resource type="Texture2D" uid="uid://b6oxgd10fqwpj" path="res://Placeholder Art/box.png" id="3_ljidh"]
 [ext_resource type="PackedScene" uid="uid://b82f1h5dy54rx" path="res://Scenes/spells/spellSystem/spell_container.tscn" id="3_m3q4d"]
+[ext_resource type="Script" uid="uid://ctfmnj5anv3kj" path="res://Scripts/RichTextColor.gd" id="5_ljidh"]
 
 [sub_resource type="Animation" id="Animation_m3q4d"]
 length = 0.001
@@ -210,6 +211,10 @@ _data = {
 &"itemHover": SubResource("Animation_h6lxd")
 }
 
+[sub_resource type="RichTextEffect" id="RichTextEffect_ljidh"]
+script = ExtResource("5_ljidh")
+metadata/_custom_type_script = "uid://ctfmnj5anv3kj"
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sx6yo"]
 bg_color = Color(0.405818, 0.221703, 0.210277, 1)
 
@@ -241,6 +246,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="RewardTypeLabel" type="RichTextLabel" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.1
@@ -296,6 +302,7 @@ text = "Reward Description"
 scroll_active = false
 horizontal_alignment = 1
 vertical_alignment = 1
+custom_effects = [SubResource("RichTextEffect_ljidh")]
 
 [node name="FlavorTextLabel" type="RichTextLabel" parent="."]
 layout_mode = 1

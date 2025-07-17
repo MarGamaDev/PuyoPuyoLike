@@ -7,7 +7,7 @@
 script = ExtResource("1_2c2fm")
 sprite = ExtResource("2_msifn")
 name = "A Poison Within"
-description = "Whenever toxins are crushed, deal damage to all foes."
+description = "Whenever [puyo type=toxin]toxins[/puyo] are crushed, deal damage to all foes."
 flavor_text = "Don't let their infections take hold."
 file_path = "res://Scenes/Relics/Variants/junk_to_damage.tscn"
 is_part_of_certain_cycle = false

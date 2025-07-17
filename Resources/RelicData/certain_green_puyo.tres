@@ -7,7 +7,7 @@
 script = ExtResource("1_xikru")
 sprite = ExtResource("2_xikru")
 name = "A Sense of Courage"
-description = "Every third pair of humours will always contain Phlegm."
+description = "Every third pair of humours will always contain [puyo type=phlegm]Phlegm."
 flavor_text = "This, at least, you can be sure of."
 file_path = "res://Scenes/Relics/Variants/certain_green_puyo.tscn"
 is_part_of_certain_cycle = true

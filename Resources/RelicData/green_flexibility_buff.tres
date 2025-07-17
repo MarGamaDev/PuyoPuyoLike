@@ -7,7 +7,7 @@
 script = ExtResource("1_t1hfh")
 sprite = ExtResource("2_xrvey")
 name = "Stronger Than Ever Before"
-description = "Phlegm blocks become stronger when foes are defeated, and when foes attack alone."
+description = "[puyo type=phlegm]Phlegm[/puyo] blocks become stronger when foes are defeated, and when foes attack alone."
 flavor_text = "As if nothing was safe from you."
 file_path = "res://Scenes/Relics/Variants/green_flexibility_buff.tscn"
 is_part_of_certain_cycle = false

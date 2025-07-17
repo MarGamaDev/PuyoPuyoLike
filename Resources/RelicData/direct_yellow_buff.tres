@@ -7,7 +7,7 @@
 script = ExtResource("1_p1ygr")
 sprite = ExtResource("2_wejel")
 name = "My Mind Moves Quickly"
-description = "Your counterattacks deal extra damage."
+description = "Your [puyo type=ybile]counterattacks[/puyo] deal extra damage."
 flavor_text = "Find the weak points that they did not know they had."
 file_path = "res://Scenes/Relics/Variants/direct_yellow_buff.tscn"
 is_part_of_certain_cycle = false

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://diuwqc1xy3nhi"]
+[gd_scene load_steps=9 format=3 uid="uid://diuwqc1xy3nhi"]
 
 [ext_resource type="Script" uid="uid://bvevltp5fgulx" path="res://Scripts/puyo_deck_editor_manager.gd" id="1_bbdny"]
 [ext_resource type="Texture2D" uid="uid://dehy5ghfyon84" path="res://Art/puyo elements/Puyo_Red.png" id="2_2w0y5"]
@@ -6,6 +6,11 @@
 [ext_resource type="Texture2D" uid="uid://dkpsalijf0ray" path="res://Art/puyo elements/Puyo_Yellow.png" id="3_habd2"]
 [ext_resource type="Texture2D" uid="uid://bh56uxpmn85gw" path="res://Art/puyo elements/Puyo_Blue.png" id="5_qwv13"]
 [ext_resource type="Texture2D" uid="uid://ccfdjr3e4b7wc" path="res://Art/puyo elements/Puyo_Green.png" id="6_ffg4p"]
+[ext_resource type="Script" uid="uid://ctfmnj5anv3kj" path="res://Scripts/RichTextColor.gd" id="7_ffg4p"]
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_fhgvf"]
+script = ExtResource("7_ffg4p")
+metadata/_custom_type_script = "uid://ctfmnj5anv3kj"
 
 [node name="PuyoDeckManager" type="Node2D"]
 script = ExtResource("1_bbdny")
@@ -318,7 +323,8 @@ offset_top = 72.0
 offset_right = 518.0
 offset_bottom = 112.0
 bbcode_enabled = true
-text = "black bile: 0, phlegm: 0, blood: 0, yellow bile: 0"
+text = "[puyo type=bbile]black bile: 0,[/puyo] [puyo type=phlegm]phlegm: 0, [/puyo][puyo type=blood]blood: 0,[/puyo][puyo type=ybile] yellow bile: 0"
+custom_effects = [SubResource("RichTextEffect_fhgvf")]
 
 [connection signal="pressed" from="PuyoDeckEditorInterface/Button" to="." method="_on_test_button_pressed"]
 [connection signal="pressed" from="PuyoDeckEditorInterface/PuyoChoicesFrame/SkipButton" to="." method="_on_skip_button_pressed"]
