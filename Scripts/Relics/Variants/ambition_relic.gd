@@ -25,26 +25,24 @@ func process_block(popped_puyos : Array, chain_value : int):
 		return
 	popped_type = popped_puyos[0].get_type()
 	if chain_check_array.has(popped_type) == false:
-		deal_target_damage.emit(2000)
-	combat_effects.create_relic_effect(self.global_position, combat_manager.selected_enemy.global_position, AttackEffectData.EFFECT_TYPE.PLAYER_RED, false)
-	chain_check_array.append(popped_type)
+		chain_check_array.append(popped_type)
 
 func rainbow_attack_check(chain_length : int):
 	print(chain_check_array)
 	if chain_check_array.size() < 4:
 		chain_check_array = []
 	else:
-		deal_aoe_damage.emit(rainbow_mult_value * chain_length)
+		deal_aoe_damage.emit(int(rainbow_mult_value * chain_length))
 		for i in combat_manager.enemies:
-			combat_effects.create_relic_effect(self.global_position, i.global_position, AttackEffectData.EFFECT_TYPE.PLAYER_GREEN, false)
+			combat_effects.create_relic_effect(self.global_position, i.global_position, AttackEffectData.EFFECT_TYPE.PLAYER_GREEN, true)
 		
-		deal_target_damage.emit(rainbow_mult_value * chain_length)
-		combat_effects.create_relic_effect(self.global_position, combat_manager.selected_enemy.global_position, AttackEffectData.EFFECT_TYPE.PLAYER_RED, false)
+		deal_target_damage.emit(int(rainbow_mult_value * chain_length))
+		combat_effects.create_relic_effect(self.global_position, combat_manager.selected_enemy.global_position, AttackEffectData.EFFECT_TYPE.PLAYER_RED, true)
 		
-		gain_shield.emit(rainbow_mult_value * chain_length)
+		gain_shield.emit(int(rainbow_mult_value * chain_length))
 		combat_effects.create_relic_effect(self.global_position, combat_effects.shield_location_marker, AttackEffectData.EFFECT_TYPE.PLAYER_BLUE, false)
 		
-		gain_counter.emit(rainbow_mult_value * chain_length)
+		gain_counter.emit(int(rainbow_mult_value * chain_length))
 		combat_effects.create_relic_effect(self.global_position, combat_effects.counter_location_marker, AttackEffectData.EFFECT_TYPE.PLAYER_YELLOW, false)
 		
 		chain_check_array = []
