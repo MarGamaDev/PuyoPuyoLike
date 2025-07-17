@@ -36,10 +36,10 @@ func rainbow_attack(chain_length : int):
 	
 	deal_aoe_damage.emit(rainbow_mult_value * chain_length)
 	for i in combat_manager.enemies:
-		combat_effects.create_spell_effect(container_location_marker.global_position, i.global_position, AttackEffectData.EFFECT_TYPE.PLAYER_GREEN)
+		combat_effects.create_spell_effect(container_location_marker.global_position, i.global_position, AttackEffectData.EFFECT_TYPE.PLAYER_GREEN, true)
 	
 	deal_target_damage.emit(rainbow_mult_value * chain_length)
-	combat_effects.create_spell_effect(container_location_marker.global_position, combat_manager.selected_enemy.global_position, AttackEffectData.EFFECT_TYPE.PLAYER_RED)
+	combat_effects.create_spell_effect(container_location_marker.global_position, combat_manager.selected_enemy.global_position, AttackEffectData.EFFECT_TYPE.PLAYER_RED, true)
 	
 	gain_shield.emit(rainbow_mult_value * chain_length)
 	combat_effects.create_spell_effect(container_location_marker.global_position, combat_effects.shield_location_marker, AttackEffectData.EFFECT_TYPE.PLAYER_BLUE, false)

@@ -8,8 +8,8 @@ var equipped_relics : Array[RelicData] = []
 var relic_index = 0
 
 func _physics_process(delta: float) -> void:
-	#if Input.is_action_just_pressed("TESTING_player_spawn"):
-		#test_add_relic()
+	if Input.is_action_just_pressed("TESTING_player_spawn"):
+		test_add_relic()
 	pass
 
 func add_relic(relic_data: RelicData) -> void:

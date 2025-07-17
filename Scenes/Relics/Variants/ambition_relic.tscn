@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://blbbq06qf4ml4"]
+
+[ext_resource type="Script" uid="uid://oqxo2sv6unra" path="res://Scripts/Relics/Variants/ambition_relic.gd" id="1_jpqre"]
+[ext_resource type="Resource" uid="uid://drfto3avhtbia" path="res://Resources/RelicData/ambition_relic.tres" id="2_0nwlu"]
+
+[node name="AmbitionRelic" type="Node2D"]
+script = ExtResource("1_jpqre")
+relic_data = ExtResource("2_0nwlu")
