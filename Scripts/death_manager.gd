@@ -29,21 +29,23 @@ func _on_enemy_killed(enemy: Enemy) -> void:
 	foes_killed += 1
 
 func _on_spell_cast(spell_length: int, spell_name : String) -> void:
-	spells_cast += 1
-	var spell_check = true
-	for i in range(0, spell_record_name_tracker.size()):
-		if spell_record_name_tracker[i] == spell_name:
-			spell_record_tracker[i] = spell_record_tracker[i] + 1
-			spell_check = false
-	if spell_check:
-		spell_record_name_tracker.append(spell_name)
-		spell_record_tracker.append(1)
+	#spells_cast += 1
+	#var spell_check = true
+	#for i in range(0, spell_record_name_tracker.size()):
+		#if spell_record_name_tracker[i] == spell_name:
+			#spell_record_tracker[i] = spell_record_tracker[i] + 1
+			#spell_check = false
+	#if spell_check:
+		#spell_record_name_tracker.append(spell_name)
+		#spell_record_tracker.append(1)
+	pass
 
 func get_highest_spell():
-	for i in range(0, spell_record_name_tracker.size()):
-		if spell_record_tracker[i] > highest_spell_amount:
-			highest_spell_amount = spell_record_tracker[i]
-			highest_spell_name = spell_record_name_tracker[i]
+	#for i in range(0, spell_record_name_tracker.size()):
+		#if spell_record_tracker[i] > highest_spell_amount:
+			#highest_spell_amount = spell_record_tracker[i]
+			#highest_spell_name = spell_record_name_tracker[i]
+	pass
 
 
 func _on_chain_ending(max_chain: int) -> void:
