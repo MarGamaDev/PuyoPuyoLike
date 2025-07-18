@@ -20,7 +20,7 @@ func initialize_puyo_pool() -> void:
 	for i in range(4, 6):
 		puyo_pool.append([4, i])
 	puyo_pool.append([5, 5])
-	print(puyo_pool)
+	#print(puyo_pool)
 
 func get_puyo_pair() -> Array:
 	#var to_return = [randi_range(2, 5), randi_range(2, 5)]

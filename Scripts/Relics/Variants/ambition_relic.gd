@@ -28,7 +28,6 @@ func process_block(popped_puyos : Array, chain_value : int):
 		chain_check_array.append(popped_type)
 
 func rainbow_attack_check(chain_length : int):
-	print(chain_check_array)
 	if chain_check_array.size() < 4:
 		chain_check_array = []
 	else:
