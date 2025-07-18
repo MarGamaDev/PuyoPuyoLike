@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="RelicData" load_steps=3 format=3 uid="uid://d37rlurw77suv"]
+
+[ext_resource type="Script" uid="uid://dfyomjxsahuhw" path="res://Scripts/Relics/System/relic_data.gd" id="1_lrueh"]
+[ext_resource type="Texture2D" uid="uid://ec5i8ss4kcbs" path="res://Art/spell elements/SpellRunes/puyo-spell1.png" id="2_74mh8"]
+
+[resource]
+script = ExtResource("1_lrueh")
+sprite = ExtResource("2_74mh8")
+name = "vindication relic"
+description = "test"
+flavor_text = "test"
+file_path = "res://Scenes/Relics/Variants/vindication_relic.tscn"
+is_part_of_certain_cycle = false
+metadata/_custom_type_script = "uid://dfyomjxsahuhw"

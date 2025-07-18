@@ -18,7 +18,7 @@
 [ext_resource type="Script" uid="uid://dpy387k1iegic" path="res://Scripts/Combat/battle.gd" id="15_r5ubg"]
 [ext_resource type="PackedScene" uid="uid://bif55k0mmcvqf" path="res://Scenes/Combat/defense_visuals_manager.tscn" id="15_tmuf1"]
 [ext_resource type="Script" uid="uid://btkeiscf5dqtn" path="res://Scripts/reward_manager.gd" id="18_5kjvk"]
-[ext_resource type="Resource" uid="uid://cdooo5mqkfpjp" path="res://Resources/RelicData/hatred_relic.tres" id="19_2n3pb"]
+[ext_resource type="Resource" uid="uid://d37rlurw77suv" path="res://Resources/RelicData/vindication_relic.tres" id="19_2n3pb"]
 [ext_resource type="PackedScene" uid="uid://5y53lbvnnf04" path="res://Scenes/animations and audio stuff/sound_manager.tscn" id="19_nar6d"]
 [ext_resource type="PackedScene" uid="uid://c2aqaph0fpnb1" path="res://Scenes/pause_manager.tscn" id="21_5kjvk"]
 [ext_resource type="Texture2D" uid="uid://c3b30a3ttv8wy" path="res://Art/Main_Character_Hurt.png" id="23_e8ln5"]
