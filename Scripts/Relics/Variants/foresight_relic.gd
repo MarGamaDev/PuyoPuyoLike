@@ -39,4 +39,3 @@ func on_chain_end_check(chain_length : int) -> void:
 func deal_counter_damage():
 	deal_targeted_damage.emit(player.counter)
 	combat_effects.create_relic_effect(combat_effects.counter_location_marker, combat_manager.selected_enemy.global_position, AttackEffectData.EFFECT_TYPE.PLAYER_YELLOW, true)
-	print("counter launched!")

@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://dcobkbpfxdywq"]
+
+[ext_resource type="Script" uid="uid://sc65tp3mlbvb" path="res://Scripts/Relics/Variants/hatred_relic.gd" id="1_0ln5h"]
+[ext_resource type="Resource" uid="uid://cdooo5mqkfpjp" path="res://Resources/RelicData/hatred_relic.tres" id="2_iohqv"]
+
+[node name="HatredRelic" type="Node2D"]
+script = ExtResource("1_0ln5h")
+relic_data = ExtResource("2_iohqv")
