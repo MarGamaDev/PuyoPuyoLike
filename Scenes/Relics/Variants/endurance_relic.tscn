@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://baah1u81al5un"]
+
+[ext_resource type="Script" uid="uid://c0cx7cgq5g7xr" path="res://Scripts/Relics/Variants/endurance_relic.gd" id="1_lia0d"]
+[ext_resource type="Resource" uid="uid://duqm2qffdnwd4" path="res://Resources/RelicData/endurance_relic.tres" id="2_8vfhk"]
+
+[node name="EnduranceRelic" type="Node2D"]
+script = ExtResource("1_lia0d")
+relic_data = ExtResource("2_8vfhk")
