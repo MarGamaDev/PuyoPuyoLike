@@ -137,6 +137,7 @@ func set_as_selected(is_selected: bool) -> void:
 
 func add_to_timer(amount_to_add : int) -> void:
 	attack_countdown = attack_countdown - amount_to_add
+	$Intent.set_indicator(current_attack, current_attack.number_of_turns_till_swing - attack_countdown)
 
 func update_damage_visually():
 	if damage_number_effect_queue.size() == 0:

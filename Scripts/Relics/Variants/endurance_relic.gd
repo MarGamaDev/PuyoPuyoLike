@@ -7,6 +7,8 @@ signal gain_shield(shield : int)
 signal delay_enemies(turns : int)
 
 var blue_pop_count : int = 0
+var shield_gain_base : int = 15
+var enemy_delay_base : int = 2
 
 func initialize() -> void:
 	super()
@@ -24,6 +26,12 @@ func process_block(popped_puyos : Array, chain_value : int):
 		blue_pop_count += 1
 
 func on_chain_end(chain_length : int) -> void:
-	##TODO continue here
+	if blue_pop_count >= 2:
+		var modifier = (EncounterTrackerForRelics.get_count() - 1)* 5
+		gain_shield.emit(shield_gain_base + modifier)
+		delay_enemies.emit(enemy_delay_base + EncounterTrackerForRelics.get_count())
+		combat_effects.create_relic_effect(self.global_position, combat_effects.shield_location_marker, AttackEffectData.EFFECT_TYPE.PLAYER_BLUE, false)
+		for enemy : Enemy in combat_manager.enemies:
+			combat_effects.create_relic_effect(combat_effects.shield_location_marker, enemy.global_position , AttackEffectData.EFFECT_TYPE.PLAYER_BLUE, false)
 	blue_pop_count = 0
 	pass
