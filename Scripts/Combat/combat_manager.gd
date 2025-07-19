@@ -99,6 +99,7 @@ func process_encounter_updated(_encounter: Encounter) -> void:
 	select_enemy(0)
 
 func start_combat() -> void:
+	$WinScreen.hide()
 	on_combat_started.emit()
 	if  first_battle_flag:
 		first_battle_flag = false

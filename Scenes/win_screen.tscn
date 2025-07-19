@@ -1,10 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://csu4hg4p73o2q"]
+[gd_scene load_steps=4 format=3 uid="uid://csu4hg4p73o2q"]
 
 [ext_resource type="Script" uid="uid://ben6c1v8cuwas" path="res://Scenes/win_screen.gd" id="1_l5sol"]
+[ext_resource type="Script" uid="uid://ctfmnj5anv3kj" path="res://Scripts/RichTextColor.gd" id="2_a00f1"]
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_awi1s"]
+script = ExtResource("2_a00f1")
+metadata/_custom_type_script = "uid://ctfmnj5anv3kj"
 
 [node name="WinScreen" type="CanvasLayer"]
 process_mode = 2
-visible = false
 script = ExtResource("1_l5sol")
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -24,3 +28,57 @@ grow_vertical = 2
 text = "you win!!!"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="ContinueButton" type="Button" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -332.0
+offset_top = 33.0
+offset_right = -87.0
+offset_bottom = 124.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "continue run"
+
+[node name="QuitButton" type="Button" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 125.0
+offset_top = 33.0
+offset_right = 370.0
+offset_bottom = 124.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "return to menu"
+
+[node name="GameStatsLabel" type="RichTextLabel" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -338.0
+offset_right = 256.0
+offset_bottom = -128.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "number of humours popped:
+highest chain:
+foes killed:
+sensations felt:
+favorite color:
+junk popped:"
+fit_content = true
+scroll_active = false
+custom_effects = [SubResource("RichTextEffect_awi1s")]
+
+[connection signal="pressed" from="ContinueButton" to="." method="_on_continue_button_pressed"]
+[connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]

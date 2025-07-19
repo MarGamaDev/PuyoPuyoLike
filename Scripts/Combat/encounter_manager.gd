@@ -6,6 +6,7 @@ signal on_rest_stop()
 signal on_boss_encounter
 signal advance_to_next_map_node()
 signal open_win_screen()
+signal send_game_stats()
 
 var boss_folder_paths : Array[String] = ["res://Resources/battles/Boss Battles/Easy/", "res://Resources/battles/Boss Battles/Medium/", "res://Resources/battles/Boss Battles/Hard/"]
 var battle_folder_paths : Array[String] = ["res://Resources/battles/Easy/", "res://Resources/battles/Medium/", "res://Resources/battles/Hard/"]
@@ -99,6 +100,7 @@ func start_first_encounter(boss_flag:= false):
 
 func _on_wave_beat(boss_flag := false):
 	if final_fight_flag:
+		send_game_stats.emit()
 		open_win_screen.emit()
 		final_fight_flag = false
 	else:
