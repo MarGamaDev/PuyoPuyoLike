@@ -7,7 +7,7 @@
 
 [sub_resource type="Resource" id="Resource_xnh8y"]
 script = ExtResource("2_qodve")
-health = 40000
+health = 40
 sprite = ExtResource("3_he2bs")
 boss = false
 color_filter = Color(1, 1, 1, 1)
@@ -16,10 +16,10 @@ metadata/_custom_type_script = "uid://c27m7mkd1up2"
 
 [sub_resource type="Resource" id="Resource_r7q76"]
 script = ExtResource("4_kene6")
-damage = 10
+damage = 5
 number_of_swings = 1
-number_of_turns_till_swing = 500
-attack_type = 10
+number_of_turns_till_swing = 1111
+attack_type = 1
 metadata/_custom_type_script = "uid://6v5kccermtmr"
 
 [node name="AttackTestEnemy" instance=ExtResource("1_5pjuc")]

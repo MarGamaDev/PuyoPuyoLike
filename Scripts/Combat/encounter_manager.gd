@@ -5,6 +5,7 @@ signal on_update_encounter(encounter: Encounter)
 signal on_rest_stop()
 signal on_boss_encounter
 signal advance_to_next_map_node()
+signal open_win_screen()
 
 var boss_folder_paths : Array[String] = ["res://Resources/battles/Boss Battles/Easy/", "res://Resources/battles/Boss Battles/Medium/", "res://Resources/battles/Boss Battles/Hard/"]
 var battle_folder_paths : Array[String] = ["res://Resources/battles/Easy/", "res://Resources/battles/Medium/", "res://Resources/battles/Hard/"]
@@ -41,6 +42,8 @@ var first_battle_flag : bool = true
 @export var attack_test_flag : bool = false
 @onready var attack_test_encounter_path : String = "res://Scenes/Combat/Encounters/TestEncounters/attack_test_encounter.tscn"
 
+var final_fight_flag : bool = false
+
 func preload_battle_lists():
 	easy_battles = ResourceLoader.list_directory(battle_folder_paths[0])
 	medium_battles = ResourceLoader.list_directory(battle_folder_paths[1])
@@ -55,6 +58,7 @@ func preload_battle_lists():
 
 func _ready():
 	#rest_stop_check = encounters_between_rest_stops
+	final_fight_flag = false
 	preload_battle_lists()
 	first_battle_flag = true
 	current_battle.initialize_from_battle_data(load(get_battle(false)))
@@ -94,13 +98,17 @@ func start_first_encounter(boss_flag:= false):
 	load_next_encounter(boss_flag)
 
 func _on_wave_beat(boss_flag := false):
-	current_battle_encounter_tracker += 1
-	if current_battle_encounter_tracker >= current_battle.enemy_waves.size():
-		current_battle_encounter_tracker = 0
-		#current_difficulty += 1
-		advance_to_next_map_node.emit()
+	if final_fight_flag:
+		open_win_screen.emit()
+		final_fight_flag = false
 	else:
-		load_next_encounter(boss_flag)
+		current_battle_encounter_tracker += 1
+		if current_battle_encounter_tracker >= current_battle.enemy_waves.size():
+			current_battle_encounter_tracker = 0
+			#current_difficulty += 1
+			advance_to_next_map_node.emit()
+		else:
+			load_next_encounter(boss_flag)
 
 func update_battle_data(boss_flag := false):
 	var battle_data : BattleData = load(get_battle(boss_flag))
@@ -126,3 +134,7 @@ func get_battle(boss_flag := false):
 
 func _on_map_manager_increase_difficulty_level() -> void:
 	current_difficulty += 1
+
+
+func _on_final_boss_fight_started() -> void:
+	final_fight_flag = true

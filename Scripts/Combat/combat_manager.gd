@@ -46,6 +46,7 @@ func _physics_process(_delta: float) -> void:
 		on_game_paused.emit()
 		get_tree().paused = true
 
+
 func process_player_attack(attack : PlayerAttack) -> void:
 	var value: int = puyo_values.get_base_value(attack.type) * attack.size
 	var mult: int = puyo_values.get_multiplier(attack.type) * attack.chain
@@ -135,3 +136,6 @@ func get_free_spaces() -> int:
 
 func get_grid_node_global_position(pos: Vector2i) -> Vector2:
 	return $PuyoManager.get_global_grid_position(pos)
+
+func pause_game() -> void:
+	get_tree().paused = true

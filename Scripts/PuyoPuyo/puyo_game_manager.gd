@@ -138,6 +138,9 @@ func set_node_neighbours(grid_node : GridNode):
 
 #state machine for grid updating.  called whenever a puyo is placed
 func grid_state_check():
+	#if junk_wait_flag:
+		#await get_tree().create_timer(0.2).timeout
+		#junk_wait_flag = false
 	down_tick()
 	await down_check_finished
 	#player_fall_flag = false
@@ -151,6 +154,7 @@ func grid_state_check():
 	else:
 		#this next part should be done by the queue manager
 		if (event_queue_manager.process_queue()):
+			junk_wait_flag = true
 			grid_state_check()
 		
 
@@ -218,6 +222,7 @@ func down_tick() -> bool:
 				check = true
 	
 	if check:
+		await event_queue_manager.junk_timer()
 		for i : Array in to_move:
 			move_puyo(i[0], i[1])
 		#await get_tree().create_timer(down_tick_speed).timeout

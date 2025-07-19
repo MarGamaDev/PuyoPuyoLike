@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://d3naap4gnytxh"]
+[gd_scene load_steps=33 format=3 uid="uid://d3naap4gnytxh"]
 
 [ext_resource type="Script" uid="uid://b0h0tx4msve02" path="res://Scripts/Combat/combat_manager.gd" id="1_4ln8h"]
 [ext_resource type="Resource" uid="uid://b01ucdggd8ykf" path="res://Resources/puyo_value_data.tres" id="2_xisnc"]
@@ -27,6 +27,7 @@
 [ext_resource type="PackedScene" uid="uid://b5ro25mbipu8r" path="res://Scenes/Map/map_manager.tscn" id="27_2n3pb"]
 [ext_resource type="PackedScene" uid="uid://diuwqc1xy3nhi" path="res://Scenes/PuyoDeckEditing/puyo_deck_editor_manager.tscn" id="27_r5ubg"]
 [ext_resource type="PackedScene" uid="uid://dmdsrn5kh1fm8" path="res://Scenes/death_manager.tscn" id="28_r5ubg"]
+[ext_resource type="PackedScene" uid="uid://csu4hg4p73o2q" path="res://Scenes/win_screen.tscn" id="28_ycqky"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5g3cp"]
 animations = [{
@@ -106,6 +107,7 @@ _data = {
 [node name="Combat" type="Node2D"]
 script = ExtResource("1_4ln8h")
 puyo_values = ExtResource("2_xisnc")
+debug_mode = true
 
 [node name="Background" type="CanvasLayer" parent="."]
 layer = -1
@@ -308,8 +310,12 @@ libraries = {
 [node name="DeathManager" parent="." instance=ExtResource("28_r5ubg")]
 
 [node name="MapManager" parent="." instance=ExtResource("27_2n3pb")]
+segments_between_boss_fights = 1
+bosses_to_beat_for_win = 2
 
 [node name="PuyoDeckManager" parent="." instance=ExtResource("27_r5ubg")]
+
+[node name="WinScreen" parent="." instance=ExtResource("28_ycqky")]
 
 [connection signal="first_battle_started" from="." to="MapManager" method="_on_attempt_to_move_to_next_node"]
 [connection signal="on_combat_started" from="." to="PuyoManager" method="reset_game"]
@@ -361,6 +367,8 @@ libraries = {
 [connection signal="on_rest_stop" from="EncounterManager" to="SoundManager" method="_on_rest_stop"]
 [connection signal="on_update_encounter" from="EncounterManager" to="." method="process_encounter_updated"]
 [connection signal="on_update_encounter" from="EncounterManager" to="SoundManager" method="transition_sfx"]
+[connection signal="open_win_screen" from="EncounterManager" to="." method="pause_game"]
+[connection signal="open_win_screen" from="EncounterManager" to="WinScreen" method="on_game_win"]
 [connection signal="deal_fuck_damage" from="PuyoTestUI" to="." method="damage_all_enemies"]
 [connection signal="start_game" from="PuyoTestUI" to="." method="start_combat"]
 [connection signal="trigger_heart_effect" from="LifeCounter" to="CombatEffectsManager" method="_create_heart_explosion"]
@@ -373,6 +381,7 @@ libraries = {
 [connection signal="end_combat" from="MapManager" to="Player" method="reset_counter_and_shield"]
 [connection signal="end_combat" from="MapManager" to="Player" method="reset_minimum_shield"]
 [connection signal="end_combat" from="MapManager" to="DefenseVisualsManager" method="clear_junk_queue"]
+[connection signal="final_boss_fight_started" from="MapManager" to="EncounterManager" method="_on_final_boss_fight_started"]
 [connection signal="hide_combat" from="MapManager" to="EncounterManager" method="hide"]
 [connection signal="increase_difficulty_level" from="MapManager" to="EncounterManager" method="_on_map_manager_increase_difficulty_level"]
 [connection signal="load_first_battle" from="MapManager" to="EncounterManager" method="start_first_encounter"]

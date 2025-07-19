@@ -15,6 +15,8 @@ var event_queue : Array = []
 
 var start_flag : bool = false
 
+var wait_flag : bool = false
+
 func reset_queue():
 	event_queue = []
 
@@ -28,8 +30,10 @@ func process_queue() -> bool:
 	elif next_event.event_type == PuyoQueueEvent.EVENT_TYPE.PLAYER:
 		event_create_player.emit()
 		#create_player_puyo()
+		wait_flag = false
 	else:
 		#print("EVENT QUEUE TEST")
+		wait_flag = true
 		process_check = true
 		if next_event.event_type == PuyoQueueEvent.EVENT_TYPE.JUNK_ROW:
 			event_create_junk_row.emit(next_event.junk_number)
@@ -58,3 +62,7 @@ func process_queue() -> bool:
 
 func add_event(new_event : PuyoQueueEvent):
 	event_queue.append(new_event)
+
+func junk_timer():
+	if wait_flag:
+		await get_tree().create_timer(0.25).timeout

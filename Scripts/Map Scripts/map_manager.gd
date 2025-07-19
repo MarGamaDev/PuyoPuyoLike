@@ -14,6 +14,8 @@ signal increase_difficulty_level()
 signal hide_combat()
 signal show_combat()
 
+signal final_boss_fight_started()
+
 var current_segment : MapSegment
 var map_segments : Array[MapSegment]
 
@@ -48,10 +50,14 @@ var end_of_segment_flag : bool = false
 
 @onready var boss_segment : MapNodeSegmentData = preload("res://Resources/Map Segments/Goal Segments/boss_segment.tres")
 
+@export var bosses_to_beat_for_win : int = 6
+
 func _ready() -> void:
 	segment_paths = ResourceLoader.list_directory(segment_folder_path)
 	
 	map_screen.hide()
+	
+	boss_fight_counter = 0
 	
 	var map_segments = get_children()
 	current_segment = map_segments[0]
@@ -74,6 +80,8 @@ func _on_attempt_to_move_to_next_node():
 					combat_start_flag = false
 					start_combat.emit()
 				boss_fight_counter += 1
+				if boss_fight_counter == bosses_to_beat_for_win:
+					final_boss_fight_started.emit()
 				if endless_flag == false:
 					if boss_fight_counter >= difficulty_thresholds[0]:
 						increase_difficulty_level.emit()

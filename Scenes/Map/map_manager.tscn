@@ -12,6 +12,7 @@
 visible = false
 script = ExtResource("1_hlkt8")
 test_segment = ExtResource("2_yya7n")
+difficulty_thresholds = Array[int]([2, 4])
 
 [node name="MapSegment" type="Node2D" parent="."]
 script = ExtResource("2_05dyb")

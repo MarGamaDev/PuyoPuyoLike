@@ -45,9 +45,10 @@ func set_puyo(new_puyo : Puyo):
 	is_holding_puyo = true
 
 func move_puyo(new_puyo : Puyo):
-	puyo = new_puyo
-	puyo.set_new_goal(position)
-	is_holding_puyo = true
+	if new_puyo != null:
+		puyo = new_puyo
+		puyo.set_new_goal(position)
+		is_holding_puyo = true
 
 
 #i was stupid and realised you can access class variables with .variable 

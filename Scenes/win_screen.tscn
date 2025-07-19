@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://csu4hg4p73o2q"]
+
+[ext_resource type="Script" uid="uid://ben6c1v8cuwas" path="res://Scenes/win_screen.gd" id="1_l5sol"]
+
+[node name="WinScreen" type="CanvasLayer"]
+process_mode = 2
+visible = false
+script = ExtResource("1_l5sol")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0.309804, 1, 0.470588)
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "you win!!!"
+horizontal_alignment = 1
+vertical_alignment = 1
