@@ -1,11 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://c2aqaph0fpnb1"]
+[gd_scene load_steps=8 format=3 uid="uid://c2aqaph0fpnb1"]
 
 [ext_resource type="Script" uid="uid://d34dm1fnjrjww" path="res://Scripts/pause_manager.gd" id="1_s3tu7"]
 [ext_resource type="Theme" uid="uid://qw5wdr2jerv7" path="res://Art/text/default_font.tres" id="2_8elxi"]
 [ext_resource type="Script" uid="uid://ctfmnj5anv3kj" path="res://Scripts/RichTextColor.gd" id="3_6xe1p"]
 [ext_resource type="Script" uid="uid://bjt8rmiojl6gr" path="res://Scripts/volume_slider.gd" id="4_6xe1p"]
+[ext_resource type="PackedScene" uid="uid://c5p65h8j22ixm" path="res://Scenes/PuyoDeckEditing/puyo_option_button.tscn" id="5_rcrlu"]
 
 [sub_resource type="RichTextEffect" id="RichTextEffect_rcrlu"]
+script = ExtResource("3_6xe1p")
+metadata/_custom_type_script = "uid://ctfmnj5anv3kj"
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_62x2w"]
 script = ExtResource("3_6xe1p")
 metadata/_custom_type_script = "uid://ctfmnj5anv3kj"
 
@@ -71,11 +76,28 @@ vertical_alignment = 1
 [node name="QuitButton" type="Button" parent="PauseMenu"]
 anchors_preset = -1
 anchor_left = 0.033
-anchor_top = 0.08
-anchor_right = 0.247
-anchor_bottom = 0.142
+anchor_top = 0.014
+anchor_right = 0.25
+anchor_bottom = 0.076
+offset_left = 3.4
+offset_top = 0.4
+offset_right = -0.200012
+offset_bottom = 0.400002
 theme = ExtResource("2_8elxi")
 text = "Return to menu"
+
+[node name="ExamineButton" type="Button" parent="PauseMenu"]
+anchors_preset = -1
+anchor_left = 0.033
+anchor_top = 0.092
+anchor_right = 0.25
+anchor_bottom = 0.154
+offset_left = 3.4
+offset_top = 0.199997
+offset_right = -0.200012
+offset_bottom = 0.199997
+theme = ExtResource("2_8elxi")
+text = "Examine Humours"
 
 [node name="VolumeSlider" type="HSlider" parent="PauseMenu"]
 anchors_preset = -1
@@ -204,7 +226,119 @@ offset_bottom = 131.0
 grow_horizontal = 2
 text = "Continue Game"
 
+[node name="HumoursScreen" type="Control" parent="PauseMenu"]
+visible = false
+layout_mode = 3
+anchor_left = 0.032
+anchor_top = 0.203
+anchor_right = 0.971
+anchor_bottom = 0.972
+offset_left = -0.400002
+offset_top = 0.299988
+offset_right = -0.200073
+offset_bottom = 0.199951
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HumourGrid" type="GridContainer" parent="PauseMenu/HumoursScreen"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.726
+anchor_bottom = 1.0
+offset_right = -0.202026
+grow_horizontal = 2
+grow_vertical = 2
+columns = 5
+
+[node name="PuyoOption" parent="PauseMenu/HumoursScreen/HumourGrid" instance=ExtResource("5_rcrlu")]
+layout_mode = 2
+
+[node name="PuyoOption2" parent="PauseMenu/HumoursScreen/HumourGrid" instance=ExtResource("5_rcrlu")]
+layout_mode = 2
+
+[node name="PuyoOption3" parent="PauseMenu/HumoursScreen/HumourGrid" instance=ExtResource("5_rcrlu")]
+layout_mode = 2
+
+[node name="PuyoOption4" parent="PauseMenu/HumoursScreen/HumourGrid" instance=ExtResource("5_rcrlu")]
+layout_mode = 2
+
+[node name="PuyoOption5" parent="PauseMenu/HumoursScreen/HumourGrid" instance=ExtResource("5_rcrlu")]
+layout_mode = 2
+
+[node name="PuyoOption6" parent="PauseMenu/HumoursScreen/HumourGrid" instance=ExtResource("5_rcrlu")]
+layout_mode = 2
+
+[node name="PuyoOption7" parent="PauseMenu/HumoursScreen/HumourGrid" instance=ExtResource("5_rcrlu")]
+layout_mode = 2
+
+[node name="PuyoOption8" parent="PauseMenu/HumoursScreen/HumourGrid" instance=ExtResource("5_rcrlu")]
+layout_mode = 2
+
+[node name="PuyoOption9" parent="PauseMenu/HumoursScreen/HumourGrid" instance=ExtResource("5_rcrlu")]
+layout_mode = 2
+
+[node name="PuyoOption10" parent="PauseMenu/HumoursScreen/HumourGrid" instance=ExtResource("5_rcrlu")]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu/HumoursScreen"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.746
+anchor_top = 0.016
+anchor_right = 1.0
+anchor_bottom = 0.975
+offset_left = 0.257935
+offset_top = -0.0720005
+offset_bottom = 0.299988
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="BloodLabel" type="RichTextLabel" parent="PauseMenu/HumoursScreen/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[puyo type=blood]Blood humours deal high damage to the selected foe."
+fit_content = true
+scroll_active = false
+vertical_alignment = 1
+custom_effects = [SubResource("RichTextEffect_62x2w")]
+
+[node name="PhlegmLabel" type="RichTextLabel" parent="PauseMenu/HumoursScreen/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[puyo type=phlegm]Phlegm humours deal damage to all foes at once."
+fit_content = true
+scroll_active = false
+vertical_alignment = 1
+custom_effects = [SubResource("RichTextEffect_62x2w")]
+
+[node name="BlueBileLabel" type="RichTextLabel" parent="PauseMenu/HumoursScreen/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[puyo type=bbile]Black Bile humours grant a protective shield, which directly blocks damage."
+fit_content = true
+scroll_active = false
+vertical_alignment = 1
+custom_effects = [SubResource("RichTextEffect_62x2w")]
+
+[node name="YellowBileLabel" type="RichTextLabel" parent="PauseMenu/HumoursScreen/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[puyo type=ybile] Yellow Bile humours increase your counter meter. When you are hit, if your counter is greater than the damage, the attack is fully blocked and a counterattack is launched."
+fit_content = true
+scroll_active = false
+vertical_alignment = 1
+custom_effects = [SubResource("RichTextEffect_62x2w")]
+
 [connection signal="pressed" from="PauseMenu/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="PauseMenu/ExamineButton" to="." method="_on_examine_button_pressed"]
 [connection signal="mouse_exited" from="PauseMenu/VolumeSlider" to="PauseMenu/VolumeSlider" method="release_focus"]
 [connection signal="value_changed" from="PauseMenu/VolumeSlider" to="PauseMenu/VolumeSlider" method="_on_value_changed"]
 [connection signal="pressed" from="PauseMenu/ContinueButton" to="." method="_on_continue_button_pressed"]

@@ -16,7 +16,7 @@ signal on_enemy_deregistered(enemy: Enemy)
 signal on_player_life_lost()
 signal on_encounter_finished()
 signal on_delay_enemy_attack(delay_turns : int)
-signal on_game_paused()
+signal on_game_paused(puyo_pool : Array[Array])
 signal first_battle_started()
 
 @export var puyo_values: PuyoValueData
@@ -43,7 +43,7 @@ func _physics_process(_delta: float) -> void:
 		select_enemy(index);
 	
 	if Input.is_action_just_pressed("toggle_pause"):
-		on_game_paused.emit()
+		on_game_paused.emit($PuyoManager.get_puyo_pool())
 		get_tree().paused = true
 
 

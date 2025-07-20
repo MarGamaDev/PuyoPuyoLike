@@ -366,6 +366,7 @@ func delete_player():
 
 func get_puyo_pool():
 	update_puyo_pool.emit($PlayerPuyoManager/PuyoPoolManager.get_pool())
+	return $PlayerPuyoManager/PuyoPoolManager.get_pool()
 
 func change_puyo_pool(pair_to_change : Array, to_change_to : Array):
 	$PlayerPuyoManager/PuyoPoolManager.change_puyo_pool(pair_to_change, to_change_to)

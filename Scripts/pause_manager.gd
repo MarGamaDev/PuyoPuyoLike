@@ -6,12 +6,22 @@ extends Node2D
 @onready var reward_choice_scene : PackedScene = preload("res://Scenes/RewardScreen/reward_choice.tscn")
 @onready var relic_button_scene : PackedScene = preload("res://Scenes/relic_button.tscn")
 
+var puyo_sprites = {
+	2 : preload("res://Art/puyo elements/Puyo_Blue.png"),
+	3 : preload("res://Art/puyo elements/Puyo_Green.png"),
+	4 : preload("res://Art/puyo elements/Puyo_Red.png"),
+	5 : preload("res://Art/puyo elements/Puyo_Yellow.png")
+}
+
 var pause_delay_flag = false
 
 var equipped_spell_containers : Array[RewardChoice] = []
 
 var equipped_relic_data : Array[RelicData] = []
 var relic_buttons : Array[RelicButton] = []
+var puyo_pool : Array[Array] = []
+
+var looking_at_puyos_flag : bool = true
 
 func _ready() -> void:
 	#spell_manager = get_node("/root/Combat/SpellManager")
@@ -25,12 +35,15 @@ func _physics_process(_delta: float) -> void:
 		relic_holder.show_relic_holder()
 		reset_pause_screen()
 
-func on_game_paused():
+func on_game_paused(new_puyo_pool : Array[Array]):
 	$PauseMenu.show()
+	puyo_pool = new_puyo_pool
 	await get_tree().create_timer(0.05).timeout
 	pause_delay_flag = true
 	fill_spell_screen()
 	fill_relic_screen()
+	fill_puyo_pool_screen()
+	$PauseMenu/HumoursScreen.hide()
 	$PauseMenu/VolumeSlider.set_audio_value()
 
 func fill_spell_screen():
@@ -85,13 +98,29 @@ func fill_relic_screen():
 		$PauseMenu/Sensations/RelicGrid.add_child(new_button)
 		relic_buttons.append(new_button)
 
+func fill_puyo_pool_screen():
+	var puyo_options = $PauseMenu/HumoursScreen/HumourGrid.get_children()
+	var button_counter = 0
+	for puyo_pair in puyo_options:
+		var puyo_texture_rects = puyo_pair.get_children()
+		var current_pair = puyo_pool[button_counter]
+		puyo_texture_rects[0].texture = puyo_sprites[current_pair[0]]
+		puyo_texture_rects[1].texture = puyo_sprites[current_pair[1]]
+		button_counter += 1
+		puyo_pair.initialize_button(current_pair)
+		puyo_pair.turn_off_button_functionality()
+
 func reset_pause_screen():
+	looking_at_puyos_flag = false
+	$PauseMenu/HumoursScreen.hide()
+	$PauseMenu/Sensations.show()
+	$PauseMenu/ExamineButton.text = "Examine Humours"
 	$PauseMenu.hide()
-	for i in range(0, equipped_spell_containers.size()):
-		var spell_holder = equipped_spell_containers[i]
-		spell_holder.queue_free()
-		equipped_spell_containers[i] = null
-	equipped_spell_containers = []
+	#for i in range(0, equipped_spell_containers.size()):
+		#var spell_holder = equipped_spell_containers[i]
+		#spell_holder.queue_free()
+		#equipped_spell_containers[i] = null
+	#equipped_spell_containers = []
 	for i in range(0, equipped_relic_data.size()):
 		var relic_holder = relic_buttons[i]
 		relic_holder.queue_free()
@@ -114,3 +143,16 @@ func _on_continue_button_pressed() -> void:
 	get_tree().paused = false
 	relic_holder.show_relic_holder()
 	reset_pause_screen()
+
+
+func _on_examine_button_pressed() -> void:
+	if looking_at_puyos_flag == false:
+		looking_at_puyos_flag = true
+		$PauseMenu/HumoursScreen.show()
+		$PauseMenu/Sensations.hide()
+		$PauseMenu/ExamineButton.text = "examine sensations"
+	else:
+		looking_at_puyos_flag = false
+		$PauseMenu/HumoursScreen.hide()
+		$PauseMenu/Sensations.show()
+		$PauseMenu/ExamineButton.text = "Examine Humours"

@@ -12,3 +12,6 @@ func initialize_button(new_types : Array):
 func _on_pressed() -> void:
 	on_pair_chosen.emit(held_puyo_types)
 	pass # Replace with function body.
+
+func turn_off_button_functionality():
+	disabled = true
