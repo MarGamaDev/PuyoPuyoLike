@@ -18,6 +18,7 @@ signal on_encounter_finished()
 signal on_delay_enemy_attack(delay_turns : int)
 signal on_game_paused(puyo_pool : Array[Array])
 signal first_battle_started()
+signal poison_enemy(poison_amount : int)
 
 @export var puyo_values: PuyoValueData
 @export var debug_mode : bool = false
@@ -38,6 +39,7 @@ func _ready() -> void:
 
 func _physics_process(_delta: float) -> void:
 	if Input.is_action_just_pressed("switch_target") && selected_enemy:
+		#poison_enemy.emit(3)
 		var index = enemies.find(selected_enemy) + 1
 		index %= enemies.size()
 		select_enemy(index);

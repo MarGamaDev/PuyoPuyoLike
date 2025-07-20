@@ -41,6 +41,11 @@ var circle_next_attack_target : Vector2
 
 var square_size = 50.0
 
+var poison_stacks : int = 0
+var poisoned_flag : bool = false
+@export var poison_timer_start : int = 3
+var poison_timer = poison_timer_start
+
 func _ready() -> void:
 	instance_data = enemy_data.duplicate(true);
 	instance_data.health += DifficultyManager.get_health_addition()
@@ -71,14 +76,31 @@ func _ready() -> void:
 
 func handle_turn() -> void:
 	on_taking_turn.emit()
-	
-	attack_countdown += 1
-	if current_attack.number_of_turns_till_swing - attack_countdown == 4:
-		start_attack_signalling()
-	if attack_countdown >= current_attack.number_of_turns_till_swing:
-		unleash_attack()
-		stop_attack_signalling()
-	$Intent.set_indicator(current_attack, current_attack.number_of_turns_till_swing - attack_countdown)
+	if poisoned_flag:
+		poison_timer -= 1
+	if poison_timer <= 0 and poison_stacks > 0:
+		poison_timer = poison_timer_start
+		print("poison proc")
+		on_take_damage.emit()
+		instance_data.health -= poison_stacks
+		damage_number_effect_queue.append(poison_stacks)
+		var new_damage = damage_number_effect_queue.pop_front()
+		health_to_display -= new_damage
+		$Healthbar/HealthLabel.text = str(health_to_display) + health_suffix
+		$Healthbar.value = health_to_display
+		combat_effects_manager.create_damage_number_effect(new_damage, global_position)
+		$HurtFlashAnim.play("animation")
+		wait_for_animation.emit()
+	if instance_data.health <= 0 and death_flag == false:
+		die()
+	else:
+		attack_countdown += 1
+		if current_attack.number_of_turns_till_swing - attack_countdown == 4:
+			start_attack_signalling()
+		if attack_countdown >= current_attack.number_of_turns_till_swing:
+			unleash_attack()
+			stop_attack_signalling()
+		$Intent.set_indicator(current_attack, current_attack.number_of_turns_till_swing - attack_countdown)
 
 func determine_next_attack() -> void:
 	match attack_behaviour:
@@ -132,7 +154,9 @@ func set_as_selected(is_selected: bool) -> void:
 	$Selector.visible = is_selected
 	if is_selected:
 		combat_manager.connect("on_targeted_damage_dealt", take_player_attack)
+		combat_manager.poison_enemy.connect(add_poison)
 	elif combat_manager.is_connected("on_targeted_damage_dealt", take_player_attack):
+		combat_manager.poison_enemy.disconnect(add_poison)
 		combat_manager.disconnect("on_targeted_damage_dealt", take_player_attack)
 
 func add_to_timer(amount_to_add : int) -> void:
@@ -169,3 +193,9 @@ func start_attack_signalling():
 
 func stop_attack_signalling():
 	$AttackSignal.stop()
+
+func add_poison(amount_to_add: int):
+	if poison_stacks == 0:
+		poisoned_flag = true
+	poison_stacks += amount_to_add
+	pass
