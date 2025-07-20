@@ -63,26 +63,26 @@ func fill_spell_screen():
 		#empty_reward.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 
 func fill_relic_screen():
-	$PauseMenu/PageTabs/Sensations/RelicDescription.text = "Choose a sensation to reflect on"
-	$PauseMenu/PageTabs/Sensations/RelicFlavor.text = ""
-	$PauseMenu/PageTabs/Sensations/RelicName.text = ""
+	$PauseMenu/Sensations/RelicDescription.text = "Choose a sensation to reflect on"
+	$PauseMenu/Sensations/RelicFlavor.text = ""
+	$PauseMenu/Sensations/RelicName.text = ""
 	for relic : RelicData in relic_manager.equipped_relics:
 		equipped_relic_data.append(relic)
 	
 	if equipped_relic_data.size() <= 0:
-		$PauseMenu/PageTabs/Sensations/NoRelicsLabel.show()
+		$PauseMenu/Sensations/NoRelicsLabel.show()
 		return
 	else:
-		$PauseMenu/PageTabs/Sensations/NoRelicsLabel.hide()
+		$PauseMenu/Sensations/NoRelicsLabel.hide()
 	
 	for relic_data :RelicData in equipped_relic_data:
 		var new_button : RelicButton = relic_button_scene.instantiate()
 		new_button.initialize(relic_data)
 		new_button.on_relic_selected.connect(_on_relic_selected)
-		new_button.size_flags_stretch_ratio = TextureRect.STRETCH_KEEP
+		new_button.size_flags_stretch_ratio = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 		new_button.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
 		new_button.size_flags_vertical = Control.SIZE_SHRINK_CENTER
-		$PauseMenu/PageTabs/Sensations/RelicGrid.add_child(new_button)
+		$PauseMenu/Sensations/RelicGrid.add_child(new_button)
 		relic_buttons.append(new_button)
 
 func reset_pause_screen():
@@ -104,6 +104,13 @@ func _on_quit_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
 
 func _on_relic_selected(relic : RelicData):
-	$PauseMenu/PageTabs/Sensations/RelicDescription.text = relic.description
-	$PauseMenu/PageTabs/Sensations/RelicFlavor.text = relic.flavor_text
-	$PauseMenu/PageTabs/Sensations/RelicName.text = relic.name
+	$PauseMenu/Sensations/RelicDescription.text = relic.description
+	$PauseMenu/Sensations/RelicFlavor.text = relic.flavor_text
+	$PauseMenu/Sensations/RelicName.text = relic.name
+
+
+func _on_continue_button_pressed() -> void:
+	pause_delay_flag = false
+	get_tree().paused = false
+	relic_holder.show_relic_holder()
+	reset_pause_screen()

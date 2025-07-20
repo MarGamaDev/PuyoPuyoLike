@@ -9,6 +9,7 @@ metadata/_custom_type_script = "uid://ctfmnj5anv3kj"
 
 [node name="WinScreen" type="CanvasLayer"]
 process_mode = 2
+visible = false
 script = ExtResource("1_l5sol")
 
 [node name="ColorRect" type="ColorRect" parent="."]

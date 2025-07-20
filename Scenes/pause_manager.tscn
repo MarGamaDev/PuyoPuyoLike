@@ -31,6 +31,8 @@ anchors_preset = -1
 anchor_top = 0.044
 anchor_right = 1.0
 anchor_bottom = 0.12
+offset_top = -25.6
+offset_bottom = -25.6
 grow_horizontal = 2
 size_flags_horizontal = 0
 theme = ExtResource("2_8elxi")
@@ -40,21 +42,8 @@ text = "Game paused"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="PauseMenu"]
-anchors_preset = -1
-anchor_top = 0.12
-anchor_right = 1.0
-anchor_bottom = 0.161
-grow_horizontal = 2
-size_flags_horizontal = 0
-theme = ExtResource("2_8elxi")
-theme_override_font_sizes/normal_font_size = 31
-bbcode_enabled = true
-text = "Press escape to continue"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="PageTabs" type="TabContainer" parent="PauseMenu"]
+visible = false
 anchors_preset = -1
 anchor_left = 0.02
 anchor_top = 0.187
@@ -63,10 +52,9 @@ anchor_bottom = 0.97
 theme = ExtResource("2_8elxi")
 theme_override_font_sizes/font_size = 40
 tab_alignment = 1
-current_tab = 1
+current_tab = 0
 
 [node name="Emotions" type="HBoxContainer" parent="PauseMenu/PageTabs"]
-visible = false
 layout_mode = 2
 alignment = 1
 metadata/_tab_index = 0
@@ -77,79 +65,6 @@ size_flags_horizontal = 3
 theme_override_font_sizes/normal_font_size = 66
 bbcode_enabled = true
 text = "No emotions to channel..."
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Sensations" type="Control" parent="PauseMenu/PageTabs"]
-layout_mode = 2
-metadata/_tab_index = 1
-
-[node name="RelicGrid" type="GridContainer" parent="PauseMenu/PageTabs/Sensations"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.035
-anchor_top = 0.041
-anchor_right = 0.458
-anchor_bottom = 0.963
-columns = 4
-
-[node name="NoRelicsLabel" type="RichTextLabel" parent="PauseMenu/PageTabs/Sensations"]
-visible = false
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.035
-anchor_top = 0.041
-anchor_right = 0.458
-anchor_bottom = 0.963
-theme_override_font_sizes/normal_font_size = 51
-bbcode_enabled = true
-text = "No sensations felt."
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="RelicDescription" type="RichTextLabel" parent="PauseMenu/PageTabs/Sensations"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.576
-anchor_top = 0.195
-anchor_right = 0.993
-anchor_bottom = 0.679
-offset_left = 0.447937
-offset_right = 0.0639648
-theme_override_font_sizes/normal_font_size = 35
-bbcode_enabled = true
-text = "Choose a sensation to reflect on"
-horizontal_alignment = 1
-vertical_alignment = 1
-custom_effects = [SubResource("RichTextEffect_rcrlu")]
-
-[node name="RelicFlavor" type="RichTextLabel" parent="PauseMenu/PageTabs/Sensations"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.576
-anchor_top = 0.75
-anchor_right = 0.993
-anchor_bottom = 0.987
-offset_left = 0.447937
-offset_right = 0.0639648
-theme_override_font_sizes/normal_font_size = 30
-bbcode_enabled = true
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="RelicName" type="RichTextLabel" parent="PauseMenu/PageTabs/Sensations"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.576
-anchor_top = 0.005
-anchor_right = 0.993
-anchor_bottom = 0.159
-offset_left = 0.447998
-offset_top = -3.5835
-offset_right = 0.447998
-offset_bottom = -3.5835
-theme_override_font_sizes/normal_font_size = 50
-bbcode_enabled = true
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -191,6 +106,105 @@ text = "Volume"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Sensations" type="Control" parent="PauseMenu"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = 216.0
+offset_right = -27.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RelicGrid" type="GridContainer" parent="PauseMenu/Sensations"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.035
+anchor_top = 0.041
+anchor_right = 0.458
+anchor_bottom = 0.963
+columns = 4
+
+[node name="NoRelicsLabel" type="RichTextLabel" parent="PauseMenu/Sensations"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.035
+anchor_top = 0.041
+anchor_right = 0.458
+anchor_bottom = 0.963
+theme_override_font_sizes/normal_font_size = 51
+bbcode_enabled = true
+text = "No sensations felt."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RelicDescription" type="RichTextLabel" parent="PauseMenu/Sensations"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.576
+anchor_top = 0.195
+anchor_right = 0.993
+anchor_bottom = 0.679
+offset_left = 0.447937
+offset_right = 0.0639648
+theme_override_font_sizes/normal_font_size = 35
+bbcode_enabled = true
+text = "Choose a sensation to reflect on"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+custom_effects = [SubResource("RichTextEffect_rcrlu")]
+
+[node name="RelicFlavor" type="RichTextLabel" parent="PauseMenu/Sensations"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.576
+anchor_top = 0.75
+anchor_right = 0.993
+anchor_bottom = 0.987
+offset_left = 0.447937
+offset_right = 0.0639648
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RelicName" type="RichTextLabel" parent="PauseMenu/Sensations"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.576
+anchor_top = 0.005
+anchor_right = 0.993
+anchor_bottom = 0.159
+offset_left = 0.447998
+offset_top = -3.5835
+offset_right = 0.447998
+offset_bottom = -3.5835
+theme_override_font_sizes/normal_font_size = 50
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ContinueButton" type="Button" parent="PauseMenu"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -180.0
+offset_top = 90.0
+offset_right = 180.0
+offset_bottom = 131.0
+grow_horizontal = 2
+text = "Continue Game"
+
 [connection signal="pressed" from="PauseMenu/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="mouse_exited" from="PauseMenu/VolumeSlider" to="PauseMenu/VolumeSlider" method="release_focus"]
 [connection signal="value_changed" from="PauseMenu/VolumeSlider" to="PauseMenu/VolumeSlider" method="_on_value_changed"]
+[connection signal="pressed" from="PauseMenu/ContinueButton" to="." method="_on_continue_button_pressed"]
