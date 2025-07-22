@@ -39,7 +39,7 @@ func _ready() -> void:
 
 func _physics_process(_delta: float) -> void:
 	if Input.is_action_just_pressed("switch_target") && selected_enemy:
-		#poison_enemy.emit(3)
+		poison_enemy.emit(3)
 		var index = enemies.find(selected_enemy) + 1
 		index %= enemies.size()
 		select_enemy(index);

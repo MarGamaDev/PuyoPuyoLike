@@ -43,6 +43,9 @@ func create_boss_effect():
 	$CPUParticles2D.restart()
 	effect_active = true
 
+func set_color(new_color : Color):
+	$SubViewport/Label.add_theme_color_override("default_color", new_color)
+	$SubViewport/Label.add_theme_color_override("font_outline_color", Color(255,255,255))
 
 func _on_cpu_particles_2d_finished() -> void:
 	pass # Replace with function body.

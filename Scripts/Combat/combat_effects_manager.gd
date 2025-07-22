@@ -15,11 +15,18 @@ var chain_text_scene: PackedScene = preload("res://Scenes/effects/chain_text_par
 @onready var combat_manager : CombatManager = get_node("/root/Combat")
 ##todo: make 
 
-func create_damage_number_effect(text: Variant, effect_position: Vector2):
+enum DAMAGE_TEXT_TYPE {DEFAULT, POISON, BURN}
+
+func create_damage_number_effect(text: Variant, effect_position: Vector2, damage_type : DAMAGE_TEXT_TYPE = DAMAGE_TEXT_TYPE.DEFAULT):
 	var new_text_effect : TextParticleEffect = damage_text_scene.instantiate()
 	new_text_effect.position = effect_position
 	add_child(new_text_effect)
 	new_text_effect.create(text)
+	match damage_type:
+		DAMAGE_TEXT_TYPE.POISON:
+			new_text_effect.set_color(Color(0.0,255,0.0))
+		DAMAGE_TEXT_TYPE.BURN:
+			new_text_effect.set_color(Color(255,0.0,0.0))
 
 func create_chain_text_effect(chain : int):
 	if chain > 1:

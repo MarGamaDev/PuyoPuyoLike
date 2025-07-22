@@ -46,6 +46,10 @@ var poisoned_flag : bool = false
 @export var poison_timer_start : int = 3
 var poison_timer = poison_timer_start
 
+@onready var status_label : RichTextLabel = $StatusLabel
+var poison_label_text : String = ""
+var burn_label_text : String = ""
+
 func _ready() -> void:
 	instance_data = enemy_data.duplicate(true);
 	instance_data.health += DifficultyManager.get_health_addition()
@@ -71,6 +75,9 @@ func _ready() -> void:
 	
 	current_attack = attacks[0]
 	attack_countdown = attack_countdown + randi_range(-1, 1)
+	
+	status_label.text = ""
+	
 	starting_delay()
 	determine_next_attack()
 
@@ -88,11 +95,14 @@ func handle_turn() -> void:
 		health_to_display -= new_damage
 		$Healthbar/HealthLabel.text = str(health_to_display) + health_suffix
 		$Healthbar.value = health_to_display
-		combat_effects_manager.create_damage_number_effect(new_damage, global_position)
+		combat_effects_manager.create_damage_number_effect(new_damage, global_position, combat_effects_manager.DAMAGE_TEXT_TYPE.POISON)
 		$HurtFlashAnim.play("animation")
 		wait_for_animation.emit()
 	if instance_data.health <= 0 and death_flag == false:
-		die()
+		on_death.emit()
+		trigger_death_effect.emit(self.global_position)
+		combat_manager.deregister_enemy(self)
+		queue_free()
 	else:
 		attack_countdown += 1
 		if current_attack.number_of_turns_till_swing - attack_countdown == 4:
@@ -163,7 +173,7 @@ func add_to_timer(amount_to_add : int) -> void:
 	attack_countdown = attack_countdown - amount_to_add
 	$Intent.set_indicator(current_attack, current_attack.number_of_turns_till_swing - attack_countdown)
 
-func update_damage_visually():
+func update_damage_visually(damage_type: CombatEffectsManager.DAMAGE_TEXT_TYPE = CombatEffectsManager.DAMAGE_TEXT_TYPE.DEFAULT):
 	if damage_number_effect_queue.size() == 0:
 		return
 	else:
@@ -171,7 +181,7 @@ func update_damage_visually():
 		health_to_display -= new_damage
 		$Healthbar/HealthLabel.text = str(health_to_display) + health_suffix
 		$Healthbar.value = health_to_display
-		combat_effects_manager.create_damage_number_effect(new_damage, global_position)
+		combat_effects_manager.create_damage_number_effect(new_damage, global_position, damage_type)
 		$HurtFlashAnim.play("animation")
 		wait_for_animation.emit()
 		
@@ -198,4 +208,6 @@ func add_poison(amount_to_add: int):
 	if poison_stacks == 0:
 		poisoned_flag = true
 	poison_stacks += amount_to_add
+	poison_label_text = "[color=green]p: " + str(poison_stacks) + "[/color]"
+	status_label.text = poison_label_text + " " + burn_label_text
 	pass
