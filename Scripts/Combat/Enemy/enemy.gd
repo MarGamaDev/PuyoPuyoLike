@@ -46,9 +46,16 @@ var poisoned_flag : bool = false
 @export var poison_timer_start : int = 3
 var poison_timer = poison_timer_start
 
+var burn_stacks : int = 0
+var burned_flag : bool = false
+@export var burn_timer_start : int = 2
+var burn_timer = burn_timer_start
+
 @onready var status_label : RichTextLabel = $StatusLabel
 var poison_label_text : String = ""
 var burn_label_text : String = ""
+
+enum STATUS_DAMAGE_TYPE {POISON, BURN}
 
 func _ready() -> void:
 	instance_data = enemy_data.duplicate(true);
@@ -85,19 +92,18 @@ func handle_turn() -> void:
 	on_taking_turn.emit()
 	if poisoned_flag:
 		poison_timer -= 1
+	if burned_flag:
+		burn_timer -= 1
+	if burn_timer <= 0 and burn_stacks > 0:
+		burn_timer = burn_timer_start
+		print("burn proc")
+		take_status_damage(STATUS_DAMAGE_TYPE.BURN, burn_stacks)
+		burn_stacks = int(burn_stacks / 2)
+		update_burn_visual()
 	if poison_timer <= 0 and poison_stacks > 0:
 		poison_timer = poison_timer_start
 		print("poison proc")
-		on_take_damage.emit()
-		instance_data.health -= poison_stacks
-		damage_number_effect_queue.append(poison_stacks)
-		var new_damage = damage_number_effect_queue.pop_front()
-		health_to_display -= new_damage
-		$Healthbar/HealthLabel.text = str(health_to_display) + health_suffix
-		$Healthbar.value = health_to_display
-		combat_effects_manager.create_damage_number_effect(new_damage, global_position, combat_effects_manager.DAMAGE_TEXT_TYPE.POISON)
-		$HurtFlashAnim.play("animation")
-		wait_for_animation.emit()
+		take_status_damage(STATUS_DAMAGE_TYPE.POISON, poison_stacks)
 	if instance_data.health <= 0 and death_flag == false:
 		on_death.emit()
 		trigger_death_effect.emit(self.global_position)
@@ -165,8 +171,10 @@ func set_as_selected(is_selected: bool) -> void:
 	if is_selected:
 		combat_manager.connect("on_targeted_damage_dealt", take_player_attack)
 		combat_manager.poison_enemy.connect(add_poison)
+		combat_manager.burn_enemy.connect(add_burn)
 	elif combat_manager.is_connected("on_targeted_damage_dealt", take_player_attack):
 		combat_manager.poison_enemy.disconnect(add_poison)
+		combat_manager.burn_enemy.disconnect(add_burn)
 		combat_manager.disconnect("on_targeted_damage_dealt", take_player_attack)
 
 func add_to_timer(amount_to_add : int) -> void:
@@ -210,4 +218,35 @@ func add_poison(amount_to_add: int):
 	poison_stacks += amount_to_add
 	poison_label_text = "[color=green]p: " + str(poison_stacks) + "[/color]"
 	status_label.text = poison_label_text + " " + burn_label_text
+	pass
+
+func add_burn(amount_to_add: int):
+	if burn_stacks == 0:
+		burned_flag = true
+	burn_stacks += amount_to_add
+	update_burn_visual()
+
+func update_burn_visual():
+	if burn_stacks == 0:
+		burned_flag = false
+		burn_label_text = ""
+	else:
+		burn_label_text = "[color=red]p: " + str(burn_stacks) + "[/color]"
+	status_label.text = poison_label_text + " " + burn_label_text
+
+func take_status_damage(type : STATUS_DAMAGE_TYPE, amount: int):
+	on_take_damage.emit()
+	instance_data.health -= amount
+	damage_number_effect_queue.append(amount)
+	var new_damage = damage_number_effect_queue.pop_front()
+	health_to_display -= new_damage
+	$Healthbar/HealthLabel.text = str(health_to_display) + health_suffix
+	$Healthbar.value = health_to_display
+	match  type:
+		STATUS_DAMAGE_TYPE.BURN:
+			combat_effects_manager.create_damage_number_effect(new_damage, global_position, combat_effects_manager.DAMAGE_TEXT_TYPE.BURN)
+		STATUS_DAMAGE_TYPE.POISON:
+			combat_effects_manager.create_damage_number_effect(new_damage, global_position, combat_effects_manager.DAMAGE_TEXT_TYPE.POISON)
+	$HurtFlashAnim.play("animation")
+	wait_for_animation.emit()
 	pass
