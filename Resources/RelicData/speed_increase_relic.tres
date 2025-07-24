@@ -11,4 +11,5 @@ description = "test"
 flavor_text = "test"
 file_path = "res://Scenes/Relics/Variants/speed_increase_relic.tscn"
 is_part_of_certain_cycle = false
+can_be_picked_up_multiple_times = true
 metadata/_custom_type_script = "uid://dfyomjxsahuhw"

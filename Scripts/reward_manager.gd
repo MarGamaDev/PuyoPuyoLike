@@ -35,5 +35,8 @@ func remove_from_pool(to_remove: Reward):
 			certain_puyo_type_relic_counter += 1
 			if certain_puyo_type_relic_counter >= 2:
 				$RewardScreen.puyo_certain_relic_flag = true
-		var index = reward_pool.find(to_remove)
-		reward_pool[index].has_been_taken = true
+		if  to_remove.relic_data.can_be_picked_up_multiple_times == false:
+			var index = reward_pool.find(to_remove)
+			reward_pool[index].has_been_taken = true
+		else:
+			print("not removed")

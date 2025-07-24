@@ -6,3 +6,4 @@ class_name RelicData extends Resource
 @export var flavor_text: String
 @export var file_path: String
 @export var is_part_of_certain_cycle : bool = false
+@export var can_be_picked_up_multiple_times : bool = false

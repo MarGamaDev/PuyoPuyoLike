@@ -3,9 +3,9 @@ extends BaseRelic
 signal increase_speed(speed_mult: float)
 signal increase_puyo_values(chain_mult : float, base_mult: float)
 
-@export var speed_multiplier : float = 0.6
+@export var speed_multiplier : float = 0.5
 @export var chain_multiplier : float = 1.5
-@export var base_multiplier : float = 1.5
+@export var base_multiplier : float = 1.3
 
 func initialize() -> void:
 	super()

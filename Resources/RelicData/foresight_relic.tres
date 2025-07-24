@@ -11,4 +11,5 @@ description = "test"
 flavor_text = "test"
 file_path = "res://Scenes/Relics/Variants/foresight_relic.tscn"
 is_part_of_certain_cycle = false
+can_be_picked_up_multiple_times = false
 metadata/_custom_type_script = "uid://dfyomjxsahuhw"
