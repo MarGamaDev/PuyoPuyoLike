@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://bpr5xqp1dylei"]
+
+[ext_resource type="Script" uid="uid://bccanjdrvxn7t" path="res://Scripts/Relics/Variants/speed_increase_relic.gd" id="1_wmf6g"]
+[ext_resource type="Resource" uid="uid://bqrie2rm74hmc" path="res://Resources/RelicData/speed_increase_relic.tres" id="2_ikhps"]
+
+[node name="SpeedIncreaseRelic" type="Node2D"]
+script = ExtResource("1_wmf6g")
+relic_data = ExtResource("2_ikhps")

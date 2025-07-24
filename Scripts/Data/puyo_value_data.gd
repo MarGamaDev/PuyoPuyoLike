@@ -34,3 +34,14 @@ func get_base_value(puyo_type: Puyo.PUYO_TYPE) -> int:
 			return green_base_value
 		_:
 			return 1
+
+func multiply_values(chain_mult:float, base_mult:float):
+	green_base_value = ceil(base_mult * green_base_value)
+	green_chain_multiplier = ceil(chain_mult * green_chain_multiplier)
+	red_base_value = ceil(red_base_value * base_mult)
+	red_chain_multiplier = ceil(red_chain_multiplier * chain_mult)
+	yellow_base_value = ceil(yellow_base_value * base_mult)
+	yellow_chain_multiplier = ceil(yellow_chain_multiplier * chain_mult)
+	blue_base_value = ceil(blue_base_value * base_mult)
+	blue_chain_multiplier = ceil(blue_chain_multiplier * chain_mult)
+	pass

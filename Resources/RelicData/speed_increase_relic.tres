@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="RelicData" load_steps=3 format=3 uid="uid://bqrie2rm74hmc"]
+
+[ext_resource type="Script" uid="uid://dfyomjxsahuhw" path="res://Scripts/Relics/System/relic_data.gd" id="1_3kroa"]
+[ext_resource type="Texture2D" uid="uid://dtinidf20r6ev" path="res://Art/Umortis_Icon.png" id="2_fqn4r"]
+
+[resource]
+script = ExtResource("1_3kroa")
+sprite = ExtResource("2_fqn4r")
+name = "test - speed"
+description = "test"
+flavor_text = "test"
+file_path = "res://Scenes/Relics/Variants/speed_increase_relic.tscn"
+is_part_of_certain_cycle = false
+metadata/_custom_type_script = "uid://dfyomjxsahuhw"

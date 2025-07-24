@@ -143,3 +143,7 @@ func get_grid_node_global_position(pos: Vector2i) -> Vector2:
 
 func pause_game() -> void:
 	get_tree().paused = true
+
+func multiply_puyo_values(chain_mult : float, base_mult : float):
+	puyo_values.multiply_values(chain_mult, base_mult)
+	pass

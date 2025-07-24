@@ -100,3 +100,6 @@ func on_change_puyo_pool(pair_to_change: Array, to_change_to: Array) -> void:
 
 func get_puyo_pool() -> Array[Array]:
 	return game_manager.get_puyo_pool()
+
+func increase_player_tick_speed(speed_mult: float):
+	game_manager.increase_player_tick_speed(speed_mult)

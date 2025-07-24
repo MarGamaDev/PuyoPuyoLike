@@ -255,6 +255,11 @@ func delete_player():
 	player_puyos.clear()
 	pass
 
+func multiply_down_tick_timer(speed_mult:float):
+	player_down_speed *= speed_mult
+	player_hold_down_speed *= speed_mult
+	player_down_timer.wait_time = player_down_speed
+	pass
 
 ##TODO connect to the sfx machine
 func play_puyo_thud_sfx():

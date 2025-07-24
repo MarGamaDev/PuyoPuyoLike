@@ -41,8 +41,6 @@ var puyos_to_pop : Array = Array()
 var chain_length : int = 0
 var max_chain : int = 0
 
-@export var down_tick_speed : float = 0.5
-
 var junk_wait_flag : bool = false
 
 ##used for testing and debugging
@@ -225,7 +223,6 @@ func down_tick() -> bool:
 		await event_queue_manager.junk_timer()
 		for i : Array in to_move:
 			move_puyo(i[0], i[1])
-		#await get_tree().create_timer(down_tick_speed).timeout
 		down_tick()
 	else:
 		player_manager.player_create_flag = true
@@ -370,6 +367,9 @@ func get_puyo_pool():
 
 func change_puyo_pool(pair_to_change : Array, to_change_to : Array):
 	$PlayerPuyoManager/PuyoPoolManager.change_puyo_pool(pair_to_change, to_change_to)
+
+func increase_player_tick_speed(speed_mult: float):
+	player_manager.multiply_down_tick_timer(speed_mult)
 
 ##signal relays
 
