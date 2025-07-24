@@ -19,7 +19,7 @@ script = ExtResource("2_05dyb")
 metadata/_custom_type_script = "uid://bpj7cqyi7y4ln"
 
 [node name="MapScreen" type="CanvasLayer" parent="." node_paths=PackedStringArray("option_buttons")]
-layer = 3
+layer = 8
 visible = false
 script = ExtResource("4_vxlaf")
 option_buttons = [NodePath("NormalOptions/MapOption1"), NodePath("NormalOptions/MapOption2"), NodePath("NormalOptions/MapOption3")]

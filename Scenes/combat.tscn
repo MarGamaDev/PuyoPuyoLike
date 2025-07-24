@@ -278,6 +278,7 @@ script = ExtResource("18_5kjvk")
 [node name="RewardScreen" parent="RewardManager" instance=ExtResource("11_xisnc")]
 layer = 3
 visible = false
+reward_choice_pool_size = 8
 
 [node name="SoundManager" parent="." instance=ExtResource("19_nar6d")]
 song_volume = 0.16

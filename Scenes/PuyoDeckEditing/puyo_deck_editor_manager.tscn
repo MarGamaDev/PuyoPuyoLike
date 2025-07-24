@@ -16,7 +16,7 @@ metadata/_custom_type_script = "uid://ctfmnj5anv3kj"
 script = ExtResource("1_bbdny")
 
 [node name="PuyoDeckEditorInterface" type="CanvasLayer" parent="."]
-layer = 3
+layer = 8
 
 [node name="Button" type="Button" parent="PuyoDeckEditorInterface"]
 visible = false

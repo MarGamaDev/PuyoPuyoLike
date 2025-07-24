@@ -12,4 +12,4 @@ func initialize() -> void:
 	increase_puyo_values.connect(combat_manager.multiply_puyo_values)
 	increase_speed.connect(puyo_manager.increase_player_tick_speed)
 	increase_speed.emit(speed_multiplier)
-	increase_puyo_values.emit(chain_multiplier, base_multiplier	)
+	increase_puyo_values.emit(chain_multiplier, base_multiplier)
